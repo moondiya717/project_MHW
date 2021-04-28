@@ -31,7 +31,7 @@ public class For7 {
 		int num2=scan.nextInt();
 		int i, gcd=1; //쌤은 gcd=1; 이라고 어차피 최소공약수가 1이라서 1로 초기화시키셨음
 		
-		for(i = 1; i<=num1; i += 1) {
+		for(i = 1; i<=num1&&i<=num2; i += 1) { //i<=num1&&i<=num2 는 숫자중 최소값까지만 검사, i<=num1 는 그 수까지만 체크하는데 if에서걸러짐.
 			if(num1 % i ==0 && num2 % i==0) {
 				gcd=i;
 			}
