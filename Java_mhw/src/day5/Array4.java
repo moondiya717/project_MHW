@@ -39,8 +39,8 @@ System.out.println();
 		boolean isDuplicated = false;  //변수 선언만 한거임, 랜덤숫자중에서 겹치는게 있는지ture 없는지false 기록을 하려는 것
 		for(i=0; i<arr.length-1; i+=1) { //arr.length-1 인이유가 숫자를 비교할 때, 5개의 숫자는 4줄로 대조함.
 			for(k=i+1; k<arr.length; k+=1) {					//		01	02	03	04		=> 12345 비교할때 왼쪽과 같이 4줄이 되니까 -1이 된거임. (5-1)= length-1이용
-				if(arr[i] ==arr[k]) { //랜덤값=arr[k]				//		12	13	14			=> 줄의 맨앞 숫자가 0123 으로 1씩 올라가는 규칙이 있음.
-					isDuplicated = true;						//		23	24				=> 줄마다 앞숫자는 같은데 뒷숫자가 바뀜(고정X),(규칙)뒷 숫자가 +1씩
+				if(arr[i] ==arr[k]) { //랜덤값=arr[i]번쨰=[k]번째	//		12	13	14			=> 줄의 맨앞 숫자가 0123 으로 1씩 올라가는 규칙이 있음.
+					isDuplicated = true;	//false써논걸 true덮어씀//		23	24				=> 줄마다 앞숫자는 같은데 뒷숫자가 바뀜(고정X),(규칙)뒷 숫자가 +1씩
 				}		//같은키를 찾은 true						//		34
 			}
 		}
