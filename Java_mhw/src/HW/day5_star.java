@@ -1,6 +1,6 @@
 package HW;
 
-public class weekendHW {
+public class day5_star {
 
 	public static void main(String[] args) {
 	
