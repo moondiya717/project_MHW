@@ -60,7 +60,7 @@ System.out.println("-----------");
 				System.out.print('*');					// 43210 별더하기
 			}System.out.println();
 		}
-		
+													
 		
 	
 	}

@@ -29,7 +29,7 @@ public class Array3 {
 		}
 		//출력 => 향상된 for문을 쓰지 않는이유는 무조건 10개가 보여지니까 갯수가 10개가 안될 때  0 0 0 0 0 이런식으로 뒤에 나옴.
 		for(i=0; i<cnt; i+=1) {
-			System.out.println(arr[i]+ " ");
+			System.out.print(arr[i]+ " ");
 		}
 
 	

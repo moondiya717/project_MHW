@@ -16,11 +16,11 @@ public class Array4 {
 		
 		// min=1, max=10의 정수 3개 만들기 + 배열에 저장하기
 		
-		int min=1, max=10, r;
+		int min=1, max=10;
 		int i, k;
 		int []arr=new int[3];
 		
-		System.out.println("랜덤: ");
+		System.out.print("랜덤: ");
 		for(i=0;i<3;i+=1) {
 			arr[i]=(int)(Math.random()*(max-min+1)+min);
 			System.out.print(arr[i] + " ");
