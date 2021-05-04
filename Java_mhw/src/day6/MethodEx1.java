@@ -8,8 +8,10 @@ public class MethodEx1 {
 		
 		add(1,2);	//3이랑 같다고..? , 실행은 되지만 동작은 없음. 따라서 큰의미는 없는 
 		System.out.println(add(1,2));
+		
 		add2(1,2);
 		printMultiTable(7);//구구단 7단을 출력하기위해서
+		
 		int num1=8, num2=12;
 		int res = gcd(num1, num2);
 		System.out.println(num1 + "와"+ num2+ "의 최대공약수: "+ res);

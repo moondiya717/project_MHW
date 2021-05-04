@@ -6,6 +6,7 @@ public class MethodEx2 {
 		// TODO Auto-generated method stub
 		int []arr = new int[] {1,2,3,4,5};
 		printArray(arr); //public static 타입 뒤에있는 이름
+		
 		initArray(arr,0); //initarray 초기화
 		printArray(arr); //printarray는 출력
 		
