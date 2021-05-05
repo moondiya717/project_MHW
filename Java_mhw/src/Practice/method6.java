@@ -1,6 +1,6 @@
-package day7;
+package Practice;
 
-public class MethodEx6 {
+public class method6 {
 
 	public static void main(String[] args) {
 		/*다음과 같이 출력하는 메소드를 만드세요.
@@ -10,9 +10,8 @@ public class MethodEx6 {
 		 * ****
 		 * *****
 		 * */
-
-		printLeftTriangle('*',6);
-		
+	
+		printLeftTriangle('*',5);
 		
 		/* 다음과 같이 출력하는 메소드를 만드세요
 		 *     *
@@ -21,30 +20,31 @@ public class MethodEx6 {
 		 *  ****
 		 * *****
 		 *  */
-		printRightTriangle('*',6);
+		
+		printRightTriangle('*',5);
 		
 		
-		printTriangle('+',5,TriangleShape.LEFT_TRIANGLE);
-		printTriangle('+',5,TriangleShape.RIGHT_TRIANGLE);
-
+		
+		printTriangle('+', 5, TriangleShape.LEFT_TRIANGLE);
+		printTriangle('+', 5, TriangleShape.RIGHT_TRIANGLE);
+		
 	}
-
 	/* 기능: 주어진 문자를 이용하여 왼쪽으로 붙은 삼각형을 n줄 출력하는 메소드
 	 * 매개변수: 문자, n줄 => char ch, int n
 	 * 리턴타입: void
 	 * 메소드명: printLeftTriangle
 	 * */
 	
-	public static void printLeftTriangle(char ch, int n) {
-		for(int i=1; i<=n; i+=1) {
-			for(int k=1; k<=i; k+=1) {
+	public static void printLeftTriangle(char ch, int n){
+		for(int i=1; i<=n; i+=1) { //5줄
+			for(int k=1; k<=i; k+=1) { //*
 				System.out.print(ch);
-			}
-			for(int k=1; k<=i; k+=1) {
+			}for(int k=1; k<=n; k+=1) {
 				System.out.print(" ");
 			}
 			System.out.println();
 		}
+	
 	}
 	/* 기능: 주어진 문자를 이용하여 오른쪽으로 붙은 삼각형을 n줄 출력하는 메소드
 	 * 매개변수: 문자, n줄 => char ch, int n
@@ -52,8 +52,8 @@ public class MethodEx6 {
 	 * 메소드명: printRightTriangle
 	 * */
 	public static void printRightTriangle(char ch, int n) {
-		for(int i=1; i<=n; i+=1) {
-			for(int k=1; k<=n-i; k+=1) {
+		for(int i=1; i<=n; i+=1) { //줄
+			for(int k=1; k<=n-i; k+=1) { // " "
 				System.out.print(" ");
 			}
 			for(int k=1; k<=i; k+=1) {
@@ -77,5 +77,5 @@ public class MethodEx6 {
 			break;
 		}
 	}
-}	
-enum TriangleShape{LEFT_TRIANGLE, RIGHT_TRIANGLE}
+}
+enum TriangleShape{LEFT_TRIANGLE, RIGHT_TRIANGLE};

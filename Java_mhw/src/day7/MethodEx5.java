@@ -33,7 +33,7 @@ public class MethodEx5 {
 	
 	public static String printChar2(char ch, int count) {
 		String str = ""; //문자열 + 문자 => 문자열
-		for(int i=0; i<=count; i+=1) {
+		for(int i=0; i<=count-1; i+=1) {
 			// i=0, 		""+* =>"*"
 			// i=1, 		"*"+"*"=>"**"
 			//i=count-1 => 	"**...**" + "*" => "*...*" (*이 count개)
