@@ -2,7 +2,7 @@ package day8;
 
 import java.util.Scanner;
 
-public class Test_3 {
+public class Test8_3 {
 
 	public static void main(String[] args) {
 		/* 4개의 성적을 입력받아 합격인지 불합격인지 판별하는 코드를 작성하세요
