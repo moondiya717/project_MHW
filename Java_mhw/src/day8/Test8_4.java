@@ -1,6 +1,6 @@
 package day8;
 
-public class Test4_4 {
+public class Test8_4 {
 
 	public static void main(String[] args) {
 		/* 1번 문제 : 1부터 10까지 한 줄로 출력되는 코드를 작성하세요.*/
