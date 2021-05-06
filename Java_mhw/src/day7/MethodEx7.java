@@ -11,7 +11,7 @@ public class MethodEx7 {
 		System.out.println(contains(arr, num, 2)); //배열 1,2까지만 2개를 확인하니깐 없다고 함.
 
 		//initRandomArray(arr, 1, 9);
-		initRandomArray2(3,1,9);
+		arr = initRandomArray2(3, 1, 9);
 		
 		for(int tmp : arr) {
 			System.out.print(tmp + " ");
