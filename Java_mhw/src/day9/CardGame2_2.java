@@ -179,7 +179,7 @@ public class CardGame2_2 {
 	 * 
 	 * */
 	public static int triple (int []card) {
-		int [] res = tripleList(card);
+		int [] res = tripleList(card);	//트리플이 한개만 있거나 없거나
 		
 		//트리플이 아닌 경우
 		if(res == null || res.length ==2) {
@@ -219,12 +219,17 @@ public class CardGame2_2 {
 			pair[res] = num;
 			res+=1;
 		}
+		//null
+		//[1,0,0]페어가 1개일때 => [0]
+		//[1,2,0]페어 2개일때 => [0,0] => 뒤에 0들이 보기가 어려우니까 밑에서 뗀 작업을 함
+		//[1,2,3]페어가 3개일때  => 그냥 나와도됨.
+		
 		if(res==0) {
 			return null;
 		}else if(res<3) {	//배열 갯수에 맞춰 새로 만들어줌 
 			int []tmpArr = new int[res];
-			for(int i=0 ; i<res; i+=1) {	//트리플이랑 다름, 페어는 2개를 같이보내줘야 해서
-				tmpArr[i] = pair[i];
+			for(int i=0 ; i<res; i+=1) {	//pair가 3개나올수있어서 배열 3개짜릴만들어서 만약에 페어1개면 그 뒤 번지들은 값이 00으로 다 비니까 그걸 출력했을때 헷갈림 그래서 
+				tmpArr[i] = pair[i];		//그래서 이걸 tmpArr를 새로만들어서 앞에 페어있는 값만 뽑아오는 작업임
 			}
 			return tmpArr;
 		}
@@ -280,9 +285,10 @@ public class CardGame2_2 {
 		}
 		//트리플이 2개이면 풀하우스
 		//tripleList를 이용
-		//1,1,1,2,2,3,3,
+		//1,1,1,2,2,2,3,
+		//[1,2]
 		if(triple.length == 2) {	
-			if(triple[0] > triple[1]) {			//더큰수를 보내?뭘보내?
+			if(triple[0] > triple[1]) {			//트리플이 2개일때 더 큰숫자를 가지고 풀하우스라고 보여줘야하기때문에 triple배열을 만들어서 tripleList 값을 넣어줌 글고 뒷 배열번지 갖고옴 그게 더 큰수라서
 				return triple[0];
 			}
 			return triple[1];
