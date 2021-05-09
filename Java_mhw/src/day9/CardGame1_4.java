@@ -11,10 +11,10 @@ public class CardGame1_4 {
 		 * 1 포커		: 같은 숫자가 4개 
 		 * 2 풀하우스 	: 트리플1 + 페어1(투페어) 또는 트리플2
 		 * 3 스트레이트	: 연속된 숫자가 5개이상
-		 * 4 트리플		: 같은 숫자가 3개
-		 * 5 투 페어		: 같은 숫자가 2개씩 2개=> 페어가 2개
+		 * 4 트리플	: 같은 숫자가 3개
+		 * 5 투 페어	: 같은 숫자가 2개씩 2개=> 페어가 2개
 		 * 6 페어		: 같은 숫자가 2개
-		 * 7 탑			: 위의 모든 조건이 없는 가장 큰 수
+		 * 7 탑		: 위의 모든 조건이 없는 가장 큰 수
 		 * */
 		
 		/*<day9 주말숙제>
@@ -24,7 +24,7 @@ public class CardGame1_4 {
 		 * */
 		
 
-		int []arr=new int[]{1,2,3,4,5,8,8};
+		int []arr=new int[]{1,2,2,3,4,5,6};
 		
 		
 		System.out.println("포커인 숫자: " + poker(arr));
@@ -61,6 +61,7 @@ public class CardGame1_4 {
 				System.out.print(tmp2 + " ");
 			}
 		}
+		
 		System.out.println("풀하우스: " + fullHouse(arr));
 		
 		System.out.println("스트레이트: " + straight(arr));
@@ -287,7 +288,7 @@ public class CardGame1_4 {
 	 * 메소드명 : straight
 	 * */
 	public static int straight(int []card) {
-		int count=0;
+		int count=1;
 		int tmp =0;
 		int i;
 		int num=0;
