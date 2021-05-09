@@ -2,11 +2,12 @@ day9
 
 int [] = arr3 = null;
 
-//SCE라고 부름 show show cirkit? evaluation
+//SCE라고 부름 show short circuit evaluation
 *논리연산자에서 판별할 때 왼쪽에 있는 값에 따라 오른쪽이 실행되지 않을 수 있다. 
 if(arr3 != null && arr3.length ==2){          => 작동함 ( arr3.length ==2 만있으면 에러남) 
 sysout("12");
 }
+
 && : 하나라도 거짓이면 거짓, 왼쪽이 거짓이면 오른쪽을 확인하지 않아도 거짓이기때문에 오른쪽이 실행되지않음.
 || : 하나라도 참이면 참, 왼쪽이 참이면 오른쪽을 확인하지 않아도 참이기때문에 오른쪽이 실행되지 않음.
 
