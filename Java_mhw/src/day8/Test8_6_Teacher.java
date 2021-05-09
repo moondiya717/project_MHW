@@ -42,7 +42,6 @@ public class Test8_6_Teacher {
 					res=true;
 				}
 				count=1;
-
 			}
 		}
 		if(count ==2) {	//마지막에 +1해서 2가 된 경우를 위함

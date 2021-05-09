@@ -34,18 +34,12 @@ public class Test8_7 {
 					res+=1;
 				}
 				count=1;
-
 			}
 		}
 		if(count ==2) {	//마지막에 +1해서 2가 된 경우를 위함
 			res+=1;
 		}
 		System.out.println(res);
-
-		
-
-		
-
 	}
 
 }

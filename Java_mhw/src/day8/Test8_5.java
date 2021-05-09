@@ -1,6 +1,6 @@
 package day8;
 
-public class Test8_5 {		//야이거이상한데 쌤꺼랑 비교해라
+public class Test8_5 {
 
 	public static void main(String[] args) {
 		/* 10개짜리 배열에 1부터 10를 저장한 후 출력하는 코드를 작성하세요.*/
@@ -52,7 +52,7 @@ public class Test8_5 {		//야이거이상한데 쌤꺼랑 비교해라
 		 * 1차이가 나지 않으면 count를 1으로 
 		 * count가 3이되면(연속) 반복문 종료*/
 		
-		int []arr3= new int[] {1,3,5,6,7};
+		int []arr3= new int[] {1,2,3,3,3};
 		int count=1; 	//연속된 숫자의 개수
 		
 		for(int i=0; i<arr3.length-1; i+=1) {
@@ -61,12 +61,10 @@ public class Test8_5 {		//야이거이상한데 쌤꺼랑 비교해라
 				count +=1;
 			}else {					//아니면 count를 1로 초기화
 				count = 1;
-			} if (count ==3) {
+			}if (count ==3) {
 				break;				//count가 3이면 반복문 종료
 			}
-			
 		}
-		
 		if(count==3) {					//count가 3이면 연속이라고 출력
 			System.out.println("연속");
 		}
