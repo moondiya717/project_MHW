@@ -1,6 +1,6 @@
 package day9;
 
-public class CardGame {
+public class CardGame1_1 {
 
 	public static void main(String[] args) {	// boolean 안쓸순없나?ㅠㅠ
 		/*배열에 같은 숫자 3개가 있는지 없는지 알려주는 코드를 작성하세요.

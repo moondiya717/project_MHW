@@ -1,6 +1,6 @@
 package day9;
 
-public class CardGame2_2 {
+public class CardGame1_3 {
 
 	public static void main(String[] args) {	
 		
