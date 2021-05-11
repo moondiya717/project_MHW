@@ -13,7 +13,7 @@ public class Point {
 	 *  */
 	
 	public void print() {
-		//멤버변수를 멤버메소드에서 사용하는 경우, 따로 선언을 하지 않아도 됨. (지역변수와 다른 개념)
+		//멤버변수(위에선언한x,y)를 멤버메소드에서 사용하는 경우, 따로 선언을 하지 않아도 됨. (지역변수와 다른 개념)
 		System.out.println("(" + x + "," + y + ")");
 	}
 	/* 기능    : 지정된 좌표로 이동하는 메소드
@@ -41,6 +41,8 @@ public class Point {
 	public void setY(int y) {
 		this.y = y;
 	}
+	
+	
 	/* 초기 x,y좌표가 x1, y1주어지면 주어진 x,y좌표로 멤버변수를 초기화하는 생성자*/
 	public Point(int x1, int y1) {
 		x =x1;
@@ -49,5 +51,9 @@ public class Point {
 	public Point() {
 							// public Point(int x1, int y1)~ } 는 생성자를 위에 써서 이전에 다른 클래스에서 가져간 point 값들이 쓰던 기본 생성자들이 자동으로 없어져서
 	}						// public Point(){} 기본생성자 한줄을 추가해줘야 값을 가져간 다른 클래스들 오류가 해결 됨.	
-									
+	
+	public Point(Point pt) {	//lu를 위한거껄?
+		x = pt.x;
+		y = pt.y;
+	}
 }
