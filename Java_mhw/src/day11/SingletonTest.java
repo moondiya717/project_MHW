@@ -1,6 +1,6 @@
 package day11;
 
-public class SingleonTest {
+public class SingletonTest {
 
 	public static void main(String[] args) { //혼공자 272p.
 		/* 싱글톤 : 전체 프로그램에서 단 하나의 객체만 있어야 하는 경우에 만든
