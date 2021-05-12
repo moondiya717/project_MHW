@@ -20,6 +20,8 @@ public class MethodOverloadingTest {
 }
 class Point2{
 	private int x, y;		//자동으로 초기값 int는 0들어감
+	
+	
 	public Point2() {
 		this(0,0);
 	}
@@ -28,8 +30,9 @@ class Point2{
 		this.x = x;
 		this.y = y;
 	}
-	public Point2(Point2 pt) {	//복사생성자
-		this(pt.x, pt.y); // 항상 첫줄에 놔줘야 함
+	
+	public Point2(Point2 pt) {	//복사생성자, public 클래스명(클래스명 객체명){}
+		this(pt.x, pt.y); 		// this() 생성자는 항상 첫줄에 놔줘야 함
 	}
 	public void print() {
 		System.out.println("( " + x + "," + y + " )");

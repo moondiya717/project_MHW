@@ -50,7 +50,7 @@ class A{
 		this.num2 = num2;
 	}
 	//복사 생성자 : 생성자의 매개변수로 같은 클래스의 객체가 오는 경우
-	public A(A a) {
+	public A(A a) {	
 		num1 = a.num1;
 		num2 = a.num2;
 	}

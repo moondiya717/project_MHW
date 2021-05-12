@@ -3,7 +3,7 @@ package day11;
 public class ThisTest {
 
 	public static void main(String[] args) {
-		TestA t = new TestA(5);	//num에 5가 들어가길 바래서 5 넣음 => 근데 안들어감ㅋ
+		TestA t = new TestA(5);	//num에 5가 들어가길 바래서 5 넣음 => 근데 안들어감ㅋ num=num이래서 => this.num=num 은 들어감
 		t.print(); 
 		
 	}
@@ -16,7 +16,7 @@ class TestA{
 	public TestA(int num) {	//매개변수 num
 		//멤버 변수 num에 매개변수 num의 값을 저장
 		//메소드에서 우선순위는 멤버변수보다 매개변수가 높다.
-		//num = num;
+		//num = num; => 이렇게쓰면 멤버변수 = 매개변수 가 아니라, 매개변수 = 매개변수가 됨
 		this.num = num; //멤버변수 이름이랑 매개변수랑 이름이 다르면 안써도 돼 
 		
 	}

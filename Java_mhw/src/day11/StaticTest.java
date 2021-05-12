@@ -17,7 +17,7 @@ public class StaticTest {
 		
 		//TestB.t2 = new TestB();//그림설명을 위해 하나 추가함
 		
-		t2.printNum1();			//출력오류났음, 확인할것
+		t2.printNum1();			
 		TestB.printNum2();	
 	}
 
@@ -25,19 +25,23 @@ public class StaticTest {
 class TestB{
 	//객체 멤버 변수 정수 num1를 선언
 	public int num1;
+	
 	//(클래스 멤버변수)정적 멤버 변수 정수 num2를 선언
 	public static int num2;
 	
 	public void printNum1() {
 		//객체 멤버변수는 객체 메소드에서 사용 가능 
 		System.out.println("num1 :" + num1);
+		
 		//클래스 멤버변수/메소드는 객체 메소드에서 사용 가능
 		num2=20;
 		printNum2();
 	}
+	
 	public static void printNum2() {
 		//클래스 멤버변수는 클래스 메소드에서 사용 가능
 		System.out.println("num2 :" + num2);
+		
 		//객체 멤버변수/메소드는 클래스 메소드에서 사용 불가능
 		//num1=10;		//에러발생
 		//printNum1();	//에러발생
