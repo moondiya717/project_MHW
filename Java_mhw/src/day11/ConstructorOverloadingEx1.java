@@ -7,7 +7,7 @@ public class ConstructorOverloadingEx1 {
 		A a2 = new A(1,2);		// 밑에 생성자 쓰려면, 정수 두개를 전달해야 함.
 		A a3 = new A(1.0, 2);	// 실수가 정수로 자동형변환이 안되기 때문에 에러 발생 
 		A a4 = new A('a', 3);	// 문자가 정수로 자동형변환이 되기 때문에 에러 발생하지 않음
-		
+		A a5 = new A(a1);
 	}
 
 }
@@ -50,8 +50,8 @@ class A{
 		this.num2 = num2;
 	}
 	//복사 생성자 : 생성자의 매개변수로 같은 클래스의 객체가 오는 경우
-	public A(A a) {	
-		num1 = a.num1;
+	public A(A a) {			//class A를 통해서 만들었는데 A클래스에는 객체변수 num1, num2 두개가 있음. 그리고 이 복사생성자는 a라는 객체의 멤버변수 값을  num1,num2에 넣어.
+		num1 = a.num1;		
 		num2 = a.num2;
 	}
 	
