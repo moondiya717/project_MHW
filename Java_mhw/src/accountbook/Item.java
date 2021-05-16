@@ -70,6 +70,8 @@ public class Item {
 		this.cost = cost;
 		this.contents = contents;
 	}
+	
+	
 	/* 기능    : 멤버변수를 수정하는 기능 
 	 * 매개변수 : 수정할 멤버변수 내용
 	 * 			String type, String date, String paymentType, String category, int cost, int contents
