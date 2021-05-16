@@ -149,7 +149,9 @@ public class AccountbookProgram2 {
 	public void printTotal() {
 		System.out.println("내역 합계: " + book.getTotal() + "원");
 	}
-	public AccountbookProgram2() {
+	
+	
+	public AccountbookProgram2() {		//생성자인건 알겠는데 왜 book=new AccountBook2()? 라고써애돼?
 		book = new AccountBook2();
 	}
 	public AccountbookProgram2(int max) {
