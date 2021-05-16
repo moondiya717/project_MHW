@@ -29,7 +29,7 @@ public class Car {
 		System.out.println("전원: " + power);
 		System.out.println("기어: " + gear);
 	}
-	//public void setPower(boolean power) {		//외부에서 전원을 맘대로 켜고끄고할 수 없도록 지우기, 시동은 항상 내부에서만 끄고 켤 수 있도록 
+	//public void setPower(boolean power) {		//외부에서 전원을 맘대로 켜고끄고할 수 없도록 지우기, 시동은 항상 내부에서만 끄고 켤 수 있도록 숨김 
 	//	this.power = power;
 	//}
 	public char getGear() {
