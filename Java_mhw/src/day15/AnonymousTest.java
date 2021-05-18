@@ -48,4 +48,3 @@ class TvRomocon implements Remocon {
 	public void turnOff() {System.out.println("전원 꺼짐");}
 	
 	}
-}
