@@ -45,7 +45,7 @@ class Num{
 			return false;
 		}
 		//매개변수 obj를 Num클래스의 객체로 타입변환이 가능하지 않다면 false를 리턴: 다른 클래스의 객체와 비교할 필요가 없어서
-		if(!(obj instanceof Num)) {	//ins
+		if(!(obj instanceof Num)) {	//instanceof => 타입변환가능여부를 나타내는 코드
 			return false;
 		}
 		//매개변수의 num와 내 num가 같은지를 비교

@@ -22,7 +22,7 @@ public class TryTest5 {
 	}catch(InputMismatchException e) {
 		System.out.println("잘못된 값을 입력했습니다");
 	}catch(Exception e) {
-		System.out.println(e.getMessage()); 	//한줄만나온대 ?_?
+		System.out.println(e.getMessage()); 	
 	}
 	System.out.println("프로그램 종료합니다.");
 	scan.close();	

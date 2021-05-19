@@ -10,8 +10,8 @@ public class ThrowsTest {
 			System.out.println(e.getMessage());
 		}
 	}
-	public static void test() throws Exception{		//이 메소드를 호출한 메인에서 해결한다 	//throws Exception, , , , 예외를 ,로 이어적기 가능
-		throw new Exception("test 메소드에서 예외 발생");	//Throws Exception은 생략가능하지만 에러발생?????=>실행예외가아니라서, 실행예외인 RuntimeException은 에러발생안됨.
-	}
+	public static void test() throws Exception{		//이 메소드를 호출한 메인에서 해결한다 	//throws Exception, , , , 예외명을 ,로 이어적기 가능
+		throw new Exception("test 메소드에서 예외 발생");	//Throws Exception은 생략가능 .
+	}            //에러발생=>Exception은 일반예외+실행예외라서 일반예외포함때문에=> 실행예외인 RuntimeException를 쓰면 에러발생 안함
 }
 
