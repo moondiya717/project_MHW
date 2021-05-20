@@ -45,7 +45,7 @@ public class StringTest5 {
 			System.out.println("잘못된 입력입니다.");
 		}
 	}catch(RuntimeException e) {
-		e.printStackTrace();	//어떤오류인지 잡아내는곻ㅎㅎ넘죠타
+		e.printStackTrace();	//어떤오류인지 잡아내는 코드 (출력빨간색 에러난거 아님)
 		System.out.println("잘못된 입력입니다.");
 	}
 		
