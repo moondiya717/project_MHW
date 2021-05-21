@@ -15,7 +15,8 @@ public class StringTest8 {
 		
 		
 		
-		/*contains(문자열) 예제 => 값이 true,false 로 나옴*/
+		/*contains(문자열) 예제 => 값이 true,false 로 나옴
+		 * 문자열 A와 B가 서로 포함관계에 있으면 ture, 아니면 false로 나옴*/
 		//indexOf(문자열)와 기능이 비슷
 		System.out.println("Hello".contains("He"));
 		System.out.println("Hello".contains("Hi"));
