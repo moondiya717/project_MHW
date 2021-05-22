@@ -15,7 +15,7 @@ public class ListTest3 {	//오버라이딩못했엉!!! ㅠㅠ
 		//같은 값을 가지고있지만, equals를 오버라이딩 하지 않으면 다르다고 값을 출력함 => 오버라이딩하면 같다고 인식해줌(hashcode , equals)
 		System.out.println("리스트에 학생 정보가 있습니까? " + list.indexOf(std2)); 	//값: -1
 		System.out.println("리스트에 학생 정보가 있습니까? " + list.contains(std2)); 	//값: false
-
+		//오버라이딩 후, 값이 같다고 바뀜
 		
 		
 	}

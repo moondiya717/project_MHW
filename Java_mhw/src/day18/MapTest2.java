@@ -80,20 +80,7 @@ public class MapTest2 {
 	
 	scan.close();
 	}
-	/* 기능	 : 아이디입력하라고 출력, 입력받기 + 비번입력하라고 출력, 입력받기 + 저장
-	 * 매개변수: String id, String pw
-	 * 리턴타입: void
-	 * 메소드명: singUp*/
-	public void putId(String id, String pw) {
-		HashMap<String, String> map = new HashMap<String, String>();
 
-		System.out.println("아이디: ");
-		String id1=id;
-		System.out.println("비밀번호: ");
-		String pw2=pw;
-		map.put(id1,pw2);
-
-	}
 }
 
 
