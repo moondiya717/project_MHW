@@ -24,13 +24,13 @@ public class MapTest2_practice {
 					}
 					pw=insertPw();
 					loginInfo.put(id,pw);
-					
 					break;
 				case "2": 
 					id=insertId();
 					pw=insertPw();
-					if(loginInfo.containsKey(id)==true && loginInfo.containsValue(pw)==true) {
-						System.out.println("로그인되었습니다.");
+					if(!loginInfo.get(id).equals(pw)) {
+						System.out.print("잘못된 입력입니다.");
+						break;
 					}else {
 						System.out.println("잘못된 입력입니다.");
 					}
@@ -80,7 +80,6 @@ public class MapTest2_practice {
 		String pw=scan.next();
 		return pw;
 	}
-
 
 
 }
