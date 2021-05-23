@@ -1,10 +1,7 @@
-package day18;
+package Practice;
 
 import java.util.HashMap;
-import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Scanner;
-import java.util.Set;
 
 public class MapTest2 {
 
@@ -40,10 +37,9 @@ public class MapTest2 {
 		 * 비밀번호 : 1234
 		 * 로그인 실패
 		 * */
-
 		Scanner scan = new Scanner (System.in);
 		String answer;
-		HashMap<String,String> signUp = new HashMap<String,String>();
+		HashMap<String,String> loginInfo = new HashMap<String,String>();
 		
 		do {
 			System.out.println("-----메뉴------ \n 1.회원가입\n 2.로그인 \n 3.종료\n--------------" );
@@ -53,20 +49,20 @@ public class MapTest2 {
 			case "1": 
 				System.out.print("아이디 :");
 				String id = scan.next();
-				if(signUp.containsKey(id)) {
+				if(loginInfo.containsKey(id)) {
 					System.out.println("이미 사용 중인 아이디입니다.");
 					break;
 				}
 				System.out.print("비밀번호 :");
 				String pw = scan.next();
-				signUp.put(id,pw);
+				loginInfo.put(id,pw);
 				break;
 			case "2": 
 				System.out.print("아이디 :");
 				id=scan.next();
 				System.out.print("비밀번호 :");
 				pw=scan.next();
-				if(!signUp.get(id).equals(pw)) {
+				if(!loginInfo.get(id).equals(pw)) {
 					System.out.print("잘못된 입력입니다.");
 					break;
 				}
@@ -77,7 +73,9 @@ public class MapTest2 {
 			}
 		}while(!answer.equals("3"));
 		
+		
+		
+		
 	}
+
 }
-
-

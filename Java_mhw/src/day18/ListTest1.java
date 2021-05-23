@@ -30,9 +30,7 @@ public class ListTest1 {
 		list.add(10,"아침식사");							//10번지에 추가함
 		System.out.println("리스트 크기: " + list.size());	//길이가 +1 늘었음
 		System.out.println(list.get(10));				//위에서 10번지에 아침식사를 넣어서 10번지 값 : 아침식사가되고, 원래있던 10번지 수업은 11번지로 밀린거임
-		
-		//질문: 아까 1번지에 수업이었는데 지금은 아침식사가됐고, 값이 바뀌고 새로 추가된건 아닌데 길이가 왜 +1이 늘어나
-		
+				
 		//set(번지,값) : 번지에 값을 설정(덮어쓰기)
 		list.set(10, "간식");
 		System.out.println(list.get(10));

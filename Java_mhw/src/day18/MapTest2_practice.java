@@ -18,8 +18,8 @@ public class MapTest2_practice {
 			switch(answer) {
 				case "1":
 					id=insertId();
-					if(loginInfo.containsKey(id)==true) {
-						System.out.println("이미 가입된 아이디입니다.");
+					if(loginInfo.containsKey(id)) {
+						System.out.println("이미 사용 중인 아이디입니다.");
 						break;
 					}
 					pw=insertPw();

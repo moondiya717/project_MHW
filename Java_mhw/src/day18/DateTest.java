@@ -32,7 +32,10 @@ public class DateTest {	//Date클래스 (너무 중요하니까, 코드를 저�
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		System.out.println("예약 정보를 입력하세요 : ");
+		
+		
+		
+		System.out.println("예약 정보를 입력하세요.");
 		System.out.println("입실일(yyyy년MM월dd일) : ");
 		Scanner scan = new Scanner (System.in);
 		String startDate = scan.next();
