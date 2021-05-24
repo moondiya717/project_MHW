@@ -69,8 +69,8 @@ class Hotel{	//날짜가 웹에서선택하면 문자열로 들어감
 
 		try {
 			this.startDate = form2.parse(startDate); 		
-		} catch (ParseException e) {
-			e.printStackTrace();
+		} catch (ParseException e) {	//form변환에 문제생기면 ParseException 나옴
+			e.printStackTrace();		//e.printStackTrace 어떤문제생기는지 잡아냄
 		}		
 	}
 	public String getEndDate() {
