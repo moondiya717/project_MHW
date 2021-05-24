@@ -18,8 +18,8 @@ public class MapTest2 {
 			switch(answer) {
 			case "1": 
 				System.out.print("아이디 :");
-				String id = scan.next();
-				if(loginInfo.containsKey(id)) {
+				String id = scan.next();					//switch문 전에 선언하셨음(쌤)
+				if(loginInfo.containsKey(id)) {				//쌤은반대로 없으면 패스워드치도록함
 					System.out.println("이미 사용 중인 아이디입니다.");
 					break;
 				}
@@ -43,7 +43,7 @@ public class MapTest2 {
 			}
 		}while(!answer.equals("3"));
 		
-		
+		//Q: break가 많으면 메소드만들기 어려운가?
 		
 		
 	}

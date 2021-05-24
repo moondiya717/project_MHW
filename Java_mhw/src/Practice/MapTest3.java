@@ -12,7 +12,7 @@ public class MapTest3 {
 		HashMap<String,Integer> mapTest =new HashMap<String,Integer>();
 		
 		for(int i=0; i<10; i++) {
-			mapTest.put("사과"+(i+1), 10*i);	//출력하면 대체 왜 사과0이 아니라 사과8부터 나와?
+			mapTest.put("사과"+(i+1), 10*i);	//출력하면 랜덤 순으로 나와 => 순서가 없기때문에
 		}
 		
 		// map출력 방법1

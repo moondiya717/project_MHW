@@ -70,6 +70,39 @@ class Hotel{
 	Date endDate;
 	
 
+	public String getStartDate() {
+		SimpleDateFormat form = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String strForm = form.format(startDate);
+		return strForm;
+	}
+
+
+	public void setStartDate(String startDate) {
+		SimpleDateFormat form2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		try {
+		this.startDate=form2.parse(startDate);
+		}catch(ParseException e) {
+			e.printStackTrace();
+		}
+	}
+
+
+	public String getEndDate() {
+		SimpleDateFormat form = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String strForm = form.format(endDate);
+		return strForm;
+	}
+
+
+	public void setEndDate(String endDate) {
+		SimpleDateFormat form2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		try {
+			this.endDate=form2.parse(endDate);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+	}
+
 
 	@Override
 	public String toString() {
