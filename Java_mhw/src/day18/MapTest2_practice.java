@@ -80,6 +80,12 @@ public class MapTest2_practice {
 		String pw=scan.next();
 		return pw;
 	}
-
+	/* 기능    :
+	 * 매개변수 :
+	 * 리턴타입 : 
+	 * 메소드명 :
+	 * */
+	
+	
 
 }
