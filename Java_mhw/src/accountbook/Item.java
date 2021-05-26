@@ -91,12 +91,7 @@ public class Item {
 		}if(contents !=null) {
 			this.contents = contents;
 		}
-		//this.type = type;
-		//this.date = date;
-		//this.paymentType = paymentType;
-		//this.category = category;
-		//this.cost = cost;
-		//this.contents = contents;
+
 	}
 	
 }
