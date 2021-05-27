@@ -1,10 +1,13 @@
 package accountbook_m;
 
 import java.util.ArrayList;
+import java.util.Scanner;
+
+import accountbook.Item;
 
 public class Abmethod {
 
-	private ArrayList <NewPost> list;	//가계부 배열
+	private ArrayList <NewPost> list = new ArrayList <NewPost>();	//가계부 배열
 	private Integer total=0; //최종금액
 	
 	public ArrayList<NewPost> getList() {
@@ -64,5 +67,16 @@ public class Abmethod {
 		list.get(tmp);
 	}
 	
+	private Item creatPost(){	//밖에서 쓸 일이 없기때문에 private로 할거임ㅎ
+		Scanner scan = new Scanner (System.in);
+		System.out.println("수입/지출 : ");
+		String type = scan.next();
+		System.out.println("금액 : ");
+		Integer cost = scan.nextInt();
+		System.out.println("내용 : ");
+		String contents = scan.next();
+		NewPost newPost = new NewPost(type, cost, contents);
+		return newPost;
+	}
 	
 }
