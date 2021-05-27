@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
-class newPost{
+class NewPost{
 	private Integer postNum; 	//게시글번호
 	private String moneyType;	//수입, 지출
 	private Integer amount;		//금액
@@ -14,7 +14,7 @@ class newPost{
 	private String today=form.format(date);		//날짜
 
 
-	public newPost (Integer postNum, String moneyType, Integer amount, String note, String today) {
+	public NewPost (Integer postNum, String moneyType, Integer amount, String note, String today) {
 		super();
 		this.postNum=postNum;
 		this.moneyType=moneyType;

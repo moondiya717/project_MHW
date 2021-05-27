@@ -4,10 +4,10 @@ import java.util.ArrayList;
 
 public class Abmethod {
 
-	private ArrayList <newPost> list;	//가계부 배열
+	private ArrayList <NewPost> list;	//가계부 배열
 	private Integer total=0; //최종금액
 	
-	public ArrayList<newPost> getList() {
+	public ArrayList<NewPost> getList() {
 		return list;
 	}
 	public Integer getTotal() {
@@ -19,9 +19,8 @@ public class Abmethod {
 	 * 리턴타입 : void 
 	 * 메소드명 : add
 	 * */	
-	public <Abcontents> void add(Abcontents newPost) {
-		Integer i=0;
-		list.add(i++,(accountbook_m.newPost) newPost); 
+	public void add(NewPost newPost) {
+		list.add(newPost); 
 	}
 	
 	/* 기능    : 게시글번호가 주어지면 주어진 내역을 가계부에 삭제하는 메소드
@@ -29,7 +28,7 @@ public class Abmethod {
 	 * 리턴타입 : void 
 	 * 메소드명 : add
 	 * */
-	public <abcontents> void delete(Integer postNum) {
+	public void delete(Integer postNum) {
 		Integer tmp=list.indexOf(postNum);
 		list.remove(tmp);
 	}
@@ -39,7 +38,7 @@ public class Abmethod {
 	 * 리턴타입 : void 
 	 * 메소드명 : clear
 	 * */
-	public <abcontents> void clear() {
+	public void clear() {
 		list.clear();
 	}
 	
@@ -49,9 +48,9 @@ public class Abmethod {
 	 * 메소드명 : detailPost
 	 * */
 	public <abcontents> void simplePost() {
-		System.out.println("번호|   타입   |   금액   |    메모  ");
+		System.out.println("번호 |  타입  |   금액   | 내용 ");
 		for(int i=0; i<list.size(); i++) {
-			System.out.println());
+			System.out.println();
 		}
 	}
 	
