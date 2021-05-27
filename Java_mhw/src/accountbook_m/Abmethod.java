@@ -29,7 +29,7 @@ public class Abmethod {
 	 * 메소드명 : add
 	 * */
 	public void delete(Integer postNum) {
-		Integer tmp=list.indexOf(postNum);
+		Integer tmp=list.indexOf(postNum);	//오잉이거모르겠음
 		list.remove(tmp);
 	}
 	
@@ -47,10 +47,10 @@ public class Abmethod {
 	 * 리턴타입 : void 
 	 * 메소드명 : detailPost
 	 * */
-	public <abcontents> void simplePost() {
+	public void simplePost() {
 		System.out.println("번호 |  타입  |   금액   | 내용 ");
 		for(int i=0; i<list.size(); i++) {
-			System.out.println();
+			System.out.print(list.get(i));          //몰겠음
 		}
 	}
 	
@@ -59,8 +59,8 @@ public class Abmethod {
 	 * 리턴타입 : void 
 	 * 메소드명 : detailPost
 	 * */
-	public <abcontents> void detailPost(Integer postNum) {
-		Integer tmp=list.indexOf(postNum);
+	public void detailPost(Integer postNum) {
+		Integer tmp=list.indexOf(postNum);      //??????
 		list.get(tmp);
 	}
 	
