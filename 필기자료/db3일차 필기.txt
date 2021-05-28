@@ -1,0 +1,9 @@
+검색 
+select [all | distinct] 속성1, ... , 속성n from 테이블1
+	[join 테이블2 on 테이블1.속성명 = 테이블2.속성명]
+	[where 조건]
+	[group by 속성명]
+	[order by 속성명1 [asc | desc], 속성명2 [asc | desc]
+
+*한 테이블로 검색을 할 수 없으면? join을 사용
+
