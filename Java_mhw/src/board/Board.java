@@ -17,7 +17,6 @@ public class Board {
 	//this.xx은 멤버변수와 메소드를 호출할 수 있다.
 	//this()생성자를 부를 수 있다
 	
-	//멤버변수에 객체가 포함된거같애.............뭐랄까..
 	
 	//생성자를 만들어보세요. (이런경우는 기본생성자가 필요가 없음 => 사람이 직접 다 입력해야하기 때문이래)
 	public Board(int num, String title, String contents, String writer, String registerDate, String type) {
@@ -27,6 +26,9 @@ public class Board {
 		this.writer = writer;
 		this.registerDate = registerDate;
 		this.type = type;
+	}
+	public Board() {
+		
 	}
 	/* 기능    : 게시글 정보 출력하는 메소드
 	 * 매개변수 : 필요없음
