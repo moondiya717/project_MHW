@@ -73,8 +73,8 @@ public class BoardProgram {
 		System.out.print("확인할 게시글 번호를 입력하세요: ");
 		int num = scan.nextInt();
 		
-		if(board[num-1]!=null&&num<count) {
-			System.out.println(board[num-1]);
+		if(board[num-1]!=null&&num<=count) {
+			board[num-1].print();
 		}else {
 			System.out.println("해당 게시물이 존재하지않습니다.");
 		}
@@ -109,6 +109,7 @@ public class BoardProgram {
 			String contents = scan.next();
 			if(board[num-1]!=null) {
 			board[num-1].modify(title, contents);
+			System.out.println("수정이 완료되었습니다.");
 			}
 		}
 	}
@@ -122,8 +123,10 @@ public class BoardProgram {
 		Scanner scan = new Scanner (System.in);
 		System.out.println("삭제할 게시글 번호를 입력하세요 :");
 		int num = scan.nextInt();
-		if(board[num-1]!=null& num<count ) {
+		if(board[num-1]!=null& num<=count ) {
 			board[num-1] = null;
+		}else {
+			System.out.println("게시글이 존재하지 않아 삭제할 수 없습니다.");
 		}
 	}
 	
@@ -133,6 +136,7 @@ public class BoardProgram {
 	 * 메소드명 : closeBoard
 	 * */
 	public void closeBoard() {
+		Scanner scan = new Scanner (System.in);
 		System.out.println("프로그램을 종료합니다.");
 		scan.close();
 	}
