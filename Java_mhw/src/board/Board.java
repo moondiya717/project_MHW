@@ -27,9 +27,7 @@ public class Board {
 		this.registerDate = registerDate;
 		this.type = type;
 	}
-	public Board() {
-		
-	}
+
 	/* 기능    : 게시글 정보 출력하는 메소드
 	 * 매개변수 : 필요없음
 	 * 리턴타입 : 없음 => void

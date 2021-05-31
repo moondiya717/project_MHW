@@ -12,7 +12,7 @@ public class Board {
 	private String title;
 	private String contents;
 	private int views;
-	private String today=today();
+	private String today;
 	
 	public int getPostNum() {
 		return postNum;
@@ -41,7 +41,7 @@ public class Board {
 	public String gettoday() {
 		return today;
 	}
-	public void settoday(Date date) {
+	public void settoday(String today) {
 		this.today = today;
 	}
 
@@ -69,12 +69,7 @@ public class Board {
 		String str=form.format(date);
 		return str;
 		}
-	
-	public void today1() {
-		Date date = new Date();
-		SimpleDateFormat form = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");	
-		String str=form.format(date);
-		}
+
 	
 	/* 기능    : 게시글 정보 출력하는 메소드
 	 * 매개변수 : 필요없음
@@ -95,10 +90,11 @@ public class Board {
 	 * 메소드명 : summaryPrint
 	 * */
 	public void summaryPrint() {
-		System.out.print(postNum);
-		System.out.print(title );
-		System.out.print(views);
-		System.out.print(today);	
+		System.out.print(postNum+ " ");
+		System.out.print(title+ " ");
+		System.out.print(views+ " ");
+		System.out.print(today+ " ");
+		System.out.println();
 	}
 	
 	/* 기능    : 제목과 내용을 수정하는 메소드
