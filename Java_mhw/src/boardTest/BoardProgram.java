@@ -136,7 +136,7 @@ public class BoardProgram {
 			String contents = scan.next();
 			board1.get(num-1).modify(title, contents); //set
 			System.out.println("수정이 완료되었습니다.");
-		}else if(board1.get(num-1)==null) {
+		}else if(board1.get(num-1).equals(null)) {
 			System.out.println("해당 게시물은 이미 삭제되었거나 없는 게시물입니다.");
 		}
 	}
