@@ -1,6 +1,7 @@
 package boardTest;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 import boardTest.Board;
@@ -8,11 +9,26 @@ import boardTest.Board;
 public class BoardProgram {
 
 	private Board test = new Board();
-	private Board []board = new Board[10];		
+	private Board []board = new Board[10];	
+	private ArrayList <Board> board1 = new ArrayList<Board>(10);
 	private Scanner scan;		
 	private int count; 	
 	
 	
+
+
+	public ArrayList<Board> getBoard1() {
+		return board1;
+	}
+
+
+
+
+	public void setBoard1(ArrayList<Board> board1) {
+		this.board1 = board1;
+	}
+
+
 
 
 	public Board getTest() {
@@ -53,13 +69,12 @@ public class BoardProgram {
 		String contents=scan.next();
 		int num = count+1;
 		int views = 0;
-		//Date date = new Date();
-		//SimpleDateFormat form = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");	
-		//String today=form.format(date);
-		//입력된 정보를 이용하여 게시글 생성
+	
 		Board tmpBoard = new Board(num, title, contents, views, test.today());
+	
 		//생성된 게시글을 배열에 저장
-		board[count] = tmpBoard;
+	//	board[count] = tmpBoard;
+		board1.add(tmpBoard);
 		count+=1;
 	}
 	
@@ -73,10 +88,12 @@ public class BoardProgram {
 		System.out.print("확인할 게시글 번호를 입력하세요: ");
 		int num = scan.nextInt();
 		
-		if(board[num-1]!=null&&num<=count) {
-			board[num-1].print();
+		if(board1.get(num-1).equals("삭제된 게시물입니다.")==true) { //contains도 안되고
+			System.out.println("삭제된 글은 열람할 수 없습니다."); //왜안뜨
+		}else if(board1.get(num-1)!=null&&num<=count) {
+			board1.get(num-1).print();
 		}else {
-			System.out.println("해당 게시물이 존재하지않습니다.");
+			System.out.println("해당 게시물이 존재하지않습니다."); //이거왜안나오지?
 		}
 	}
 	
@@ -85,12 +102,22 @@ public class BoardProgram {
 	 * 리턴타입 : 없음 => void
 	 * 메소드명 : printBoardList
 	 * */
-	public void printBoardList() {
-		for(int i =0; i<count; i++) {
-			if(board[i]!=null) {
-				board[i].summaryPrint();
-			}
+	public void printBoardList() { 
+		if(board1.isEmpty()==false) {
+			for(int i =0 ; i<board1.size(); i++) {
+					if(board1!=null) {
+						board1.get(i).summaryPrint();
+					}else if(board1==null){
+						continue;
+					}
+				}
+		}else {
+			System.out.println("등록된 게시물이 없습니다.");
 		}
+		//}if(board1.isEmpty()==true) {
+			//System.out.println("등록된 게시물이 없습니다.");
+		//}
+		
 	}
 	
 	/* 기능    : 수정할 게시글 번호와 정보를 입력받아 수정하는 메소드
@@ -100,17 +127,17 @@ public class BoardProgram {
 	 * */
 	public void modifyBoard() {
 		Scanner scan = new Scanner (System.in);
-		System.out.print("수정할 게시글 번호를 입력하세요 :");
+		System.out.print("수정할 게시글 번호를 입력하세요 :"); //중간에 사라지는데 postNum기준으로 해야돼
 		int num = scan.nextInt();
-		if(board[num-1]!=null) {
+		if(board1.get(num-1)!=null&& num<=count) {
 			System.out.print("제목을 입력하세요 :");
 			String title = scan.next();
 			System.out.println("내용을 입력하세요 :");
 			String contents = scan.next();
-			if(board[num-1]!=null) {
-			board[num-1].modify(title, contents);
+			board1.get(num-1).modify(title, contents); //set
 			System.out.println("수정이 완료되었습니다.");
-			}
+		}else if(board1.get(num-1)==null) {
+			System.out.println("해당 게시물은 이미 삭제되었거나 없는 게시물입니다.");
 		}
 	}
 
@@ -123,10 +150,13 @@ public class BoardProgram {
 		Scanner scan = new Scanner (System.in);
 		System.out.println("삭제할 게시글 번호를 입력하세요 :");
 		int num = scan.nextInt();
-		if(board[num-1]!=null& num<=count ) {
-			board[num-1] = null;
+		if(board1.get(num-1)!=null&& num<=count ) {
+			board1.get(num-1).modify("삭제된 게시물입니다.", "삭제된 게시물입니다.");//삭제말고 값을 null로 해놔야 리스트 번지가 당겨지지않아서 수정에 문제가 안될듯
+			if(board1.isEmpty()==true) {
+				System.out.println("게시글이 삭제되었습니다.");
+			}
 		}else {
-			System.out.println("게시글이 존재하지 않아 삭제할 수 없습니다.");
+			System.out.println("게시글이 존재하지 않아 삭제할 수 없습니다."); //이건 왜 안뜨나?
 		}
 	}
 	

@@ -146,5 +146,3 @@ create table if not exists list(
 	foreign key (li_so_num) references `source`(so_num)
 );
 
-/* 소녀시대가 부른 노래를 검색할 때 필요한 쿼리문*/
-select 속성 from 테이블;

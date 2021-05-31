@@ -9,6 +9,7 @@ public class BoardTest {
 		Scanner scan = new Scanner (System.in);
 		String menu;
 		
+		try {
 		do{
 			bp.printMenu();
 			menu = scan.next();
@@ -38,7 +39,9 @@ public class BoardTest {
 				break;
 			}
 		}while(!menu.equals("6"));
-
+		}catch(Exception e) {
+			System.out.println("잘못된 입력입니다.");
+		}
 	
 	
 	}
