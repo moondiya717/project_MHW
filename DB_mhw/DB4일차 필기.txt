@@ -1,0 +1,79 @@
+음악 차트를 관리하는 사이트를 구축하려고 한다.
+이 때 필요한 테이블을 정리해보세요
+[예시]
+xxx테이블 
+- 번호 : xx_ num
+(*작곡가, 작사가 제외 / 순위 신경X)
+================================
+가수 테이블(그룹가수) = signer
+- 가수번호(기본키), 가수명, 데뷔년도, 소속사, ...
+
+가수번호: si_num, int, auto_increment, 기본키
+가수명:  si_name, varchar(50) 
+데뷔년도:  si_start_year, int
+소속사: si_agency, varchar(30)
+-------------------------------------------------
+아티스트 테이블(그룹일때 각 멤버 정보) = artist 
+- 번호(기본키), 아티스트명, 생일, 현재 소속사, 본명, ... 
+
+아티스트번호: ar_num, int, auto_increment, primary key
+아티스트 생일: ar_birth, datetime, not null
+소속사: ar_agency, varchar(30)
+아티스트 명: ar_name, varchar(50), not null
+본명 : ar_rname, varchar(50), not null
+-------------------------------------------------
+멤버테이블(어떤 그룹에 어떤 아티스트가 있는지 연결하기 위함) = member
+- 번호(기본키), 가수번호, 아티스트번호, 포지션, ...
+
+번호: me_num, int ,auto_increment ,기본키 
+(*기본키는 null이 올 수 없음, not null 체크안해도 null값이 들어갈 수 없음)
+가수번호: me_si_num ,int,외래키, not null
+아티스트번호: me_ar_num, int, 외래키, not null
+포지션: me_position, varchar(20)
+(*외래키에서 null이 아닌 경우, not null적어줘야 함. 외래키는 null을 허용하기때문에)
+-------------------------------------------------
+음원 테이블 = source
+- 음원번호, 제목, 가사, 발매일, 작곡가, 작사가 ,..
+( 작곡가, 작사가 - 여러명일수있어서원래 테이블인데, 여기서는 다루지 않겠음)
+
+음원번호: so_num, int, auto_increment 기본키
+제목:so_title, varchar(50), not null
+가사:so_lyric, longtext, not null
+발매(공개)일: so_public_day, datetime, not null 
+작곡가: so_songwriter, varchar(50), not null
+작사가: so_lyricist, varchar(50), not null
+
+--------------------------------------------------
+음원에포함된 가수 테이블=sing
+-음원에포함된가수번호, 음원번호, 가수번호, 피처링여부 
+
+번호: sn_num int auto_increment 기본키
+음원번호: sn_so_num int not null 외래키
+가수번호: sn_si_num int not null 외래키
+피처링여부: sn_featuring char(1) not null
+(*Y = 피처링O, N=피처링X)
+ 
+--------------------------------------------------
+앨범 테이블(앨범의 기본 정보를 위한) = album
+- 앨범번호, 앨범 타이틀명, 발매일, ...,
+
+앨범번호: al_num int auto_increment 기본키
+타이틀명: al_title varchar(50) not null
+발매일: al_issue_date date
+
+-------------------------------------------------
+앨범포함된가수테이블(앨범에 포함된 가수목록테이블) =issue
+- 앨범에포함된가수번호, 앨범번호, 가수번호, ..
+
+앨범에포함된가수번호:is_num int auto_increment 기본키
+앨범번호: is_al_num int 외래키
+가수번호: is_si_num int 외래키
+--------------------------------------------------
+앨범에포함된 음원 테이블 = list
+ -앨범에포함된음원번호, 앨범번호, 음원번호, 대표곡여부
+
+앨범에포함된음원번호:li_num int auto_increment
+앨범번호: li_al_num int 외래키 not null
+음원번호:li_so_num int 외래키 not null
+대표곡 여부: li_main char(1) not null
+=====================================
