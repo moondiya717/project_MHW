@@ -1,0 +1,54 @@
+-- MySQL dump 10.13  Distrib 8.0.25, for Win64 (x86_64)
+--
+-- Host: localhost    Database: salary
+-- ------------------------------------------------------
+-- Server version	8.0.25
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `paymentsystem`
+--
+
+DROP TABLE IF EXISTS `paymentsystem`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `paymentsystem` (
+  `ps_num` int NOT NULL AUTO_INCREMENT,
+  `w_ps_position` varchar(20) NOT NULL,
+  `ps_pay` int NOT NULL,
+  `ps_grade` int NOT NULL,
+  `ps_gr_pay` varchar(45) NOT NULL,
+  PRIMARY KEY (`ps_num`)
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `paymentsystem`
+--
+
+LOCK TABLES `paymentsystem` WRITE;
+/*!40000 ALTER TABLE `paymentsystem` DISABLE KEYS */;
+INSERT INTO `paymentsystem` VALUES (1,'staff',2000000,1,'100000'),(2,'staff',2000000,2,'200000'),(3,'staff',2000000,3,'300000'),(4,'staff',2000000,4,'400000'),(5,'staff',2000000,5,'500000'),(10,'AS',2500000,1,'100000'),(11,'AS',2500000,2,'200000'),(12,'AS',2500000,3,'300000'),(13,'AS',2500000,4,'400000'),(14,'AS',2500000,5,'500000'),(15,'Manager',3000000,1,'100000'),(16,'Manager',3000000,2,'200000'),(17,'Manager',3000000,3,'300000'),(18,'Manager',3000000,4,'400000'),(19,'Manager',3000000,5,'500000'),(20,'GM',3500000,1,'100000'),(21,'GM',3500000,2,'200000'),(22,'GM',3500000,3,'300000'),(23,'GM',3500000,4,'400000'),(24,'GM',3500000,5,'500000');
+/*!40000 ALTER TABLE `paymentsystem` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2021-06-02 17:31:46
