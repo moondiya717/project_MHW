@@ -123,4 +123,3 @@ delimiter ;
 
 call insert_buy('포도', 100, 500000, 10000);
 select*from fruit;
-
