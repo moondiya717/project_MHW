@@ -88,13 +88,23 @@ public class BoardProgram {
 		System.out.print("확인할 게시글 번호를 입력하세요: ");
 		int num = scan.nextInt();
 		
+		//num와 일치하는 게시물이 있는지 확인
+		if(board1.contains(num)) {
+			int index = board1.indexOf(num);
+			Board tmp = board1.get(index);
+			tmp.print();
+		}
+		else {
+			System.out.println("없거나 삭제된 게시글");
+		}
+		/*
 		if(board1.get(num-1).equals("삭제된 게시물입니다.")==true) { //contains도 안되고
 			System.out.println("삭제된 글은 열람할 수 없습니다."); //왜안뜨
 		}else if(board1.get(num-1)!=null&&num<=count) {
 			board1.get(num-1).print();
 		}else {
 			System.out.println("해당 게시물이 존재하지않습니다."); //이거왜안나오지?
-		}
+		}*/
 	}
 	
 	/* 기능    : 게시글 전체를 확인하는 메소드

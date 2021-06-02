@@ -106,6 +106,33 @@ public class Board {
 		this.title=title;
 		this.contents=contents;
 	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + postNum;
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass()) {
+			if(obj instanceof Integer) {
+				if((Integer)obj == this.postNum) {
+					return true;
+				}
+				return false;
+			}
+		}
+			
+		Board other = (Board) obj;
+		if (postNum != other.postNum)
+			return false;
+		return true;
+	}
 	
 	
 	
