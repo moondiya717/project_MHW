@@ -19,11 +19,11 @@ public class BoardTest {
 				break;
 				
 			case "2" : 
-				bp.modifyBoard();
+				bp.modifyBoard(); //삭제된 게시글 수정이 가능함
 				break;
 			
 			case "3" : 
-				bp.deleteBoard();
+				bp.deleteBoard(); //이미 삭제된 게시글을 또 삭제할 수 있는 것 처럼 넘어감 
 				break;
 				
 			case "4" : 

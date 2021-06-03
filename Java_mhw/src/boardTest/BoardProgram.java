@@ -83,11 +83,11 @@ public class BoardProgram {
 	 * 리턴타입 :없음 => void
 	 * 메소드명 : printBoardDetail
 	 * */
-	public void printBoardDetail() {
+	public void printBoardDetail() { // 1,2번 글에서 2번 보기하면 볼수가없음
 		Scanner scan = new Scanner (System.in);
 		System.out.print("확인할 게시글 번호를 입력하세요: ");
 		int num = scan.nextInt();
-		
+		int num2 = test.getPostNum() //postNum을 못쓰지않나 여깃 ㅓ?
 		//num와 일치하는 게시물이 있는지 확인
 		if(board1.contains(num)) {
 			int index = board1.indexOf(num);
@@ -95,7 +95,7 @@ public class BoardProgram {
 			tmp.print();
 		}
 		else {
-			System.out.println("없거나 삭제된 게시글");
+			System.out.println("없거나 삭제된 게시글입니다.");
 		}
 		/*
 		if(board1.get(num-1).equals("삭제된 게시물입니다.")==true) { //contains도 안되고
@@ -135,7 +135,7 @@ public class BoardProgram {
 	 * 리턴타입 : 없음 => void		//scanner로 입력받기때문임
 	 * 메소드명 : modifyBoard
 	 * */
-	public void modifyBoard() {
+	public void modifyBoard() { //삭제된 게시글 수정이 가능함
 		Scanner scan = new Scanner (System.in);
 		System.out.print("수정할 게시글 번호를 입력하세요 :"); //중간에 사라지는데 postNum기준으로 해야돼
 		int num = scan.nextInt();
@@ -146,7 +146,7 @@ public class BoardProgram {
 			String contents = scan.next();
 			board1.get(num-1).modify(title, contents); //set
 			System.out.println("수정이 완료되었습니다.");
-		}else if(board1.get(num-1).equals(null)) {
+		}else if(board1.get(num-1).equals("삭제된 게시물")) {
 			System.out.println("해당 게시물은 이미 삭제되었거나 없는 게시물입니다.");
 		}
 	}
@@ -156,17 +156,18 @@ public class BoardProgram {
 	 * 리턴타입 : 없음 => void
 	 * 메소드명 : deleteBoard
 	 * */
-	public void deleteBoard(){
+	public void deleteBoard(){ //이미 삭제된 게시글을 또 삭제할 수 있는 것 처럼 넘어감 
 		Scanner scan = new Scanner (System.in);
 		System.out.println("삭제할 게시글 번호를 입력하세요 :");
 		int num = scan.nextInt();
-		if(board1.get(num-1)!=null&& num<=count ) {
-			board1.get(num-1).modify("삭제된 게시물입니다.", "삭제된 게시물입니다.");//삭제말고 값을 null로 해놔야 리스트 번지가 당겨지지않아서 수정에 문제가 안될듯
+		//if(board1.get(num-1)!=null&& num<=count ) {
+		//	board1.get(num-1).modify("삭제된 게시물입니다.", "삭제된 게시물입니다.");//삭제말고 값을 null로 해놔야 리스트 번지가 당겨지지않아서 수정에 문제가 안될듯
 			if(board1.isEmpty()==true) {
-				System.out.println("게시글이 삭제되었습니다.");
+				System.out.println("게시글이 존재하지 않아 삭제할 수 없습니다.");
 			}
-		}else {
-			System.out.println("게시글이 존재하지 않아 삭제할 수 없습니다."); //이건 왜 안뜨나?
+		/*}*/ else if(!board1.isEmpty()){
+			board1.get(num-1).modify("삭제된 게시물","게시물이 삭제되어 내용을 확인할 수 없습니다."); 
+			System.out.println("게시글이 삭제되었습니다."); 
 		}
 	}
 	
