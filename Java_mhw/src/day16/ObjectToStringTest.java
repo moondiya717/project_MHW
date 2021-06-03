@@ -6,6 +6,9 @@ public class ObjectToStringTest {
 		Student s = new Student("홍길동",1,1,1);	//생성자안에 값넣어줘야 출력돼
 		System.out.println(s);
 		System.out.println(s.toString());  //위아래 같은거임. 자동toString이 들어간대
+		System.out.println("=======");
+		s.print();
+		
 	}
 }
 class Student{
@@ -13,6 +16,9 @@ class Student{
 	private int grade;
 	private int classNum;
 	private int num;
+	
+	
+	
 	public String getName() {
 		return name;
 	}
@@ -44,9 +50,12 @@ class Student{
 		this.classNum = classNum;
 		this.num = num;
 	}
-	@Override
+	@Override //순서: get,set => using field생성자 => Tostring
 	public String toString() {
 		return "Student [name=" + name + ", grade=" + grade + ", classNum=" + classNum + ", num=" + num + "]";
 	}
 	
-}	//순서: get,set => using field생성자 => Tostring
+	public void print() {
+		System.out.println("이름: " + name + "\n학년 :" + grade + "\n반 :" +classNum + "\n번호" + num);
+	}
+}	
