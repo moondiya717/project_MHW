@@ -12,7 +12,7 @@ public class Board {
 	private String title;
 	private String contents;
 	private int views;
-	private String today;
+	private Date date;
 	
 	public int getPostNum() {
 		return postNum;
@@ -38,39 +38,26 @@ public class Board {
 	public void setViews(int views) {
 		this.views = views;
 	}
-	public String gettoday() {
-		return today;
-	}
-	public void settoday(String today) {
-		this.today = today;
+	public String getDate() {
+		SimpleDateFormat form = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		return form.format(date);
 	}
 
 
 
-	public Board(int postNum, String title, String contents, int views, String today) {
+
+	public Board(int postNum, String title, String contents) {
 		super();
 		this.postNum = postNum;
 		this.title = title;
 		this.contents = contents;
-		this.views = views;
-		this.today = today;
+		this.date = new Date();
 	}
-	public Board() {
-		this.postNum = getPostNum();
-		this.title = getTitle();
-		this.contents = getContents();
-		this.views = getViews();
-		this.today = gettoday();
+	public Board(int postNum) {
+		this.postNum = postNum;
 	}
 	
-	public String today() {
-		Date date = new Date();
-		SimpleDateFormat form = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");	
-		String str=form.format(date);
-		return str;
-		}
 
-	
 	/* 기능    : 게시글 정보 출력하는 메소드
 	 * 매개변수 : 필요없음
 	 * 리턴타입 : 없음 => void
@@ -81,7 +68,7 @@ public class Board {
 		System.out.println("제목 : " 	+ title );
 		System.out.println("내용 : " 	+ contents);
 		System.out.println("조회수 : " + views);
-		System.out.println("날짜 : " + today);
+		System.out.println("날짜 : " + date);
 	}
 	
 	/* 기능    : 게시글 정보를 요약(번호, 제목, 작성자, 작성일)해서 출력하는 기능
@@ -93,7 +80,7 @@ public class Board {
 		System.out.print(postNum+ " ");
 		System.out.print(title+ " ");
 		System.out.print(views+ " ");
-		System.out.print(today+ " ");
+		System.out.print(date+ " ");
 		System.out.println();
 	}
 	
@@ -114,6 +101,7 @@ public class Board {
 		return result;
 	}
 	@Override
+	/* equals를 오버라이딩하면 ArrayList에서 제공하는 contains 또는 indexOf를 이용하기 쉽다*/
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
