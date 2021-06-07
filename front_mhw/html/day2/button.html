@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>버튼 예제</title>
+</head>
+<body>
+    <!--
+        - button 태그 : 버튼을 만드는 태그
+            - input태그를 이용하여 버튼을 만들 수 있다(단일태그)
+            - button태그를 이용하여 버튼을 만들 수 있다(쌍태그)
+            - button태그는 꼭 form태그 안에만 있어야 되는건 아님
+            - input태그를 이용하여 버튼을 만드는 경우 css를 이용하지 않고는 이미지 버튼을 만들 수 없음
+            - 종류는 button, reset, submit
+            - 종류는 생략 가능한데,  
+                form태그 안에서 종류를 생략하면 submit으로 
+                form태그 밖에서 종류를 생략하면 button처럼 동작
+    -->
+    <form action="http://naver.com">
+        <button>전송</button> <!-- type이 생략되어있어서 submit 형태와 동일-->
+        <button type="submit">전송</button>
+        
+        <button type="button">버튼</button> <!-- 쌍태그-->
+        <!-- button에 이미지를 넣을 수도 있음 -->
+        <button type="button"> <img src="../day1/rabbit.JPG" alt="어른이" width="300" height="auto"> </button>
+        
+        <button type="reset">리셋</button> <!-- 입력됐던 내용들이 전부 삭제/초기화 됨-->
+
+
+
+    </form>
+</body>
+</html>
