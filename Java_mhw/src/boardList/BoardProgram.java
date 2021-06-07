@@ -30,7 +30,7 @@ public class BoardProgram {
 	public void printBoardDetail() {
 		System.out.print("확인할 게시글 번호를 입력하세요 :");
 		int num = scan.nextInt();
-		int index = list.indexOf(new Board(num)); //왜 new Board?
+		int index = list.indexOf(new Board(num)); //익명객체로 일회용으로 num만 쓰고 버리려고 하는거임
 		if(index !=-1) {
 			list.get(index).print();
 		}else {

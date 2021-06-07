@@ -93,13 +93,7 @@ public class Board {
 		this.title=title;
 		this.contents=contents;
 	}
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + postNum;
-		return result;
-	}
+
 	@Override
 	/* equals를 오버라이딩하면 ArrayList에서 제공하는 contains 또는 indexOf를 이용하기 쉽다*/
 	public boolean equals(Object obj) {
