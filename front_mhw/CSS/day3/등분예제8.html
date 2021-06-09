@@ -9,18 +9,20 @@
   *{margin:0; padding: 0;}
 
   .all{color: black; box-sizing: border-box; font-size: 20px; font-weight: bold; text-align: center;}
- .header1{height: 50px; background-color: cornflowerblue;}
+ .header1{height: 50px; background-color: cornflowerblue; margin-bottom:10px;}
  
  .middle::after{clear: both; display: block; content: '';}
-  .middle{height: 400px;}
-    .middle .nav{width: calc(100% / 3); float: left; background-color: yellowgreen;}
-    .middle .aside{width: calc(100% / 3); height: 400px; float: right; background-color: blanchedalmond;}
-    .middle .section{width: calc(100% / 3); height: 400px; float: left; background-color: darkred;}
-      .middle .section .header2{width: 100%; height: calc(370px / 5); background-color: turquoise;}
-      .middle .section .article{width: 100%; height: calc(((370px) / 5)*3); background-color: tomato;}
-      .middle .section .footer2{width: 100%; height: calc(370px / 5); background-color: skyblue;}
+ .middle .nav{width: calc(100% / 3); height: 400px; float: left; background-color: yellowgreen;}
+ .middle .aside{width: calc(100% / 3); height: 400px; float: right; background-color: blanchedalmond;}
+ .middle .section{width: calc(100% / 3 - 20px); height: 400px; float: left; 
+  background-color: darkred; margin-left: 10px;}
+  .middle .section .header2{width: 100%; height: calc((370px / 5) - 20px); 
+    background-color: turquoise; margin-top: 10px;margin-bottom: 10px;}
+  .middle .section .article{width: 100%; height: calc(((370px) / 5) * 3); background-color: tomato;}
+  .middle .section .footer2{width: 100%; height: calc((370px / 5) - 10px); background-color: skyblue;
+    margin-top: 10px;}
   
-  .footer1{height: 50px; background-color: cornflowerblue;}
+  .footer1{height: 50px; background-color: cornflowerblue; margin-top: 10px;}
   </style>
 
 </head>
