@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>clear 예제</title>
+  <style>
+    .left{float: left; width: 200px; height: 50px; border: 2px solid darkred; } 
+    .right{float: right; width: 200px; height: 150px; border: 2px solid darkblue; } 
+    
+    /*
+    - clear는 float 속성과 같이 사용
+      - none : float 속성이 적용된 요소 위치에 상관없이 내용들이 중간에 들어가도록 함
+      - left : float 속성이 left로 적용된 요소 위치 다음부터 내용들이 들어가도록 함
+      - right : float속성이 right로 적용된 요소 위치 다음부터 내용들이 들어가도록 함
+      - both : float속성이 left와 right로 적용된 요소 위치 중 가장 밑에 있는 요소를 기준으로 다음부터 내용들이 들어가도록 함
+    - .text부분에 clear 갑을 바꿔가면서 확인하는 것이 빠름
+    */
+    .text{clear: none;}
+
+  </style>
+</head>
+<body>
+  <div class="left">left</div>
+  <div class="right">right</div>
+  <div class="text">
+  - 2021년 06월 09일
+  - 리얼포스 r2 무접점 균등 30g을 샀지
+    - 어제 하네다공항이었고 특송이라면서 출발대기만 엄청나게 길었어 하루하고 반나절 내내 그것만 조회하고
+    - 오늘 인천 공항이라는데 학원도착했을 즈음인가봄, 아침에 눈뜨자마자 확인했었을때는 아직도 출발대기라서 너무 실망했었는데
+    - 내일모레면 나에게 오겠지는 터무늬없는 말이야ㅠㅠ 남친이 받아서 준다고 했어 흐어어어어어엉 마자마자 이건 생일선물이니깐
+  </div>
+
+</body>
+</html>
