@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>이등분예제2</title>
+  <style>
+
+.ex::after{clear:both; content: ''; display: block;}
+/*
+- % => 부모 컨텐츠 길이의 $
+- 여백 => padding. margin
+       => 자식요소에 padding을주면 상하좌우에 공백이들어가지만 나중에 배경색을 칠할 때, 같이 칠해지는 문제가 생김
+       => 자식 요소에  margin을 주면 width와 height 계산하기가 어려움
+       => 부모 요소에 padding
+- 배경 => padding +컨텐츠
+*/
+.ex{border: 2px solid red; padding: 20px;}
+.ex .left-box{ width: 50%; height: 150px; background-color:powderblue;
+  border: 2px solid rebeccapurple; float: left; box-sizing: border-box;}
+.ex .right-box{ width: 50%; height: 150px; background-color:powderblue;
+  border: 2px solid rebeccapurple; float: right; box-sizing: border-box;}
+
+.parent{ padding: 50px; content: '';} /* body에다가 주는건 안되려나? 나중에 확인해보자 0.0꼭지점서 시작하는지*/
+
+  </style>
+</head>
+<body class="partent">
+  <div class="ex">
+    <div class="left-box"></div><div class="right-box"></div>
+  </div>
+
+
+</body>
+</html>

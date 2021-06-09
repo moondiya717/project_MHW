@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>예제</title>
+  <style>
+  *{margin:0; padding: 0;}
+
+
+ .header1{height: 50px; background-color: cornflowerblue; text-align: center;
+     font-size: 20px; font-weight: bold; color: white; box-sizing: border-box;}
+  
+  .middle::after{clear: both; display: block; content: '';}
+  .middle{height: 400px; text-align: center; box-sizing: border-box; font-size: 20px; 
+    font-weight: bold; color: black; box-sizing: border-box;}
+  .middle .nav{width: calc(100% / 3); height: 400px; float: left; 
+    box-sizing: border-box; background-color: blanchedalmond;}
+  
+  .middle .section{width: calc(100% / 3); height: 400px; float: left;   
+    box-sizing: border-box; background-color: darkred;}
+  
+  .middle .section .header2{width: 100%; height: calc(370px / 5); 
+    box-sizing: border-box; background-color: turquoise;}
+  .middle .section .article{width: 100%; height: calc(((370px) / 5)*3); 
+    box-sizing: border-box; background-color: tomato;}
+  .middle .section .footer2{width: 100%; height: calc(370px / 5);  
+    box-sizing: border-box; background-color: skyblue;}
+  
+  .middle .aside{width: calc(100% / 3); height: 400px; float: right;  
+    box-sizing: border-box; background-color: blanchedalmond;}
+ 
+  .footer1{height: 50px; background-color: cornflowerblue; text-align: center;
+   font-size: 20px; font-weight: bold; color: white; box-sizing: border-box;}
+  </style>
+
+</head>
+<body class="all">
+  <div class="header1">&lt;header&gt;</div>
+  <div class="middle">
+    <div class="nav">&lt;nav&gt;</div>
+    <div class="section">&lt;section&gt;
+      <div class="header2">&lt;header&gt;</div>
+      <div class="article">&lt;article&gt;</div>
+      <div class="footer2">&lt;footer&gt;</div>
+    </div>
+    <div class="aside">&lt;aside&gt;</div>
+  </div>
+  <div class="footer1">&lt;footer&gt;</div>
+</body>
+</html>
