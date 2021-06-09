@@ -9,7 +9,7 @@
     /* div, p와 같은 블록 태그들은 높이를 지정하지 않으면 안에 있는 요소(자손)들의 크기만큼 높이가 잡힌다*/
   .box::after{clear: both; display: block; content: ''; }
   .box{border: 2px solid black; padding:10px;}
-  .box>div{float: left; width: calc((100% - 20px) / 3); height: 400px; float: left;}
+  .box>div{float: left; width: calc((100% - 20px) / 3); height: 400px;}
   .left{background-color: brown;}
   .middle{background-color:darkolivegreen; margin-left: 10px;}
   .box>.right{background-color: darkorange; float: right;}

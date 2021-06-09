@@ -13,17 +13,19 @@
       - right : 오른쪽으로 차례대로 붙임
       - float 속성을 적용하면 다 block태그로 처리
     */
-    .box .left-box{width: 50%; height: 400px; background-color: coral; display: inline-block;}
-    .box .right-box{width: 50%; height: 400px; background-color: cornflowerblue; display: inline-block;}
+    .box1 .left-box{width: 50%; height: 400px; background-color: coral; display: inline-block;}
+    .box1 .right-box{width: 50%; height: 400px; background-color: cornflowerblue; display: inline-block;}
 
     .box2 .left-box{width: 50%; height: 400px; background-color: darkred; float: left;}
     .box2 .right-box{width: 50%; height: 400px; background-color: darkolivegreen; float: right;}
 
+    /* float속성이 적용된 요소의 부모요소에 ::after를 이용하여 부모 높이를 자식 높이만큼 잡아준다 */
+    .box2::after{content: ''; display: block; clear:both;} 
 
+    
     .box3{height: 50px; background-color: deeppink;}
 
-/* float속성이 적용된 요소의 부모요소에 ::after를 이용하여 부모 높이를 자식 높이만큼 잡아준다 */
-    .box2::after{content: ''; display: block; clear:both;} 
+
 
   </style>
 </head>
@@ -38,7 +40,7 @@
     50:50으로 나눈 곳에서 공백값을 더해서 한 줄이 밀리게 됨
     - 한쪽 박스에 글자를 넣고, 한쪽에는 넣지 않을 경우 반반으로 나뉘는게 아니라 박스가 위/아래로 어긋나게 됨;
   -->
-  <div class="box">
+  <div class="box1">
     <div class="left-box">1</div><div class="right-box"></div> 
   </div>
 
