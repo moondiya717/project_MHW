@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>애니메이션 예제</title>
+<style>
+  /*
+  -애니메이션 등록
+  @keyframs 애니메이션명{
+    시간비율{속성1; 값1; 속성2; 값2;} //이전 시점에서 시간 비율까지 적용할 속성
+    시간비율{속성1; 값1; 속성2; 값2;}
+  }
+  
+  - 애니메이션을 호출
+  선택자{
+    animation-name : 애니메이션명;
+    animation-duration : 시간; // %로 쓸수있음
+    animation-iteration-count : 애니메이션반복횟수; //반복횟수는 숫자 or infinite
+  }
+  */
+  @keyframes textScale {
+    0%{font-size: 20px;}
+    100%{font-size: 100px;}
+  }
+  .scale{
+    animation-name: textScale; animation-duration: 3s; animation-iteration-count: 1;
+  }
+</style>
+</head>
+<body>
+  <span class="scale">꽝</span>
+</body>
+</html>
