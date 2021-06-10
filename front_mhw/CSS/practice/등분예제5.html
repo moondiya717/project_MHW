@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>등분예제(네이버메인화면구성)</title>
+  <style>
+
+    .box{border: 2px solid black; width: 500px; height: 700px;}
+    .box::after{clear: both; content: ''; display: block;}
+
+    .box .left{float: left; width: calc(50% - 40px); height: calc(100% - 40px);
+     margin: 20px;}
+    .right{float: right; width: calc(50% - 40px); height: calc(100% - 40px); margin: 20px;
+      box-sizing: border-box;}
+
+    .l-top{border: 1px dotted green; width: 100%; height: calc(50% - 10px); margin-bottom: 20px;
+      box-sizing: border-box;}
+    .l-bottom{border: 1px dotted red; width: 100%; height: calc(50% - 10px);
+      box-sizing: border-box; }
+
+    .r-top{border: 1px dotted blue; width: 100%; height:calc(30% - 10px); margin-bottom: 20px;
+      box-sizing: border-box;}
+    .r-bottom{border: 1px dotted purple; width: 100%; height:calc(70% - 10px); box-sizing: border-box;}
+
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div class="left">
+      <div class="l-top"></div>
+      <div class="l-bottom"></div>
+    </div>
+    <div class="right">
+      <div class="r-top"></div>
+      <div class="r-bottom"></div>
+    </div>
+  </div>
+</body>
+</html>
