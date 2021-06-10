@@ -7,22 +7,17 @@
   <title>등분예제(네이버메인화면구성)</title>
   <style>
 
-    .box{border: 2px solid black; width: 500px; height: 700px; padding: 20px;}
-    .box::after{clear: both; content: ''; display: block;}
+    .box::after{clear: both; content: ''; display: block;}  
+    .box{border: 2px solid black; padding: 10px;}
 
-    .box .left{float: left; width: calc(50% - 40px); height: calc(100% - 40px);
-     margin: 20px;}
-    .box .right{float: right; width: calc(50% - 40px); height: calc(100% - 40px); margin: 20px;
-      box-sizing: border-box;}
+    .box .left{float: left; width: calc(50% - 5px);}
+    .box .right{float: right; width: calc(50% - 5px); }
 
-    .l-top{border: 1px dotted green; width: 100%; height: calc(50% - 10px); margin-bottom: 20px;
-      box-sizing: border-box;}
-    .l-bottom{border: 1px dotted red; width: 100%; height: calc(50% - 10px);
-      box-sizing: border-box; }
+    .l-top{background-color: green; height: 300px; margin-bottom: 10px;}
+    .l-bottom{background-color: red; height: 300px;}
 
-    .r-top{border: 1px dotted blue; width: 100%; height:calc(30% - 10px); margin-bottom: 20px;
-      box-sizing: border-box;}
-    .r-bottom{border: 1px dotted purple; width: 100%; height:calc(70% - 10px); box-sizing: border-box;}
+    .r-top{background-color: blue; height:150px; margin-bottom: 10px;}
+    .r-bottom{background-color: blueviolet;  height:450px;}
 
   </style>
 </head>
