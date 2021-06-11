@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>아이콘 메뉴예제</title>
+  <script src="https://kit.fontawesome.com/4bb639362a.js" crossorigin="anonymous"></script>
+  <style>
+    *{margin: 0;}
+    .menu{border: 1px solid red; height: 50px; box-sizing: border-box;}
+    .menu::after{clear: both; content: ''; display: block;}
+    .fa-bars{float: right; font-size: 40px; color: blue;
+    border: 1px solid black; padding: 10px; line-height: 30px; 
+    height: calc(100% - 22px);}
+  </style>
+</head>
+<body>
+  <div class="menu">
+      <i class="fas fa-bars"></i>
+  </div>
+
+</body>
+</html>
