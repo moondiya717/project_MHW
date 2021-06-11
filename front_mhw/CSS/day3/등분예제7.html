@@ -4,22 +4,46 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>메뉴위치예제 7</title>
+  <title>메인페이지 구조 틀 만들기</title>
   <style>
-/* 쌤이랑 완전 다른데, 확인해서 따라해볼 것 -> 쌤꺼 따라쓰면 뭔가 망한상태에서 수습이 안됨*/
-*{margin:0; padding:0;} /* body태그가 기본적으로 들어간 margin이 있어서 0,0 기본으로 맞추고 시작함*/
-.box{border: 4px solid black; width:500px; height: 300px;}
-.box-in{border: 4px solid red; width: 100%; height: 30px; margin-top: 50px; box-sizing: border-box;}
-.inside{background-color: yellow; width: 300px; height: 100%;  margin: 0 auto; 
-}
+    *{font-size: 20px; color: black; text-align: center; line-height: 50px;
+    font-weight: bold;}
+    .header1, .footer1{background-color:lightskyblue; 
+    height: 50px; width: 100%;}
+    .header1{margin-bottom: 10px;}
+    .footer1{margin-top: 10px;}
+
+    .main::after{clear: both; content: ''; display: block;}
+    .main{height: 500px; text-align: center; }
+    nav, aside{background-color:lightskyblue; width: calc(20% - 5px); 
+      height: 100%;float: left; line-height: 500px;}
+    aside{float: right;}
+    
+    section{background-color: rgb(200, 132, 240); width: calc(60% - 10px);
+      height: 100%; float: left; margin-left: 10px;}
+    section>.header2{background-color: lightskyblue; margin: 0 10px;
+      height: 50px;}
+    section>article{background-color: lightskyblue; margin: 10px;
+      height: calc(100% - 170px - 30px); line-height: 300px;}
+    section>.footer2{background-color: lightskyblue; margin: 10px;
+      height:70px; line-height: 70px;}
+
   </style>
+
 </head>
 <body>
-  <div class="box">
-    <div class="box-in">
-      <div class="inside"></div>
-    </div>
-  </div>
+  <header class="header1">&lt;header&gt;</header>
 
+  <div class="main">
+    <nav>&lt;nav&gt;</nav>
+    <section>&lt;section&gt;
+      <header class="header2">&lt;header&gt;</header>
+      <article>&lt;article&gt;</article>
+      <footer class="footer2">&lt;footer&gt;</footer>
+    </section>
+    <aside>&lt;aside&gt;</aside>
+  </div>
+  
+  <footer class="footer1">&lt;footer&gt;</footer>
 </body>
 </html>
