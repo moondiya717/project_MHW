@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>문단관련 속성</title>
+  <style>
+    /*
+    - letter-spacing : 글자간격
+    - word-spacing : 단어간격
+    - text-transform : 영문자 대소문자 옵션
+      - uppercase : 모든 문자를 대문자로 수정
+      - lowercase : 모든 문자를 소문자로 수정
+      - capitalize : 단어들의 첫글자를 모두 대문자로 수정
+    - vertical-align : 이미지나 폼 요소와 있을 때 위, 가운데, 아래로 정렬해주는 속성
+    - word-wrap : 영단어를 띄어쓰기 없이 길게 입력하면 부모 요소의 가로를 빠져나가게 된다
+      가로 폭에 맞추어서 적당히 잘라 다음 줄로 내려오게 하는 속성
+    - word-break : 단어를 끊어줄 때, 어떤 기준으로 끊을 건지 선택하는 속성
+      - normal : 기본값
+      - break-all : 글자가 넘치면 줄바꿈
+      - keep-all : 단어를 끊어 줄바꿈하지 않음
+    - white-space : 문자들 사이의 공백을 어떻게 처리할지 나타내는 속성
+      - normal : 연속 공백과 엔터가 하나의 공백으로, 길면 줄바꿈이 일어남
+      - nowrap : 연속 공백과 엔터가 하나의 공백으로, 길어도 줄바꿈 없이 한 줄로 처리(밖으로 빠져나감)
+      - pre : 연속 공백과 엔터가 입력한 그대로 출력
+      - pre-wrap : 연속 공백과 엔터가 입력한 그대로 출력, 길면 줄바꿈
+      - pre-line : 연속 공백은 하나의 공백, 줄바꿈은 줄바꿈으로, 길면 줄바꿈
+
+    */
+    p.text1{}
+    p.text2{letter-spacing: 10px;}
+    p.text3{word-spacing: 30px;}
+
+    p.text4{text-transform: uppercase;}
+    p.text5{text-transform: lowercase;}
+    p.text6{text-transform: capitalize;}
+
+    div.img1>img{vertical-align: top; }
+    div.img2>img{vertical-align: bottom;}
+    div.img3>img{vertical-align: middle;}
+
+    div.text10{word-wrap: break-word; border: 1px solid red; width: 150px;}
+    div.text11{word-wrap: normal; border: 1px solid red; width: 150px;}
+    
+    div.text12{word-break: normal; border: 1px dotted blue; width: 150px;}
+    div.text13{word-break: break-all; border: 1px dotted blue; width: 150px;}
+    div.text14{word-break: keep-all; border: 1px dotted blue; width: 150px;}
+
+    div.text15{white-space: normal; border: 1px solid olivedrab; width:150px;}
+    div.text16{white-space: nowrap; border: 1px solid olivedrab; width:150px;}
+    div.text17{white-space: pre; border: 1px solid olivedrab; width:150px;}
+    div.text18{white-space: pre-wrap; border: 1px solid olivedrab; width:150px;}
+    div.text19{white-space: pre-line; border: 1px solid olivedrab; width:150px;}
+
+
+  </style>
+</head>
+<body>
+  <p class="text1">(속성없음) 글자의 간격이나 단어의 간격을 자세히 보세요.</p>
+  <p class="text2">(letter-spacing) 글자의 간격이나 단어의 간격을 자세히 보세요.</p>
+  <p class="text3">(word-spacing) 글자의 간격이나 단어의 간격을 자세히 보세요.</p>
+  
+  <p class="text4">(uppercase) MondaY TuesdaY WendesdaY ThursdaY FridaY SaturdaY SundaY</p>
+  <p class="text5">(lowercase) MondaY TuesdaY WendesdaY ThursdaY FridaY SaturdaY SundaY</p>
+  <p class="text6">(capitalize) MondaY TuesdaY WendesdaY ThursdaY FridaY SaturdaY SundaY</p>
+
+  <div class="img1"><img src="../image/greenshoes.jpg" alt="" width="100" height="auto">(vertical-align : top) </div>
+  <div class="img2"><img src="../image/greenshoes.jpg" alt="" width="100" height="auto">(vertical-align : bottom)</div>
+  <div class="img3"><img src="../image/greenshoes.jpg" alt="" width="100" height="auto">(vertical-align : middle) </div>
+  <br>
+  <div class="text10">(word-wrap:break-word)abcdefghijklmnopqrstuvwxyz</div>
+  <div class="text11">(word-wrap:normal)abcdefghijklmnopqrstuvwxyz</div>
+  <br>
+  <div class="text12">(word-break:normal)몬스터대학교 공포반 설리반 32번</div>
+  <div class="text13">(word-break:break-all)몬스터대학교 공포반 설리반 32번</div>
+  <div class="text14">(word-break:break-word)몬스터대학교 공포반 설리반 32번</div>
+  <br>
+  <div class="text15">(white-space:normal)          문자들 사이의 공백을 어떻게 처리할지
+     한 번 지켜보세요.)</div>
+  <div class="text16">(white-space:nowrap)          문자들 사이의 공백을 어떻게 처리할지
+     한 번 지켜보세요.)</div>
+  <div class="text17">(white-space:pre)          문자들 사이의 공백을 어떻게 처리할지
+     한 번 지켜보세요.)</div>
+  <div class="text18">(white-space:pre-wrap)          문자들 사이의 공백을 어떻게 처리할지
+     한 번 지켜보세요.)</div>
+  <div class="text19">(white-space:pre-line)          문자들 사이의 공백을 어떻게 처리할지
+     한 번 지켜보세요.)</div>
+</body>
+</html>

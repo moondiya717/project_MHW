@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>단위 예제</title>
+  <style>
+    /* 
+    브라우저 전체에 배경색을 입히기
+    가로 400px, 세로 400px 사각형을 브라우저 가운데 배치하도록 작성하기
+    */
+    .body{margin: 0;}
+    .box{width: 100vw; height: 100vh; background-color: lightsteelblue;}
+    .center{width: 400px; height: 400px; background-color: mediumpurple;
+      position: fixed; top:calc(50vh - 200px); left:calc(50vw - 200px)}
+  </style>
+</head>
+<body class="body">
+  <div class="box">
+    <div class="center"></div>
+  </div>
+</body>
+</html>

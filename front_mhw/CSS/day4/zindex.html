@@ -14,9 +14,10 @@
   - 한 요소의 position이 static이고 한 요소의 position이 absolute이면 z-index 값에 상관없이 absolute가 위에 감
   */
 
-   /* 포지션이같고 설정이 같아서 html이니까 순서대로 적용이되서 파란색 박스가 빨간색 위로올라가서 파란색만 보이게됨*/
-   .box1{position:absolute; top: 0; left: 0; background-color: red; width: 100px; height: 100px; z-index: 1;}
-   .box2{position:absolute; top: 0; left: 0; background-color: blue; width: 100px; height: 100px;}
+   /* 포지션이같고 설정이 같아서 html이니까 순서대로 적용이되서 파란색 박스가 빨간색 위로올라가서 파란색만 보이지만,
+    z-index를 설정하면 값이 높은게 화면에서 위로 올라가게 됨*/
+   .box1{position:absolute; top: 0; left: 0; background-color: red; width: 100px; height: 100px; z-index: 2;}
+   .box2{position:absolute; top: 0; left: 0; background-color: blue; width: 100px; height: 100px;z-index: 1;}
 
 
  </style>
