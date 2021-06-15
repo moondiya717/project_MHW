@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=\, initial-scale=1.0">
+  <title>가로로된 상단메뉴 만들기 예제</title>
+  <style>
+    .menu{height: 50px; padding: 0; display: flex;}
+    .menu>li>a{color: black; font-weight: bold; 
+      font-size: 20px; text-decoration: none; display: block;}
+    
+    .menu>li{list-style-type:none; text-align: center;
+      line-height: 50px; border: 1px solid red;
+      width: calc(100% / 3); }
+    li:nth-child(1),li:nth-child(2){border-right: none;}
+    
+  </style>
+</head>
+<body>
+  <ul class="menu">
+    <li class="left"><a href="#1">메뉴1</a></li>
+    <li class="middle"><a href="#2">메뉴2</a></li>
+    <li class="right"><a href="#3">메뉴3</a></li>
+  </ul>
+</body>
+</html>

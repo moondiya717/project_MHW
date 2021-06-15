@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>애니메이션 예제3</title>
+  <style>
+    /* 박스가 오른쪽으로 이동했다가 원래 위치로 돌아오는 애니메이션을 만드세요.(무한반복)*/
+    .box1{width: 200px; height: 200px; border: 2px solid tan; 
+      position: absolute; top: calc(50% - 100px); }
+    
+    
+    .box2{width: 150px; height: 150px; border: 2px solid teal; position: relative;}
+    @keyframes toRight1{
+      0%{right:calc(50% - 100px);}
+      50%{right:0;}
+      100%{right:calc(50% - 100px);}
+    }
+
+    /*margin을 이용한 이동은, display가 inline-block일때, 다른 box까지도 같이 밀어서 움직이게 함*/
+    @keyframes toRight2{
+      0%{margin-left: 0;}
+      50%{margin-left: 100px;}
+      100%{margin-left: 0;}
+    }
+    .box1{animation: toRight1 2s infinite;}
+    .box2{animation: toRight2 2s infinite;}
+  </style>
+</head>
+<body>
+  <div>
+    <div class="box1"></div>
+    <div class="box2"></div>
+  </div>
+
+</body>
+</html>
