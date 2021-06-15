@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>이미지확대(네이버뉴스,기사글)</title>
+  <style>
+    *{padding: 0; margin: 0; text-decoration: none; color: black;}
+
+    /*안에 컨텐츠가 들어가면 자동으로 차니까 height는 안써도 됨*/
+    .box{border: 1px solid black; padding: 10px; width: 200px;}
+    
+    .img-box{width: 200px; height: 200px; overflow: hidden;}
+    .img-box img{width: 200px; height: 200px; transition: transform 0.5s;}
+    p.title{height: 16px; line-height: 16px; font-size: 14px; margin: 3px 0; 
+      text-align: center; font-weight: bold;}
+    p.contents{height: 16px; line-height: 16px; font-size: 14px;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
+    
+    p.title:hover{text-decoration: underline;}
+    img:hover{transform: scale(2,2);}
+    .box:hover img{transform: scale(2,2);}
+
+
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div class="inner-box">
+      <div class="img-box">
+        <img src="../image/greenshoes.jpg" alt="sneakers" width="200px" height="200px">
+      </div>
+      <p class="title">Greek Yogurt!</p>
+      <p class="contents">2021년 06월 15일, 그릭요거트는 OPEN! 어서와서 무화가나 블루베리가 잔뜩 들어간 과일 꾸덕 요거트를 맛보세용!</p>
+    </div>
+  </div>
+</body>
+</html>

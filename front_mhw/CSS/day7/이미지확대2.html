@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>이미지확대 가로배열형</title>
+  <style>
+  *{padding: 0; margin: 0; text-decoration: none; color: black;}
+
+  .container{width: 500px; border: 1px solid black; }
+  .container::after{clear: both; content: ''; display: block;}
+  .left{overflow: hidden; margin: 10px; float: left; display: block;}
+  .right{overflow: hidden;  margin: 10px; text-align: center;display:block;}
+  p.contents{overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+
+  .container:hover{cursor: pointer;}
+  .right:hover .title{text-decoration: underline;}
+  .container:hover .img{transform:scale(2,2);}
+  .img:hover{transform: scale(2,2);}
+  .img{transition: transform 0.5s;}
+
+  
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="left">
+      <img src="../image/salmon.jpg" alt="salmon" width="150px" height="100px" class="img">
+    </div>
+    <div class="right">
+      <h2 class="title">연어장인의 손맛!</h2><br>
+      <p class="contents">
+        여기가 어디게 진짜 맛있는 곳인데, 이곳은 바로바로바로바로바로바로바로바로바로바로바로바로
+        잠시후 공개됩니다. 60초후에 공개됩니다. 광고를 끝까지 다 봐야 주소가 공개됩니다.
+        글 길이가 조금 더 많이 필요해서 
+      </p>
+    </div>
+  </div>
+</body>
+</html>
