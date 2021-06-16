@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>분할예제 방법2</title>
+  <style>
+    .box{width: 400px; background-color: turquoise; padding: 10px;}
+    .inner-box{margin-right: -10px; border: 3px solid rebeccapurple; height: 100%;}
+    .inner{width: 50%; height:100%; background-color: tomato; float: left;}
+    .inner-box::after{clear: both; content: ''; display: block;}
+    .sub{margin-right: 10px; border: 2px solid blue; height: 200px;}
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div class="inner-box">
+      <div class="inner left">
+        <div class="sub box1"></div>
+      </div>
+      <div class="inner right">
+        <div class="sub box2"></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
