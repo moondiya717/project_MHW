@@ -6,35 +6,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>이미지확대 가로배열형</title>
   <style>
-  *{padding: 0; margin: 0; text-decoration: none; color: black;}
+  *{padding: 0px; margin: 0px; text-decoration: none; color:black;}
 
-  .container{width: 500px; border: 1px solid black; }
-  .container::after{clear: both; content: ''; display: block;}
-  .left{overflow: hidden; margin: 10px; float: left; display: block;}
-  .right{overflow: hidden;  margin: 10px; text-align: center;display:block;}
-  p.contents{overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
-
-  .container:hover{cursor: pointer;}
-  .right:hover .title{text-decoration: underline;}
-  .container:hover .img{transform:scale(2,2);}
-  .img:hover{transform: scale(2,2);}
-  .img{transition: transform 0.5s;}
-
+  .box{padding: 10px; width: 410px; border: 1px solid black;}
   
+  .inner-box::after{clear: both; content:''; display: block;}
+  .img-box{width: 200px; height: 200px; overflow: hidden; float: left;}
+  .img-box img{width: 200px; height: 200px; transition: transform 0.5s;}
+  .box:hover img{transform: scale(1.1);}
+  
+  .group-box{width: 200px; height: 200px; float: right;}
+  p.title{
+    height: 25px; line-height: 25px; font-size: 20px; font-weight: bold; text-align: center;
+  }
+  p.contents{
+    height: 175px; line-height: 25px; font-size: 20px; overflow: hidden;
+    text-overflow: ellipsis; white-space: nowrap;
+  }
+
+  .group-box:hover p.title{text-decoration: underline;}
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="left">
-      <img src="../image/salmon.jpg" alt="salmon" width="150px" height="100px" class="img">
-    </div>
-    <div class="right">
-      <h2 class="title">연어장인의 손맛!</h2><br>
-      <p class="contents">
-        여기가 어디게 진짜 맛있는 곳인데, 이곳은 바로바로바로바로바로바로바로바로바로바로바로바로
-        잠시후 공개됩니다. 60초후에 공개됩니다. 광고를 끝까지 다 봐야 주소가 공개됩니다.
-        글 길이가 조금 더 많이 필요해서 
-      </p>
+  <div class="box">
+    <div class="inner-box">
+      <div class="img-box">
+       <img src="../image/salmon.jpg" alt="salmon" height="100px" width="150px">
+      </div>
+      <div class="group-box">
+       <p class="title">연어장인의 손맛!</p>
+       <p class="contents">여기가 어디게 진짜 맛있는 곳인데, 이곳은 바로바로바로바로</p>
+      </div>
     </div>
   </div>
 </body>

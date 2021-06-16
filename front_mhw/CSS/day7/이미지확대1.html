@@ -6,38 +6,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>이미지확대2(day6확장판)</title>
   <style>
-    .container{width: 200px; height: 300px; border: 1px solid black;}
-    .body{height: 100%; border: 1px solid black; margin: 10px;}
-
-    .imgbox{overflow: hidden; widows: 200px; height: 200px;
-     margin-bottom: 10px;}
-    .title{font-weight: bold; font-size: 20px; text-align: center; 
-      margin-bottom: 10px; border: 1px solid black;}
-    .contents{height: 50px; overflow: hidden; text-overflow: ellipsis;
-      white-space: nowrap; border: 1px solid black;}
+    .container{width: 200px; border: 1px solid black;}
+    .box{height:100%; margin: 10px;}
+    .img{overflow: hidden; height: 200px; margin-bottom: 10px;}
+    .box.title{text-align: center;}
+    .box.contents{overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
     
     .container:hover{cursor: pointer;}
-    .imgbox img{transition: transform 0.3s;}
-    .imgbox:hover .img{transform:scale(2,2); }
+    .img img{transition: transform 0.3s;}
+    .img:hover .img{transform:scale(2,2); }
     .box.title:hover {text-decoration: underline;}
-    .container:hover .imgbox.img{transform: scale(2,2);}
+    .container:hover .img img{transform: scale(2,2);}
 
   </style>
 
 </head>
 <body>
   <div class="container">
-    <div class="body">
-      <div class="imgbox">
+      <div class="box img">
         <img src="../image/greenshoes.jpg" alt="Greensneakers" width="200px" height="200px" class="img">
       </div>
-      <div class="box title">Greek Yogurt!</div>
-      <div class="box contents">
-        오늘은 2021년 06월 15일입니다. 미세먼지가 좋음이고 초미세먼지도 좋음이라네요.
-        Green Yogurt에서는 블루베리랑 무화과 어쩌구 저쩌구가 진짜 맛있고, 
-        요거트 꾸덕함은 완전 꾸덕함으로 해야 더더더더더 맛있어용!
-      </div>
-    </div>
+      <h2 class="box title">Greek Yogurt!</h2>
+      <p class="box contents">오늘은 2021년 06월 15일입니다.</p>
   </div>
 </body>
 </html>

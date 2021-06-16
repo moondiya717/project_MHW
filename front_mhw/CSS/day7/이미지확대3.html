@@ -4,55 +4,57 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>이미지 확대 예제2,3합</title>
+  <title>이미지확대 가로배열형</title>
   <style>
-    *{padding: 0; margin: 0; text-decoration: none; color: black;}
+  *{padding: 0px; margin: 0px; text-decoration: none; color:black;}
 
+  .container{padding: 10px; border: 1px solid black; width: 874px;}
+  .post{padding: 10px; width: 410px; border: 1px solid black; float: left;}
+  .post:nth-child(2){float: right;}
+  .post::after, .container::after{clear: both; content:''; display: block;}
+  .left{width: 200px; height: 200px; overflow: hidden; float: left;}
+  .left img{width: 200px; height: 200px; transition: transform 0.5s;}
+  .post:hover img{transform: scale(1.1);}
 
-    .box{padding: 10px; width: 410px; border: 1px solid black; float: left;}
-    .box:nth-child(2){float:right;}
-    .inner-box::after, .inner-container::after{clear: both; content: ''; display: block;}
-    .img-box{width: 200px; height: 200px; overflow: hidden; float: left;}
-    .img-box img{width: 200px; height: 200px; transition: transform 0.5s;}
-    .box:hover img{transform:scale(1.1);}
+  .right{width: 200px; height: 200px; float: right;}
+  p.title{
+    height: 25px; line-height: 25px; font-size: 20px; font-weight: bold; text-align: center;
+  }
+  p.contents{
+    height: 175px; line-height: 25px; font-size: 20px; overflow: hidden;
+    text-overflow: ellipsis; white-space: nowrap;
+  }
 
-    .group-box{width:200px; height: 200px; float: right;}
-    p.title{height: 25px; line-height: 25px; font-size: 20px;}
-    p.contents{height: 175px; line-height: 25px; font-size: 20px;}
-
-    .group-box:hover p.title{text-decoration:underline;}
-
-    .container{width: 874px; padding: 10px; border: 1px solid red;}
-    
+  .right:hover p.title{text-decoration: underline;}
 
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="inner-container">
-      <div class="box">
-        <div class="inner-box">
-          <div class="img-box">
-            <img src="../image/umbrella.jpg" alt="salmon" width="150px" height=100px>
-          </div>
-          <div class="group-box">
-            <p class="title">제목입니다.</p>
-            <p class="contents">내용입니다.</p>
-          </div>
+  <div class="outline">
+    <div class="container">
+      <div class="post">
+        <div class="left">
+          <img src="../image/salmon.jpg" alt="salmon" width="150px" height="100px" class="img 1">
+        </div>
+        <div class="right">
+          <p class="title">연어장인의 손맛!</p>
+          <p class="contents">
+            여기가 어디게 진짜 맛있는 곳인데, 이곳은 바로바로바로바로
+          </p>
         </div>
       </div>
-      <div class="box">
-        <div class="inner-box">
-          <div class="img-box">
-            <img src="../image/bus.jpg" alt="salmon" width="150px" height=100px>
-          </div>
-          <div class="group-box">
-            <p class="title">제목입니다.</p>
-            <p class="contents">내용입니다.</p>
-          </div>
+      <div class="post">
+        <div class="left">
+          <img src="../image/umbrella.jpg" alt="yellowumbrella" width="150px" height="100px" class="img 2">
+        </div>
+        <div class="right">
+          <p class="title">노란 우산!</p>
+          <p class="contents">
+            비가 추적추적 내리면, 꼭 노란 우산으로 기분을 전환하세요!
+          </p>
         </div>
       </div>
-    </div>  
+    </div>
   </div>
 </body>
 </html>
