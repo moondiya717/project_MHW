@@ -68,6 +68,14 @@
     .page-btn-right{
       float: right; margin-left: -1px;}
 
+    .aside-loginbox{
+      padding: 16px 16px 12px 17px;}
+    .aside-loginbox-inner{
+      border: 1px solid red; box-sizing: border-box;}
+    .loginbox-inner-msg{
+      height: 16px; border: 1px solid blue; box-sizing: border-box; margin-bottom: 11px;}
+    .loginbox-inner-btn{
+      height: 48px; border:1px solid green; box-sizing: border-box;}
 
     .main-body:after, .page-btn::after{
       clear: both; content: ''; display: block;}
@@ -99,7 +107,12 @@
           <div class="section-middle"></div>
         </section>
         <aside class="aside">
-          <div class="aside-loginbox"></div>
+          <div class="aside-loginbox">
+            <div class="aside-loginbox-inner">
+              <div class="loginbox-inner-msg"></div>
+              <div class="loginbox-inner-btn"></div>
+            </div>
+          </div>
           <div class="aside-newsbanner">
             <div class="page-btn">
               <div class="page-btn-left"><i class="fas fa-angle-left"></i></div>
