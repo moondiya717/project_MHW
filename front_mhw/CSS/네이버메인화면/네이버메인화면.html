@@ -111,13 +111,42 @@
     .point2{margin: 10px 6px 0 6px;}
     .mall-link:hover{text-decoration: underline;}
 
-    .right4-bot2{height: 886px; background:green;}
+    .right4-bot2{height: 886px; padding: 55px 8px 22px; box-sizing: border-box; position: relative;}
     .right4-bot3{height: 262px; background:skyblue;}
-    .right4-bot4{height: 274px; background:whitesmoke;}
+    .right4-bot4{padding: 0 8px 30px;}
+
+    .right4-bot2 .inner-container{margin-top: -10px; margin-right: -5px;}
+    .right4-bot2 .goods-items{float: left; width: calc(100% / 3); padding-right: 5px; box-sizing: border-box;
+      margin-top: 10px;}
+
+    .right4-bot2 .goods-items>.goods-area{display: block;}
+    .right4-bot2 .goods-items>.goods-area .img-box{overflow: hidden; position: relative; }
+    .right4-bot2 .goods-items>.goods-area .img-box img{display: block; transition: transform 0.5s;}
+    .right4-bot2 .goods-items>.goods-area:hover .img-box img{transform: scale(1.05);}
+    .right4-bot2 .goods-items>.goods-area:hover .title-box .title{text-decoration: underline;}
+    .right4-bot2 .goods-items>.goods-area .title-box .title{font-size: 12px; height: 16px;
+      line-height: 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: center;}
+    .right4-bot2 .goods-items>.goods-area .title-box{margin-top: 5px;}
+
     
+    .rignt4-btn-box{display: block; position:absolute; top: 13px; right: 8px;}
+    .rignt4-prev-btn, .rignt4-next-btn{float: left; width: 28px; height: 29px; border: 1px solid #e4e8eb; 
+      box-sizing:border-box; text-align: center; line-height: 29px; cursor: pointer; display: block;
+      background-color: whitesmoke;}
+    .rignt4-next-btn{margin-left: 1px; display: block;}
+    .right4-page{margin-right:7px; border: 1px solid black;}
+
+    .bot4-inner-container{border: 1px solid orange; height: 100%; box-sizing: border-box;}
+    .bot4-inner-left, .bot4-inner-right{width: calc((100% / 2) - 5px); height: 100%; border: 1px solid purple;
+      float: left; box-sizing: border-box;}
+    .bot4-inner-right{margin-left: 10px;}
+    .bot4-left-top, .bot4-right-top{height: 163px; border: 1px solid green; margin-bottom: 9px; overflow: hidden;}
+    .bot4-left-bottom, .bot4-right-bottom{height: 16px; border: 1px solid orange;}
+    .bot4-title{font-size: 13px; text-align: center;}
+
     .bold{font-weight: bold;}
-    .mall-list::after{content: ''; display: block; clear: both;}
-    
+    .mall-list::after, .right4-bot2 .inner-container:after, .rignt4-btn-box:after{content: ''; display: block; clear: both;}
+
   </style>
 </head>
 <body>
@@ -310,9 +339,142 @@
                 <a href="#" class="mall-link">CJ온스타일</a>
               </div>
             </div>
-            <div class="right4-bot2"></div>
+            <div class="right4-bot2">
+              <div class="rignt4-btn-box">
+                <div class="right4-page"></div>
+                <div class="rignt4-prev-btn"><i class="fas fa-angle-left"></i></div>
+                <div class="rignt4-next-btn"><i class="fas fa-angle-right"></i></div> 
+              </div>
+              <div class="inner-container">
+                <ul>
+                  <li class="goods-items"><a href="#" class="goods-area">
+                    <div class="img-box">
+                      <img src="../image/balloon.jpg" alt="balloon" width="100%" height="146px">
+                    </div>
+                    <div class="title-box">
+                      <p class="title bold">BEST 여름필수템</p>
+                      <p class="title">폭신폭신 구름위</p>
+                    </div>
+                  </a></li>
+                  <li class="goods-items"><a href="#" class="goods-area">
+                    <div class="img-box">
+                      <img src="../image/balloon.jpg" alt="balloon" width="100%" height="146px">
+                    </div>
+                    <div class="title-box">
+                      <p class="title bold">BEST 여름필수템</p>
+                      <p class="title">폭신폭신 구름위</p>
+                    </div>
+                  </a></li>
+                  <li class="goods-items"><a href="#" class="goods-area">
+                    <div class="img-box">
+                      <img src="../image/balloon.jpg" alt="balloon" width="100%" height="146px">
+                    </div>
+                    <div class="title-box">
+                      <p class="title bold">BEST 여름필수템</p>
+                      <p class="title">폭신폭신 구름위</p>
+                    </div>
+                  </a></li>
+                  <li class="goods-items"><a href="#" class="goods-area">
+                    <div class="img-box">
+                      <img src="../image/balloon.jpg" alt="balloon" width="100%" height="146px">
+                    </div>
+                    <div class="title-box">
+                      <p class="title bold">BEST 여름필수템</p>
+                      <p class="title">폭신폭신 구름위</p>
+                    </div>
+                  </a></li>
+                  <li class="goods-items"><a href="#" class="goods-area">
+                    <div class="img-box">
+                      <img src="../image/balloon.jpg" alt="balloon" width="100%" height="146px">
+                    </div>
+                    <div class="title-box">
+                      <p class="title bold">BEST 여름필수템</p>
+                      <p class="title">폭신폭신 구름위</p>
+                    </div>
+                  </a></li>
+                  <li class="goods-items"><a href="#" class="goods-area">
+                    <div class="img-box">
+                      <img src="../image/balloon.jpg" alt="balloon" width="100%" height="146px">
+                    </div>
+                    <div class="title-box">
+                      <p class="title bold">BEST 여름필수템</p>
+                      <p class="title">폭신폭신 구름위</p>
+                    </div>
+                  </a></li>
+                  <li class="goods-items"><a href="#" class="goods-area">
+                    <div class="img-box">
+                      <img src="../image/balloon.jpg" alt="balloon" width="100%" height="146px">
+                    </div>
+                    <div class="title-box">
+                      <p class="title bold">BEST 여름필수템</p>
+                      <p class="title">폭신폭신 구름위</p>
+                    </div>
+                  </a></li>
+                  <li class="goods-items"><a href="#" class="goods-area">
+                    <div class="img-box">
+                      <img src="../image/balloon.jpg" alt="balloon" width="100%" height="146px">
+                    </div>
+                    <div class="title-box">
+                      <p class="title bold">BEST 여름필수템</p>
+                      <p class="title">폭신폭신 구름위</p>
+                    </div>
+                  </a></li>
+                  <li class="goods-items"><a href="#" class="goods-area">
+                    <div class="img-box">
+                      <img src="../image/balloon.jpg" alt="balloon" width="100%" height="146px">
+                    </div>
+                    <div class="title-box">
+                      <p class="title bold">BEST 여름필수템</p>
+                      <p class="title">폭신폭신 구름위</p>
+                    </div>
+                  </a></li>
+                  <li class="goods-items"><a href="#" class="goods-area">
+                    <div class="img-box">
+                      <img src="../image/balloon.jpg" alt="balloon" width="100%" height="146px">
+                    </div>
+                    <div class="title-box">
+                      <p class="title bold">BEST 여름필수템</p>
+                      <p class="title">폭신폭신 구름위</p>
+                    </div>
+                  </a></li>
+                  <li class="goods-items"><a href="#" class="goods-area">
+                    <div class="img-box">
+                      <img src="../image/balloon.jpg" alt="balloon" width="100%" height="146px">
+                    </div>
+                    <div class="title-box">
+                      <p class="title bold">BEST 여름필수템</p>
+                      <p class="title">폭신폭신 구름위</p>
+                    </div>
+                  </a></li>
+                  <li class="goods-items"><a href="#" class="goods-area">
+                    <div class="img-box">
+                      <img src="../image/balloon.jpg" alt="balloon" width="100%" height="146px">
+                    </div>
+                    <div class="title-box">
+                      <p class="title bold">BEST 여름필수템</p>
+                      <p class="title">폭신폭신 구름위</p>
+                    </div>
+                  </a></li>
+                </ul>
+              </div>
+            </div>
             <div class="right4-bot3"></div>
-            <div class="right4-bot4"></div>
+            <div class="right4-bot4">
+              <div class="bot4-inner-container">
+                <div class="bot4-inner-left"><a href="#">
+                  <div class="bot4-left-top">
+                    <img src="../image/greenshoes.jpg" alt="shoes" width="200px" height="200px">
+                  </div>
+                  <div class="bot4-left-bottom"><p class="bot4-title bold">2021년에도 스니커즈</p></div>
+                </a></div>
+                <div class="bot4-inner-right"><a href="#">
+                  <div class="bot4-right-top">
+                    <img src="../image/salmon.jpg" alt="salmon" width="200px" height="200px">
+                  </div>
+                  <div class="bot4-right-bottom"><p class="bot4-title bold">욤뇸뇸뇸</p></div>
+                </a></div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
