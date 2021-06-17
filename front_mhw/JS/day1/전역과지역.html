@@ -26,7 +26,7 @@
       let num4=20;
       document.write(`조건문 안 num4 = ${num4}<br>`);
     }
-    //document.write(`조건문 안 num4 = ${num4}<br>`); //에러발생
+    //document.write(`조건문 밖 num4 = ${num4}<br>`); //에러발생
 
     /* 함수안에서 선언한 변수는 지역 변수로 밖에서 사용할 수 없다*/
     function test(){
@@ -39,7 +39,7 @@
       var num6 = 20; //전역 변수
       document.write(`괄호 안 num6 = ${num6}<br>`)
     }
-    document.write(`괄호 안 num6 = ${num6}<br>`);
+    document.write(`괄호 밖 num6 = ${num6}<br>`);
 
 
     let num7=10;{ //전역변수
@@ -47,7 +47,7 @@
       let num7 = 20;
       document.write(`괄호 안 num7 = ${num7}<br>`)
     }
-    document.write(`괄호 안 num7 = ${num7}<br>`);
+    document.write(`괄호 밖 num7 = ${num7}<br>`);
 
 
   </script>
