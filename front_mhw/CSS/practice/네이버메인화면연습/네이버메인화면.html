@@ -62,9 +62,9 @@
     .aside-newsbanner .page-btn{
       width: 47px; height: 24px; box-sizing: border-box;
       position: absolute; top: 11px; right: 10px; }
-    .page-btn-left, .page-btn-right{
+    .page-btn-prev, .page-btn-next{
       width: 24px; height: 24px; float:left; text-align: center; line-height: 24px;
-      border: 1px solid black; box-sizing: border-box; font-size: 12px; cursor: pointer;}
+      border: 1px solid #e4e8eb; box-sizing: border-box; font-size: 12px; cursor: pointer;}
     .page-btn-right{
       float: right; margin-left: -1px;}
 
@@ -96,6 +96,15 @@
       font-size: 12px; float: left; line-height: 21px;}
     .signup-btn{
       font-size: 12px; color: #505050; float: right;}
+    
+    .section-middle{background-color: white;}
+    .middle-horizontal{
+      display: flex; border-bottom: 1px solid brown; height: calc(100% / 4); box-sizing: border-box;}
+    .middle-horizontal:last-child{border-bottom: none;}
+    .middle-horizontal .h-row{border-right: 1px solid blueviolet; flex: 1;}
+    .middle-horizontal .h-row:last-child{border-right: none;}
+
+
 
     .main-body:after, 
     .page-btn::after, 
@@ -127,7 +136,40 @@
       <div class="main-body">
         <section class="section">
           <div class="section-top advertisement"></div>
-          <div class="section-middle"></div>
+          <div class="section-middle">
+            <div class="middle-horizontal row">
+              <div class="h-row"></div>
+              <div class="h-row"></div>
+              <div class="h-row"></div>
+              <div class="h-row"></div>
+              <div class="h-row"></div>
+              <div class="h-row"></div>
+            </div>
+            <div class="middle-horizontal row">
+              <div class="h-row"></div>
+              <div class="h-row"></div>
+              <div class="h-row"></div>
+              <div class="h-row"></div>
+              <div class="h-row"></div>
+              <div class="h-row"></div>
+            </div>
+            <div class="middle-horizontal row">
+              <div class="h-row"></div>
+              <div class="h-row"></div>
+              <div class="h-row"></div>
+              <div class="h-row"></div>
+              <div class="h-row"></div>
+              <div class="h-row"></div>
+            </div>
+            <div class="middle-horizontal row">
+              <div class="h-row"></div>
+              <div class="h-row"></div>
+              <div class="h-row"></div>
+              <div class="h-row"></div>
+              <div class="h-row"></div>
+              <div class="h-row"></div>
+            </div>
+          </div>
         </section>
         <aside class="aside">
           <div class="aside-loginbox">
@@ -149,8 +191,8 @@
           </div>
           <div class="aside-newsbanner">
             <div class="page-btn">
-              <div class="page-btn-left"><i class="fas fa-angle-left"></i></div>
-              <div class="page-btn-right"><i class="fas fa-angle-right"></i></div>
+              <div class="page-btn-prev"><i class="fas fa-angle-left"></i></div>
+              <div class="page-btn-next"><i class="fas fa-angle-right"></i></div>
             </div>
           </div>
         </aside>
