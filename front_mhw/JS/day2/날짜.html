@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>닐짜 예제</title>
+</head>
+<body>
+  <script>
+    // - Date 객체 : 날짜와 시간에 대한 정보를 가진 객체
+    var date = new Date();
+    document.write(date);
+
+
+
+    
+    document.write('<br>')
+    document.write(getDate(date)); 
+
+
+    //원하는 형태로 나오도록 수정
+    function getDate(date){
+      var year = date.getFullYear(); //년도를 4자리로 가져옴
+      var month = date.getMonth()+1; //월을 가져옴 0~11(자바랑 똑같아서 +1로 12월까지) 
+     // month=month<10?'0'+month : month; //조건선택연산자로 01월 이런식으로 표현
+      // if(month<10) month='0'+month; 조건선택연산자와 같은 내용인 조건문
+      
+      var day = date.getDate(date); //일을 가져옴
+      //day=day<10? '0'+ day: day;
+      var hour = date.getHours(); //시간을 가져옴
+      var minute = date.getMinutes(); //분을 가져옴
+      var second = date.getSeconds(); //초를 가져옴
+
+      var str = '' +year + '-' +addZero(month) + '-'+addZero(day)+ ' '
+        + addZero(hour) + ':'+ addZero(minute)+ ':'+ addZero(second);
+      
+      return str;
+    }
+    
+    function addZero(num){ //숫자가 10보다 작으면 앞에 0을 붙여주는 함수
+      return num<10? '0'+num : num;
+    }
+
+  </script>
+</body>
+</html>
