@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>롤링 예제3</title>
+  <script src="../JS/jquery.min.js"></script>
+  <script>
+    /*
+    - 롤링 방향이 오른쪽에서 왼쪽으로 이동하도록 작성해보세요.
+    */
+    var left=-100;
+    $(function(){
+      setInterval(function(){
+        $('.container').animate({left:left+'px'},800)
+        left = left-100;
+        left = left==-1000? 0:left;
+      },1000)
+    }) 
+  </script>
+  <style>
+    .window{
+      width: 100px; height: 50px; border: 1px solid red; 
+      box-sizing: border-box; overflow: hidden;}
+    .container{
+      width: 1000px; height: 50px; background: silver; position: relative;}
+    .box{
+      width:100px; height: 50px; text-align: center; font-size:20px; line-height: 50px; float: left;}
+    .box:nth-child(2n){background: lightblue;}
+  </style>
+</head>
+<body>
+  <div class="window">
+    <div class="container">
+      <div class="box">가</div>
+      <div class="box">나</div>
+      <div class="box">다</div>
+      <div class="box">라</div>
+      <div class="box">마</div>
+      <div class="box">바</div>
+      <div class="box">사</div>
+      <div class="box">아</div>
+      <div class="box">자</div>
+      <div class="box">차</div>
+    </div>
+  </div>
+</body>
+</html>

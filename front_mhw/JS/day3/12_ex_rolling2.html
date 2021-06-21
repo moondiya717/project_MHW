@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rolling기능(네이버에서 시간의 지남에 따라 변하는 구간)</title>
+  <script src="../JS/jquery.min.js"></script>
+  <script>
+      var top=-50;
+    $(function(){
+      setInterval(function(){
+        $('.container').animate({top:top+'px'},800)
+        top = top-50;
+        top = top==-500? 0:top;
+      },1000)
+    })  
+  </script>
+  <style>
+    .window{
+      width: 200px; height: 50px; border: 1px solid red; 
+      box-sizing: border-box; overflow: hidden;}
+    .container{
+      width: 200px; height: 500px; background: silver; position: relative;}
+    .box{
+      height: 50px; text-align: center; line-height: 50px;}
+
+    
+  </style>
+</head>
+<body>
+  <div class="window">
+  <div class="container">
+    <div class="box">가</div>
+    <div class="box">나</div>
+    <div class="box">다</div>
+    <div class="box">라</div>
+    <div class="box">마</div>
+    <div class="box">바</div>
+    <div class="box">사</div>
+    <div class="box">아</div>
+    <div class="box">자</div>
+    <div class="box">차</div>
+  </div>
+</div>
+</body>
+</html>

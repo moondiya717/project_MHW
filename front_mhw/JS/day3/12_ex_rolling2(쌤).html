@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rolling기능(네이버에서 시간의 지남에 따라 변하는 구간)</title>
+  <script src="../JS/jquery.min.js"></script>
+  <script>
+      var mt=-50;
+    $(function(){
+      setInterval(function(){
+        $('.box:first-child').animate({'margin-top':mt+'px'},1200) //-가 있으면 ''로 묶어서 인식할수있게해줌
+        mt = mt-50;
+        mt = mt==-250? 0:mt;
+      },2000)
+    })  
+  </script>
+  <style>
+    .view{
+      height: 50px; border:2px solid black; overflow: hidden;}
+    .box{
+      height: 50px; text-align: center; line-height: 50px; background: blueviolet;
+      font-size: 30px;}
+    .box:nth-child(2n){background: cornflowerblue;}
+
+    
+  </style>
+</head>
+<body>
+  <div class="view"> 
+    <!-- view밑에 container로 box를 일부러 감싸지 않았음=> 나중에 rolling 위에서 떼서 아래로 보내는
+      기능을 추가하게 될 때를 생각해서라고 함-->>
+    <div class="box">가</div>
+    <div class="box">나</div>
+    <div class="box">다</div>
+    <div class="box">라</div>
+    <div class="box">마</div>
+  </div>
+</body>
+</html>
