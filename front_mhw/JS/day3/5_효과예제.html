@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>효과</title>
+  <script src="../JS/jquery.min.js"></script>
+  <script>
+    $(function(){
+      /*
+      - hide(speed, easing, callback);
+        -speed : 속도. 기본값: 400ms, 가능한 값: ms, slow, fast
+        - easing : 패턴(느리게, 빠르게와 같이 변화를 어떤 효과로 보여줄 것인지), 
+                    기본값 : swing, 가능한 값 : swing, linear
+                    추가적인 값은 plug-in을 통해서
+        - callback : 효과가 끝난 뒤에 함수로 코드를 만들 때 사용
+      - callback function : 매개변수가 필요할 때, callback 함수를 사용 
+      */
+      $('#btn1').click(function(){
+        $('.box').hide('slow', 'swing', function(){
+          console.log('hide ends');
+        });
+      });
+      /* 
+      - show(speed, easing, callback); //hide와 똑같음
+        -speed : 속도. 기본값: 400ms, 가능한 값: ms, slow, fast
+        - easing : 패턴(느리게, 빠르게와 같이 변화를 어떤 효과로 보여줄 것인지), 
+                    기본값 : swing, 가능한 값 : swing, linear
+                    추가적인 값은 plug-in을 통해서
+        - callback : 효과가 끝난 뒤에 함수로 코드를 만들 때 사용
+      - callback function : 매개변수가 필요할 때, callback 함수를 사용 
+      */
+      /*버튼을 클릭했을 때, 박스가 나타나는 코드를 작성하세요*/
+      $('#btn2').click(function(){
+        $('.box').show('slow', 'swing', function(){
+          console.log('show ends');
+        });
+      });
+      /*
+      - toggle(speed, easing, callback);
+        -speed :속도. 기본값: 400ms, 가능한 값: ms, slow, fast
+        - easing :패턴(느리게, 빠르게와 같이 변화를 어떤 효과로 보여줄 것인지), 
+                    기본값 : swing, 가능한 값 : swing, linear
+                    추가적인 값은 plug-in을 통해서
+        - callback : 효과가 끝난 뒤에 함수로 코드를 만들 때 사용
+                    +나타날 때 한번, 사라질 때 한번 작동
+        - 보여지는 것을 감추고, 감춰있는 것을 보여주는 기능
+      */
+      $('#btn3').click(function(){
+        $('.box').toggle(400, function(){
+          console.log('toggle');
+        });
+      });
+      $('#btn4').click(function(){
+        $('.box2').hide('fast', function(){
+          $(this).show('fast'); // this -> without quotation mark 
+        });
+      });
+    });
+  </script>
+</head>
+<body>
+  <button id="btn1">hide</button>
+  <button id="btn2">show</button>
+  <button id="btn3">toggle</button> <!-- 한 번 누르면 켜지고, 한 번 누르면 꺼지는 것 => toggle-->
+  <button id="btn4">button</button>
+  <div class="box" style="display: none;">
+    1234 <br>1234 <br>1234 <br>
+  </div>
+  <div class="box2">
+    4567 <br>4567 <br>4567 <br>4567
+  </div>
+</body>
+</html>
