@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>스크립트 태그위치</title>
+  <!-- 
+    일반적으로 외부 js파일은 head태그에 배치하고, 해당 문서에 대한 이벤트를 처리하는 js는
+    body태그 제일 아래에 배치한다 
+  -->
+  <script>
+    /*
+    - body태그는 위에서부터 아래로 실행을 시작함. 
+      ex_click예제와 다르게 버튼들을 이벤트 밑으로 작성하면 이벤트가 실행이 되지 않는다(onclick제외)
+      => 이벤트를 등록하더라도 아래에 요소 버튼이 없고, 아래에 버튼 순서까지 갔을땐 이미 이벤트 등록이
+        끝난 상황이기때문에, 버튼에 이벤트가 등록되지 않는다
+      => 1. 요소가 만들어진 다음에 이벤트를 등록해야한다(버튼을 만들고-> 이벤트를 등록해야한다.) 
+      => 2. 코드가 위에 있다하더라도 작동할 수 있도록 하려면 window.이벤트의 load의 function 안에 
+        버튼1,2의 기능구현을 넣어주면 된다.
+
+    */
+
+    window.addEventListener('load', function(){
+      var btn1 = document.getElementById('start');
+        btn1.addEventListener('click',function(){
+          alert('시작');
+        })
+
+      var btn2 = document.getElementById('end');
+        btn2.addEventListener('click',function(){
+          alert('종료');
+          })
+    })
+  </script>
+</head>
+<body>
+    <button id="start" class="btn1">버튼1</button>
+    <button id="end" class="bt2n">버튼2</button>
+    <button id="etc" onclick="alert('test');">onclick</button>
+</body>
+</html>
