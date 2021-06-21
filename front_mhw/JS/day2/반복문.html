@@ -14,12 +14,12 @@
 
     */
     var arr = [1,2,3];
-    var obj = {grade : 1, name: '설리반'};
     console.log('배열');
     for(var index in arr){
       console.log('arr['+index+'] = ' + arr[index]);
     }
 
+    var obj = {grade : 1, name: '설리반'};
     console.log('객체');
     for(var index in obj){
       console.log(index+' = ' + obj[index]);
@@ -34,7 +34,7 @@
       console.log(value);
     }
 
-    console.log('객체');
+    console.log('객체-응안돼');
      //객체 사용 불가능
 //     for(var value of obj){
 //      console.log(value);
@@ -42,7 +42,7 @@
 
 /*
 - forEach(function(value, index, array){}) : 메서드
-  - 원소 하나덩 한번씩 실행
+  - 원소 하나당 한번씩 실행
 */
     arr.forEach(function(value, index, array){
       console.log('arr['+index+'] = ' + arr[index]);
