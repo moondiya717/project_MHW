@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>요소 추가</title>
+  <script src="../JS/jquery.min.js"></script>
+  <script>
+    $(function(){
+      /*
+      - 요소 추가하기 : 태그로 이루어진 요소를 추가
+        - html('문자열')과 다름. html()은 요소 안에 있는 내용을 지우고, 지정된 문자열로 덮어씌우는 메소드
+
+        - $('부모요소선택자').append('자식요소인html코드') : 부모 안 요소들 중 마지막에 새로운 요소를 추가
+        - $('부모요소선택자').prepend('자식요소인html코드') : 부모 안 요소들 중 맨 처음에 새로운 요소를 추가
+
+        - $('자식요소인html코드').appendTo('부모요소선택자') : 부모 안 요소들 중 마지막에 새로운 요소를 추가
+        - $('자식요소인html코드').prependTo('부모요소선택자') : 부모 안 요소들 중 맨 처음에 새로운 요소를 추가
+
+        - $('선택자').after('html코드') : 요소 바로 다음에 새로운 요소를 추가
+        - $('선택자').before('html코드') : 요소 바로 앞에 새로운 요소를 추가
+
+        - append, prepend는 자식 요소를 추가
+        - after, before는 형제 요소를 추가
+        - appendTo와 append를 사용하는 타이밍은 기준이 되는 요소가 부모이면 append,
+          자식이면 appendTo를 쓴다
+        - 요소를 추가할 때, 추가하는 곳이 기준이면 append, 추가할 요소가 기준이면 appendTo
+      */
+      
+      /* 요소가 추가되기 전에 등록된 이벤트는 요소가 추가된 후에 자동으로 이벤트가 추가되지 않음*/
+      $('.box').click(function(){ //만들어진 요소는 네모가 들어간 긴박스 하나만 이벤트 등록됨
+        console.log('box 클릭');
+      })
+
+      $('.box').append('<div class="inner-box">2</div>');
+      $('.box').prepend('<div class="inner-box">3</div>');
+      $('<div class="inner-box">4</div>').appendTo('.box');
+      $('<div class="inner-box">5</div>').prependTo('.box');
+      
+      //속성으로 onlclick코드넣으면 이벤트 등록 후에 생긴 요소인 before, after로 생긴 박스들도 이벤트등록가능
+      $('.box').after('<div class="box" onclick="console.log(\'box 클릭\');">2</div>')
+      $('.box').before('<div class="box" onclick="console.log(\'box 클릭\');">3</div>') 
+      //rosy색박스가 들어있는 긴줄이랑 after에서 생긴2번 박스의 앞(before)에 각각 하나씩 들어가서 총2개 들어감
+
+      //위에서 추가적으로 요소를 등록하게 된 후에, 이벤트를 이곳에 등록하면 긴 4박스모두 이벤트가 등록됨
+      // $('.box').click(function(){
+      //   console.log('box 클릭'); 
+      // })
+    })
+  </script>
+  <style>
+    .box{ height: 50px; margin-bottom: 20px; padding: 10px; background:rosybrown;}
+    .inner-box{float: left; width: 50px; height: 50px; margin-right: 10px; background: moccasin;}
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div class="inner-box">1</div>
+  </div>
+</body>
+</html>
