@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>더보기 예제</title>
+  <script src="../JS/jquery.min.js"></script>
+  <script> //toggle은 display가있으면 설정을 바꾸는 기능이라서 toggle기능만 써도 hide<->show
+    $(function(){
+      $('#btn1').click(function(){
+        $('.coverUp').show();
+        $(this).hide();
+        $('#btn2').show();
+      });
+      $('#btn2').click(function(){
+        $('.coverUp').stop().hide();
+        $('#btn1').show();
+        $(this).hide();
+      });
+    })
+  </script>
+  <style>
+    button{
+      background-color: darkblue; color: white; font-weight: bold; border: 2px solid yellowgreen;
+      width: 70px; position: relative; top:0; right: 0;}
+    button:hover{
+      cursor: pointer;}
+    #btn2{
+      display: none;}
+    .box{
+      position: relative;}
+    .box>div{font-size: 50px; text-align: center;}
+    .basic1{
+      height: 100px; background-color: rgb(182, 110, 248); line-height: 100px;}
+    .basic2{
+      height: 200px; background-color: lightskyblue; line-height: 200px;}
+    .coverUp{
+      height: 400px; background-color: orange; position:absolute; top: 0; left:0; right: 0; display: none;
+      line-height: 400px;}
+  </style>
+</head>
+<body>
+  <button id="btn1">더보기+</button>
+  <button id="btn2">접기-</button>
+  <div class="box">
+    <div class="basic1">몬스터대학교</div>
+    <div class="basic2">몬스터주식회사</div>
+    <div class="coverUp">결국은 디즈니</div>
+  </div>
+</body>
+</html>
