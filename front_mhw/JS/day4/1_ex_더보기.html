@@ -9,7 +9,7 @@
   <script> //toggle은 display가있으면 설정을 바꾸는 기능이라서 toggle기능만 써도 hide<->show
     $(function(){
       $('#btn1').click(function(){
-        $('.coverUp').show();
+        $('.coverUp').stop().show();
         $(this).hide();
         $('#btn2').show();
       });
