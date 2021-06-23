@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>css 메소드</title>
+  <script src="../JS/jquery.min.js"></script>
+  <script>
+    $(function(){
+      /*
+      - css('속성명') : 해당 요소의 속성 정보값을 가져옴
+      - css('속성명','값') : 해당 요소의 속성 정보를 변경
+      - css({'속성명':'값', '속성명':'값'}) : 해당요소의 여러 속성 정보를 변경 
+      */
+      //해당 요소의 속성 정보값을 가져오는 예제
+      var width=$('.box').css('width');
+      console.log(width);
+
+      //속성정보를 변경하는 예제
+      //$('.box').css('width','100px');
+      //$('.box').css({'width':'200px', 'height':'100px'});
+
+      //초기 가로의 길이에서 100px 줄어들게 만드는 예제
+      width= parseFloat(width); //parseFloat:실수로 변환가능한 부분까지만(값을숫자로+px제거됨)
+      width= width-100;
+      $('.box').css('width',width+'px');
+    })
+  </script>
+</head>
+<body>
+  <div class="box" style="height: 50px; background: thistle;"></div>
+</body>
+</html>
