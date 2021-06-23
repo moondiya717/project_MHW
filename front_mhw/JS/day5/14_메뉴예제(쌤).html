@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>메뉴리스트 이동 예제</title>
+  <script src="https://kit.fontawesome.com/4bb639362a.js" crossorigin="anonymous"></script>
+  <script src="../JS/jquery.min.js"></script>
+  <script>
+    $(function(){
+      $('.next-btn').click(function(){
+        if($('.selected').attr('data')!='last')
+         $('.selected').removeClass('selected').next().addClass('selected');
+        $('.selected').click();
+      });
+      $('.prev-btn').click(function(){
+        if($('.selected').attr('data')!='first')
+         $('.selected').removeClass('selected')
+         .prev().addClass('selected').click();
+        //$('.selected').click();
+
+      });
+      $('.menu-list').click(function(){
+        $('.menu-list').removeClass('selected');
+        $(this).addClass('selected');
+        var target = $(this).attr('data-target');
+        $('.contents').hide();
+        $(target).show();
+      })
+      $('#contents2').hide();
+      $('#contents3').hide();
+      $('#contents4').hide();
+
+    })
+  </script>
+  <style>
+    *{margin: 0; padding: 0; text-decoration: none; color: black;
+    list-style: none;  text-align: center;}
+    .box{ /*버튼의 기준점*/
+      margin: 0 20px; position: relative;
+    }
+    .menu-box{
+      border: 1px solid black; height: 50px;
+    }
+    .menu{
+      display: flex;
+    }
+    .menu-list{
+      border-right: 1px solid black; width: 100%; height: 50px;
+    }
+    .menu-list:last-child{
+      border-right: none;
+    }
+    .menu-link{
+      display: block; height: 50px; line-height: 50px;
+    }
+    .prev-btn{position: absolute; width: 30px; height: 30px; background: white;
+    border: 1px solid black; top: 9px; left:0; margin-left: -15px;
+    border-radius: 50%; cursor: pointer; line-height: 30px;}
+    .next-btn{position: absolute; width: 30px; height: 30px; background: white;
+    border: 1px solid black; top: 9px; right:0; margin-right: -15px;
+    border-radius: 50%; cursor: pointer; line-height: 30px;}
+    .selected{
+      background: orange;
+    }
+    .contents{
+      height: 300px; margin: 0 20px; background: gray; margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+   <div class="menu-box">
+     <ul class="menu">
+       <li class="menu-list selected" data="first" data-target="#contents1"> <!-- data 없는속성 관리편하게하기위해 만듬-->
+         <a href="#" class="menu-link">메뉴1</a>
+        </li>
+        <li class="menu-list" data-target="#contents2">
+          <a href="#" class="menu-link">메뉴2</a>
+         </li>
+         <li class="menu-list" data-target="#contents3">
+          <a href="#" class="menu-link">메뉴3</a>
+         </li>
+         <li class="menu-list" data="last" data-target="#contents4">
+          <a href="#" class="menu-link">메뉴4</a>
+         </li>
+     </ul>
+   </div>
+   <div class="btn-box">
+     <div class="prev-btn"><i class="fas fa-arrow-left"></i></div>
+     <div class="next-btn"><i class="fas fa-arrow-right"></i></div>
+   </div>
+ </div>
+ <div class="container">
+   <div class="contents" id="contents1">1</div>
+   <div class="contents" id="contents2">2</div>
+   <div class="contents" id="contents3">3</div>
+   <div class="contents" id="contents4">4</div>
+ </div>
+</body>
+</html>
