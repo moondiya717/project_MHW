@@ -11,15 +11,13 @@
     $(function(){
       $('.icon-next').click(function(){
         if($('.selected').attr('data')!='last'){
-          $('.selected').removeClass('selected').next().addClass('selected');
+          $('.selected').removeClass('selected').next().addClass('selected').click();
         }
-        $('.selected').click();
       })
       $('.icon-prev').click(function(){
         if($('.selected').attr('data')!='first'){
-          $('.selected').removeClass('selected').prev().addClass('selected');
+          $('.selected').removeClass('selected').prev().addClass('selected').click();
       }
-      $('.selected').click();
       })
       $('a').click(function(){
         $('.selected').removeClass('selected');
