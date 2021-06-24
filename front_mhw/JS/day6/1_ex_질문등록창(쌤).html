@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>질문창추가하는 예제</title>
+  <script src="../JS/jquery.min.js"></script>
+  <style>
+    .q-box{
+      position: relative;}
+    #main_add_btn{
+      position: absolute;top: 0; right: 0;}
+    
+  </style>
+</head>
+<body>
+  <div class="q-box">
+    <button id="main_add_btn">질문추가</button>
+    <div class="q-main-box">
+      <div class="main-title">질문1</div>
+      <input type="text" class="main-input">
+    </div>
+  </div>
+  <script>
+    //방법1
+    //var num=2;
+    //$(function(){
+    //  $('#main_add_btn').click(function(){
+    //    var str=
+    //      '<div class="q-main-box">'+
+    //       '<div class="main-title">질문'+ num++ + '</div>'+
+    //       '<input type="text" class="main-input">'+
+    //      '</div>';
+    //  $('.q-box').append(str);
+    // })
+    //})
+  </script>
+  <script>
+    //방법2 for복습
+    $(function(){
+      $('#main_add_btn').click(function(){
+        var num = $('.q-main-box').last().children('.main-title').text();
+        num= num.substr(2); //부분문자 추출 substr(2)=3번째자리부터끝까지(=앞두글자는필요없음)
+        num=parseInt(num); //문자로가져오니까 ++을 하기위해서 숫자로 변환
+        var str=
+          '<div class="q-main-box">'+
+          '<div class="main-title">질문'+ ++num + '</div>'+
+          '<input type="text" class="main-input">'+
+          '</div>';
+      $('.q-box').append(str);
+      })
+    })
+  </script>
+</body>
+</html>

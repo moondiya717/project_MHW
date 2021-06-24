@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>질문창추가하는 예제</title>
+  <script src="../JS/jquery.min.js"></script>
+  <script>
+    mainNum=2;
+    subNum=2;
+    $(function(){
+      $('.btn-mainadd').click(function(){
+        var addform=  
+                      '<div class="QnA">'+
+                        '<div id="questionNum">질문'+ mainNum++ +'</div>'+
+                        '<div><input type="text" id="question">'+
+                        '<button class="btn-subadd">서브질문추가</button></div>'+
+                       '</div>';
+        $('.QnA-section').append(addform);
+      })
+      $('.btn-subadd').click(function(){
+        var subform=
+        '<div id="questionNum">질문1-' + subNum++ + '</div>'+
+        '<div><input type="text" id="question"></div>'
+        $(this).before(subform);
+      })
+    })
+  </script>
+  <style>
+    .QnA-section{position: relative;}
+    .btn-mainadd{position: absolute; right: 0; top: 0;}
+    btn-subadd{position: absolute; top: 24px; left: 200px;}
+  </style>
+</head>
+<body>
+  <div class="QnA-section">
+    <button class="btn-mainadd">질문추가</button>
+    <div class="QnA">
+      <div id="questionNum">질문1</div>
+      <div><input type="text" id="question"><button class="btn-subadd">서브질문추가</button></div>
+    </div>
+  </div>
+</body>
+</html>
