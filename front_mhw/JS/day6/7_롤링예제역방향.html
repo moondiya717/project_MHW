@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>롤링예제(가로_오른쪽에서왼쪽으로)</title>
+  <script src="../JS/jquery.min.js"></script>
+  <script src="../JS/rolling.js"></script>
+  <script>
+    $(function(){
+      setInterval(function(){
+        if(!$('.container li').first().is(':animated')){
+          var width= $('.container li').first().width();
+          $('.container li').first().detach().appendTo('.container');
+          $('.container').css('margin-left',-width+'px').animate({'margin-left':'0px'},800);
+        }
+      },1000);
+    })
+  </script>
+  <style>
+    *{margin: 0; padding: 0; text-decoration: none; color: black; list-style: none;}
+    .window{
+      width: 200px; height: 50px; border: 1px solid red; overflow: hidden;}
+    .container{
+      width: 800px; height: 50px; background: silver; position: relative;}
+    .container li{
+      width:200px; height: 50px; text-align: center; font-size:20px; line-height: 50px; 
+      float: right;}
+
+  </style>
+</head>
+<body>
+  <div class="window">
+    <ul class="container">
+      <li>가</li>
+      <li>나</li>
+      <li>다</li>
+      <li>라</li>
+    </ul>
+  </div>
+</body>
+</html>

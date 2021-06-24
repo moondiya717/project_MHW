@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>롤링 예제(두개)</title>
+  <script src="../JS/jquery.min.js"></script>
+  <script src="../JS/rolling.js"></script>
+  <script>
+    var id1, id2;
+    $(function(){
+     id1 = rollingTop('.first','li',-50,800,1000);
+     id2 = rollingTop('.second','li',-50,1000,1500);
+
+      $('.frist').hover(function(){ //호버가 왜 안먹지
+        clearInterval(id1);
+        },function(){
+        id1= rollingTop('.first','li',-50,800,1000);
+      })
+
+      $('.second').hover(function(){
+        clearInterval(id2);
+        },function(){
+        id2= rollingTop('.second','li',-50,1000,1500);
+      })
+      
+    })
+</script>
+   <style>
+    ul{
+      list-style: none; padding: 0; margin: 0; height: 50px; overflow: hidden;
+      text-align: center; background: goldenrod; margin-bottom: 10px;
+    }
+    li{
+      height: 50px; line-height: 50px;
+    }    
+   </style>
+</head>
+<body>
+  <div class="box">
+    <ul class="first">
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+      <li>5</li>
+    </ul>
+    <ul class="second">
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+      <li>5</li>
+    </ul>
+  </div>
+</body>
+</html>
