@@ -7,13 +7,15 @@
   <title>Rolling기능(네이버에서 시간의 지남에 따라 변하는 구간)</title>
   <script src="../JS/jquery.min.js"></script>
   <script>
-      var top=-50;
+    var mt=-50;
     $(function(){
       setInterval(function(){
-        $('.container').animate({top:top+'px'},800)
-        top = top-50;
-        top = top==-500? 0:top;
-      },1000)
+        if(!$('.container div').first().is(':animated')){
+          $('.container div').first().animate({'margin-top': mt+'px'},1000,function(){
+            $(this).detach().appendTo('.container').attr('style','');
+          })
+        }
+      },1500);
     })  
   </script>
   <style>
