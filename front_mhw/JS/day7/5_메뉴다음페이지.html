@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>메뉴리스트 이동 예제</title>
+  <script src="https://kit.fontawesome.com/4bb639362a.js" crossorigin="anonymous"></script>
+  <script src="../JS/jquery.min.js"></script>
+  <script>
+    $(function(){
+      $('.icon-next').click(function(){
+        if($('.selected').attr('data')!='last1'){
+          $('.selected').removeClass('selected').next().addClass('selected').click();
+        }else if($('.selected').attr('data')=='last1'){//여길내가추가함
+          $('selected').removeClass('selected').parent().siblings('.page2')
+          .children().first().addClass('selected').click();
+        }
+      })
+      $('.icon-prev').click(function(){
+        if($('.selected').attr('data')!='first1'){
+          $('.selected').removeClass('selected').prev().addClass('selected').click();
+      }
+      })
+      $('a').click(function(){
+        $('.selected').removeClass('selected');
+        $(this).addClass('selected');
+        var target= $(this).attr('data-target');
+        $('.contents').hide();
+        $(target).show();
+      })
+      $('#contents2').hide();
+      $('#contents3').hide();
+      $('#contents4').hide();
+
+    })
+  </script>
+  <style>
+    *{margin: 0; padding: 0; text-decoration: none; color: black;
+    list-style: none; text-align: center; box-sizing: border-box;}
+    .menu-bar{padding: 0 20px; position: relative;}
+    .menu{display: flex; border: 1px solid blue;}
+    .page2{background: lemonchiffon;}
+    .menu>a{border-right:1px solid blue; width: 100%; height: 40px;
+      line-height: 40px;}
+    .menu>a:last-child{border-right:none;}
+    .icon{width: 30px; height: 30px; border: 1px solid blue;
+      border-radius: 50%; line-height: 30px; position: absolute;
+      top: 5px; background: whitesmoke; cursor: pointer;}
+    .icon-next{right:5px;}
+    .icon-prev{left:5px;}
+    .selected{background: orange;}
+    .container{margin: 0 20px;}
+    .contents{margin:10px 0px; height: 300px; background: palegoldenrod;}
+  </style>
+</head>
+<body>
+  <nav class="menu-bar">
+    <ul class="menu page1">
+      <a href="#" class="list1 selected" data="first1" data-target="#contents1"><li>메뉴1</li></a>
+      <a href="#" class="list2" data-target="#contents2"><li>메뉴2</li></a>
+      <a href="#" class="list3" data-target="#contents3"><li>메뉴3</li></a>
+      <a href="#" class="list4" data="last1" data-target="#contents4"><li>메뉴4</li></a>
+    </ul>
+    <ul class="menu page2">
+      <a href="#" class="list1" data="first2" data-target="#contents1"><li>메뉴5</li></a>
+      <a href="#" class="list2" data-target="#contents2"><li>메뉴6</li></a>
+      <a href="#" class="list3" data-target="#contents3"><li>메뉴7</li></a>
+      <a href="#" class="list4" data="last2" data-target="#contents4"><li>메뉴8</li></a>
+    </ul>
+    <div class="icon icon-prev"><i class="fas fa-arrow-left"></i></div>
+    <div class="icon icon-next"><i class="fas fa-arrow-right"></i></div>
+  </nav>
+  <div class="container">
+    <div class="contents" id="contents1">내용1</div>
+    <div class="contents" id="contents2">내용2</div>
+    <div class="contents" id="contents3">내용3</div>
+    <div class="contents" id="contents4">내용4</div>
+  </div>
+</body>
+</html>
