@@ -99,11 +99,13 @@
           ml = ml-width;
           $('.menu-wrap-box').animate({'margin-left':ml+'px'},500);
           //이동 후 다음 큰 메뉴에서 첫 번째 메뉴에 selected클래스 추가
-          selected.parent().next().children('.menu-item').first().addClass('selected')
+          selected.parent().next().children('.menu-item').first().addClass('selected');
           selected.removeClass('selected');
         }else{ // 큰 메뉴 내에서 다음으로 이동
           selected.removeClass('selected').next().addClass('selected');
         }
+        $('.selected').click();
+
       })
       $('.menu-btn-box .prev-btn').click(function(){
         var selected = $('.selected');
@@ -118,7 +120,7 @@
           ml = ml+width;
           $('.menu-wrap-box').animate({'margin-left':ml+'px'},500);
           //이동 후 다음 큰 메뉴에서 첫 번째 메뉴에 selected클래스 추가
-          selected.parent().prev().children('.menu-item').last().addClass('selected')
+          selected.parent().prev().children('.menu-item').last().addClass('selected');
           selected.removeClass('selected');
         }else{ // 큰 메뉴 내에서 다음으로 이동
           selected.removeClass('selected').prev().addClass('selected');
