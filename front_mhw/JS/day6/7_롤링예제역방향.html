@@ -8,14 +8,15 @@
   <script src="../JS/jquery.min.js"></script>
   <script src="../JS/rolling.js"></script>
   <script>
+    var id;
     $(function(){
-      setInterval(function(){
-        if(!$('.container li').first().is(':animated')){
-          var width= $('.container li').first().width();
-          $('.container li').first().detach().appendTo('.container');
-          $('.container').css('margin-left',-width+'px').animate({'margin-left':'0px'},800);
-        }
-      },1000);
+      id=reorganizing_rollingToRight('.container', 'li', 800, 1000); 
+
+      $('.container').hover(function(){
+        clearInterval(id);
+      }, function(){
+        id=reorganizing_rollingToRight('.container', 'li', 800, 1000); 
+      })
     })
   </script>
   <style>
