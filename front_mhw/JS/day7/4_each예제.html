@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>checkbox 예제</title>
+  <script src="../JS/jquery.min.js"></script>
+  <script>
+    var arr=[];
+    $(function(){ //checked가 아무것도 먹지 않는 듯 (쌤은 else에다가 조건문 또 넣었다)
+      $('input[name=hobby]').click(function(){
+        var value = $(this).val();
+        var index = arr.indexOf(value);
+        //항목 체크를 해제하면
+        if(index >=0){
+          arr.splice(index,1);
+          $(this).prop('checked',false);
+        //항목 체크하면
+        }else{
+          if(arr.length<3){ //배열에 저장된 갯수가 3보다 작으면 배열에 추가                   
+            arr.push(value);
+          }else if(arr.length>=3){ // 배열에 저장된 갯수가 3보다 크거나 같으면 배열에 추가하지 않고, 지금 막 체크된 체크 박스를 체크해제
+          $(this).prop('checked',false);       
+          }
+        }
+
+        $('.view-box .box').each(function(i){
+          var val = typeof arr[i] == 'undefined'?'':arr[i]; //typeof 타입을 알려줌 //undefined 값선언아직
+          $('.view-box .box').eq(i).text(val);
+        })
+
+      });
+    })
+  </script>
+  <style>
+    .view-box .box{ 
+      min-height: 40px; width: 100px; border: 1px solid black; line-height: 40px;
+      text-align: center; margin-right: 20px; float: left;
+    }
+    .view-box{
+      height: 50px; 
+    }
+  </style>
+</head>
+<body>
+  <div class="view-box">
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+  </div>
+  <label><input type="checkbox" name="hobby" value="농구">농구</label>
+  <label><input type="checkbox" name="hobby" value="야구">야구</label>
+  <label><input type="checkbox" name="hobby" value="축구">축구</label>
+  <label><input type="checkbox" name="hobby" value="볼링">볼링</label>
+  <label><input type="checkbox" name="hobby" value="태권도">태권도</label>
+  <label><input type="checkbox" name="hobby" value="테니스">테니스</label>
+  <label><input type="checkbox" name="hobby" value="수구">수구</label>
+
+</body>
+</html>
