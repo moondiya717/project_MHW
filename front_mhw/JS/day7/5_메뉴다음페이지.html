@@ -10,72 +10,99 @@
   <script>
     $(function(){
       $('.icon-next').click(function(){
-        if($('.selected').attr('data')!='last1'){
-          $('.selected').removeClass('selected').next().addClass('selected').click();
-        }else if($('.selected').attr('data')=='last1'){//여길내가추가함
-          $('selected').removeClass('selected').parent().siblings('.page2')
-          .children().first().addClass('selected').click();
+        var selected = $('.selected');
+        if(selected.next().length == 0){ 
+          if(selected.parent().next().length==0){ //페이지의 맨끝의 끝메뉴
+            return;
+          }
+          var ml=$('.menu-bar').css('margin-left'); //한페이지의 끝->다음페이지첫메뉴
+          ml= parseFloat(ml); //margin-left =0 가져와서 실수로 변환
+          var width = $('.menu').first().width(); //ul한묶음 중 첫번째 묶음의 길이 저장
+          ml = ml-width; // 0 -메뉴한묶음길이를 margin에 저장
+          $('.menu-bar').animate({'margin-left':ml+'px'},500); //앞으롣 당기기
+          selected.parent().next().children('.list').first().addClass('selected');
+          selected.removeClass('selected');
+        }else{ //다음 리스트로 이동(페이지이동X)
+          selected.removeClass('selected').next().addClass('selected');
         }
+        $('.selected').click();
       })
       $('.icon-prev').click(function(){
-        if($('.selected').attr('data')!='first1'){
-          $('.selected').removeClass('selected').prev().addClass('selected').click();
-      }
+        var selected = $('.selected');
+        if(selected.prev().length == 0){
+          if(selected.parent().prev().length==0){
+            return;
+          }
+          var ml=$('.menu-bar').css('margin-left');
+          ml=parseFloat(ml);
+          var width = $('.menu').last().width();
+          ml=ml+width;
+          $('.menu-bar').animate({'margin-left':ml+'px'},500);
+          selected.parent().prev().children('.list').last().addClass('selected');
+          selected.removeClass('selected');
+        }else{
+          selected.removeClass('selected').prev().addClass('selected');
+        }
+        $('.selected').click();
       })
-      $('a').click(function(){
-        $('.selected').removeClass('selected');
+      $('.list').click(function(){
+        $('.list').removeClass('selected');
         $(this).addClass('selected');
-        var target= $(this).attr('data-target');
-        $('.contents').hide();
+        var target = $(this).attr('data-target');
+        $('.container div').hide(); //.container를 hide하면 밑에 show가 안먹어
         $(target).show();
       })
-      $('#contents2').hide();
-      $('#contents3').hide();
-      $('#contents4').hide();
-
+      $('.container div').hide();
+      $('#selected').show(); //첫화면에 contents1보여두고있기위해서
     })
   </script>
   <style>
+    body{margin: 0px 20px;}
     *{margin: 0; padding: 0; text-decoration: none; color: black;
     list-style: none; text-align: center; box-sizing: border-box;}
-    .menu-bar{padding: 0 20px; position: relative;}
-    .menu{display: flex; border: 1px solid blue;}
-    .page2{background: lemonchiffon;}
+    .menu-bar{position: relative; width: 200%;}
+    .view-box{width: 100%; border: 1px solid black; height: 40px; overflow: hidden;}
+    .menu{display: flex; width: calc(100% / 2); float: left;}
     .menu>a{border-right:1px solid blue; width: 100%; height: 40px;
       line-height: 40px;}
     .menu>a:last-child{border-right:none;}
     .icon{width: 30px; height: 30px; border: 1px solid blue;
       border-radius: 50%; line-height: 30px; position: absolute;
-      top: 5px; background: whitesmoke; cursor: pointer;}
-    .icon-next{right:5px;}
-    .icon-prev{left:5px;}
+      top: 5px; background: whitesmoke; cursor: pointer; right: 5px;}
+    .icon-prev{right:0; left:5px;}
     .selected{background: orange;}
-    .container{margin: 0 20px;}
     .contents{margin:10px 0px; height: 300px; background: palegoldenrod;}
+    .menu-bar::after{clear: both; content: ''; display: block;}
   </style>
 </head>
 <body>
-  <nav class="menu-bar">
-    <ul class="menu page1">
-      <a href="#" class="list1 selected" data="first1" data-target="#contents1"><li>메뉴1</li></a>
-      <a href="#" class="list2" data-target="#contents2"><li>메뉴2</li></a>
-      <a href="#" class="list3" data-target="#contents3"><li>메뉴3</li></a>
-      <a href="#" class="list4" data="last1" data-target="#contents4"><li>메뉴4</li></a>
-    </ul>
-    <ul class="menu page2">
-      <a href="#" class="list1" data="first2" data-target="#contents1"><li>메뉴5</li></a>
-      <a href="#" class="list2" data-target="#contents2"><li>메뉴6</li></a>
-      <a href="#" class="list3" data-target="#contents3"><li>메뉴7</li></a>
-      <a href="#" class="list4" data="last2" data-target="#contents4"><li>메뉴8</li></a>
-    </ul>
-    <div class="icon icon-prev"><i class="fas fa-arrow-left"></i></div>
-    <div class="icon icon-next"><i class="fas fa-arrow-right"></i></div>
+  <nav class="view-box">
+    <div class="menu-bar">
+      <ul class="menu page1">
+        <a href="#" class="list selected" data-target=".contents1"><li>메뉴1</li></a>
+        <a href="#" class="list" data-target=".contents2"><li>메뉴2</li></a>
+        <a href="#" class="list" data-target=".contents3"><li>메뉴3</li></a>
+        <a href="#" class="list" data-target=".contents4"><li>메뉴4</li></a>
+      </ul>
+      <ul class="menu page2">
+        <a href="#" class="list" data-target=".contents5"><li>메뉴5</li></a>
+        <a href="#" class="list" data-target=".contents6"><li>메뉴6</li></a>
+        <a href="#" class="list" data-target=".contents7"><li>메뉴7</li></a>
+        <a href="#" class="list" data-target=".contents8"><li>메뉴8</li></a>
+      </ul>
+    </div>
   </nav>
+  <div class="icon icon-prev"><i class="fas fa-arrow-left"></i></div>
+  <div class="icon icon-next"><i class="fas fa-arrow-right"></i></div>
   <div class="container">
-    <div class="contents" id="contents1">내용1</div>
-    <div class="contents" id="contents2">내용2</div>
-    <div class="contents" id="contents3">내용3</div>
-    <div class="contents" id="contents4">내용4</div>
+    <div class="contents contents1" id="selected">내용1</div>
+    <div class="contents contents2">내용2</div>
+    <div class="contents contents3">내용3</div>
+    <div class="contents contents4">내용4</div>
+    <div class="contents contents5">내용5</div>
+    <div class="contents contents6">내용6</div>
+    <div class="contents contents7">내용7</div>
+    <div class="contents contents8">내용8</div>
   </div>
 </body>
 </html>
