@@ -8,7 +8,7 @@
   <script src="../JS/jquery.min.js"></script>
   <script>
     mainNum=1;
-    subNum=1;
+    subNum=2;
     $(function(){
       $('.btn-mainAdd').click(function(){
         var addform=  
@@ -18,8 +18,6 @@
               '<div class="questionbox">'+
                 '<input type="text" class="questionMainBox">'+
                 '<div class="subbox">'+
-                  '<div class="question-SubNum">'+'질문' + mainNum + '-'+ subNum + '</div>'+
-                  '<div>'+'<input type="text" class="questionSubBox">'+'</div>'+
                 '</div>'+
               '</div>'+  
             '</div>'
@@ -32,13 +30,9 @@
 
     function addEventSubBtnClick(obj){
     obj.click(function(){
-      var questionSubNum=$(this).siblings('.questionbox').find('.question-SubNum').last().text();
-      var index = questionSubNum.indexOf('-');
-      var num= questionSubNum.substr(index+1);
-      num = parseInt(num);
-      questionSubNum= questionSubNum.substr(0,index+1);
+      var questionNum=$(this).siblings('.questionNum').text();
       var subform=
-          '<div class="question-SubNum">'+questionSubNum+ ++num+'</div>'+
+          '<div class="question-SubNum">'+questionNum+ '-' + subNum++ +'</div>'+
           '<div><input type="text" class="questionSubBox">'+'</div>'
       $(this).siblings('.questionbox').find('.subbox').append(subform);
     })
@@ -48,6 +42,7 @@
     .question-section{position: relative;}
     .btn-mainAdd{position: absolute; right: 0; top: 0;}
     .questionNum{float: left; margin-right: 30px;}
+    .subbox{margin-left: 30px;}
   </style>
 </head>
 <body>
@@ -59,8 +54,6 @@
       <div class="questionbox">
         <input type="text" class="questionMainBox">
         <div class="subbox">
-          <div class="question-SubNum">질문1-2</div>
-          <div><input type="text" class="questionSubBox"></div>
         </div>
       </div>  
     </div>
