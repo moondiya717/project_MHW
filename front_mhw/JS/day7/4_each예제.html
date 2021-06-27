@@ -8,18 +8,18 @@
   <script src="../JS/jquery.min.js"></script>
   <script>
     var arr=[];
-    $(function(){ //checked가 아무것도 먹지 않는 듯 (쌤은 else에다가 조건문 또 넣었다)
+    $(function(){
       $('input[name=hobby]').click(function(){
-        var value = $(this).val();
-        var index = arr.indexOf(value);
+        var value = $(this).val(); //클릭한 hobby의 글자값을 value에 저장
+        var index = arr.indexOf(value); //글자값이저장된 번지를 index에 저장
         //항목 체크를 해제하면
-        if(index >=0){
-          arr.splice(index,1);
+        if(index >=0){ //이미 저장된 값이라서 => 다시누름=항목체크해제
+          arr.splice(index,1); //index부터1개자르기(=누른값삭제)
           $(this).prop('checked',false);
         //항목 체크하면
-        }else{
+        }else{ //indexOf값이 -1이면 없는거라서 처음누른거니까 저장해야 됨
           if(arr.length<3){ //배열에 저장된 갯수가 3보다 작으면 배열에 추가                   
-            arr.push(value);
+            arr.push(value); //배열arr의 - 맨 마지막에다가 저장push()
           }else if(arr.length>=3){ // 배열에 저장된 갯수가 3보다 크거나 같으면 배열에 추가하지 않고, 지금 막 체크된 체크 박스를 체크해제
           $(this).prop('checked',false);       
           }
@@ -27,8 +27,8 @@
 
         $('.view-box .box').each(function(i){
           var val = typeof arr[i] == 'undefined'?'':arr[i]; //typeof 타입을 알려줌 //undefined 값선언아직
-          $('.view-box .box').eq(i).text(val);
-        })
+          $('.view-box .box').eq(i).text(val); 
+        })//i=>번지순서대로 - undefined면 공백값, 아니면 arr[i]의 오름차순번지에 글자값을 val저장
 
       });
     })
