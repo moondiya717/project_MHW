@@ -5,155 +5,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>네이버 구조 예제</title>
-  <script src="https://kit.fontawesome.com/4bb639362a.js" crossorigin="anonymous"></script>
   <script src="../JS/jquery.min.js"></script>
   <script src="../JS/rolling.js"></script>
-   <style>
-    *{padding: 0; margin: 0;}
-    ul,ol{list-style: none;}
-    a{text-decoration: none; color: black;}
-
-    .container{width: 1190px; margin: 0 auto;}
-    .box1{box-sizing: border-box; height: 49px; border: 1px solid red;}
-    .box2{box-sizing: border-box; height: 160px; border: none;
-      position: relative;}
-    .box3{box-sizing: border-box; height: 52px; border-top: 1px solid #e4e8eb; min-width: 1190px;
-      box-shadow: 0 1px 3px 0 rbga(0,0,0,0.12);}
-    .box4{padding: 20px 30px;}
-    .box5{height: 423px; border:1px solid blueviolet;}
-
-    
-    /*박스를 중앙에오게 할 때, 방법이2개(1. top에서 계산, 2. margin-top을 주기)*/
-    .logo-box{width: 222px; height: 52px; box-sizing: border-box;
-      border: 1px solid red; position: absolute; top: calc(50% - 26px); left: 0;}
-    .search-box{width: 586px; height: 56px; box-sizing: border-box;
-      border: 2px solid #19ce60; position: absolute; top: 50%; left: 268px;
-      margin-top: -28px;}
-
-    /*자식의 position이 absolute, 부모 position이 absolute이면,
-      자식은 부모가 relative가 아니더라도 부모를 기준으로 잡는다.*/
-    .search-btn{width: 50px; height: 56px; border: none; background-color: #19ce60;
-      position: absolute; right: -2px; top:-2px}
-
-    /* 박스사이즈가 474를 기준으로하면 box-sizing으로하고, 안에있는444기준으로하면 box-sizing을 안해도됨
-        검색창에서 밑부분을 클릭해도 검색할 수 있도록 하기위해서 padding을 줘서 범위를 늘렸음*/
-    .search-input{display: block; padding: 14px 15px; width: 444px; height:24px; line-height: 24px;
-      border: none; }
-    .search-input:focus{border: none; outline: none;}
-    .menu{height: 100%; box-sizing: border-box; border: 1px solid blue;}
-
-    .box4-inner{border: none; height: 100%;}
-
-    
-    .left-box{width:750px; height:100%; border: 1px solid red; float: left; box-sizing: border-box;}
-    .right-box{width: 350px; float: right;}
-    .after::after{clear: both; display: block; content: '';} /*after가 들어간 요소는 속성이 자동으로 들어갈 수 있도록 */
-
-    
-    .left1, .right1{height: 135px; border: 1px solid green; box-sizing: border-box; margin-bottom: 12px;}
-    .right1{padding: 16px 16px 12px 17px; background-color: #f7f9fa; border: 1px solid #dae1e6;}
-    .left2{height: 367px; background-color: white; box-sizing: border-box;}
-    .right2{height: 49px; border: 1px solid blue; box-sizing: border-box; position: relative;}
-
-    .left2-1{height: 49px; background-color: violet;}
-    .left2-2{height: 56px; background-color: gray;}
-    .left2-3{height: 262px; border: 1px solid black;/* #dae1e6;*/ position: relative;}
-    
-    .left2-3>.row>.col{height: 65px; width: 100%; box-sizing: border-box;}
-    .left2-3>.row{display: flex;}
-
-    .bar{background-color: #dae1e6;}
-    .bar.top1{position: absolute; left: 0; right: 0; top: 65px; height: 1px;}
-    .bar.top2{position: absolute; left: 0; right: 0; top: 130px; height: 1px;}
-    .bar.top3{position: absolute; left: 0; right: 0; top: 195px; height: 1px;}
-
-    .bar.bar-right1{position: absolute; top: 0; bottom: 0; left: 124px; width: 1px;}
-    .bar.bar-right2{position: absolute; top: 0; bottom: 0; left: 248px; width: 1px;}
-    .bar.bar-right3{position: absolute; top: 0; bottom: 0; left: 372px; width: 1px;}
-    .bar.bar-right4{position: absolute; top: 0; bottom: 0; left: 497px; width: 1px;}
-    .bar.bar-right5{position: absolute; top: 0; bottom: 0; left: 622px; width: 1px;}
-
-    .col>.col1{background-color: #fff; width: 100%; height: 100%;}
-    .col>.col2{background-color: #f7f9fa; width: 100%; height: 100%; display: none;}
-
-    .col:hover>.col1{display: none;}
-    .col:hover>.col2{display: block;}
-    
-    .right2 .btn-box{position:absolute; top: 11px; right: 10px;}
-    .right2 .btn-box .prev-btn, .right2 .btn-box .next-btn{float: left; width: 24px; height: 24px; border: 1px solid #e4e8eb;
-      box-sizing:border-box; text-align: center; line-height: 22px; cursor: pointer; background-color:whitesmoke;}
-    .right2 .btn-box .next-btn{margin-left: 1px; border: 1px solid #e4e8eb;}
-    .right2{overflow:hidden;}
-    .right2 .right2-list{display: flex; width: 1400px; height: 100%;}
-    .right2-list li{width: 350px; background:lightblue; text-align: left;
-      padding: 10px 80px 10px 20px; box-sizing: border-box;}
-
-    .inner-right1-box{position: relative; height: 100%;}
-    .inner-right1-box>p.title{height: 16px; line-height: 16px;
-      font-size: 12px; text-align: left; color: gray;} 
-    .inner-right1-box>a.login-link{height: 48px; background-color: #19ce60; display: block; margin-top: 11px;
-      color: white; font-weight: bold; font-size: 13px; text-align: center; line-height: 48px;
-      line-height: 48px; text-align: center; font-weight: bold; color: white;
-      border: 1px solid #15c654; border-radius: 2px;}
-    
-    .find-box{position: absolute; bottom:0; left: 0;}
-    .signup-link{position: absolute; bottom: 0; right: 0;}
-    .signup-link, .findid-link, .findpw-link{color: #505050; font-size: 12px;}
-
-    .findpw-link:before{content: ''; display: inline-block; width: 2px; height: 2px; border-radius: 50%;
-      background-color: #505050; position: relative; margin-right: 5px; top: -3px}
-
-    .right3{height: 200px; margin-top: 12px; background: yellow;}
-    .right4{height: 1534px; background: yellow; margin-top: 12px;}
-    .right4-top-box{height: 44px; background-color: blue; }
-    .right4-bot-box{border: 1px solid #e4e8eb; box-sizing: border-box;}
-    .right4-bot1{height: 70px; background:#f7f9fa; border-bottom: 1px solid #e4e8eb;
-      box-sizing: border-box; padding: 12px 4px 11px 10px;}
-    
-    .mall-link{float: left; height: 23px; line-height: 23px; font-size: 12px;}
-    .point1, .point2{width: 3px; height: 3px; background-color: #c9cccf; border-radius: 50%;
-      float: left; margin: 10px 10px 0 10px; } 
-      /*float:left로 공백없애고 point1로 좌우공백 조절하기 위함*/
-    .point2{margin: 10px 6px 0 6px;}
-    .mall-link:hover{text-decoration: underline;}
-
-    .right4-bot2{height: 886px; padding: 55px 8px 22px; box-sizing: border-box; position: relative;}
-    .right4-bot3{height: 262px; background:skyblue;}
-    .right4-bot4{padding: 0 8px 30px;}
-
-    .right4-bot2 .inner-container{margin-top: -10px; margin-right: -5px;}
-    .right4-bot2 .goods-items{float: left; width: calc(100% / 3); padding-right: 5px; box-sizing: border-box;
-      margin-top: 10px;}
-
-    .right4-bot2 .goods-items>.goods-area{display: block;}
-    .right4-bot2 .goods-items>.goods-area .img-box{overflow: hidden; position: relative; }
-    .right4-bot2 .goods-items>.goods-area .img-box img{display: block; transition: transform 0.5s;}
-    .right4-bot2 .goods-items>.goods-area:hover .img-box img{transform: scale(1.05);}
-    .right4-bot2 .goods-items>.goods-area:hover .title-box .title{text-decoration: underline;}
-    .right4-bot2 .goods-items>.goods-area .title-box .title{font-size: 12px; height: 16px;
-      line-height: 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: center;}
-    .right4-bot2 .goods-items>.goods-area .title-box{margin-top: 5px;}
-
-    
-    .rignt4-btn-box{display: block; position:absolute; top: 13px; right: 8px;}
-    .rignt4-prev-btn, .rignt4-next-btn{float: left; width: 28px; height: 29px; border: 1px solid #e4e8eb; 
-      box-sizing:border-box; text-align: center; line-height: 29px; cursor: pointer; display: block;
-      background-color: whitesmoke;}
-    .rignt4-next-btn{margin-left: 1px; display: block;}
-    .right4-page{margin-right:7px;} /*이거 왜있는거지? 나중에 확인해보자*/
-
-    .bot4-inner-container{border: 1px solid orange; height: 100%; box-sizing: border-box;}
-    .bot4-inner-left, .bot4-inner-right{width: calc((100% / 2) - 5px); height: 100%; border: 1px solid purple;
-      float: left; box-sizing: border-box;}
-    .bot4-inner-right{margin-left: 10px;}
-    .bot4-left-top, .bot4-right-top{height: 163px; border: 1px solid green; margin-bottom: 9px; overflow: hidden;}
-    .bot4-left-bottom, .bot4-right-bottom{height: 16px; border: 1px solid orange;}
-    .bot4-title{font-size: 13px; text-align: center;}
-
-    .bold{font-weight: bold;}
-    .mall-list::after, .right4-bot2 .inner-container:after, .rignt4-btn-box:after{content: ''; display: block; clear: both;}
-
-  </style>
+  <script src="https://kit.fontawesome.com/4bb639362a.js" crossorigin="anonymous"></script>
+  <script src="naver.js"></script>
+  <link rel="stylesheet" href="naver.css">
 </head>
 <body>
   <div class="box1 container"></div>
@@ -167,8 +23,206 @@
     </div>
   </div>
   <div class="box3">
-    <div class="menu container"></div>
+    <div class="menu container">
+      <div class="main_option">
+        <a href="#">메일</a>
+        <a href="#">카페</a>
+        <a href="#">블로그</a>
+        <a href="#">지식iN</a>
+        <a href="#">쇼핑</a>
+        <a href="#">쇼핑LiIVE</a>
+        <a href="#">Pay</a>
+        <a href="#">Tv</a>
+      </div>
+      <div class="menu_viewbox">
+        <div class="basic_setting">
+          <a href="#">사전</a>
+          <a href="#">뉴스</a>
+          <a href="#">증권</a>
+          <a href="#">부동산</a>
+          <a href="#">지도</a>
+          <a href="#">VIBE</a>
+          <a href="#">책</a>
+          <a href="#">웹툰</a>
+        </div>
+      </div>
+      <div class="btn_more">더보기</div>
+      <div class="btn_hide">접기</div>
+      <div class="weather_rolling"></div>
+      <div class="btn-more-settingbox">
+        <button class="settingbox btn-setting">메뉴설정</button>
+        <button class="settingbox btn-all" ><a href="#">서비스 전체보기</a></button>
+      </div>
+      <div class="setting-btn-box">
+        <button class="setting-btn-save">저장</button>
+        <button class="setting-btn-reset">초기화</button>
+    </div>
   </div>
+  <div class="box3-btn-more">
+    <div class="contents-btn-more">
+      <div class="morebox"><div class="morebox-title">ㄱ-ㅁ</div>
+        <div class="morebox1">
+        <a href="#">날씨</a>
+        <a href="#">네이버 MY CAR</a>
+        <a href="#">네이버 게임</a>
+        <a href="#">네이버 예약</a>
+        <a href="#">네이버 프리미엄콘텐츠</a>
+        <a href="#">네이버플러스 멤버십</a>
+        <a href="#">뉴스</a>
+        <a href="#">데이터랩</a>
+        <a href="#">메모</a>
+      </div>
+      </div>
+      <div class="morebox"><div class="morebox-title">ㅂ-ㅅ</div>
+        <div class="morebox2">
+          <a href="#">밴드</a>
+          <a href="#">부동산</a>
+          <a href="#">북마크</a>
+          <a href="#">소프트웨어</a>
+          <a href="#">스포츠</a>
+          <a href="#">시리즈</a>
+          <a href="#">시리즈온</a>
+        </div>
+      </div>
+      <div class="morebox"><div class="morebox-title">ㅇ</div>
+        <div class="morebox3">
+          <a href="#">영화</a>
+          <a href="#">오디오클립</a>
+          <a href="#">오피스</a>
+          <a href="#">웨일</a>
+          <a href="#">웹소설</a>
+          <a href="#">웹툰</a>
+          <a href="#">인플루언서 검색</a>
+        </div>
+      </div>
+      <div class="morebox"><div class="morebox-title">ㅈ-ㅊ</div>
+        <div class="morebox4">
+          <a href="#">자동차</a>
+          <a href="#">주소록</a>
+          <a href="#">증권</a>
+          <a href="#">지도</a>
+          <a href="#">지식백과</a>
+          <a href="#">책</a>
+        </div>
+      </div>
+      <div class="morebox"><div class="morebox-title">ㅋ-ㅎ</div>
+        <div class="morebox5">
+          <a href="#">캘린더</a>
+          <a href="#">클로바더빙</a>
+          <a href="#">파파고</a>
+          <a href="#">포스트</a>
+          <a href="#">학습정보</a>
+          <a href="#">항공권</a>
+          <a href="#">호텔</a>
+        </div>
+      </div>
+      <div class="morebox"><div class="morebox-title">A-Z</div>
+        <div class="morebox6">
+          <a href="#">Keep</a>
+          <a href="#">modoo!</a>
+          <a href="#">MYBOX</a>
+          <a href="#">MY구독</a>
+          <a href="#">TV연예</a>
+          <a href="#">VIBE</a>
+          <a href="#">뉴스</a>
+          <a href="#">V LIVE</a>
+        </div>
+      </div>
+      <div class="morebox"><div class="morebox-title">사전</div>
+        <div class="morebox7">
+          <a href="#">사전</a>
+          <a href="#">국어사전</a>
+          <a href="#">영어/영영사전</a>
+          <a href="#">일본어사전</a>
+          <a href="#">중국어사전</a>
+          <a href="#">한자사전</a>
+          <a href="#">사전더보기</a>
+        </div>
+      </div>
+    </div>
+    <div class="contents-btn-more2 display-none">
+      <div class="checkbox"><div class="checkbox-title">ㄱ-ㅁ</div>
+        <div class="checkbox1">
+        <div><input type="checkbox" value="">날씨</div>
+        <div><input type="checkbox" value="">네이버 MY CAR</div>
+        <div><input type="checkbox" value="">네이버 게임</div>
+        <div><input type="checkbox" value="">네이버 예약</div>
+        <div><input type="checkbox" value="">프리미엄콘텐츠</div>
+        <div><input type="checkbox" value="">네이버플러스</div>
+        <div><input type="checkbox" value="">뉴스</div>
+        <div><input type="checkbox" value="">데이터랩</div>
+        <div><input type="checkbox" value="">메모</div>
+      </div>
+      </div>
+      <div class="checkbox"><div class="checkbox-title">ㅂ-ㅅ</div>
+        <div class="checkbox2">
+          <div><input type="checkbox" value="">밴드</div>
+          <div><input type="checkbox" value="">부동산</div>
+          <div><input type="checkbox" value="">북마크</div>
+          <div><input type="checkbox" value="">소프트웨어</div>
+          <div><input type="checkbox" value="">스포츠</div>
+          <div><input type="checkbox" value="">시리즈</div>
+          <div><input type="checkbox" value="">시리즈온</div>
+        </div>
+      </div>
+      <div class="checkbox"><div class="checkbox-title">ㅇ</div>
+        <div class="checkbox3">
+          <div><input type="checkbox" value="">영화</div>
+          <div><input type="checkbox" value="">오디오클립</div>
+          <div><input type="checkbox" value="">오피스</div>
+          <div><input type="checkbox" value="">웨일</div>
+          <div><input type="checkbox" value="">웹소설</div>
+          <div><input type="checkbox" value="">웹툰</div>
+          <div><input type="checkbox" value="">인플루언서 검색</div>
+        </div>
+      </div>
+      <div class="checkbox"><div class="checkbox-title">ㅈ-ㅊ</div>
+        <div class="checkbox4">
+          <div><input type="checkbox" value="">자동차</div>
+          <div><input type="checkbox" value="">주소록</div>
+          <div><input type="checkbox" value="">증권</div>
+          <div><input type="checkbox" value="">지도</div>
+          <div><input type="checkbox" value="">지식백과</div>
+          <div><input type="checkbox" value="">책</div>
+        </div>
+      </div>
+      <div class="checkbox"><div class="checkbox-title">ㅋ-ㅎ</div>
+        <div class="checkbox5">
+          <div><input type="checkbox" value="">캘린더</div>
+          <div><input type="checkbox" value="">클로바더빙</div>
+          <div><input type="checkbox" value="">파파고</div>
+          <div><input type="checkbox" value="">포스트</div>
+          <div><input type="checkbox" value="">학습정보</div>
+          <div><input type="checkbox" value="">항공권</div>
+          <div><input type="checkbox" value="">호텔</div>
+        </div>
+      </div>
+      <div class="checkbox"><div class="checkbox-title">A-Z</div>
+        <div class="checkbox6">
+          <div><input type="checkbox" value="">Keep</div>
+          <div><input type="checkbox" value="">modoo!</div>
+          <div><input type="checkbox" value="">MYBOX</div>
+          <div><input type="checkbox" value="">MY구독</div>
+          <div><input type="checkbox" value="">TV연예</div>
+          <div><input type="checkbox" value="">VIBE</div>
+          <div><input type="checkbox" value="">뉴스</div>
+          <div><input type="checkbox" value="">V LIVE</div>
+        </div>
+      </div>
+      <div class="checkbox"><div class="checkbox-title">사전</div>
+        <div class="checkbox7">
+          <div><input type="checkbox" value="">사전</div>
+          <div><input type="checkbox" value="">국어사전</div>
+          <div><input type="checkbox" value="">영어/영영사전</div>
+          <div><input type="checkbox" value="">일본어사전</div>
+          <div><input type="checkbox" value="">중국어사전</div>
+          <div><input type="checkbox" value="">한자사전</div>
+          <div><input type="checkbox" value="">사전더보기</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="box4 container">
     <div class="box4-inner after">
       <div class="left-box">
@@ -493,30 +547,62 @@
     </div>
   </div>
   <div class="box5 container"></div>
-  <script>
-    var id;
-  $(function(){
-    id=rollingLeft('.right2-list','li',800,1000);
-    $('.right2').hover(function(){
-      clearInterval(id);
-    }, function(){
-      id=rollingLeft('.right2-list','li',800,1000);
-    });
-    
-    $('.next-btn').click(function(){
-      var width = $('.right2-list li').first().innerWidth();
-      $('.right2-list li').first().animate({'margin-left':-width+'px'},800,function(){
-          $(this).detach().appendTo('.right2-list').removeAttr('style');
-        })
-    })
 
-    $('.prev-btn').click(function(){
-      var width=$('.right2-list li').first().innerWidth();
-      $('.right2-list li').last().detach().prependTo('.right2-list')
-        .css('margin-left',-width+'px').animate({'margin-left':0},800);
-    })
+<script>
+    var oriMenu = ['사전', '뉴스', '증권', '부동산', '지도', 'VIBE', '책', '웹툰'];
+		var selMenu = [];
+ $(function(){
+   $('.box3 .btn_more').click(function(){
+     $('.box3-btn-more').show();
+     $('btn-more-settingbox').show();
+     $('.btn-more-settingbox').show();
+     $('.box3 .btn_more').hide();
+     $('.box3 .btn_hide').show();
+   })
+   $('.box3 .btn_hide').click(function(){
+    $('.box3-btn-more').hide();
+    $('btn-more-settingbox').hide();
+    $('.btn-more-settingbox').hide();
+    $('.box3 .btn_hide').hide();
+    $('.box3 .btn_more').show();
+    $('.contents-btn-more').show();
+    $('.contents-btn-more2').addClass('display-none');
+    
 
   })
+  $('.btn-setting').click(function(){
+    $('.btn-more-settingbox').hide();
+    $('.setting-btn-box').show();
+    $('.contents-btn-more').hide();
+    $('.contents-btn-more2').removeClass('display-none');
+    initMenuBox(selMenu);
+
+  })
+})
+
+    function initMenuBox(arr){
+			$('.basic_setting a').each(function(index){
+				//5번째 검은색 메뉴를 안보이게 함
+				if(index >= 4){
+					$(this).addClass('display-none');
+				}
+				//선택된 메뉴를 화면에 미리 출력
+				else if(arr.length > index){
+					$(this).text(arr[index]);
+				}
+				//남은 부분을 검은 색 빈 박스로 변경
+				else{
+					$(this).find('a').text('');
+					$(this).addClass('input-box');
+					if(index == arr.length){
+						$(this).addClass('selected');
+					}
+				}
+			})
+		}
+
+
 </script>
+
 </body>
 </html>
