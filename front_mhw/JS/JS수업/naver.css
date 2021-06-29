@@ -55,24 +55,81 @@ a{text-decoration: none; color: black;}
 
 .left-box .left3{border:1px solid black; height: 70px; margin: 20px 0px; box-sizing: border-box;}
 .left-box .left4-container{position: relative; border: 1px solid black; padding-top: 34px;}
-.left4-btn-prev, .left4-btn-next{float: left; border: 1px solid black; width: 30px; height: 30px;
+.left4-btn-prev, .left4-btn-next{float: left;width: 30px; height: 30px;
   line-height: 30px; text-align: center; border-radius: 60%; position: absolute; top: 65px;
-  background: skyblue;}
-.left4-btn-prev{left: -15px; display: none;}
-.left4-btn-next{right: -15px;}
+  background: white; cursor: pointer; box-shadow: 0px 5px 5px gray;}
+.left4-btn-prev{left: -20px; display: none;}
+.left4-btn-next{right: -20px;}
 .left4-container .left4-viewbox{
-  height: 50px; border: 1px solid black; margin: 20px 0px; 
+  height: 50px; border: 1px solid #dae1e6; margin: 20px 0px; 
   overflow: hidden;}
 .left4-menubar{display: flex; height: 50px; box-sizing: border-box; width: 400%;}
 .left4-menubar .menubar{display: flex; width: 100%; height: 50px;}
-.left4-menubar .menubar .menubar-box{border-right: 1px solid black; width: 100%;}
-.left4-menubar .menubar .menubar-box:last-child{border-right:none;}
-
+.left4-menubar .menubar .menubar-box{
+  border-right: 1px solid #dae1e6; width: calc(100% / 8); text-align: center; line-height: 50px;
+  font-weight: bold; font-size: 15px;}
 .left4-viewcontent{
-  height: 363px; margin-bottom: 20px; border: 1px solid blue; width: 2700%; display: flex;}
+  margin-bottom: 20px; border: 1px solid blue;}
 .left4-viewcontent .left4-inner-container{width: 100%;}
 .left4-viewcontent-viewbox{border:1px solid orange; overflow: hidden;}
-.selected1, .selected2{background: tomato;}
+.selected1{color: white;}
+
+.menubar-box1 .menubar-box:nth-child(1):not(.selected1):hover{ color: red;}
+.menubar-box1 .menubar-box:nth-child(2):not(.selected1):hover{ color: orange;}
+.menubar-box1 .menubar-box:nth-child(3):not(.selected1):hover{ color: orangered;}
+.menubar-box1 .menubar-box:nth-child(4):not(.selected1):hover{ color: yellowgreen;}
+.menubar-box1 .menubar-box:nth-child(5):not(.selected1):hover{ color: yellow;}
+.menubar-box1 .menubar-box:nth-child(6):not(.selected1):hover{ color: green;}
+.menubar-box1 .menubar-box:nth-child(7):not(.selected1):hover{ color: blue;}
+.menubar-box1 .menubar-box:nth-child(8):not(.selected1):hover{ color: navy;}
+.menubar-box2 .menubar-box:nth-child(1):not(.selected1):hover{ color: blueviolet;}
+.menubar-box2 .menubar-box:nth-child(2):not(.selected1):hover{ color: brown;}
+.menubar-box2 .menubar-box:nth-child(3):not(.selected1):hover{ color: violet;}
+.menubar-box2 .menubar-box:nth-child(4):not(.selected1):hover{ color: peru;}
+.menubar-box2 .menubar-box:nth-child(5):not(.selected1):hover{ color: purple;}
+.menubar-box2 .menubar-box:nth-child(6):not(.selected1):hover{ color: palegreen;}
+.menubar-box2 .menubar-box:nth-child(7):not(.selected1):hover{ color: plum;}
+.menubar-box2 .menubar-box:nth-child(8):not(.selected1):hover{ color: peachpuff;}
+.menubar-box3 .menubar-box:nth-child(1):not(.selected1):hover{ color: red;}
+.menubar-box3 .menubar-box:nth-child(2):not(.selected1):hover{ color: orange;}
+.menubar-box3 .menubar-box:nth-child(3):not(.selected1):hover{ color: orangered;}
+.menubar-box3 .menubar-box:nth-child(4):not(.selected1):hover{ color: yellowgreen;}
+.menubar-box3 .menubar-box:nth-child(5):not(.selected1):hover{ color: yellow;}
+.menubar-box3 .menubar-box:nth-child(6):not(.selected1):hover{ color: green;}
+.menubar-box3 .menubar-box:nth-child(7):not(.selected1):hover{ color: blue;}
+.menubar-box3 .menubar-box:nth-child(8):not(.selected1):hover{ color: navy;}
+.menubar-box4 .menubar-box:nth-child(1):not(.selected1):hover{ color: blueviolet;}
+.menubar-box4 .menubar-box:nth-child(2):not(.selected1):hover{ color: brown;}
+.menubar-box4 .menubar-box:nth-child(3):not(.selected1):hover{ color: violet;}
+
+
+.menubar.menubar-box1 .menubar-box:nth-child(1).selected1{background: saddlebrown;}
+.menubar.menubar-box1 .menubar-box:nth-child(2).selected1{background: salmon;}
+.menubar.menubar-box1 .menubar-box:nth-child(3).selected1{background: seagreen;}
+.menubar.menubar-box1 .menubar-box:nth-child(4).selected1{background: skyblue;}
+.menubar.menubar-box1 .menubar-box:nth-child(5).selected1{background: slateblue;}
+.menubar.menubar-box1 .menubar-box:nth-child(6).selected1{background: springgreen;}
+.menubar.menubar-box1 .menubar-box:nth-child(7).selected1{background: aqua;}
+.menubar.menubar-box1 .menubar-box:nth-child(8).selected1{background: rosybrown;}
+.menubar.menubar-box2 .menubar-box:nth-child(1).selected1{background: grey;}
+.menubar.menubar-box2 .menubar-box:nth-child(2).selected1{background: tan;}
+.menubar.menubar-box2 .menubar-box:nth-child(3).selected1{background: teal;}
+.menubar.menubar-box2 .menubar-box:nth-child(4).selected1{background: tomato;}
+.menubar.menubar-box2 .menubar-box:nth-child(5).selected1{background: thistle;}
+.menubar.menubar-box2 .menubar-box:nth-child(6).selected1{background: turquoise;}
+.menubar.menubar-box2 .menubar-box:nth-child(7).selected1{background: palevioletred;}
+.menubar.menubar-box2 .menubar-box:nth-child(8).selected1{background: navy;}
+.menubar.menubar-box3 .menubar-box:nth-child(1).selected1{background: saddlebrown;}
+.menubar.menubar-box3 .menubar-box:nth-child(2).selected1{background: salmon;}
+.menubar.menubar-box3 .menubar-box:nth-child(3).selected1{background: seagreen;}
+.menubar.menubar-box3 .menubar-box:nth-child(4).selected1{background: skyblue;}
+.menubar.menubar-box3 .menubar-box:nth-child(5).selected1{background: slateblue;}
+.menubar.menubar-box3 .menubar-box:nth-child(6).selected1{background: springgreen;}
+.menubar.menubar-box3 .menubar-box:nth-child(7).selected1{background: aqua;}
+.menubar.menubar-box3 .menubar-box:nth-child(8).selected1{background: black;}
+.menubar.menubar-box4 .menubar-box:nth-child(1).selected1{background: turquoise;}
+.menubar.menubar-box4 .menubar-box:nth-child(2).selected1{background: burlywood;}
+.menubar.menubar-box4 .menubar-box:nth-child(3).selected1{background: navy;}
 
 
 .bar{background-color: #dae1e6;}
@@ -95,7 +152,7 @@ a{text-decoration: none; color: black;}
 .right2 .btn-box{position:absolute; top: 11px; right: 10px;}
 .right2 .btn-box .prev-btn, .right2 .btn-box .next-btn{float: left; width: 24px; height: 24px; border: 1px solid #e4e8eb;
   box-sizing:border-box; text-align: center; line-height: 22px; cursor: pointer; background-color:whitesmoke;}
-.right2 .btn-box .next-btn{margin-left: 1px; border: 1px solid #e4e8eb;}
+.right2 .btn-box .next-btn{border: 1px solid #e4e8eb; border-left: none;}
 .right2{overflow:hidden;}
 .right2 .right2-list{display: flex; width: 1400px; height: 100%;}
 .right2-list li{width: 350px; background:lightblue; text-align: left;
@@ -152,8 +209,11 @@ a{text-decoration: none; color: black;}
 .rignt4-prev-btn, .rignt4-next-btn{float: left; width: 28px; height: 29px; border: 1px solid #e4e8eb; 
   box-sizing:border-box; text-align: center; line-height: 29px; cursor: pointer; display: block;
   background-color: whitesmoke;}
-.rignt4-next-btn{margin-left: 1px; display: block;}
-.right4-page{margin-right:7px;} /*이거 왜있는거지? 나중에 확인해보자*/
+.rignt4-next-btn{border-left: none; display: block;}
+.right4-page{margin-right:7px; float: left; height: 30px; line-height: 30px;} 
+.rignt4-btn-box2{margin-top: 20px; width: 100%; position: absolute; left: calc(50% - 55px);}
+.rignt4-btn-box2 .rignt4-prev-btn{margin-right: 7px;}
+
 
 .bot4-inner-container{border: 1px solid orange; height: 100%; box-sizing: border-box;}
 .bot4-inner-left, .bot4-inner-right{width: calc((100% / 2) - 5px); height: 100%; border: 1px solid purple;
