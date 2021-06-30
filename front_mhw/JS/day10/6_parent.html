@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>부모창</title>
+  <script src="../JS/jquery.min.js"></script>
+  <link href="../day10/child.html">
+  <script>
+/*
+  자식창 열기 버튼을 클릭했을 때 자식창을 여는 코드를 작성하세요
+    단, 자식창은 child.html을 열어야 한다
+*/
+
+    $(function(){
+      $('#child').click(function(){
+        location.href = "../day10/child.html";
+      })
+    })
+  </script>
+</head>
+<body>
+  <button id="child">자식창 열기</button>
+</body>
+</html>

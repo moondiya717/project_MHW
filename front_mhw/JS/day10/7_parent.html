@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>parent</title>
+  <script src="../JS/jquery.min.js"></script>
+  <script>
+    $(function(){
+      $('#openChild').click(function(){
+        child = window.open('7_child.html','자식','width=500, height=500, left=200, top-200');
+      })
+
+    })
+  </script>
+  <style>
+    #sendBtn{background: red;}
+  </style>
+</head>
+<body>
+  <form class="page">
+    <button id="openChild">주소검색</button><br>
+    주소<input type="text" id="address"><br>
+    우편번호<input type="text" id="zipCode">  
+  </form>
+</body>
+</html>
