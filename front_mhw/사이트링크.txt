@@ -1,2 +1,11 @@
 플러그인 제공 사이트 리스트: 
+
+기능: 디자인(사진첩, 나열, 슬라이드 등등)
 https://swiperjs.com/demos#default
+
+
+
+우편번호 서비스 기능:
+https://postcode.map.daum.net/guide
+
+
