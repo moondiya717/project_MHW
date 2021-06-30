@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>입력예제</title>
+  <script src="../JS/jquery.min.js"></script>
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+/>
+  <script>
+    $(function(){
+      $('#push').click(function(){
+        $('.container div').css('border','2px solid black')
+        // var value = $('#searchBox').val();
+        valueArr= $('#searchBox').val();
+        var valueArr=valueArr.split(',');
+
+        // value = parseFloat(value);
+        // if(isNaN(value) || value > 5 || value <= 0){
+        //   //alert('잘못된 숫자입니다.')
+        //   //$('.container div').css('animate__tada','2s') 애니메이션은 addClass로만해야한대
+        //   return;
+        // }
+        // $('.container').children().eq(value-1).css('border','2px solid red');
+        
+      for(i=0; i<valueArr.length;i++){
+        var value=valueArr[i];
+        // if(){} //여기다가 숫자나 글자같은거 안맞을때 어케할지 넣어야돼
+        $('.container').children().eq(value-1).css('border','2px solid red');
+      }
+      valueArr.splice(0);
+      })
+      
+      $('.container div').click(function(){
+        $('.container div').css('border','2px solid black')
+        $(this).css('border','2px solid red')
+      })
+    })
+
+
+
+  </script>
+  <style>
+    .container div{border: 2px solid black; height: 50px; width: 50px;
+      float: left; margin: 20px 20px 0;}    
+  </style>
+</head>
+<body>
+  <input type="text" id="searchBox">
+  <button id="push">입력</button>
+  <div class="container">
+    <div class="box1">1</div>
+    <div class="box2">2</div>
+    <div class="box3">3</div>
+    <div class="box4">4</div>
+    <div class="box5">5</div>
+  </div>
+  
+</body>
+</html>
