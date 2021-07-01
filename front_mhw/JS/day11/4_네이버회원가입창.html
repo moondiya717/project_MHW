@@ -54,10 +54,34 @@
     .idInput,.pwInput, .pwCheck, .name, .year, .day, .e-mail, .veriNum, .phoneNum{
       border: none; cursor: pointer;}
     input[type="text"]:focus, input[type="email"]:focus{outline: none;}
+    .noticeBox{margin-top: -5px; margin-bottom: 20px; display: none;}
+    button{cursor: pointer;}
+
   </style>
   <script>
     $(function(){
-      
+      var required = "필수 정보입니다."
+      var needVerify = "인증이 필요합니다."
+      var needYear = "태어난 년도 4자리를 정확하게 입력하세요."
+      var checkBirth = "생년월일을 다시 확인해주세요."
+      var checkEmail = "이메일주소를 다시 확인해주세요."
+      var phoneCheck = "형식에 맞지 않는 번호입니다."
+      var goodIdea = "사용할 수 있습니다."
+
+      $(document).on('click','.btn-signUp',function(e){
+        e.stopImmediatePropagation;
+        if($('.required').val() == ''){
+          $('.noticeBox').text(required).css('color','red').show();      
+          return; //실패한거니까 return;해놔도 되겠지?
+        }
+        console.log("성공"); //임시로 해놨음
+      })
+
+      $(document).on('show','.id .noticeBox',function(e){
+        e.stopImmediatePropagation;
+        
+      })
+
     })
   </script>
 </head>
@@ -70,7 +94,7 @@
       <div class="id">
         <div class="idText bold">아이디</div>
         <div class="boxOutline idParent">
-          <input type="text" class="idInput">
+          <input type="text" class="idInput required">
           <span class="domain">@naver.com</span>
         </div>
         <div class="noticeBox"></div>
@@ -79,14 +103,14 @@
         <div>
           <div class="bold">비밀번호</div>
           <div class="boxOutline">
-            <input type="text" class="pwInput">
+            <input type="text" class="pwInput required">
           </div>
           <div class="noticeBox"></div>
         </div>
         <div>
           <div class="bold">비밀번호 재확인</div>
           <div class="boxOutline">
-            <input type="text" class="pwCheck">
+            <input type="text" class="pwCheck required">
           </div>
           <div class="noticeBox"></div>
         </div>        
@@ -96,14 +120,14 @@
       <div>
         <div class="bold">이름</div>
         <div class="boxOutline nameBox">
-          <input type="text" class="name">
+          <input type="text" class="name required">
         </div>
       </div>
       <div>
         <div class="bold birthText">생년월일</div>
         <div class="birthDate">
-          <div class="boxOutline"><input type="text" class="year" placeholder="년(4자)"></div>
-          <select name="month" class="month">
+          <div class="boxOutline"><input type="text" name="year" class="year required" placeholder="년(4자)"></div>
+          <select name="month" class="month required">
             <option value="월">월</option>
             <option value="1">1</option> 
             <option value="2">2</option> 
@@ -118,8 +142,9 @@
             <option value="11">11</option> 
             <option value="12">12</option> 
           </select>
-          <div class="boxOutline"><input type="text" class="day" placeholder="일"></div>
+          <div class="boxOutline"><input type="text" name="day" class="day required" placeholder="일"></div>
         </div>
+        <div class="noticeBox"></div>
       </div>
       <div>
         <div class="bold">성별</div>
@@ -133,21 +158,22 @@
       <div class="VeriEmail-Box">
         <div class="bold veriEmail">본인 확인 이메일</div>
         <div class="NotBold">(선택)</div>
-        <div class="boxOutline"><input type="email" class="e-mail"></div>
+        <div class="boxOutline"><input type="email" name="e-mail" class="e-mail"></div>
         <div class="noticeBox"></div>
       </div>
       <div>
         <div class="bold">휴대전화</div>
-        <select name="countryNum" class="countryNum">
+        <select name="countryNum" class="countryNum" name="countryNum">
           <option value="대한민국 +82">대한민국 +82</option> 
           <option value="덴마크 +45">덴마크 +45</option> 
         </select>
         <div class="phoneParent">
-          <div class="boxOutline phone"><input type="text" class="phoneNum" placeholder="전화번호 입력"></div>
+          <div class="boxOutline phone"><input type="text" class="phoneNum" name="phoneNum" placeholder="전화번호 입력"></div>
           <button class="btn-getVeriNum">인증번호 받기</button>
           <div class="boxOutline veriNumBox">
-            <input type="text" class="veriNum" placeholder="인증번호를 입력하세요" readonly>
+            <input type="text" class="veriNum required" name="veriNum" placeholder="인증번호를 입력하세요" readonly>
           </div>
+          <div class="noticeBox"></div>
         </div>
       </div>
     </div>
