@@ -27,7 +27,7 @@
         console.log('box2클릭')        
       })
       $('.box3').click(function(e){
-        e.stopPropagation();//얘를빼면 부모와조상인 박스 2,3이 차례로 클릭이 눌려짐
+        e.stopPropagation();//얘를빼면 부모와조상인 박스 2,1이 차례로 클릭이 눌려짐
         console.log('box3클릭')
         $('.box3').addClass('selected');
 
