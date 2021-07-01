@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>호버하면 서브메뉴가 나타나도록하는 예제</title>
+  <script src="../JS/jquery.min.js"></script>
+  <script>
+    $(function(){
+      $('.menu').click(function(){        
+        $(this).children().toggle();        
+      })
+      $('.menu').hover(function(){
+        $(this).click();
+      })
+      $('.menulist').mouseover(function(){
+        $(this).css('background','lightyellow');
+      })
+      $('.menulist').mouseout(function(){
+        $(this).css('background','white');
+      })
+    })
+  </script>
+  <style>
+    *{margin: 0; padding: 0; color:black; text-decoration: none; list-style: none;}
+    .menubar{height: 50px; display: flex; background: cornsilk; padding: 10px 10px;}
+    .menu{background-color: brown; width: calc(100% / 3); line-height: 50px; text-align: center;
+      font-size: 30px; font-weight: bold; cursor: pointer; color: white;}
+    .sub-menu{ display: none;}
+    .menulist{height: 40px; border: 1px solid brown; position: relative; background: white;}
+    .menulist:nth-child(1),.menulist:nth-child(2){border-bottom: none;}
+    .menulist:nth-child(1){border-top: none;}
+    .bar2{margin:0px 10px;}
+    .menulist a{
+      height: 40px;font-size: 20px; line-height: 40px; position: absolute; width: 100%; left: 0;
+      text-shadow:1px 0px blueviolet; color: black;}
+  </style>
+</head>
+<body>
+  <section>
+    <header class="menubar">
+      <div class="menu bar1">메뉴1
+        <ul class="sub-menu box1">
+          <li class="menulist"><a href="#">가</a></li>
+          <li class="menulist"><a href="#">나</a></li>
+          <li class="menulist"><a href="#">다</a></li>
+        </ul>
+      </div>
+      <div class="menu bar2">메뉴2
+        <ul class="sub-menu box2">
+          <li class="menulist"><a href="#">가</a></li>
+          <li class="menulist"><a href="#">나</a></li>
+          <li class="menulist"><a href="#">다</a></li>
+        </ul>
+      </div>
+      <div class="menu bar3">메뉴3
+        <ul class="sub-menu box3">
+          <li class="menulist"><a href="#">가</a></li>
+          <li class="menulist"><a href="#">나</a></li>
+          <li class="menulist"><a href="#">다</a></li>
+        </ul>
+      </div>
+    </header>
+  </section>
+</body>
+</html>
