@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>게시글에 댓글을 달 수 있는 예제</title>
+  <script src="../JS/jquery.min.js"></script>
+  <script>
+    $(function(){
+      $('.btn-push').click(function(){
+        var name= $('.writerName a').text();
+        var commentText = $('.commentText').val();
+        var str = 
+          '<div class="comment-list">'+
+            '<div class="name">'+name+'</div>'+
+            '<div class="text">'+commentText+'</div>'+
+            '<div class="delete"><button class="btn-delete">삭제</button></div>'
+          '</div>';
+
+        $('.comment-set').append(str).show();
+        $('.delete .btn-delete').addClass('selected');
+        $('.commentText').val('');
+
+        $('.btn-delete').click(function(){
+          $(this).parent().parent().remove();
+        })
+      })
+
+    })
+  </script>
+  <style>
+    *{padding: 0; margin: 0; color: black; text-decoration: none;}
+    body{padding: 10px;}
+    .title{ margin: 10px 0px;}
+    .writer{margin-bottom: 10px;}
+    .content{border: 1px solid black; height: 400px; margin-bottom: 10px;}
+    .comment{
+      box-sizing: border-box; height: 50px; position: relative;}
+    .comment-set{display: none;}
+    .comment-list{position: relative;}
+    .name{ float: left; height: 100%; width: 20%;}
+    .text{ width: 60%; height: 100%; float: left;}
+    .writerName{float: left; font-size: 13px;}
+    .textareaBox{
+      float: left; width: calc(100% - 105px); margin: 0px 10px;
+      position: absolute; top: 0; left: 50px; right: 40px;  box-sizing: border-box;}
+    .commentText{resize: none; width: 100%;}
+    .btn-push{height: 48px; width: 40px; cursor: pointer; position:absolute; right: 0; top: 0;}
+    .btn-delete{width: 40px; float: right; margin-bottom: 10px;}
+    .coTitle{margin-bottom: 10px;}
+    .comment::after, .comment-list::after{display: block; content: ''; clear: both;}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="title"><h3>제목입니다</h2></div>
+    <div class="writer"><a href="#">홍길동</a></div>
+  </header>
+  <section class="content">
+    <div>
+      ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ
+      ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ
+      ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ
+      내용ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ      
+    </div>
+  </section>
+  <footer class="commentBox">
+    <div class="coTitle"><h4>댓글</h4></div>
+    <div class="comment-set">
+      <div class="comment-list">
+          <div class="name"></div>
+          <div class="text"></div>
+          <div class="delete"></div>
+      </div>
+    </div>
+      <div class="comment">
+        <div class="writerName"><a href="#" class="test">작성자</a></div>
+        <div class="textareaBox"><textarea name="commentText" class="commentText" rows="3" ></textarea></div>
+        <button class="btn-push">등록</button>
+      </div>
+  </footer>
+</body>
+</html>
