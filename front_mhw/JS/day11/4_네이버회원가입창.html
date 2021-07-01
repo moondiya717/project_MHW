@@ -6,13 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>네이버 회원가입창 따라하기</title>
   <script src="../JS/jquery.min.js"></script>
+  <script src="https://kit.fontawesome.com/4bb639362a.js" crossorigin="anonymous"></script>
   <!-- input이나 select같은 태그에서는 name을 꼭 넣어줘야 데이터 전송이 가능함 -->
   <style>
     *{margin: 0; padding: 0; text-decoration: none; color: black; box-sizing: border-box;}
     body{padding: 20px 250px; background: rgba(248, 248, 248, 0.945);}
     .bold{font-weight: bold;}
     .NotBold{color: gray; font-size: 12px; height: 21px; line-height: 23px;}
-    header{margin-left:calc(50% - 250px);}
+    header{margin-left:calc(50% - 250px);width: 500px;}
     header div{font-size: 70px; font-weight:bolder; color: rgb(45, 175, 45);
       text-align: center; margin-bottom: 30px;}
     .btn-signUp{background: rgb(45, 175, 45); color: white; font-size: 30px;
@@ -22,30 +23,35 @@
     .id .idText{text-align: left;}
     .boxOutline, .gender, .countryNum{
       height: 40px; border: 1px solid gray; width: 100%; margin-bottom: 10px;
-      margin-top: 10px; font-size: 15px; padding: 0px 20px; box-sizing: border-box;
-      background: white;}
+      margin-top: 10px; font-size: 15px; padding: 0px 20px; background: white;}
     .id .idInput, .pwInput, .pwCheck, .name, .gender, .e-mail, .countryNum, .veriNum{
-      line-height: 37px; box-sizing: border-box; border: 1px solid gray;
-      }
+      line-height: 37px; }
     .noticeBox{height: 20px; margin-bottom: 5px;}
     .name{margin-bottom: 30px;}
+    .nameBox{margin-bottom: 30px;}
     .birthDate{width: 500px; display: flex; height: 40px; margin-bottom: 20px;}
     .birthText{margin-bottom: 10px;}
-    .birthDate .month{margin: 0px 10px;}
-    .month, .year, .day{width: 160px;}
+    .birthDate .month{margin: 10px 10px 0px 10px;}
+    .month, .year, .day{height: 38px; width: 100%;}
     .gender{margin-bottom: 20px;}
     .btn-getVeriNum{background: rgb(45, 175, 45); border: 1px solid rgb(21, 133, 21);
       height: 40px; width: 100px; color: white;}
-    .veriNum{background: rgb(221, 220, 220);}
+    .veriNum{background-color:rgb(221, 220, 220);}
+    .veriNumBox{background-color: rgb(221, 220, 220); margin-top: 20px;}
     .countryNum{margin-bottom: 20px;}
     .phoneNum{width: 300px; height: 38px; margin-bottom: 10px;}
     .phone{
-      width: 385px; box-sizing: border-box; float: left; margin-right: 15px; margin-top: 0px;
+      width: 385px; float: left; margin-right: 15px; margin-top: 0px;
       height: 40px; }
     .veriEmail{float: left;}
-    .year, .month, .day, .phoneNum{padding: 0px 20px; box-sizing: border-box;}
+    .domain{ 
+      color: gray; text-align: right; font-size: 15px; margin-right: 10px;
+      position: absolute; right: 0px; height: 40px; line-height: 40px;}
+    .idParent{position: relative;}
     .VeriEmail-Box::after, .boxOutline::after, .phoneParent::after
     {display: block; clear: both; content: '';}
+    .idInput,.pwInput, .pwCheck, .name, .year, .day, .e-mail, .veriNum, .phoneNum{
+      border: none;}
 
   </style>
   <script>
@@ -56,14 +62,15 @@
 </head>
 <body>
   <header>
-    <div>NAVER</div>
+    <div class="siteName">NAVER</div>
   </header>
   <article>
     <div class="top">
       <div class="id">
         <div class="idText bold">아이디</div>
-        <div class="boxOutline">
+        <div class="boxOutline idParent">
           <input type="text" class="idInput">
+          <span class="domain">@naver.com</span>
         </div>
         <div class="noticeBox"></div>
       </div>
@@ -87,7 +94,7 @@
     <div class="middle">
       <div>
         <div class="bold">이름</div>
-        <div class="boxOutline">
+        <div class="boxOutline nameBox">
           <input type="text" class="name">
         </div>
       </div>
@@ -137,7 +144,7 @@
         <div class="phoneParent">
           <div class="boxOutline phone"><input type="text" class="phoneNum" placeholder="전화번호 입력"></div>
           <button class="btn-getVeriNum">인증번호 받기</button>
-          <div class="boxOutline">
+          <div class="boxOutline veriNumBox">
             <input type="number" class="veriNum" placeholder="인증번호를 입력하세요" readonly>
           </div>
         </div>
