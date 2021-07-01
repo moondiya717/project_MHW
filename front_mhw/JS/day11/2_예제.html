@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>숫자만 입력하는 경우의 예제(day2 정규표현식 참고)</title>
+  <script src="../JS/jquery.min.js"></script>
+  <script>
+    $(function(){
+      $('input').on('input',function(){
+        var value=$(this).val();
+        // ^ = not(이거제외전부안돼), ()=패턴, g=문자열 전체비교, $1 = ()패턴중 첫번째,
+
+        // 0-9랑 . 이외로는 입력불가능하고, 이걸 공백으로 바꾸겠음// $1는 .두번못쓰고 1번째 ()패턴에다가 내용을 붙여넣기.
+        // 점을 한번밖에 못찍게만들어 
+        value = value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g,'$1');
+        
+        // value= value.replace(/[^0-9]/g,'');
+        $(this).val(value);
+      })
+    })
+  </script>
+</head>
+<body>
+  <div>실수만 입력가능한 예제</div>
+  <input type="text">
+</body>
+</html>
