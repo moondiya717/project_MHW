@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>네이버 회원가입창 따라하기</title>
+  <script src="../JS/jquery.min.js"></script>
+  <!-- input이나 select같은 태그에서는 name을 꼭 넣어줘야 데이터 전송이 가능함 -->
+  <style>
+    *{margin: 0; padding: 0; text-decoration: none; color: black; box-sizing: border-box;}
+    body{padding: 20px 250px; background: rgba(248, 248, 248, 0.945);}
+    .bold{font-weight: bold;}
+    .NotBold{color: gray; font-size: 12px; height: 21px; line-height: 23px;}
+    header{margin-left:calc(50% - 250px);}
+    header div{font-size: 70px; font-weight:bolder; color: rgb(45, 175, 45);
+      text-align: center; margin-bottom: 30px;}
+    .btn-signUp{background: rgb(45, 175, 45); color: white; font-size: 30px;
+      width: 500px; margin-top: 30px; border: 1px solid rgb(21, 133, 21);
+      margin-left: calc(50% - 250px); top: 1060px;}
+      article{width: 500px; margin-left: calc(50% - 250px);}
+    .id .idText{text-align: left;}
+    .boxOutline, .gender, .countryNum{
+      height: 40px; border: 1px solid gray; width: 100%; margin-bottom: 10px;
+      margin-top: 10px; font-size: 15px; padding: 0px 20px; box-sizing: border-box;
+      background: white;}
+    .id .idInput, .pwInput, .pwCheck, .name, .gender, .e-mail, .countryNum, .veriNum{
+      line-height: 37px; box-sizing: border-box; border: 1px solid gray;
+      }
+    .noticeBox{height: 20px; margin-bottom: 5px;}
+    .name{margin-bottom: 30px;}
+    .birthDate{width: 500px; display: flex; height: 40px; margin-bottom: 20px;}
+    .birthText{margin-bottom: 10px;}
+    .birthDate .month{margin: 0px 10px;}
+    .month, .year, .day{width: 160px;}
+    .gender{margin-bottom: 20px;}
+    .btn-getVeriNum{background: rgb(45, 175, 45); border: 1px solid rgb(21, 133, 21);
+      height: 40px; width: 100px; color: white;}
+    .veriNum{background: rgb(221, 220, 220);}
+    .countryNum{margin-bottom: 20px;}
+    .phoneNum{width: 300px; height: 38px; margin-bottom: 10px;}
+    .phone{
+      width: 385px; box-sizing: border-box; float: left; margin-right: 15px; margin-top: 0px;
+      height: 40px; }
+    .veriEmail{float: left;}
+    .year, .month, .day, .phoneNum{padding: 0px 20px; box-sizing: border-box;}
+    .VeriEmail-Box::after, .boxOutline::after, .phoneParent::after
+    {display: block; clear: both; content: '';}
+
+  </style>
+  <script>
+    $(function(){
+      
+    })
+  </script>
+</head>
+<body>
+  <header>
+    <div>NAVER</div>
+  </header>
+  <article>
+    <div class="top">
+      <div class="id">
+        <div class="idText bold">아이디</div>
+        <div class="boxOutline">
+          <input type="text" class="idInput">
+        </div>
+        <div class="noticeBox"></div>
+      </div>
+      <div class="pw">
+        <div>
+          <div class="bold">비밀번호</div>
+          <div class="boxOutline">
+            <input type="text" class="pwInput">
+          </div>
+          <div class="noticeBox"></div>
+        </div>
+        <div>
+          <div class="bold">비밀번호 재확인</div>
+          <div class="boxOutline">
+            <input type="text" class="pwCheck">
+          </div>
+          <div class="noticeBox"></div>
+        </div>        
+      </div>
+    </div>
+    <div class="middle">
+      <div>
+        <div class="bold">이름</div>
+        <div class="boxOutline">
+          <input type="text" class="name">
+        </div>
+      </div>
+      <div>
+        <div class="bold birthText">생년월일</div>
+        <div class="birthDate">
+          <div class="boxOutline"><input type="text" class="year" placeholder="년(4자)"></div>
+          <select name="month" class="month">
+            <option value="월">월</option>
+            <option value="1">1</option> 
+            <option value="2">2</option> 
+            <option value="3">3</option> 
+            <option value="4">4</option> 
+            <option value="5">5</option> 
+            <option value="6">6</option> 
+            <option value="7">7</option> 
+            <option value="8">8</option> 
+            <option value="9">9</option> 
+            <option value="10">10</option> 
+            <option value="11">11</option> 
+            <option value="12">12</option> 
+          </select>
+          <div class="boxOutline"><input type="text" class="day" placeholder="일"></div>
+        </div>
+      </div>
+      <div>
+        <div class="bold">성별</div>
+        <select name="gender" class="gender">
+          <option value="성별">성별</option> 
+          <option value="남자">남자</option> 
+          <option value="여자">여자</option> 
+          <option value="선택안함">선택안함</option> 
+        </select>
+      </div>
+      <div class="VeriEmail-Box">
+        <div class="bold veriEmail">본인 확인 이메일</div>
+        <div class="NotBold">(선택)</div>
+        <div class="boxOutline"><input type="email" class="e-mail"></div>
+        <div class="noticeBox"></div>
+      </div>
+      <div>
+        <div class="bold">휴대전화</div>
+        <select name="countryNum" class="countryNum">
+          <option value="대한민국 +82">대한민국 +82</option> 
+          <option value="덴마크 +45">덴마크 +45</option> 
+        </select>
+        <div class="phoneParent">
+          <div class="boxOutline phone"><input type="text" class="phoneNum" placeholder="전화번호 입력"></div>
+          <button class="btn-getVeriNum">인증번호 받기</button>
+          <div class="boxOutline">
+            <input type="number" class="veriNum" placeholder="인증번호를 입력하세요" readonly>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bottom">
+
+    </div>
+  </article>
+  <footer>
+    <button type="submit" class="btn-signUp">가입하기</button>
+  </footer>
+</body>
+</html>
