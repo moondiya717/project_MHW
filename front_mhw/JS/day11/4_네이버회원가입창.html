@@ -23,7 +23,8 @@
     .id .idText{text-align: left;}
     .boxOutline, .gender, .countryNum{
       height: 40px; border: 1px solid gray; width: 100%; margin-bottom: 10px;
-      margin-top: 10px; font-size: 15px; padding: 0px 20px; background: white;}
+      margin-top: 10px; font-size: 15px; padding: 0px 20px; background: white;
+      cursor: pointer;}
     .id .idInput, .pwInput, .pwCheck, .name, .gender, .e-mail, .countryNum, .veriNum{
       line-height: 37px; }
     .noticeBox{height: 20px; margin-bottom: 5px;}
@@ -31,7 +32,7 @@
     .nameBox{margin-bottom: 30px;}
     .birthDate{width: 500px; display: flex; height: 40px; margin-bottom: 20px;}
     .birthText{margin-bottom: 10px;}
-    .birthDate .month{margin: 10px 10px 0px 10px;}
+    .birthDate .month{margin: 10px 10px 0px 10px; cursor: pointer;}
     .month, .year, .day{height: 38px; width: 100%;}
     .gender{margin-bottom: 20px;}
     .btn-getVeriNum{background: rgb(45, 175, 45); border: 1px solid rgb(21, 133, 21);
@@ -51,8 +52,8 @@
     .VeriEmail-Box::after, .boxOutline::after, .phoneParent::after
     {display: block; clear: both; content: '';}
     .idInput,.pwInput, .pwCheck, .name, .year, .day, .e-mail, .veriNum, .phoneNum{
-      border: none;}
-
+      border: none; cursor: pointer;}
+    input[type="text"]:focus, input[type="email"]:focus{outline: none;}
   </style>
   <script>
     $(function(){
@@ -145,7 +146,7 @@
           <div class="boxOutline phone"><input type="text" class="phoneNum" placeholder="전화번호 입력"></div>
           <button class="btn-getVeriNum">인증번호 받기</button>
           <div class="boxOutline veriNumBox">
-            <input type="number" class="veriNum" placeholder="인증번호를 입력하세요" readonly>
+            <input type="text" class="veriNum" placeholder="인증번호를 입력하세요" readonly>
           </div>
         </div>
       </div>
