@@ -66,7 +66,7 @@
       var checkBirth = "생년월일을 다시 확인해주세요."
       var checkEmail = "이메일주소를 다시 확인해주세요."
       var phoneCheck = "형식에 맞지 않는 번호입니다."
-      var goodIdea = "사용할 수 있습니다."
+      var goodIdea = "알맞은 입력입니다."
 
       $(document).on('click','.btn-signUp',function(e){
         e.stopImmediatePropagation;
@@ -74,7 +74,7 @@
           $('.noticeBox').text(required).css('color','red').show();      
           return; //실패한거니까 return;해놔도 되겠지?
         }
-        console.log("성공"); //임시로 해놨음
+        $('.noticeBox').text(goodIdea).css('color','green').show(); 
       })
 
       $(document).on('show','.id .noticeBox',function(e){

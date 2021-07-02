@@ -25,58 +25,13 @@
     
     var nameRegex = /^[^ㄱ-ㅎㅏ-ㅣ!@#\s]+$/; //밖 ^ =시작, []안 ^= 이거아님사용불가능
     var nameRegexMessage = '한글과 영문 대 소문자를 사용하세요. (특수기호, 공백 사용 불가)'
-
-    var regex = {
-      'id' : /^[0-9a-z_-]{5,20}$/,
-      'pw' : /^[0-9a-z!@#]{8,16}$/i,
-      'name' : /^[^ㄱ-ㅎㅏ-ㅣ!@#\s]+$/,
-      'gender' : null
-    }
-    var regexMessage = {
-      'id' :'5~20자의 영문 소문자, 숫자와 특수기호 (_), (-)만 사용 가능합니다.' ,
-      'pw' : '8~16자 영문 대 소문자, 숫자를 사용하세요.',
-      'name' : '한글과 영문 대 소문자를 사용하세요. (특수기호, 공백 사용 불가)',
-      'gender' : null
-    }
-
-
-
-
-
     $(function(){
       //click-e.prevent~()이벤트랑 submit-return false이벤트랑 다름. 
       // click은 오류코드있으면 작동안함, submit은 오류코드있어도 데이터를 전송하려고 작동
-
-      $('.common').on('change', function(){
-        var name = $(this). attr('name');
-        printRegexMessage(name, emptyMessage, regex[name], regexMessage[name]);
-        //위에 regex[], regexMessage[]는 배열아니고 객체임, (배열 안 괄호는 숫자)
-      })
-      // $('form .btn').on('click', function(e){
-        // $('[name=id]').on('change',function(){
-        //   printRegexMessage('id', emptyMessage, idRegex, idRegexMessage);
-        // })
-        // $('[name=pw]').on('change',function(){
-        //   printRegexMessage('pw', emptyMessage, pwRegex, pwRegexMessage);
-        // })
-        // $('[name=name]').on('change',function(){
-        //   printRegexMessage('name', emptyMessage, nameRegex, nameRegexMessage);
-        // })
-        // $('[name=gender]').on('change',function(){
-        //   printRegexMessage('gender', emptyMessage, null, null);
-        // })
-        $('[name=pw2]').on('change',function(){
-          pwConfirmCheck('pw','pw2',emptyMessage, differentMessage);
-        })
-        $('[name=year]', '[name=month], [name=day]').on('change',function(){
-          birthdayCheck('year', 'month', 'day','birthday-error')
-        })
-
-
-
+      $('form .btn').on('click', function(e){
         //가입하기 버튼 클릭 시, form태그의 submit()이 동장하지 않도록 하기 위해서 추가
         //데이터를 전송하지 않을 때 쓰고, 새로고침되지 않는다
-        //나중에는 맨 윗줄에 있던 e.preventDefault()는 지워야한다.
+        //나중에는 맨 윗줄에 있던 e.preventDefault()는 지우거나 아래로 이동해야한다.
         var flag = true;
         if(!printRegexMessage('id', emptyMessage, idRegex, idRegexMessage)){
           flag=false;
@@ -96,25 +51,28 @@
         if(!birthdayCheck('year', 'month', 'day','birthday-error')){
           flag=false;
         }
-
+        // if(!flag){
+        //   e.preventDefault(); 
+        // }
         return flag;
       })
 
+      $('[name= id]').blur(function(){
+        printRegexMessage('id', emptyMessage, idRegex, idRegexMessage)
+      })
+      $('[name= pw]').blur(function(){
+        printRegexMessage('pw', emptyMessage, idRegex, idRegexMessage)
+      })
+      $('[name= pw2]').blur(function(){
+        pwConfirmCheck('pw','pw2',emptyMessage, differentMessage)
+      })
+      $('[name= name]').blur(function(){
+        printRegexMessage('name', emptyMessage, idRegex, idRegexMessage)
+      })
+      $('[name= year],[name = day]').blur(function(){ //'[]','[]' 랑 '[],[]'랑 다름
+        birthdayCheck('year', 'month', 'day','birthday-error')
+      })
     })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     /*
     - 비밀번호 확인에 비어있는지 또는 비밀번호와 일치하는지 확인한 후 
@@ -232,7 +190,7 @@
   <form action="" class="container">
     <div class="form-group">
       <label for="id">아이디</label>
-      <input type="text" class="form-control common" id="id" name="id">
+      <input type="text" class="form-control" id="id" name="id">
       <div id="id-error" style="color:red;"></div> 
     </div>
     <div class="form-group">
@@ -274,7 +232,7 @@
       <div id="birthday-error" style="color:red;"></div> 
       <div class="form-group">
         <label for="gender">성별</label>
-        <select name="gender" id="gender" class="form-control common">
+        <select name="gender" id="gender" class="form-control">
           <option value="">성별</option>
           <option>남자</option> <!--value입력안하면 text에 써있는게 자동으로 들어감-->
           <option>여자</option>
