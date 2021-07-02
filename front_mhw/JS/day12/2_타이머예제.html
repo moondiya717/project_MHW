@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>타이머(스탑워치)만드는 예제</title>
+  <script src="../JS/jquery.min.js"></script>
+  <script>
+    var second = 0;
+    var minute = 0;
+    var second = 0;
+    $(function(){
+      $(document).on('click','.btn-start-pause',function(){
+        setInterval(function(){
+          second++;
+          minute= second ==60? ++minute : minute;
+          second= second ==60? 0 : second;
+          $('.time').text(getTime(minute,second));
+        },1000);
+        if($(this).text() == '중지'){
+          $(this).text('시작').css('color','black');
+        }else
+          $(this).text('중지').css('color','red');    
+      })
+      $(document).on('click','.btn-reset',function(){
+        
+      })
+
+
+    })
+
+    function addZero(num){
+      return num<10? '0'+num : num;
+    }
+
+    function getTime(minute, second){
+      return addZero(minute)+':' +addZero(second);
+    }
+  </script>
+  <style>
+    *{ margin: 0; padding: 0; color: black; list-style: none; text-decoration: none; box-sizing: border-box;}
+    .container{border: 1px solid black; padding: 20px; min-width: 400px;}
+    .time{ background-color: white; height: 100px; border: 1px solid black; 
+      margin-bottom: 20px; font-size: 60px; text-align: center;}
+    .buttonBox{display: flex;}
+    .btn-reset{margin-left: 35px; margin-right: 35px;}
+    button{height: 50px; display: block; width: calc(100% / 3); cursor:pointer; font-weight: bolder;}
+    .timeRecord{border: 1px solid black; margin-top: 20px;}
+    
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="time"></div>
+    <div class="buttonBox">
+      <button class="btn-start-pause">시작</button>
+      <button class="btn-reset">초기화</button>
+      <button>기록</button>
+    </div>
+    <ul class="timeRecord">
+      <li></li>
+    </ul>
+  </div>
+</body>
+</html>
