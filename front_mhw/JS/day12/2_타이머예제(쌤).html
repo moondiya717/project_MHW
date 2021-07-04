@@ -19,11 +19,11 @@
         else{
           //시작 버튼이면 타이머 시작
           id=setInterval(function(){
-          ms++;
-          if(ms == 100){ ms =0; s++; }
-          if(s==60){ s = 0; m++; }
-          if(m == 60){ m = 0; h++; }
-          $('.view-box').text(getTime(h,m,s,ms));
+            ms++;
+            if(ms == 100){ ms =0; s++; }
+            if(s==60){ s = 0; m++; }
+            if(m == 60){ m = 0; h++; }
+             $('.view-box').text(getTime(h,m,s,ms));
           },10); //10ms마다 동작되는 기능
           $(this).text('중지');
         }

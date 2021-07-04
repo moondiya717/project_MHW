@@ -7,36 +7,49 @@
   <title>타이머(스탑워치)만드는 예제</title>
   <script src="../JS/jquery.min.js"></script>
   <script>
-    var second = 0;
-    var minute = 0;
-    var second = 0;
+    var ms = 0, s =0, m=0, h=0;
+    var id;
     $(function(){
       $(document).on('click','.btn-start-pause',function(){
-        setInterval(function(){
-          second++;
-          minute= second ==60? ++minute : minute;
-          second= second ==60? 0 : second;
-          $('.time').text(getTime(minute,second));
-        },1000);
-        if($(this).text() == '중지'){
+        if($(this).text()=='중지'){
           $(this).text('시작').css('color','black');
-        }else
-          $(this).text('중지').css('color','red');    
+          clearInterval(id);      
+        }        
+        else if($(this).text()=='시작'){
+          $(this).text('중지').css('color','red');
+            id = setInterval(function(){
+            ms++;
+            if(ms == 100){ms=0; s++;}
+            if(s == 60){s=0; m++; }
+            if(m == 60){m=0; h++;}
+            $('.time').text(timerForm(h,m,s,ms));
+            },10)          
+        }
       })
+
       $(document).on('click','.btn-reset',function(){
-        
+        h=0; m=0; s=0; ms=0;
+        $('.btn-start-pause').text('시작').css('color','black');
+          clearInterval(id); 
+        $('.time').text(timerForm(h,m,s,ms));
+        $('.timeRecord').empty();
       })
 
-
-    })
+      $(document).on('click','.btn-record',function(){
+        var recordForm = '<li>'+timerForm(h,m,s,ms)+'</li>'
+        $('.timeRecord').prepend(recordForm); //최근기록이 맨위로
+      })
+   })
 
     function addZero(num){
-      return num<10? '0'+num : num;
+      return (num <10) ? '0'+num : ''+num; //제발 return쓰는 것좀 잊지마라
     }
 
-    function getTime(minute, second){
-      return addZero(minute)+':' +addZero(second);
+    function timerForm(h,m,s,ms){
+      return addZero(h)+' : '+addZero(m)+' : '+addZero(s)+'.'+addZero(ms);
     }
+
+
   </script>
   <style>
     *{ margin: 0; padding: 0; color: black; list-style: none; text-decoration: none; box-sizing: border-box;}
@@ -47,6 +60,7 @@
     .btn-reset{margin-left: 35px; margin-right: 35px;}
     button{height: 50px; display: block; width: calc(100% / 3); cursor:pointer; font-weight: bolder;}
     .timeRecord{border: 1px solid black; margin-top: 20px;}
+    .timeRecord li{text-align: center; font-size: 20px;}
     
   </style>
 </head>
@@ -56,10 +70,10 @@
     <div class="buttonBox">
       <button class="btn-start-pause">시작</button>
       <button class="btn-reset">초기화</button>
-      <button>기록</button>
+      <button class="btn-record">기록</button>
     </div>
     <ul class="timeRecord">
-      <li></li>
+      <!-- <li></li> -->
     </ul>
   </div>
 </body>
