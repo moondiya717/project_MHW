@@ -11,7 +11,7 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-
+<!-- .jsp는 자바를 이용할 수 있기때문에 action의 링크는 자동으로 프로젝트에 따른 주소를 입력하게 해주도록 코드를 넣은 것 -->>
 <form class="container" method="post" action="<%=request.getContextPath() %>/signin">
 	<h1>로그인</h1>
 	<div class="form-group">
