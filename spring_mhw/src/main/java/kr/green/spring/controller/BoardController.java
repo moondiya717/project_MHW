@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.green.spring.service.BoardService;
@@ -39,6 +40,21 @@ public class BoardController {
 		mv.addObject("board",board); //(왼쪽:화면에서 쓸이름, 오른쪽:실제데이터이름)
 //		System.out.println(board); //화면에 출력하기 전에 제대로 가져왔는지 확인하기 위한 출력
 		mv.setViewName("board/detail");
+		return mv;
+	}
+	
+	@RequestMapping(value="/board/register", method=RequestMethod.GET) //등록화면은 GET으로 가져와서, 화면처리는 POST. URI가 너무 길어짐을 방지
+	public ModelAndView boardRegisterGet(ModelAndView mv) {		
+		mv.setViewName("board/register");
+		return mv;
+	}
+	//화면에서 보내준 제목, 작성자, 내용을 받아서 콘솔에 출력
+	@RequestMapping(value="/board/register", method=RequestMethod.POST) //화면처리는 POST. URI가 너무 길어짐을 방지
+	public ModelAndView boardRegisterPost(ModelAndView mv, BoardVO board) {
+//		System.out.println(board); //화면에 BoardVO로 입력한 내용이 콘솔에 잘 들어오는 걸 확인했음
+		//서비스에게 게시글 정보(제목, 작성자, 내용)을 주면서 게시글을 등록하라고 시킴
+		boardService.insertBoard(board);
+		mv.setViewName("redirect:/board/list"); //등록끝나면 main화면으로 바로 이동시키는 redirect:
 		return mv;
 	}
 }

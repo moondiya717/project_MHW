@@ -31,11 +31,12 @@
 		        <td><a href="<%=request.getContextPath()%>/board/detail?num=${board.num}">${board.title}</a></td>
 		        <td>${board.writer}</td>
 	   	        <td>${board.views}</td>
-	   	        <td>${board.registered}</td>
+	   	        <td>${board.registeredDate}</td>
 		      </tr>
 	     	</c:forEach>
 	    </tbody>
 	  </table>
+	  <a href="<%=request.getContextPath()%>/board/register"><button class="btn btn-outline-success">글쓰기</button></a>
 	</div>
 </body>
 </html>

@@ -12,4 +12,6 @@ public interface BoardDAO {
 
 	BoardVO getBoard(@Param("num")Integer num); //DAO에는 항상 Param을 쓰기로 함
 
+	void insertBoard(@Param("board")BoardVO board);
+
 }
