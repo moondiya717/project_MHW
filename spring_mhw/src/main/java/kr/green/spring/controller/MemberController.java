@@ -30,5 +30,19 @@ public class MemberController {
 		mv.setViewName("/member/mypage");
 		return mv;
 	}
-
+	
+	@RequestMapping(value="/member/modify", method=RequestMethod.GET)
+	public ModelAndView memberModifyGet(ModelAndView mv, String id) {		
+		MemberVO user = memberService.getMember(id);
+		mv.addObject("user",user);
+		mv.setViewName("member/modify");
+		return mv;
+	}
+	@RequestMapping(value="/member/modify", method=RequestMethod.POST)
+	public ModelAndView memberModifyPost(ModelAndView mv, MemberVO user) {		
+		memberService.updateMember(user);			
+		mv.addObject("id", user.getId()); 
+		mv.setViewName("redirect:/member/mypage");
+		return mv;
+	}
 }

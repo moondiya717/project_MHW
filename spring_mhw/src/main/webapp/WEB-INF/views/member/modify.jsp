@@ -19,11 +19,11 @@
 	  </div>
   	  <div class="form-group">
 		 <label>비밀번호</label>
-		 <input type="text" class="form-control" name="pw" readonly> <!-- 비밀번호와 비번확인에는 value넣을 필요 없음 -->
+		 <input type="text" class="form-control" name="pw" > <!-- 비밀번호와 비번확인에는 value넣을 필요 없음 -->
 	  </div>
    	  <div class="form-group">
 		 <label>비밀번호</label>
-		 <input type="text" class="form-control" name="pw2" readonly>
+		 <input type="text" class="form-control" name="pw2" >
 	  </div>
   	  <div class="form-group">
 	  <label>성별:</label>
@@ -40,7 +40,7 @@
 		 <label>이름</label>
 		 <input type="text" class="form-control" name="name" value="${user.name}" readonly>
 	  </div>
-  	  <a href="<%=request.getContextPath()%>/member/modify?id=${user.id}"><button type="button" class="btn btn-outline-success col-12">수정</button></a>
+  	  <a href="<%=request.getContextPath()%>/member/modify?id=${user.id}"><button class="btn btn-outline-success col-12">수정</button></a>
 	</form>
 </body>
 </html>

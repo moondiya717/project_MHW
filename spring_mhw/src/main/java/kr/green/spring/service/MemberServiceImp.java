@@ -45,6 +45,12 @@ public class MemberServiceImp implements MemberService {
 		//가져온 회원 정보를 전달		
 		return memberDao.getMember(id); //이미로그인을 했다는 가정이라서, null값 처리를 할 필요가 없음
 	}
-
+	@Override
+	public int updateMember(MemberVO user) {
+		if(user == null) {
+			return 0;
+		}		
+		return memberDao.updateMember(user);
+	}
 
 }
