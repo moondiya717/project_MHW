@@ -11,6 +11,7 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
+<c:if test="${board != null}">  <!-- 없는 게시글 화면 화면처리 -->
 	<div class="container">
 	  <h2>게시글 내용</h2>
 	  <div class="form-group">
@@ -39,5 +40,12 @@
    	  <a href="<%=request.getContextPath()%>/board/list"><button class="btn btn-outline-success">목록</button></a> 
   	   
 	</div>
+</c:if>
+<c:if test="${board==null}"> 
+	<div class="container">
+		<h1>삭제되거나 존재하지 않은 게시글 입니다.</h1>
+  	    <a href="<%=request.getContextPath()%>/board/list"><button class="btn btn-outline-success">목록</button></a>		
+	</div>
+</c:if>
 </body>
 </html>

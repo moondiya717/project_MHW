@@ -57,7 +57,7 @@ public class BoardServiceImp implements BoardService{
 			return 0;
 		}
 		if(board.getValid() == null) {
-			board.setValid("I"); //기본값이 I
+			board.setValid("I"); //기본값이 I, D=삭제됨 (실제로 삭제한게 아니라, 안보이도록 처리만하는 것)
 		}
 		return boardDao.updateBoard(board);
 	}
