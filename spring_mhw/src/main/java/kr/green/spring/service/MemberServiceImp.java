@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
  
 import kr.green.spring.dao.MemberDAO;
+import kr.green.spring.vo.BoardVO;
 import kr.green.spring.vo.MemberVO;
  
 @Service
@@ -37,4 +38,13 @@ public class MemberServiceImp implements MemberService {
 		memberDao.signup(user);
 		return true;
 	}
+
+	@Override
+	public MemberVO getMember(String id) {
+		//다오에게 아이디를 주면서 회원 정보를 가져오라고 시킴
+		//가져온 회원 정보를 전달		
+		return memberDao.getMember(id); //이미로그인을 했다는 가정이라서, null값 처리를 할 필요가 없음
+	}
+
+
 }

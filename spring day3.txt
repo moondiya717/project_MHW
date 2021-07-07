@@ -1,3 +1,43 @@
 [문제1]
 /member/mypage?id=abc123으로 접근하면 abc123의 회원정보가 
 화면에 나타나도록 코드를 작성하세요.
+
+컨트롤러
+	
+	@RequestMapping(value="/member/modify", method=RequestMethod.GET)
+	public ModelAndView memberModifyGet(ModelAndView mv, String id) {		
+		MemberVO user = memberService.getMember(id);
+		mv.addObject("user",user);
+		mv.setViewName("member/modify");
+		return mv;
+	}
+	@RequestMapping(value="/member/modify", method=RequestMethod.POST)
+	public ModelAndView memberModifyPost(ModelAndView mv, MemberVO user) {		
+		memberService.updateMember(user);			
+		mv.addObject("id", user.getId()); 
+		mv.setViewName("redirect:/member/mypage");
+		return mv;
+	}
+
+서비스
+	public int updateMember(MemberVO user);
+
+Imp
+
+	@Override
+	public int updateMember(MemberVO user) {
+		if(user == null) {
+			return 0;
+		}		
+		return memberDao.updateBoard(user);
+	}
+
+DAO
+	int updateBoard(@Param("user")MemberVO user);
+
+Mapper
+	<update id="updateBoard">
+		update member set 
+			pw =#{user.pw}, gender = #{user.gender}, email = #{user.email}, name = #{user.name}
+				where id = #{user.id}
+	</update>
