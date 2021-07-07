@@ -139,3 +139,5 @@ target/
 .settings/
 # End of https://www.toptal.com/developers/gitignore/api/java,java-web
 spring_mhw/.springBeans
+springtest/src/src/main/webapp/WEB-INF/web.xml
+springtest/src/src/main/webapp/META-INF/MANIFEST.MF
