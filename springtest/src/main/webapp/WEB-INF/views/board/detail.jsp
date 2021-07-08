@@ -17,15 +17,15 @@
 		  <h2>${detail.title}</h2>
 		  <p>조회수: ${detail.views}</p>
 		  <div class="media border p-3">
-    		<img src="img_avatar3.png" alt="John Doe" class="mr-3 mt-3 rounded-circle" style="width:60px;">
+    		<img src="<%=request.getContextPath()%>/resources/img/sully.png" alt="John Doe" class="mr-3 mt-3 rounded-circle" style="width:60px;">
 		    <div class="media-body">
 		      <h4>${detail.writer} <small><i>${detail.dateTime}</i></small></h4>
 		      <p>${detail.contents}</p>      
 		    </div>
 		  </div>
 		  	<br>
-		    <a><button class="btn btn-outline-primary">수정</button></a>
-			<a><button class="btn btn-outline-danger">삭제</button></a>
+		    <a href="<%=request.getContextPath()%>/board/edit?num=${detail.num}"><button class="btn btn-outline-primary">수정</button></a>
+			<a href="<%=request.getContextPath()%>/board/delete?num=${detail.num}"><button class="btn btn-outline-danger">삭제</button></a>
 			<a href="<%=request.getContextPath()%>/board/list"><button class="btn btn-outline-dark">목록</button></a>
 		</div>
 </body>

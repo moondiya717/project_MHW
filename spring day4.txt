@@ -30,7 +30,7 @@ a. BoardController
 b. BoardService/BoardServiceImp
 c. Board
 
-
+4. 게시글 수정 삭제 기능을 구현하세요.
 
 
 -----------------------------------------------------------
@@ -53,4 +53,6 @@ Q3: submit만하고 이동안하면 button에 submit타입쓰고 이동할거면
 button의 태그가 button인건지?
 =>A: form태그 안에 들어간 button은 기본적으로 submit타입을 가지고 타입을 따로 지정하면
 해당 역할을 하는 버튼으로 바뀜. 일단 a태그로 button을 감싸주면 클릭하기가 편한편이고, 클릭 후 페이지 이동가능
+Q4: 이미지 파일은 src>main>webapp>resources>파일만들어서 이미지파일들넣어주면됨
+=> 특히 img태그에 src경로 칠 때=> <%%>/주소
 -------------
