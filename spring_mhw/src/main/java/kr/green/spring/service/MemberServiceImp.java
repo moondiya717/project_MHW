@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
  
 import kr.green.spring.dao.MemberDAO;
-import kr.green.spring.vo.BoardVO;
 import kr.green.spring.vo.MemberVO;
  
 @Service
@@ -46,11 +45,29 @@ public class MemberServiceImp implements MemberService {
 		return memberDao.getMember(id); //이미로그인을 했다는 가정이라서, null값 처리를 할 필요가 없음
 	}
 	@Override
-	public int updateMember(MemberVO user) {
-		if(user == null) {
+	public int updateMember(MemberVO user) { //user에는 화면에서 넘겨주는 정보라서 DB에서 가져오긴했지만 해당 정보 누락이거든
+		//user : 화면에서 입력한 회원정보, dbUser : DB에서 가져온 회원 정보
+		//다오에게 아이디를 주면서 기존 회원 정보를 가져옴
+		if(user == null) { //항상 넘겨주는 정보가 제대로 된 정보인지 확인해주는 게 좋음
 			return 0;
-		}		
-		return memberDao.updateMember(user);
+		}
+		MemberVO dbUser = memberDao.getMember(user.getId());
+		//일치하는 회원 정보가 없으면 0을 반환
+		if(dbUser == null) {
+			return 0;
+		}
+		//기존 회원 정보 중 수정할 회원 정보의 성별, 이메일을  수정할 회원 정보의 성별, 이메일로 변경
+		dbUser.setGender(user.getGender()); //user.setGender(db.getGender());이 될 수없는 이유=> authority가 비어있음
+		dbUser.setEmail(user.getEmail());
+		
+		//수정할 회원 정보에 비밀번호가 있으면, 기존 회원 정보의 비밀번호를 변경
+		if(user.getPw() != null && !user.getPw().equals("")) { //화면에서 입력한 비밀번호 확인
+			dbUser.setPw(user.getPw());
+		}
+		
+		//다오에게 수정할 회원 정보를 주면서 변경하라고 시킴
+		
+		return memberDao.updateMember(dbUser);
 	}
 
 }

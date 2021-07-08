@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.green.spring.service.MemberService;
-import kr.green.spring.vo.BoardVO;
 import kr.green.spring.vo.MemberVO;
 
 @Controller
@@ -24,10 +23,11 @@ public class MemberController {
 		return mv;
 	}
 	@RequestMapping(value = "/member/mypage", method = RequestMethod.POST)
-	public ModelAndView memberMypagePost(ModelAndView mv, String id) {	
-		MemberVO user = memberService.getMember(id);
-		mv.addObject("user",user);
-		mv.setViewName("/member/mypage");
+	public ModelAndView memberMypagePost(ModelAndView mv, MemberVO user) {	
+//		System.out.println(user);
+		//서비스에게 회원 정보를 주면서 수정하라고 요청
+		memberService.updateMember(user);
+		mv.setViewName("redirect:/member/mypage");
 		return mv;
 	}
 }

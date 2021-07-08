@@ -17,10 +17,14 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView home(ModelAndView mv) {		
 		mv.setViewName("home");
-
 		return mv;
 	}
 
+	@RequestMapping(value = "/board/list", method = RequestMethod.GET)
+	public ModelAndView board(ModelAndView mv) {		
+		mv.setViewName("board");
+		return mv;
+	}
 
 	
 }
