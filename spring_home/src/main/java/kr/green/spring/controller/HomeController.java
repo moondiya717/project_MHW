@@ -20,11 +20,5 @@ public class HomeController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/board/list", method = RequestMethod.GET)
-	public ModelAndView board(ModelAndView mv) {		
-		mv.setViewName("board");
-		return mv;
-	}
-
 	
 }

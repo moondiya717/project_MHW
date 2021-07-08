@@ -10,36 +10,65 @@
 	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	  <style>
+	  .fakeimg {
+	    height: 200px;
+	    background: #aaa;
+	  }
+	  </style>
 </head>
 <body>
-	<h1>
-	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-	  <!-- Brand -->
-	  <a class="navbar-brand" href="#">spring_home</a>
-	
-	  <!-- Links -->
-	  <ul class="navbar-nav">
-	    <li class="nav-item">
-	      <a class="nav-link" href="#">게시판</a>
-	    </li>
+<div class="jumbotron text-center" style="margin-bottom:0">
+  <h1>Monster Inc.</h1>
+  <p>Nothing is more important than our friendship!</p> 
+</div>
 
-	    <!-- Dropdown -->
-	    <li class="nav-item dropdown">
-	      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-	        로그인
-	      </a>
-	      <div class="dropdown-menu">
-	        <a class="dropdown-item" href="#">로그인</a>
-	        <a class="dropdown-item" href="#">회원가입</a>
-	      </div>
-	    </li>
-	  </ul>
-	</nav>
-	<br>
-	  
-	<div class="container">
-	  <h3>Spring_home</h3>
-	  <p>Practice at home!</p>
-	</div>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <a class="navbar-brand" href="#">메뉴</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="<%=request.getContextPath()%>/board/list">게시판</a>
+      </li>
+    <!-- Dropdown -->
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+        로그인
+      </a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="#">로그인</a>
+        <a class="dropdown-item" href="#">회원가입</a>
+      </div>
+    </li>  
+    </ul>
+  </div>  
+</nav>
+
+<div class="container" style="margin-top:30px">
+  <div class="row">
+    <div class="col-sm-4">
+      <h2>About Us</h2>
+      <h5>Photo of Us:</h5>
+      <div class="fakeimg" src=><img src="<%=request.getContextPath()%>/resources/img/characters.jpg"></div>
+      <p>이미지에 왜  ..</p>
+    </div>
+    <div class="col-sm-8">
+      <h2>Work Work Work</h2>
+      <h5>Title description, July 8, 2021</h5>
+      <div class="fakeimg"><img src="<%=request.getContextPath()%>/resources/img/work.jpg"></div>
+      <p>출근해라</p>
+      <p>우리 일열심히하면 니네 잠 못잠ㅎㅋ.</p>
+      <br>
+    </div>
+  </div>
+</div>
+
+<div class="jumbotron text-center" style="margin-bottom:0">
+  <p>Footer</p>
+</div>
+
 </body>
 </html>

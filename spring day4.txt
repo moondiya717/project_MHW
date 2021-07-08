@@ -40,7 +40,8 @@ form 태그 action이랑 + input태그 name설정하는거 엄청 까먹어 + �
 
 1. 언제 DAO 언제 dao 쓰는지 헷갈림
 2. @Autowired 있는 구간 확인
-	2-1. => SrviceImp 파일에 implements넣어주고 그 위에다가 @Service해주기
+	2-1. => controller파일에 @Autowired로 Service를 연결
+	2-2 => SrviceImp 파일에 implements넣어주고 그 위에다가 @Service해주기
 3. Controller파일위에다가 @Controller해야함
 4. VO파일 위에다가 @Data 해야함
 

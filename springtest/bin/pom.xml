@@ -3,8 +3,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>kr.green</groupId>
-	<artifactId>spring_home</artifactId>
-	<name>spring_home</name>
+	<artifactId>springtest</artifactId>
+	<name>springtest</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
@@ -62,7 +62,7 @@
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>1.2.17</version>
-			
+			<!-- log4j의 버전을 1.2.17로하고 아래 scope까지 전부 지움 -->
 		</dependency>
 
 		<!-- @Inject -->
@@ -98,7 +98,7 @@
 			<version>4.7</version>
 			<scope>test</scope>
 		</dependency>
-		<!-- mybatis 의존성 추가 -->
+			<!-- mybatis 의존성 추가 -->
 		<dependency>
 		    <groupId>org.mybatis</groupId>
 		    <artifactId>mybatis</artifactId>
@@ -122,12 +122,12 @@
 		    <artifactId>spring-jdbc</artifactId>
 		    <version>${org.springframework-version}</version>
 		</dependency>
-		<dependency>
+	   	<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<version>1.18.20</version>
 			<scope>provided</scope>
-		</dependency>        
+		</dependency>
 	</dependencies>
     <build>
         <plugins>
