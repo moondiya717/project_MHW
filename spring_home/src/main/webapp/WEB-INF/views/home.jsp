@@ -52,15 +52,15 @@
     <div class="col-sm-4">
       <h2>About Us</h2>
       <h5>Photo of Us:</h5>
-      <div class="fakeimg" src=><img src="<%=request.getContextPath()%>/resources/img/characters.jpg"></div>
+      <div class="fakeimg"><img src="<%=request.getContextPath()%>/resources/img/characters.jpg" width="100%" height="100%"></div>
       <p>이미지에 왜  ..</p>
     </div>
     <div class="col-sm-8">
       <h2>Work Work Work</h2>
       <h5>Title description, July 8, 2021</h5>
-      <div class="fakeimg"><img src="<%=request.getContextPath()%>/resources/img/work.jpg"></div>
-      <p>출근해라</p>
-      <p>우리 일열심히하면 니네 잠 못잠ㅎㅋ.</p>
+      <div class="fakeimg"><img src="<%=request.getContextPath()%>/resources/img/work.jpg" width="100%" >
+	      <p>출근해라</p>
+	      <p>우리 일열심히하면 니네 잠 못잠ㅎㅋ.</p></div>
       <br>
     </div>
   </div>
