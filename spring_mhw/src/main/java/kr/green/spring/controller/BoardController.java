@@ -27,7 +27,10 @@ public class BoardController {
 		cri.setPerPageNum(2); // 한 페이지에 콘텐츠가 2개씩 있도록 
 		pm.setCriteria(cri);
 		pm.setDisplayPageNum(2); //페이지네이션에 페이지숫자가 2개씩 보이도록
-		pm.setTotalCount(6);
+		
+		int totalCount = boardService.getTotalCount(cri);
+		pm.setTotalCount(totalCount);
+		
 		pm.calcData();
 		log.info(pm); //작동한다
 		//서비스에게 모든 게시글들을 가져오라고 시킴
