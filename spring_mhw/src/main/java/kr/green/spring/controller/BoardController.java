@@ -23,6 +23,7 @@ public class BoardController {
 	
 	@RequestMapping(value="/board/list")
 	public ModelAndView boardList(ModelAndView mv, Criteria cri) {
+		log.info(cri);
 		PageMaker pm = new PageMaker();
 		cri.setPerPageNum(2); // 한 페이지에 콘텐츠가 2개씩 있도록 
 		pm.setCriteria(cri);
