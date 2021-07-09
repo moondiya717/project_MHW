@@ -23,7 +23,6 @@ public class BoardController {
 	
 	@RequestMapping(value="/board/list")
 	public ModelAndView boardList(ModelAndView mv, Criteria cri) {
-		log.info(cri);
 		PageMaker pm = new PageMaker();
 		cri.setPerPageNum(2); // 한 페이지에 콘텐츠가 2개씩 있도록 
 		pm.setCriteria(cri);
@@ -33,7 +32,6 @@ public class BoardController {
 		pm.setTotalCount(totalCount);
 		
 		pm.calcData();
-		log.info(pm); //작동한다
 		//서비스에게 모든 게시글들을 가져오라고 시킴
 		ArrayList<BoardVO> list = boardService.getBoardList(cri);
 		//화면에 모든 게시글을 전송

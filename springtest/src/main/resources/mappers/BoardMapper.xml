@@ -4,7 +4,22 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace = "kr.green.test.dao.BoardDAO">
  	<select id="getBoardList" resultType="kr.green.test.vo.BoardVO">
- 		select * from board where valid = 'I' order by num desc;
+ 		select * from board 
+ 			where valid = 'I' 
+ 			<if test="cri.type == 0"> <!-- 전체검색 -->
+ 				and (contents like concat('%', #{cri.search}, '%')
+ 				or title like concat('%', #{cri.search}, '%')
+ 				or writer like concat('%', #{cri.search}, '%'))
+ 			</if>
+ 			<if test="cri.type == 1"> <!-- 내용+제목 -->
+ 				and (contents like concat('%', #{cri.search}, '%')
+ 				or title like concat('%', #{cri.search}, '%'))
+ 			</if>
+ 			<if test="cri.type == 2"> <!-- 글쓴이 -->
+ 				and writer like concat('%', #{cri.search}, '%')
+ 			</if>
+ 			order by num desc;
+ 			limit #{cri.pageStart}, #{cri.perPageNum};
  	</select>
  	<select id="getBoard" resultType ="kr.green.test.vo.BoardVO">
  		select * from board where valid = 'I' and num = #{num}; <!-- integer랑 String은 detail.num가 아니라 num도 가능 why?멤버변수가 없으니까 -->
@@ -18,5 +33,19 @@
  		insert into board(writer, title, contents)
  			values(#{board.writer}, #{board.title}, #{board.contents}) 			
  	</insert>
- 
+ 	<select id="getTotalCount" resultType="int">
+ 		select count(*) from board where valid = 'I'
+		<if test="cri.type == 0"> <!-- 전체검색 -->
+			and (contents like concat('%', #{cri.search}, '%')
+			or title like concat('%', #{cri.search}, '%')
+			or writer like concat('%', #{cri.search}, '%'))
+		</if>
+		<if test="cri.type == 1"> <!-- 내용+제목 -->
+			and (contents like concat('%', #{cri.search}, '%')
+			or title like concat('%', #{cri.search}, '%')
+		</if>
+		<if test="cri.type == 2"> <!-- 글쓴이 -->
+			and writer like concat('%', #{cri.search}, '%')
+		</if>
+ 	</select>
  </mapper>

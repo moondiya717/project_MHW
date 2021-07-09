@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.green.test.pagination.Criteria;
+import kr.green.test.pagination.PageMaker;
 import kr.green.test.service.BoardService;
 import kr.green.test.vo.BoardVO;
 import lombok.extern.log4j.Log4j;
@@ -21,10 +23,20 @@ public class BoardController {
 	BoardService boardService;
 	
 	@RequestMapping(value ="/board/list")
-	public ModelAndView boardList(ModelAndView mv, String msg) {
-		ArrayList<BoardVO> list= boardService.getBoardList();
+	public ModelAndView boardList(ModelAndView mv, Criteria cri) {
+		PageMaker pm = new PageMaker();
+		cri.setPerPageNum(2);
+		pm.setCriteria(cri);
+		pm.setDisplayPageNum(2);
+		
+		int totalCount = boardService.getTotalCount(cri);
+		pm.setTotalCount(totalCount);
+		pm.calcData(); //무슨데이터 계산?
+		
+		ArrayList<BoardVO> list= boardService.getBoardList(cri);
+		//cri넣어준이유, type이랑 search도 같이 가지고있는게 좋으니까!
 		mv.addObject("list",list);
-		mv.addObject("msg",msg);
+		mv.addObject("pm",pm);
 		mv.setViewName("board/list");
 		return mv;
 	}
@@ -73,7 +85,7 @@ public class BoardController {
 
 	@RequestMapping(value ="/board/delete", method=RequestMethod.POST)
 	public ModelAndView boardDelete(ModelAndView mv, Integer num) {
-		log.info("/board/delete : "+ num); //난왜안찍혀???????
+		log.info("/board/delete : "+ num);
 		int res = boardService.deleteBoard(num);
 		if(res != 0) {
 			mv.addObject("msg",num+"번 게시글을 삭제했습니다."); //mv.addObject는 setViewName에게 보내는 것
