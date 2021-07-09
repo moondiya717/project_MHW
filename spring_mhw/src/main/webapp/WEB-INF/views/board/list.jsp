@@ -21,7 +21,7 @@
 	  		<option value="1" <c:if test="${pm.criteria.type == 1}">selected</c:if>>제목+내용</option>
 	  		<option value="2" <c:if test="${pm.criteria.type == 2}">selected</c:if>>작성자</option>
 	  	</select>
-	  	<input type="text" class="form-control" name ="search" value="${pm.criteria.search}">
+	  	<input type="text" class="form-control" name ="search" value="<c:out value="${pm.criteria.search}"/>">
 	  	<button class="btn btn-outline-success ml-2">검색</button>
 	  </form>
 	  <c:if test="${list.size() != 0}">
