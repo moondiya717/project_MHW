@@ -8,20 +8,34 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import jdk.internal.org.jline.utils.Log;
+import kr.green.spring.pagination.Criteria;
+import kr.green.spring.pagination.PageMaker;
 import kr.green.spring.service.BoardService;
 import kr.green.spring.vo.BoardVO;
+import lombok.extern.log4j.Log4j;
 
+@Log4j
 @Controller
 public class BoardController {
 	@Autowired
 	BoardService boardService;
 	
 	@RequestMapping(value="/board/list")
-	public ModelAndView boardList(ModelAndView mv) {
+	public ModelAndView boardList(ModelAndView mv, Criteria cri) {
+		PageMaker pm = new PageMaker();
+		cri.setPerPageNum(2); // 한 페이지에 콘텐츠가 2개씩 있도록 
+		pm.setCriteria(cri);
+		pm.setDisplayPageNum(2); //페이지네이션에 페이지숫자가 2개씩 보이도록
+		pm.setTotalCount(6);
+		pm.calcData();
+		log.info(pm); //작동한다
 		//서비스에게 모든 게시글들을 가져오라고 시킴
-		ArrayList<BoardVO> list = boardService.getBoardList();
+		ArrayList<BoardVO> list = boardService.getBoardList(cri);
 		//화면에 모든 게시글을 전송
 		mv.addObject("list",list);
+		mv.addObject("pm",pm);
+		
 //		if(list != null) { //리스트가 제대로 값이 전달되는지 확인하기 위한것
 //			for(BoardVO tmp : list) {
 //				System.out.println(tmp);
@@ -36,7 +50,7 @@ public class BoardController {
 		//게시글을 가져오기 전 조회수를 증가
 		//서비스에게 게시글 번호를 주면서 게시글 조회수를 +1증가시키라고 시킴
 		boardService.updateViews(num);
-		
+		log.info(num);
 //		System.out.println(num); //num가 잘 넘어오는지 확인할 것
 		//서비스에게 번호를 주면서 게시글을 가져오라고 시킴 => 번호를 줄라면 매개변수를 이용해야함
 		BoardVO board = boardService.getBoard(num);

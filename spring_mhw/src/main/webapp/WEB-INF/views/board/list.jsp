@@ -11,8 +11,17 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<div class="container">
-	  <h2>게시판 목록</h2>
+	<div class="container clearfix">
+	  <h2 class="mb-3">게시판 목록</h2>
+	  <form class="input-group float-right mb-3">
+	  	<select class="form-control mr-2">
+	  		<option>전체</option>
+	  		<option>제목+내용</option>
+	  		<option>작성자</option>
+	  	</select>
+	  	<input type="text" class="form=control">
+	  	<button class="btn btn-outline-success ml-2">검색</button>
+	  </form>
 	  <c:if test="${list.size() != 0}">
 		  <table class="table table-striped">
 		    <thead>
@@ -37,6 +46,17 @@
 		     	</c:forEach>
 		    </tbody>
 		  </table>
+		    <ul class="pagination justify-content-center">
+		    	<c:if test = "${pm.prev}"> <!-- prev가 true또는 false라서 조건식이 됨 -->
+				    <li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${pm.startPage-1}">이전</a></li>		    				    		
+		    	</c:if>
+		    	<c:forEach begin="${pm.startPage}" end="${pm.endPage}" var="index"> <!-- item은 배열이나 리스트-->
+			    	<li class="page-item <c:if test="${pm.criteria.page == index}">active</c:if>"><a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${index}">${index}</a></li>		    	
+		    	</c:forEach>		    	
+		    	<c:if test="${pm.next}">
+				    <li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${pm.endPage+1}">다음</a></li>		    	
+		    	</c:if>
+		  	</ul>
 	  </c:if>
 	  <c:if test="${list.size()==0 }">
 	  	<h1>게시글이 없습니다.</h1>

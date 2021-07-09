@@ -17,4 +17,13 @@
    4) /board/list로 이동
  - msg를 이용하여 문구를 출력할 수 있도록 화면에 전달
 
--javaagent:D:\eclipse\lombok.jar
+
+[spring_mhw]
+페이지네이션 구현하기: 
+https://github.com/st8324/Docs/blob/master/spring%20framework/Pagination.md
+
+Criteria는 페이지네이션의 위에 있는 화면에 담고있는 내용을 말함 => 페이지네이션선택한 번호에따라 다름
+Criteria관리
+1. 선택된 현재 페이지
+2. 한 페이지 당 컨텐츠의 갯수
+3. 디폴트생성자 : 시작페이지번호, 페이지네이션단위 
