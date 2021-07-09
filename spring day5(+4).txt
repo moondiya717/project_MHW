@@ -1,0 +1,20 @@
+[springtest]
+1. 게시글을 삭제하는 기능을 구현하세요
+(쌤.ver) 
+- detail
+    1) 수정/삭제 버튼을  추가
+    2) 수정 버튼을 클릭하면 /board/modify로 이동(GET)
+    3) 삭제 버튼을 클릭하면 /board/delete로 이동(POST) 	
+- boardController
+   1) /board/modify를 담당하는 메소드 추가 GET
+   2) /board/modify.jsp를 연결하여 화면을 구성
+   3) /board/delete를 담당하는 메소드 추가 POST
+      *(교재에 URL로 삭제하는 것을 막기위해 POST를 사용했다함)
+	- 삭제할 게시글 번호를 가져옴
+	- 서비스에게 게시글 번호를 주면서 삭제하라고 요청
+	- 삭제에 성공하면 성공했다는 정보를 화면에 전달하고,
+	   실패하면 실패했다는 정보를 화면에 전
+   4) /board/list로 이동
+ - msg를 이용하여 문구를 출력할 수 있도록 화면에 전달
+
+-javaagent:D:\eclipse\lombok.jar

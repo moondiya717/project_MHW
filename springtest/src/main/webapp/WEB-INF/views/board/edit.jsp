@@ -18,10 +18,11 @@
     		<img src="<%=request.getContextPath()%>/resources/img/boo.png" alt="John Doe" class="mr-3 mt-3 rounded-circle" style="width:60px;">
 		    <div class="media-body">
    		      작성자:<input type="text" class="form-control form-control-sm" name="writer" value="${edit.writer}" readonly>  
-		      제목:<input type="text" class="form-control form-control-lg" name="title">
-		      내용:<textarea class="form-control form-control" rows="12" name="contents"></textarea>
+		      제목:<input type="text" class="form-control form-control-lg" name="title" value="${edit.title}">
+		      내용:<textarea class="form-control form-control" rows="12" name="contents">${edit.contents}</textarea>
 		      	<input type="hidden" name="num" value="${edit.num}">
-	  			<input type="hidden" name="views" value="${edit.views}">
+	  			<!-- <input type="hidden" name="views" value="${edit.views}"> 
+	  			수정하는 동안에 조회수 올랐을때, 수정완료하면서 덮어쓰면 조회수가 깎이니까 service에서 처리해야함-->
 	  			<!-- <input type="hidden" name="valid" value="${edit.valid}"> --> <!-- ServiceImp에서 valid처리를 안하면 valid가 필수임 -->
 		    </div>
 		  </div>
