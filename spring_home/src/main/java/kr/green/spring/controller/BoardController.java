@@ -20,11 +20,24 @@ public class BoardController {
 	@RequestMapping(value = "/board/list")
 	public ModelAndView getBoard(ModelAndView mv) {		
 		ArrayList<BoardVO> list = boardService.getBoardList();
-		log.info(list);
 		mv.addObject("list",list);
 		mv.setViewName("board/list");
 		return mv;
 	}
 
+	@RequestMapping(value = "/board/detail")
+	public ModelAndView getDetail(ModelAndView mv, Integer num) {
+		BoardVO detail = boardService.getDetail(num);
+		mv.addObject("detail",detail);
+		mv.setViewName("board/detail");
+		return mv;
+	}
 	
+	@RequestMapping(value = "/board/delete")
+	public ModelAndView boardDelete(ModelAndView mv, Integer num) {
+		BoardVO delete = boardService.boardDelete(num);
+		mv.addObject("delete",delete);
+		mv.setViewName("board/delte");
+		return mv;
+	}
 }
