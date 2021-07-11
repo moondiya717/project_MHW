@@ -50,7 +50,7 @@
 		  </table>
 		    <ul class="pagination justify-content-center">
 		    	<c:if test = "${pm.prev}"> <!-- prev가 true또는 false라서 조건식이 됨 -->
-				    <li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${pm.startPage-1}&type=${pm.criteri.type}&search=${pm.criteria.search}">이전</a></li>		    				    		
+				    <li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${pm.startPage-1}&type=${pm.criteria.type}&search=${pm.criteria.search}">이전</a></li>		    				    		
 		    	</c:if>
 		    	<c:forEach begin="${pm.startPage}" end="${pm.endPage}" var="index"> <!-- item은 배열이나 리스트-->
 			    	<li class="page-item <c:if test="${pm.criteria.page == index}">active</c:if>"><a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${index}&type=${pm.criteria.type}&search=${pm.criteria.search}">${index}</a></li>		    	

@@ -21,6 +21,13 @@ public class Criteria {
 	public void setSearch(String search) {
 		this.search = search;
 	}
+	
+	public Criteria() {
+		this.page = 1;
+		this.perPageNum = 10;
+		this.type = 0;
+		this.search = "";
+	}
 		
 	public int getPage() {
 		return page;
@@ -43,13 +50,6 @@ public class Criteria {
 			this.perPageNum = perPageNum;
 	}
 	
-	
-	public Criteria() {
-		this.page = 1;
-		this.perPageNum = 10;
-		this.type = 0;
-		this.search = "";
-	}
 	@Override
 	public String toString() {
 		return "Criteria [page=" + page + ", perPageNum=" + perPageNum + ", type=" + type + ", search=" + search + "]";

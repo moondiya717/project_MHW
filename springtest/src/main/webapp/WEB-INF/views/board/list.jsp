@@ -22,7 +22,7 @@
 	  		<option value="1" <c:if test="${pm.criteria.type == 1}">selected</c:if>>제목+내용</option>
 	  		<option value="2" <c:if test="${pm.criteria.type == 2}">selected</c:if>>작성자</option>
 	  	</select>
-	  	<input type="text" class="form-control" name ="search">
+	  	<input type="text" class="form-control" name ="search" value="<c:out value="${pm.criteria.search}"/>">
 	  	<button class="btn btn-outline-secondary ml-2">검색</button>
 	  </form>
 		 <c:if test="${list.size() !=0}">
@@ -42,16 +42,22 @@
 			        <td>${board.num}</td>
 			        <td><a href="<%=request.getContextPath()%>/board/detail?num=${board.num}">${board.title}</a></td> <!-- a태그가 밖에있으면 안된다? -->
 			        <td>${board.writer}</td>
-		   	        <td>${board.dateTime}</td>	     
+		   	        <td>${board.getDateTime()}</td>	     
 		  	        <td>${board.views}</td>
 			      </tr>
 		     	</c:forEach>
 		    </tbody>
 		  </table>
 		   <ul class="pagination justify-content-center">
-		    <li class="page-item"><a class="page-link" >이전</a></li>		    				    		
-	    	<li class="page-item"><a class="page-link">${index}</a></li>		    	
-		    <li class="page-item"><a class="page-link">다음</a></li>		    	
+		    <c:if test="${pm.prev}">
+		    	<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${pm.startPage-1}&type=${pm.criteria.type}&search=${pm.criteria.search}">이전</a></li>		    				    		
+	    	</c:if>
+	    	<c:forEach begin="${pm.startPage}" end="${pm.endPage}" var="index">
+	    		<li class="page-item <c:if test="${pm.criteria.page ==index}">active</c:if>"><a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${index}&type=${pm.criteria.type}&search=${pm.criteria.search}">${index}</a></li>		    	
+		    </c:forEach>
+		    <c:if test="${pm.next}">
+		    	<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${pm.endPage+1}&type=${pm.criteria.type}&search=${pm.criteria.search}">다음</a></li>
+		    </c:if>		    	
 		   </ul> 
 		</c:if>
 		<c:if test="${list.size() ==0}">

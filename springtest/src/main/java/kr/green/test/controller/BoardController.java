@@ -42,10 +42,9 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value ="/board/detail")
-	public ModelAndView boardDetail(ModelAndView mv, Integer num, String msg) {
+	public ModelAndView boardDetail(ModelAndView mv, Integer num) {
 		boardService.updateViews(num);
 		BoardVO detail = boardService.getBoard(num);
-		mv.addObject("msg",msg);
 		mv.addObject("detail",detail);
 		mv.setViewName("board/detail");
 		return mv;
