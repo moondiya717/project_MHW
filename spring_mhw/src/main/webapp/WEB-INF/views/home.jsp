@@ -32,6 +32,8 @@
 	        </c:if>
    	      	<c:if test="${user!=null}"> <!-- 로그인하면 보여줘라 -->
 	        	<a class="dropdown-item" href="<%=request.getContextPath()%>/member/mypage">마이페이지</a>
+	        	<a class="dropdown-item" href="<%=request.getContextPath()%>/signout">로그아웃</a>
+	        	
 	        </c:if>
 	      </div>
 	    </li>

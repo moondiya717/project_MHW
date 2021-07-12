@@ -2,17 +2,20 @@ package kr.green.spring.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import jdk.internal.org.jline.utils.Log;
 import kr.green.spring.pagination.Criteria;
 import kr.green.spring.pagination.PageMaker;
 import kr.green.spring.service.BoardService;
+import kr.green.spring.service.MemberService;
 import kr.green.spring.vo.BoardVO;
+import kr.green.spring.vo.MemberVO;
 import lombok.extern.log4j.Log4j;
 
 @Log4j
@@ -20,6 +23,8 @@ import lombok.extern.log4j.Log4j;
 public class BoardController {
 	@Autowired
 	BoardService boardService;
+	@Autowired
+	MemberService memberService;
 	
 	@RequestMapping(value="/board/list")
 	public ModelAndView boardList(ModelAndView mv, Criteria cri) {
@@ -70,7 +75,9 @@ public class BoardController {
 	}
 	//화면에서 보내준 제목, 작성자, 내용을 받아서 콘솔에 출력
 	@RequestMapping(value="/board/register", method=RequestMethod.POST) //화면처리는 POST. URI가 너무 길어짐을 방지
-	public ModelAndView boardRegisterPost(ModelAndView mv, BoardVO board) {
+	public ModelAndView boardRegisterPost(ModelAndView mv, BoardVO board, HttpServletRequest request) {
+		MemberVO user = memberService.getMember(request);
+		board.setWriter(user.getId());
 //		System.out.println(board); //화면에 BoardVO로 입력한 내용이 콘솔에 잘 들어오는 걸 확인했음
 		//서비스에게 게시글 정보(제목, 작성자, 내용)을 주면서 게시글을 등록하라고 시킴
 		boardService.insertBoard(board);
