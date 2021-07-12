@@ -37,15 +37,15 @@ public class BoardServiceImp implements BoardService{
 
 	@Override
 	public void insertBoard(BoardVO board) {
-		if(board == null) {
-			return;
+		if(board == null || board.getTitle().trim().length() ==0) { //null처리할때 객체를 생성하는거라서 실제 내용이 null인걸 잡아내는 거랑은 무관함 
+			return; //메세지좀 띄워야겠다. 글은 안올라가는데 걍 아무렇지않게 리스트로 넘어가버리네
 		}
 		boardDao.insertBoard(board);
 	}
 
 	@Override
 	public int updateBoard(BoardVO board) {
-		if(board == null) {
+		if(board == null || board.getTitle().trim().length() ==0) {
 			return 0;
 		}
 		BoardVO dbBoard = boardDao.getBoard(board.getNum());	
