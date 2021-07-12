@@ -32,7 +32,10 @@
 				</form> 			    
 			    <a href="<%=request.getContextPath()%>/board/edit?num=${detail.num}" class="mr-2"><button class="btn btn-outline-primary">수정</button></a>
 				</c:if>
+			  	<a href="<%=request.getContextPath()%>/board/delete"><button class="btn btn-outline-danger mr-2">삭제</button></a>
 				<a href="<%=request.getContextPath()%>/board/list" class="mr-2"><button class="btn btn-outline-dark">목록</button></a>
+				<a href="<%=request.getContextPath()%>/board/edit" class="mr-2"><button class="btn btn-outline-primary">수정</button></a>
+				
 			</div>
 		</div>
 </body>

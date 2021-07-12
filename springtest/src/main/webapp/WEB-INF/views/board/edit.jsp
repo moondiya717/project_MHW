@@ -26,8 +26,8 @@
 	  			<!-- <input type="hidden" name="valid" value="${edit.valid}"> --> <!-- ServiceImp에서 valid처리를 안하면 valid가 필수임 -->
 		    </div>
 		  </div>
-		  	<br>
-			<a href="<%=request.getContextPath()%>/board/list"><button type="button" class="btn btn-outline-danger">취소</button></a>		  	
+		  	<br> <!-- 취소돌아갈때 기존의 글 내용이 불러와지지가 않네-->
+			<a href="<%=request.getContextPath()%>/board/detail?num=${edit.num}"><button type="button" class="btn btn-outline-danger">취소</button></a>		  	
 			<button class="btn btn-outline-primary">등록</button>
 	</form>
 </body>
