@@ -26,8 +26,13 @@
 	        회원
 	      </a>
 	      <div class="dropdown-menu">
-	        <a class="dropdown-item" href="<%=request.getContextPath()%>/signin">로그인</a>
-	        <a class="dropdown-item" href="<%=request.getContextPath()%>/signup">회원가입</a>
+	      	<c:if test="${user==null}"> <!-- null이면 보여주고 null이 아니면 보여주지 마라=> 로그인했을때 보일 필요가 없음 -->
+	        	<a class="dropdown-item" href="<%=request.getContextPath()%>/signin">로그인</a>
+	        	<a class="dropdown-item" href="<%=request.getContextPath()%>/signup">회원가입</a>
+	        </c:if>
+   	      	<c:if test="${user!=null}"> <!-- 로그인하면 보여줘라 -->
+	        	<a class="dropdown-item" href="<%=request.getContextPath()%>/member/mypage">마이페이지</a>
+	        </c:if>
 	      </div>
 	    </li>
 	  </ul>

@@ -21,8 +21,19 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+
+	
 	<context:component-scan base-package="kr.green.spring.*" />
 	
-	
+
+		<beans:bean id="loginInterceptor" 
+	class="kr.green.spring.interceptor.LoginInterceptor"></beans:bean> <!-- kr.green. () 괄호안을 파일명주소에따라 변경해주기 -->
+	<interceptors>
+	    <interceptor>
+	        <mapping path="/signin"/> <!-- signin이라는 url에만 로그인화면을 체크하고 여러개면 밑에 복붙으로 추가 가능 -->
+	        <beans:ref bean="loginInterceptor"/>
+	    </interceptor>
+	</interceptors>
+
 	
 </beans:beans>

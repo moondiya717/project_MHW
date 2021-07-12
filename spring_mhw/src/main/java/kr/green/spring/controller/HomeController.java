@@ -35,13 +35,13 @@ public class HomeController {
 		if(dbUser != null) {
 			//작업이 다 끝난 후 URI가 redirect:/ 주소로 이동 /만쓰면 /으로 감
 			//redirect:내가원하는 URI => redirect는 다른 URI를 실행시킴
-			mv.setViewName("redirect:/signin");
+			mv.setViewName("redirect:/");
 		// 회원정보가 없으면 => 일치하는 아이디가 없던지, 비밀번호가 잘못되던지 
 		//				 =>로그인실패		
 		}else {
-			mv.setViewName("redirect:/");
+			mv.setViewName("redirect:/signin");
 		}
-		System.out.println(dbUser);
+		mv.addObject("user",dbUser);
 		return mv;
 		}
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
