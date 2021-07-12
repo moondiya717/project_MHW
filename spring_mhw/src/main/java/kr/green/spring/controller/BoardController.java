@@ -29,7 +29,7 @@ public class BoardController {
 	@RequestMapping(value="/board/list")
 	public ModelAndView boardList(ModelAndView mv, Criteria cri) {
 		PageMaker pm = new PageMaker();
-		cri.setPerPageNum(2); // 한 페이지에 콘텐츠가 2개씩 있도록 
+		cri.setPerPageNum(5); // 한 페이지에 콘텐츠가 2개씩 있도록 
 		pm.setCriteria(cri);
 		pm.setDisplayPageNum(2); //페이지네이션에 페이지숫자가 2개씩 보이도록
 		
