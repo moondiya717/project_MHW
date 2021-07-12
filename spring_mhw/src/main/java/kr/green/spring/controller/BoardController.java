@@ -86,27 +86,38 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="/board/modify", method=RequestMethod.GET)
-	public ModelAndView boardModifyGet(ModelAndView mv, Integer num) {		
+	public ModelAndView boardModifyGet(ModelAndView mv, Integer num, HttpServletRequest request) {		
 		BoardVO board = boardService.getBoard(num);
+		
 		mv.addObject("board",board);
 		mv.setViewName("board/modify");
+		MemberVO user = memberService.getMember(request);
+		if(board != null || board.getWriter().equals(user.getId())) {
+			mv.setViewName("redirect:/board/list");
+		}
 		return mv;
 	}
 	@RequestMapping(value="/board/modify", method=RequestMethod.POST)
-	public ModelAndView boardModifyPost(ModelAndView mv, BoardVO board) {		
-//		System.out.println(board); //수정된 내용이 잘 넘어오는 것 확인했음
+	public ModelAndView boardModifyPost(ModelAndView mv, BoardVO board,HttpServletRequest request) {				
 		//서비스에게 게시글을 주면서 수정하라고 요청
 		boardService.updateBoard(board);		
 		// detail로 이동			
 		mv.addObject("num", board.getNum()); //detail로 넘어가기전에 게시글번호를 같이 가지고 가게 함
 		mv.setViewName("redirect:/board/detail");
+		
+		MemberVO user = memberService.getMember(request);
+		if(user.getId().equals(board.getWriter())) {
+			mv.setViewName("redirect:/board/list");
+		}
 		return mv;
 	}
 	
 	@RequestMapping(value="/board/delete")
-	public ModelAndView boardDeleteGet(ModelAndView mv, Integer num) {
+	public ModelAndView boardDeleteGet(ModelAndView mv, Integer num,HttpServletRequest request) {
+		MemberVO user = memberService.getMember(request);
+
 		//서비스에게 게시글 번호를 주면서 삭제하라고 요청
-		boardService.deleteBoard(num);
+		boardService.deleteBoard(num, user);
 		mv.setViewName("redirect:/board/list");
 		return mv;
 	}
