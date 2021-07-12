@@ -50,13 +50,13 @@
 		  </table>
 		   <ul class="pagination justify-content-center">
 		    <c:if test="${pm.prev}">
-		    	<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${pm.startPage-1}&type=${pm.criteria.type}&search=${pm.criteria.search}">이전</a></li>		    				    		
+		    	<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${pm.startPage-1}&type=${pm.criteria.type}&search=<c:out value="${pm.criteria.search}"/>">이전</a></li>		    				    		
 	    	</c:if>
 	    	<c:forEach begin="${pm.startPage}" end="${pm.endPage}" var="index">
-	    		<li class="page-item <c:if test="${pm.criteria.page ==index}">active</c:if>"><a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${index}&type=${pm.criteria.type}&search=${pm.criteria.search}">${index}</a></li>		    	
+	    		<li class="page-item <c:if test="${pm.criteria.page ==index}">active</c:if>"><a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${index}&type=${pm.criteria.type}&search=<c:out value="${pm.criteria.search}"/>">${index}</a></li>		    	
 		    </c:forEach>
 		    <c:if test="${pm.next}">
-		    	<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${pm.endPage+1}&type=${pm.criteria.type}&search=${pm.criteria.search}">다음</a></li>
+		    	<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${pm.endPage+1}&type=${pm.criteria.type}&search=<c:out value="${pm.criteria.search}"/>">다음</a></li>
 		    </c:if>		    	
 		   </ul> 
 		</c:if>
@@ -64,7 +64,7 @@
 			<h2>게시글이 없습니다.</h2>
 		</c:if>
 	  <a href="<%=request.getContextPath()%>/board/write"><button class="btn btn-outline-secondary">글쓰기</button></a>
-	  <a href="<%=request.getContextPath()%>/board/list"><button class="btn btn-outline-secondary">메인으로</button></a>
+	  <a href="<%=request.getContextPath()%>/"><button class="btn btn-outline-secondary">메인으로</button></a>
 	</div>
 </body>
 </html>

@@ -23,20 +23,21 @@ public class BoardController {
 	BoardService boardService;
 	
 	@RequestMapping(value ="/board/list")
-	public ModelAndView boardList(ModelAndView mv, Criteria cri) {
-		PageMaker pm = new PageMaker();
-		cri.setPerPageNum(2);
+	public ModelAndView boardList(ModelAndView mv, String msg, Criteria cri) {
+		cri.setPerPageNum(2); //게시글을 가져오기전에 2개로 설정을 해두고 게시물을 가져오도록 해야 함 
+		ArrayList<BoardVO> list= boardService.getBoardList(cri);
+		//현재 페이지 정보(검색타입, 검색어)에 대한 총 게시글 수를 가져와야 함
+		int totalCount = boardService.getTotalCount(cri);
+		PageMaker pm = new PageMaker(totalCount, 2, cri);
 		pm.setCriteria(cri);
 		pm.setDisplayPageNum(2);
-		
-		int totalCount = boardService.getTotalCount(cri);
 		pm.setTotalCount(totalCount);
-		pm.calcData(); //무슨데이터 계산?
+		pm.calcData(); //무슨데이터 계산?	
 		
-		ArrayList<BoardVO> list= boardService.getBoardList(cri);
 		//cri넣어준이유, type이랑 search도 같이 가지고있는게 좋으니까!
 		mv.addObject("list",list);
 		mv.addObject("pm",pm);
+		mv.addObject("msg",msg);
 		mv.setViewName("board/list");
 		return mv;
 	}

@@ -6,14 +6,14 @@
  	<select id="getBoardList" resultType="kr.green.test.vo.BoardVO">
  		select * from board 
  			where valid = 'I' 
- 			<if test="cri.type == 0"> <!-- 전체검색 -->
- 				and (contents like concat('%', #{cri.search}, '%')
- 				or title like concat('%', #{cri.search}, '%')
+ 			<if test="cri.type != 1 and cri.type !=2"> <!-- 잘못된 타입을 넣은경우 전체검색을 하게하려고 이렇게-->
+ 				and (title like concat('%', #{cri.search}, '%')
+ 				or contents like concat('%', #{cri.search}, '%')
  				or writer like concat('%', #{cri.search}, '%'))
  			</if>
  			<if test="cri.type == 1"> <!-- 내용+제목 -->
- 				and (contents like concat('%', #{cri.search}, '%')
- 				or title like concat('%', #{cri.search}, '%'))
+ 				and (title like concat('%', #{cri.search}, '%')
+ 				or contents like concat('%', #{cri.search}, '%'))
  			</if>
  			<if test="cri.type == 2"> <!-- 글쓴이 -->
  				and writer like concat('%', #{cri.search}, '%')
@@ -33,19 +33,20 @@
  		insert into board(writer, title, contents)
  			values(#{board.writer}, #{board.title}, #{board.contents}) 			
  	</insert>
- 	<select id="getTotalCount" resultType="int">
- 		select count(*) from board where valid = 'I'
-		<if test="cri.type == 0"> <!-- 전체검색 -->
-			and (contents like concat('%', #{cri.search}, '%')
-			or title like concat('%', #{cri.search}, '%')
-			or writer like concat('%', #{cri.search}, '%'))
-		</if>
-		<if test="cri.type == 1"> <!-- 내용+제목 -->
-			and (contents like concat('%', #{cri.search}, '%')
-			or title like concat('%', #{cri.search}, '%')
-		</if>
-		<if test="cri.type == 2"> <!-- 글쓴이 -->
-			and writer like concat('%', #{cri.search}, '%')
-		</if>
+ 	<select id="getTotalCount" resultType="int"> <!-- select만 resultType이 필요함 -->
+ 		select count(*) from board
+			where valid = 'I' 
+ 			<if test="cri.type != 1 and cri.type !=2">
+ 				and (title like concat('%', #{cri.search}, '%')
+ 				or contents like concat('%', #{cri.search}, '%')
+ 				or writer like concat('%', #{cri.search}, '%'))
+ 			</if>
+ 			<if test="cri.type == 1">
+ 				and (title like concat('%', #{cri.search}, '%')
+ 				or contents like concat('%', #{cri.search}, '%'))
+ 			</if>
+ 			<if test="cri.type == 2"> 
+ 				and writer like concat('%', #{cri.search}, '%')
+ 			</if>
  	</select>
  </mapper>

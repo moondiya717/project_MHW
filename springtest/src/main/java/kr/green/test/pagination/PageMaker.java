@@ -1,6 +1,6 @@
 package kr.green.test.pagination;
 
-import lombok.Data;
+import lombok.*;
 
 @Data
 public class PageMaker {
@@ -30,6 +30,14 @@ public class PageMaker {
 		}
 		prev= startPage ==1? false:true;
 		next= endPage * criteria.getPerPageNum() >= totalCount? false:true;
-		
 	}
+	public PageMaker() {}
+	public PageMaker(int totalCount, int displayPageNum, Criteria criteria) {
+		this.totalCount = totalCount;
+		this.displayPageNum = displayPageNum;
+		this.criteria = criteria;
+		calcData();
+	}
+	
+	
 }
