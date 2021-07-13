@@ -48,7 +48,7 @@ public class HomeController {
 		}
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
 	public ModelAndView signupGet(ModelAndView mv) {		
-		mv.setViewName("redirect:/signup");
+		mv.setViewName("signup");
 		return mv;
 		}
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
