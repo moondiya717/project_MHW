@@ -12,9 +12,5 @@ public class MemberController {
 	@Autowired
 	MemberService memberService;
 	
-	@RequestMapping(value="/test")
-	public String test(Model model) {
-		System.out.println(memberService.getEmail("abc123"));
-		return "home";
-	}
+
 }
