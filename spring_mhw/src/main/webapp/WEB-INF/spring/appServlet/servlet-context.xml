@@ -27,13 +27,31 @@
 	
 
 		<beans:bean id="loginInterceptor" 
-	class="kr.green.spring.interceptor.LoginInterceptor"></beans:bean> <!-- kr.green. () 괄호안을 파일명주소에따라 변경해주기 -->
+		class="kr.green.spring.interceptor.LoginInterceptor"></beans:bean> <!-- kr.green. () 괄호안을 파일명주소에따라 변경해주기 -->
+		
+		<beans:bean id="memberInterceptor" 
+		class="kr.green.spring.interceptor.MemberInterceptor"></beans:bean> <!-- 소문자로 시작할것 -->
+		
+		<beans:bean id="nonMemberInterceptor" 
+		class="kr.green.spring.interceptor.NonMemberInterceptor"></beans:bean> <!-- class명 오타있음 안돼 -->
 	<interceptors>
 	    <interceptor>
 	        <mapping path="/signin"/> <!-- signin이라는 url에만 로그인화면을 체크하고 여러개면 밑에 복붙으로 추가 가능 -->
 	        <beans:ref bean="loginInterceptor"/>
 	    </interceptor>
+   	    <interceptor> <!-- 로그아웃은 상관없음이래, 어차피 로그인이 풀리는거라서 굳이안해줘도 됨 -->
+	        <mapping path="/board/register"/> <!-- 보드자체에 다 접근이 안되는거라면 /board/* 가능 -->
+	        <mapping path="/board/modify"/>
+	        <mapping path="/board/delete"/>
+	        <mapping path="/board/mypage"/>
+	        <beans:ref bean="memberInterceptor"/>
+	    </interceptor>
+   	    <interceptor>
+	        <mapping path="/signin"/> 
+         	<mapping path="/signup"/> <!-- 나중에 비번,아디찾기 추가할예정 -->
+	        <beans:ref bean="nonMemberInterceptor"/>
+	    </interceptor>
 	</interceptors>
 
-	
+
 </beans:beans>
