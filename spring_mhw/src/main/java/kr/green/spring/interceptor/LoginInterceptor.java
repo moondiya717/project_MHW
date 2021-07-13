@@ -23,8 +23,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 		//mv.addObject("user",)으로 정보를 전달한 내용이 있으면 가져오는 코드 
 	    ModelMap modelMap = modelAndView.getModelMap(); 
 	    MemberVO user = (MemberVO)modelMap.get("user"); //<- "user" 따옴표안에있는 내용을 addObject랑 맞춰야징
-	    
-System.out.println(user);
+
 	    if(user != null) { //회원정보가 있으면
 	    	//request에 있는 세션정보를 가져옴
 	        HttpSession session = request.getSession();

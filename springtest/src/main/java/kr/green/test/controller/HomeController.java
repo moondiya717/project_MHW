@@ -8,9 +8,6 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.green.test.service.MemberService;
 import kr.green.test.vo.MemberVO;
 
-/**
- * Handles requests for the application home page.
- */
 @Controller
 public class HomeController {
 	@Autowired

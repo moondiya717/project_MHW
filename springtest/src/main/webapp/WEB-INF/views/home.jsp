@@ -27,10 +27,10 @@
 	    </li>
 	  </ul>
 	</nav>
-	
 	<div class="container-fluid" style="margin-top:80px">
-	  <h3>Be our family member!</h3>     
-	  
+	  <h3>Be our family member!</h3>
 	</div>
+	
+ 	${user}
 </body>
 </html>
