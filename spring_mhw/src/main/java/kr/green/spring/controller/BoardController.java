@@ -104,7 +104,7 @@ public class BoardController {
 		mv.setViewName("redirect:/board/detail");
 		
 		MemberVO user = memberService.getMember(request);
-		if(user.getId().equals(board.getWriter())) {
+		if(!user.getId().equals(board.getWriter())) {
 			mv.setViewName("redirect:/board/list");
 		}else {
 			//서비스에게 게시글을 주면서 수정하라고 요청
