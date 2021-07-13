@@ -44,6 +44,9 @@ public class BoardServiceImp implements BoardService{
 		if(user == null || user.getId()==null || user.getId().trim().length() == 0) {
 			return;
 		}
+		if(board.getContents().trim().length() ==0) {
+			return;
+		}
 		board.setWriter(user.getId());
 		boardDao.insertBoard(board, user);
 	}
