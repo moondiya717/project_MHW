@@ -22,11 +22,26 @@
 	</beans:bean>
 	<beans:bean id="loginInterceptor" 
 		class="kr.green.test.interceptor.LoginInterceptor"></beans:bean>
-	
+	<beans:bean id="memberInterceptor" 
+		class="kr.green.test.interceptor.MemberInterceptor"></beans:bean>
+	<beans:bean id="nonMemberInterceptor" 
+		class="kr.green.test.interceptor.NonMemberInterceptor"></beans:bean>	
 	<interceptors>
 	    <interceptor>
 	        <mapping path="/signin"/>
 	        <beans:ref bean="loginInterceptor"/>
+	    </interceptor>
+   	    <interceptor>
+	        <mapping path="/board/write"/>
+  	        <mapping path="/board/edit"/>
+  	        <mapping path="/board/delete"/>
+  	        <mapping path="/board/mypage"/>	        
+	        <beans:ref bean="memberInterceptor"/>
+	    </interceptor>
+   	    <interceptor>
+	        <mapping path="/signin"/>
+   	        <mapping path="/signup"/>
+	        <beans:ref bean="nonMemberInterceptor"/>
 	    </interceptor>
 	</interceptors>
 	

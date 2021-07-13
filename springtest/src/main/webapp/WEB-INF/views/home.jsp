@@ -19,12 +19,22 @@
 	    <li class="nav-item">
 	      <a class="nav-link" href="<%=request.getContextPath()%>/board/list">게시판</a>
 	    </li>
-	    <li class="nav-item">
-	      <a class="nav-link" href="<%=request.getContextPath()%>/signin">로그인</a>
-	    </li>
-   	    <li class="nav-item">
-	      <a class="nav-link" href="<%=request.getContextPath()%>/signup">회원가입</a>
-	    </li>
+	    
+	    <c:if test="${user==null}">
+		    <li class="nav-item">
+		      <a class="nav-link" href="<%=request.getContextPath()%>/signin">로그인</a>
+		    </li>
+	   	    <li class="nav-item">
+		      <a class="nav-link" href="<%=request.getContextPath()%>/signup">회원가입</a>
+		    </li>
+	    </c:if>
+   	 	
+   	 	<c:if test="${user!=null}">
+	   	    <li class="nav-item">
+		      <a class="nav-link" href="<%=request.getContextPath()%>/mypage">마이페이지</a>
+		    </li>
+	    </c:if>
+	    
 	  </ul>
 	</nav>
 	<div class="container-fluid" style="margin-top:80px">
