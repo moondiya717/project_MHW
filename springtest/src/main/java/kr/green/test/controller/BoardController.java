@@ -84,11 +84,13 @@ public class BoardController {
 		mv.setViewName("redirect:/board/detail");
 
 		MemberVO user = memberService.getMember(r);
-		if(user.getId().equals(board.getWriter())) {
+		if(!user.getId().equals(board.getWriter())) {
 			mv.setViewName("redirect:/board/list");
+		}else {
+			boardService.updateBoard(board);
 		}
-		
 		return mv;
+
 	}
 	
 
