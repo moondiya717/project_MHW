@@ -64,10 +64,11 @@ public class BoardServiceImp implements BoardService{
 
 	@Override
 	public int deleteBoard(Integer num, MemberVO user) {
-		if(num == null) {
+		BoardVO board = boardDao.getBoard(num);
+
+		if(num == null|| board ==null ||!board.getWriter().equals(user.getId())) {
 			return 0;
 		}
-		BoardVO board = boardDao.getBoard(num);
 		board.setValid("D");
 		return boardDao.updateBoard(board);
 	}
