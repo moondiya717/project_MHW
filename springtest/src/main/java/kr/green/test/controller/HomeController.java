@@ -31,13 +31,13 @@ public class HomeController {
 	}
 	@PostMapping(value = "/signin")
 	public ModelAndView signinPOST(ModelAndView mv, MemberVO user) {
-		MemberVO dbUser = memberService.signin(user);
-		if(dbUser !=null) {
+		MemberVO loginUser = memberService.signin(user);
+		if(loginUser !=null) {
 			mv.setViewName("redirect:/");
 		}else {
 			mv.setViewName("redirect:/signin");
 		}
-		mv.addObject("user",dbUser);
+		mv.addObject("user",loginUser);
 		return mv;
 		}
 
