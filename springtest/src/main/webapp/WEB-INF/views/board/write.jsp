@@ -17,7 +17,6 @@
 		  <div class="media border p-3">
     		<img src="<%=request.getContextPath()%>/resources/img/boo.png" alt="John Doe" class="mr-3 mt-3 rounded-circle" style="width:60px;">
 		    <div class="media-body">
-   		      작성자:<input type="text" class="form-control form-control-sm" name="writer" value="${board.writer}" >  
 		      제목:<input type="text" class="form-control form-control-lg" name="title" value="${board.title}" >
 		      내용:<textarea class="form-control form-control" rows="12" name="contents" >${board.contents}</textarea>      
 		    </div><!-- required로 빈board 입력안되게 하는건 좋은데 미관상 너무 나뻐 --> 

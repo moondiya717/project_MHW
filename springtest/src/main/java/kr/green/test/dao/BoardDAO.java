@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import kr.green.test.pagination.Criteria;
 import kr.green.test.vo.BoardVO;
+import kr.green.test.vo.MemberVO;
 
 public interface BoardDAO {
 
@@ -15,7 +16,7 @@ public interface BoardDAO {
 
 	int updateBoard(@Param("board")BoardVO board);
 
-	void insertBoard(@Param("board")BoardVO board);
+	void insertBoard(@Param("board")BoardVO board, MemberVO user);
 
 	int getTotalCount(@Param("cri")Criteria cri);
 
