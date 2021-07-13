@@ -63,7 +63,7 @@ public class BoardServiceImp implements BoardService{
 	}
 
 	@Override
-	public int deleteBoard(Integer num) {
+	public int deleteBoard(Integer num, MemberVO user) {
 		if(num == null) {
 			return 0;
 		}

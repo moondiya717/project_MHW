@@ -63,7 +63,9 @@
 		<c:if test="${list.size() ==0}">
 			<h2>게시글이 없습니다.</h2>
 		</c:if>
-	  <a href="<%=request.getContextPath()%>/board/write"><button class="btn btn-outline-secondary">글쓰기</button></a>
+	  <c:if test="${user!=null}">
+	  	<a href="<%=request.getContextPath()%>/board/write"><button class="btn btn-outline-secondary">글쓰기</button></a>
+	  </c:if>
 	  <a href="<%=request.getContextPath()%>/"><button class="btn btn-outline-secondary">메인으로</button></a>
 	</div>
 </body>
