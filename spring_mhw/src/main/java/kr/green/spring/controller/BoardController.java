@@ -48,7 +48,7 @@ public class BoardController {
 //				System.out.println(tmp);
 //			}
 //		}
-		mv.setViewName("board/list");
+		mv.setViewName("/template/board/list");
 		return mv;
 	}
 	
@@ -64,13 +64,13 @@ public class BoardController {
 		//가져온 게시글을 화면에 전달, 이름은 board로
 		mv.addObject("board",board); //(왼쪽:화면에서 쓸이름, 오른쪽:실제데이터이름)
 //		System.out.println(board); //화면에 출력하기 전에 제대로 가져왔는지 확인하기 위한 출력
-		mv.setViewName("board/detail");
+		mv.setViewName("/template/board/detail");
 		return mv;
 	}
 	
 	@RequestMapping(value="/board/register", method=RequestMethod.GET) //등록화면은 GET으로 가져와서, 화면처리는 POST. URI가 너무 길어짐을 방지
 	public ModelAndView boardRegisterGet(ModelAndView mv) {		
-		mv.setViewName("board/register");
+		mv.setViewName("/template/board/register");
 		return mv;
 	}
 	//화면에서 보내준 제목, 작성자, 내용을 받아서 콘솔에 출력
@@ -90,7 +90,7 @@ public class BoardController {
 		BoardVO board = boardService.getBoard(num);
 		
 		mv.addObject("board",board);
-		mv.setViewName("board/modify");
+		mv.setViewName("/template/board/modify");
 		MemberVO user = memberService.getMember(request);
 		if(board != null || board.getWriter().equals(user.getId())) {
 			mv.setViewName("redirect:/board/list");

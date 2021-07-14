@@ -18,13 +18,14 @@ public class HomeController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView home(ModelAndView mv) {		
-		mv.setViewName("home");
+		mv.setViewName("/template/main/home");
 
 		return mv;
 	}
 	@RequestMapping(value = "/signin", method = RequestMethod.GET)
 	public ModelAndView signinGet(ModelAndView mv) {		
-		mv.setViewName("signin");
+		System.out.println(123);
+		mv.setViewName("/template/member/signin");
 		return mv;
 		}
 	@RequestMapping(value = "/signin", method = RequestMethod.POST)
@@ -48,7 +49,7 @@ public class HomeController {
 		}
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
 	public ModelAndView signupGet(ModelAndView mv) {		
-		mv.setViewName("signup");
+		mv.setViewName("/template/member/signup");
 		return mv;
 		}
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
