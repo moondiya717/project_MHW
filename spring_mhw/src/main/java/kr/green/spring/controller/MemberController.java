@@ -30,7 +30,7 @@ public class MemberController {
 		//세션에 로그인한 회원 정보가 있고, 세션에 있는 아이디와 수정할 아이디가 같으면 회원 정보 수정함
 		//개발자도구를 열어서 직접 회원정보를 수정하는 것을 막아주는 역할을 함
 		if(sessionUser != null && sessionUser.getId().equals(user.getId())) {
-		MemberVO updateUser = memberService.updateMember(user);
+			MemberVO updateUser = memberService.updateMember(user);
 			if(updateUser !=null) {
 				request.getSession().setAttribute("user", updateUser);
 			}

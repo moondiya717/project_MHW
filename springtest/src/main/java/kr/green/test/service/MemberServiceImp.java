@@ -54,6 +54,9 @@ public class MemberServiceImp implements MemberService{
 	
 	@Override
 	public MemberVO getMember(String id) {
+		if(id == null) {
+			return null;
+		}
 		return memberDao.getMember(id);
 	}
 
@@ -64,5 +67,26 @@ public class MemberServiceImp implements MemberService{
 		}
 		return (MemberVO) r.getSession().getAttribute("user");
 	}
-	
+
+	@Override
+	public MemberVO updateMember(MemberVO user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public MemberVO updateMember(MemberVO user, MemberVO sUser) {
+		if(user == null || sUser == null || !user.getId().equals(sUser.getId())|| user.getId() ==null) {
+			return null;
+		}
+		if(user.getPw() !=null && user.getPw().trim().length() !=0) {
+			String ePw = passwordEncoder.encode(user.getPw());
+			sUser.setPw(ePw);
+		}
+		sUser.setEmail(user.getEmail());
+		sUser.setGender(user.getGender());
+		sUser.setName(user.getName());
+		memberDao.updateMember(sUser);
+		return sUser;
+	}
 }
