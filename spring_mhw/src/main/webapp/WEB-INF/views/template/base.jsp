@@ -5,12 +5,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>스프링</title>
-<jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
+	<title>스프링</title>
+	<jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
+	<style>
+		.body{min-height : calc(100vh - 240px)};
+	</style>
 </head>
 <body>
     <tiles:insertAttribute name="nav"/>
-    <tiles:insertAttribute name="body" />
+    <div class="body">
+    	<tiles:insertAttribute name="body" />
+    </div>
     <tiles:insertAttribute name="footer" />
 </body>
 </html>
