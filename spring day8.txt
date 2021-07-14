@@ -7,6 +7,9 @@
 2. 템플릿적용
 3. 템플릿사용(글쓰기기능에 추가)
 
++ D드라이브에 JAVA_mhw 들어가서 바로 그 자리에 폴더 uploadfiles 를 생성했음
+
+
 1Kb = 1024byte
 ----------
 UUID (universally unique identifier, 범용 고유 식별자) => 
