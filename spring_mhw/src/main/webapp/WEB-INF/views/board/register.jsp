@@ -6,7 +6,7 @@
 <head>
 	<title>게시글 등록</title>
 </head>
-<body>
+<body><!-- enctype가 있어야돼 그래야 파일이가고, 없으면 파일이름만감 -->
 	<form class="container" method="post" action="<%=request.getContextPath()%>/board/register" enctype="multipart/form-data">
 	  <h2>게시글 등록</h2>
 	  <div class="form-group">
@@ -25,6 +25,7 @@
 	        <label>파일</label>
 	        <input type="file" class="form-control" name="file"/>
     	</div>
+	  <a href="<%=request.getContextPath()%>/board/list"><button type="button" class="btn btn-outline-danger">취소</button></a>
 	  <button type="submit" class="btn btn-outline-success">등록</button>
 	</form>
 </body>

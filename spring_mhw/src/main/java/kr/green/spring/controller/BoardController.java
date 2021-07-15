@@ -1,13 +1,21 @@
 package kr.green.spring.controller;
 
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -16,6 +24,7 @@ import kr.green.spring.pagination.PageMaker;
 import kr.green.spring.service.BoardService;
 import kr.green.spring.service.MemberService;
 import kr.green.spring.vo.BoardVO;
+import kr.green.spring.vo.FileVO;
 import kr.green.spring.vo.MemberVO;
 import lombok.extern.log4j.Log4j;
 
@@ -59,12 +68,15 @@ public class BoardController {
 		//서비스에게 게시글 번호를 주면서 게시글 조회수를 +1증가시키라고 시킴
 		boardService.updateViews(num);
 		log.info(num);
-//		System.out.println(num); //num가 잘 넘어오는지 확인할 것
-		//서비스에게 번호를 주면서 게시글을 가져오라고 시킴 => 번호를 줄라면 매개변수를 이용해야함
+
 		BoardVO board = boardService.getBoard(num);
 		//가져온 게시글을 화면에 전달, 이름은 board로
 		mv.addObject("board",board); //(왼쪽:화면에서 쓸이름, 오른쪽:실제데이터이름)
-//		System.out.println(board); //화면에 출력하기 전에 제대로 가져왔는지 확인하기 위한 출력
+
+		//첨부파일 가져오기
+		FileVO file = boardService.getFileVO(num);
+		mv.addObject("file",file);
+		
 		mv.setViewName("/template/board/detail");
 		return mv;
 	}
@@ -75,7 +87,7 @@ public class BoardController {
 		return mv;
 	}
 	//화면에서 보내준 제목, 작성자, 내용을 받아서 콘솔에 출력
-	@RequestMapping(value="/board/register", method=RequestMethod.POST) //화면처리는 POST. URI가 너무 길어짐을 방지
+	@RequestMapping(value="/board/register", method=RequestMethod.POST) 
 	public ModelAndView boardRegisterPost(ModelAndView mv, BoardVO board,
 										  HttpServletRequest request, MultipartFile file) {
 		MemberVO user = memberService.getMember(request);
@@ -91,8 +103,12 @@ public class BoardController {
 	public ModelAndView boardModifyGet(ModelAndView mv, Integer num, HttpServletRequest request) {		
 		BoardVO board = boardService.getBoard(num);
 		
+		FileVO file = boardService.getFileVO(num);
+		mv.addObject("file",file);
+		
 		mv.addObject("board",board);
 		mv.setViewName("/template/board/modify");
+		
 		MemberVO user = memberService.getMember(request);
 		if(board == null || !board.getWriter().equals(user.getId())) {
 			mv.setViewName("redirect:/board/list");
@@ -100,17 +116,18 @@ public class BoardController {
 		return mv;
 	}
 	@RequestMapping(value="/board/modify", method=RequestMethod.POST)
-	public ModelAndView boardModifyPost(ModelAndView mv, BoardVO board,HttpServletRequest request) {						
+	public ModelAndView boardModifyPost(ModelAndView mv, BoardVO board,HttpServletRequest request,
+										MultipartFile file) {						
 		// detail로 이동			
 		mv.addObject("num", board.getNum()); //detail로 넘어가기전에 게시글번호를 같이 가지고 가게 함
 		mv.setViewName("redirect:/board/detail");
-		
 		MemberVO user = memberService.getMember(request);
+		
 		if(!user.getId().equals(board.getWriter())) {
 			mv.setViewName("redirect:/board/list");
 		}else {
 			//서비스에게 게시글을 주면서 수정하라고 요청
-			boardService.updateBoard(board);
+			boardService.updateBoard(board, file);
 		}
 		return mv;
 	}
@@ -123,5 +140,12 @@ public class BoardController {
 		boardService.deleteBoard(num, user);
 		mv.setViewName("redirect:/board/list");
 		return mv;
+	}
+	
+	@ResponseBody //return한 값을 전송해?
+	@RequestMapping("/board/download")
+	public ResponseEntity<byte[]> downloadFile(String fileName)throws Exception{
+		ResponseEntity<byte[]> entity = boardService.downloadFile(fileName);
+	    return entity;
 	}
 }
