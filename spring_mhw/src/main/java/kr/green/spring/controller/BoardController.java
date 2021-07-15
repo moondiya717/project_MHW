@@ -74,8 +74,8 @@ public class BoardController {
 		mv.addObject("board",board); //(왼쪽:화면에서 쓸이름, 오른쪽:실제데이터이름)
 
 		//첨부파일 가져오기
-		FileVO file = boardService.getFileVO(num);
-		mv.addObject("file",file);
+		ArrayList<FileVO> fileList = boardService.getFileVOList(num);
+		mv.addObject("fileList",fileList);
 		
 		mv.setViewName("/template/board/detail");
 		return mv;
@@ -89,7 +89,7 @@ public class BoardController {
 	//화면에서 보내준 제목, 작성자, 내용을 받아서 콘솔에 출력
 	@RequestMapping(value="/board/register", method=RequestMethod.POST) 
 	public ModelAndView boardRegisterPost(ModelAndView mv, BoardVO board,
-										  HttpServletRequest request, MultipartFile file) {
+										  HttpServletRequest request, MultipartFile [] file) {
 		MemberVO user = memberService.getMember(request);
 		board.setWriter(user.getId());
 //		System.out.println(board); //화면에 BoardVO로 입력한 내용이 콘솔에 잘 들어오는 걸 확인했음
@@ -103,9 +103,6 @@ public class BoardController {
 	public ModelAndView boardModifyGet(ModelAndView mv, Integer num, HttpServletRequest request) {		
 		BoardVO board = boardService.getBoard(num);
 		
-		FileVO file = boardService.getFileVO(num);
-		mv.addObject("file",file);
-		
 		mv.addObject("board",board);
 		mv.setViewName("/template/board/modify");
 		
@@ -113,11 +110,13 @@ public class BoardController {
 		if(board == null || !board.getWriter().equals(user.getId())) {
 			mv.setViewName("redirect:/board/list");
 		}
+		ArrayList<FileVO> fileList = boardService.getFileVOList(num);
+		mv.addObject("fileList",fileList);
 		return mv;
 	}
 	@RequestMapping(value="/board/modify", method=RequestMethod.POST)
 	public ModelAndView boardModifyPost(ModelAndView mv, BoardVO board,HttpServletRequest request,
-										MultipartFile file) {						
+										MultipartFile[] file) {						
 		// detail로 이동			
 		mv.addObject("num", board.getNum()); //detail로 넘어가기전에 게시글번호를 같이 가지고 가게 함
 		mv.setViewName("redirect:/board/detail");

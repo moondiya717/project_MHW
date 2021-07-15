@@ -47,10 +47,16 @@ public class BoardServiceImp implements BoardService{
 	}
 
 	@Override
-	public void insertBoard(BoardVO board, MultipartFile file) {
+	public void insertBoard(BoardVO board, MultipartFile[] file) {
 		//다오에게 게시글 정보를 주면서 게시글 등록하라고 시킴
 		boardDao.insertBoard(board);
-		insertFileVO(file, board.getNum());
+		if(file == null) {
+			return;
+		}
+		for(MultipartFile tmp:file) {
+			insertFileVO(tmp, board.getNum());
+		}
+
 	}
 	
 	@Override
@@ -67,13 +73,14 @@ public class BoardServiceImp implements BoardService{
 	}
 
 	@Override
-	public int updateBoard(BoardVO board, MultipartFile file) {
+	public int updateBoard(BoardVO board, MultipartFile[] file) {
 		if(board == null || board.getNum() <= 0) {
 			return 0;
 		}
 		if(board.getValid() == null) {
 			board.setValid("I"); //기본값이 I, D=삭제됨 (실제로 삭제한게 아니라, 안보이도록 처리만하는 것)
 		}
+		/*
 		FileVO fileVo = boardDao.getFileVO(board.getNum());  
 		//첨부파일이 추가되는 경우
 		if(fileVo == null && (file !=null && file.getOriginalFilename().length() !=0)) {
@@ -88,14 +95,14 @@ public class BoardServiceImp implements BoardService{
 		//첨부파일이 수정되는 경우
 		else if(fileVo !=null && (file != null && file.getOriginalFilename().length() != 0)) {
 			//업로드되었던 파일을 삭제
-			File ftmp = new File(uploadPath+fileVo.getName());
+			File ftmp = new File(uploadPath+fileVo.getName()); //?쌤이거없나
 			if(ftmp.exists()) {
 				ftmp.delete();
 			}
 			boardDao.deleteFileVO(fileVo.getNum());
 			insertFileVO(file,board.getNum());
 		}
-			
+		*/	
 		return boardDao.updateBoard(board);
 	}
 
@@ -118,11 +125,11 @@ public class BoardServiceImp implements BoardService{
 	}
 
 	@Override
-	public FileVO getFileVO(Integer num) {
+	public ArrayList<FileVO> getFileVOList(Integer num) {
 		if(num == null) {
 			return null;
 		}
-		return boardDao.getFileVO(num);
+		return boardDao.getFileVOList(num);
 	}
 
 	@Override
