@@ -65,9 +65,9 @@ public class BoardController {
 	}
 	@RequestMapping(value ="/board/write", method = RequestMethod.POST)
 	public ModelAndView boardWritePost(ModelAndView mv, BoardVO board, HttpServletRequest r, 
-										MultipartFile [] file) {
+										MultipartFile [] files) {
 		MemberVO user = memberService.getMember(r);
-		boardService.insertBoard(board, user, file);
+		boardService.insertBoard(board, user, files);
 		mv.setViewName("redirect:/board/list");
 		return mv;
 	}

@@ -4,16 +4,20 @@ import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import kr.green.test.dao.BoardDAO;
 import kr.green.test.pagination.Criteria;
+import kr.green.test.utils.UploadFileUtils;
 import kr.green.test.vo.BoardVO;
+import kr.green.test.vo.FileVO;
 import kr.green.test.vo.MemberVO;
 
 @Service
 public class BoardServiceImp implements BoardService{
 	@Autowired
 	BoardDAO boardDao;
+	private String uploadPath= "D:\\JAVA_mhw\\uploadfiles_test";
 	
 	@Override
 	public ArrayList<BoardVO> getBoardList(Criteria cri) {
@@ -37,7 +41,7 @@ public class BoardServiceImp implements BoardService{
 	}
 
 	@Override
-	public void insertBoard(BoardVO board, MemberVO user) {
+	public void insertBoard(BoardVO board, MemberVO user, MultipartFile[] files) {
 		if(board == null || board.getTitle().trim().length() ==0) { //null처리할때 객체를 생성하는거라서 실제 내용이 null인걸 잡아내는 거랑은 무관함 
 			return; //메세지좀 띄워야겠다. 글은 안올라가는데 걍 아무렇지않게 리스트로 넘어가버리네
 		}
@@ -49,6 +53,26 @@ public class BoardServiceImp implements BoardService{
 		}
 		board.setWriter(user.getId());
 		boardDao.insertBoard(board, user);
+		
+		if(files == null || files.length == 0) {
+			return;
+		}
+		for(MultipartFile file : files) {
+			if(file != null && file.getOriginalFilename().length() !=0) {
+				try {
+					//첨부파일을 업로드 한 후, 경로를 반환해서 ori_name에 저장
+					String name = 
+							UploadFileUtils.uploadFile
+							(uploadPath, file.getOriginalFilename(), file.getBytes());
+					//첨부파일 객체 생성
+					FileVO fvo = new FileVO(board.getNum(), name, file.getOriginalFilename());
+					//DB에 첨부파일 정보 추가
+					boardDao.insertFile(fvo);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 
 	@Override
@@ -89,7 +113,12 @@ public class BoardServiceImp implements BoardService{
 		return boardDao.getTotalCount(cri);
 	}
 
-
+//	private void insertFileVO(MultipartFile file, Integer num) {
+//		if(file !=null && file.getOriginalFilename().length()!=0) {
+//			String filename = UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes());
+//		}
+//		
+//	}
 
 
 }
