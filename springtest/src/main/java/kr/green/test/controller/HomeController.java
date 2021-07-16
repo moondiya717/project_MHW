@@ -19,13 +19,13 @@ public class HomeController {
 	 //@GetMapping이 @RequestMapping대신 쓰면서 method = RequestMethod.GET 쓴거랑 같은 효과
 	@GetMapping(value = "/")
 	public ModelAndView home(ModelAndView mv) {
-		mv.setViewName("home");
+		mv.setViewName("/template/home");
 		return mv;
 	}
 	
 	@GetMapping(value = "/signin")
 	public ModelAndView signinGet(ModelAndView mv) {
-		mv.setViewName("signin");
+		mv.setViewName("/template/signin");
 		return mv;
 	}
 	@PostMapping(value = "/signin")
@@ -44,7 +44,7 @@ public class HomeController {
 	public ModelAndView signupGet(ModelAndView mv) {
 //		MemberVO user = new MemberVO(); //NullPointerException 알아본다고 추가한거라 지워야오류안남
 //		System.out.println(user.getId().trim().length());
-		mv.setViewName("signup");
+		mv.setViewName("/template/signup");
 		return mv;
 	}
 	/* 매개변수 user를 하면 객체가 생성된 후, 화면에서 전달한 name과 일치하는 뱐수명을 가진
@@ -58,10 +58,11 @@ public class HomeController {
 	}
 	
 	@GetMapping(value = "/logout")
-	public ModelAndView signout(ModelAndView mv, HttpServletRequest r) {
+	public ModelAndView logout(ModelAndView mv, HttpServletRequest r) {
 		r.getSession().removeAttribute("user");
 		mv.setViewName("redirect:/");
 		return mv;
 	}
 
+	
 }

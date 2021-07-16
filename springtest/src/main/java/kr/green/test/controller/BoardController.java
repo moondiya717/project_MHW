@@ -8,11 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import kr.green.test.pagination.*;
-import kr.green.test.service.*;
-import kr.green.test.vo.*;
+import kr.green.test.pagination.Criteria;
+import kr.green.test.pagination.PageMaker;
+import kr.green.test.service.BoardService;
+import kr.green.test.service.MemberService;
+import kr.green.test.vo.BoardVO;
+import kr.green.test.vo.MemberVO;
 import lombok.extern.log4j.Log4j;
 
 @Log4j
@@ -41,7 +45,7 @@ public class BoardController {
 		mv.addObject("list",list);
 		mv.addObject("pm",pm);
 		mv.addObject("msg",msg);
-		mv.setViewName("board/list");
+		mv.setViewName("/template/board/list");
 		return mv;
 	}
 	
@@ -50,19 +54,20 @@ public class BoardController {
 		boardService.updateViews(num);
 		BoardVO detail = boardService.getBoard(num);
 		mv.addObject("detail",detail);
-		mv.setViewName("board/detail");
+		mv.setViewName("/template/board/detail");
 		return mv;
 	}
 	
 	@RequestMapping(value ="/board/write", method = RequestMethod.GET)
 	public ModelAndView boardWriteGet(ModelAndView mv) {					
-		mv.setViewName("board/write");
+		mv.setViewName("/template/board/write");
 		return mv;
 	}
 	@RequestMapping(value ="/board/write", method = RequestMethod.POST)
-	public ModelAndView boardWritePost(ModelAndView mv, BoardVO board, HttpServletRequest r ) {
+	public ModelAndView boardWritePost(ModelAndView mv, BoardVO board, HttpServletRequest r, 
+										MultipartFile [] file) {
 		MemberVO user = memberService.getMember(r);
-		boardService.insertBoard(board, user);
+		boardService.insertBoard(board, user, file);
 		mv.setViewName("redirect:/board/list");
 		return mv;
 	}
@@ -72,7 +77,7 @@ public class BoardController {
 		log.info("/board/edit :" +num);
 		BoardVO edit = boardService.getBoard(num);
 		mv.addObject("edit",edit);
-		mv.setViewName("board/edit");
+		mv.setViewName("/template/board/edit");
 		return mv;
 	}
 	@RequestMapping(value ="/board/edit", method = RequestMethod.POST) 
