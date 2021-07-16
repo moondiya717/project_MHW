@@ -92,8 +92,7 @@ public class BoardController {
 										  HttpServletRequest request, MultipartFile [] file) {
 		MemberVO user = memberService.getMember(request);
 		board.setWriter(user.getId());
-//		System.out.println(board); //화면에 BoardVO로 입력한 내용이 콘솔에 잘 들어오는 걸 확인했음
-		//서비스에게 게시글 정보(제목, 작성자, 내용)을 주면서 게시글을 등록하라고 시킴
+
 		boardService.insertBoard(board,file);
 		mv.setViewName("redirect:/board/list"); //등록끝나면 main화면으로 바로 이동시키는 redirect:
 		return mv;
