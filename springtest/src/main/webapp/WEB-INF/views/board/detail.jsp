@@ -16,10 +16,10 @@
 		      <h4>${detail.writer} <small><i>${detail.dateTime}</i></small></h4>
 		      <div><p>${detail.contents}</p></div>		          
 		    </div>
-		    <div>
+		    <div class="border p-3">
 			    <label>첨부파일</label>
 			    <c:forEach items="${fileList}" var="file">
-		        	<a href="#">${file.ori_name}</a>
+		        	<br><a href="<%=request.getContextPath()%>/board/download?fileName=${file.name}">${file.ori_name}</a>
 		        </c:forEach>
 	        </div>
 		  </div>
