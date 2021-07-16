@@ -13,6 +13,8 @@ public class UploadFileUtils { //static클래스메소드라서 메소드쓸때 
 		UUID uid = UUID.randomUUID();
 		String savedName = uid.toString() +"_" + originalName;
 		String savedPath = calcPath(uploadPath);
+		//uploadPath는 저장할폴더의위치까지 예를들면 D드라이브의 uploadfiles_test까지고 
+		//savedPath는 파일이저장될위치로 2021/07/16 이런식으로 상세위치로 두갤 더하면 파일의 실제 구체적인 위치를 나타냄)
 		File target = new File(uploadPath + savedPath, savedName);
 		FileCopyUtils.copy(fileData, target);
 		String uploadFileName = makeIcon(savedPath, savedName);
@@ -27,7 +29,7 @@ public class UploadFileUtils { //static클래스메소드라서 메소드쓸때 
             + new DecimalFormat("00").format(cal.get(Calendar.MONTH)+1);
 		String datePath = monthPath + File.separator 
             + new DecimalFormat("00").format(cal.get(Calendar.DATE));
-		makeDir(yearPath, monthPath, datePath);
+		makeDir(uploadPath,yearPath, monthPath, datePath);
 		
 		return datePath;
  
@@ -36,6 +38,7 @@ public class UploadFileUtils { //static클래스메소드라서 메소드쓸때 
 		if(new File(paths[paths.length-1]).exists())
 			return;
 		for(String path : paths) {
+			System.out.println(path);
 			File dirPath = new File(uploadPath + path);
 			if( !dirPath.exists())
 				dirPath.mkdir();
