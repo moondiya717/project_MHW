@@ -67,7 +67,6 @@ public class BoardController {
 		//게시글을 가져오기 전 조회수를 증가
 		//서비스에게 게시글 번호를 주면서 게시글 조회수를 +1증가시키라고 시킴
 		boardService.updateViews(num);
-		log.info(num);
 
 		BoardVO board = boardService.getBoard(num);
 		//가져온 게시글을 화면에 전달, 이름은 board로
