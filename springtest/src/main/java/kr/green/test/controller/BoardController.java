@@ -16,6 +16,7 @@ import kr.green.test.pagination.PageMaker;
 import kr.green.test.service.BoardService;
 import kr.green.test.service.MemberService;
 import kr.green.test.vo.BoardVO;
+import kr.green.test.vo.FileVO;
 import kr.green.test.vo.MemberVO;
 import lombok.extern.log4j.Log4j;
 
@@ -41,7 +42,6 @@ public class BoardController {
 		pm.setTotalCount(totalCount);
 		pm.calcData(); //무슨데이터 계산?	
 		
-		//cri넣어준이유, type이랑 search도 같이 가지고있는게 좋으니까!
 		mv.addObject("list",list);
 		mv.addObject("pm",pm);
 		mv.addObject("msg",msg);
@@ -54,6 +54,10 @@ public class BoardController {
 		boardService.updateViews(num);
 		BoardVO detail = boardService.getBoard(num);
 		mv.addObject("detail",detail);
+		
+		ArrayList<FileVO> fileList = boardService.getFileList(num);
+		mv.addObject("fileList",fileList);
+		log.info(fileList);	
 		mv.setViewName("/template/board/detail");
 		return mv;
 	}

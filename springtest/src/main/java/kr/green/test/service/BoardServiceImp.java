@@ -113,12 +113,11 @@ public class BoardServiceImp implements BoardService{
 		return boardDao.getTotalCount(cri);
 	}
 
-//	private void insertFileVO(MultipartFile file, Integer num) {
-//		if(file !=null && file.getOriginalFilename().length()!=0) {
-//			String filename = UploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes());
-//		}
-//		
-//	}
-
-
+	@Override
+	public ArrayList<FileVO> getFileList(Integer num) {
+		if(num == null) {
+			return null;			
+		}
+		return boardDao.getFileList(num);
+	}
 }

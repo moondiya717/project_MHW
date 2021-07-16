@@ -11,11 +11,17 @@
 		  <h2>${detail.title}</h2>
 		  <p>조회수: ${detail.views}</p>
 		  <div class="media border p-3">
-    		<img src="<%=request.getContextPath()%>/resources/img/sully.png" alt="John Doe" class="mr-3 mt-3 rounded-circle" style="width:60px;">
+    		<img src="<%=request.getContextPath()%>/resources/img/sully.png" class="mr-3 mt-3 rounded-circle" style="width:60px;">
 		    <div class="media-body">
 		      <h4>${detail.writer} <small><i>${detail.dateTime}</i></small></h4>
-		      <p>${detail.contents}</p>      
+		      <div><p>${detail.contents}</p></div>		          
 		    </div>
+		    <div>
+			    <label>첨부파일</label>
+			    <c:forEach items="${fileList}" var="file">
+		        	<a href="#">${file.ori_name}</a>
+		        </c:forEach>
+	        </div>
 		  </div>
 		  	<br>
 		  	<div class="input-group">

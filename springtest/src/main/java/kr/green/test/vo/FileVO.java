@@ -10,9 +10,11 @@ public class FileVO {
 	private String ori_name;
 	private String state;
 	
+	
+	public FileVO() {}
+	
 	//편하게 객체를 만들기 위해서 생성자를 만듬
 	public FileVO(int board, String name, String ori_name) {
-		super();
 		this.board = board;
 		this.name = name;
 		this.ori_name = ori_name;
