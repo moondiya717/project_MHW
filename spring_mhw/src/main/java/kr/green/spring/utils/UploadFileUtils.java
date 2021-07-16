@@ -23,11 +23,11 @@ public class UploadFileUtils {
 		//UUID 생성
 		UUID uid = UUID.randomUUID(); //36개 16진수로된 문자+숫자 랜덤번호 생성
 		//파일명에 UUID를 붙여줌 => 550e8400-e29b-41d4-a716-446655440000_dog.jpg (앞코드는 예시)
-		String savedName = uid.toString() +"_" + originalName;
+		String savedName = uid.toString() +"_" + originalName; //toString() 상속받기
 		String savedPath = calcPath(uploadPath);
 		File target = new File(uploadPath + savedPath, savedName);
 		FileCopyUtils.copy(fileData, target);
-		String uploadFileName = makeIcon(savedPath, savedName);
+		String uploadFileName = makeIcon(savedPath, savedName); //makeIcon() 이미지파일이아니면 아이콘을생성
 		return uploadFileName;
 	}
 	/* 기능 : 업로드할 파일 경로를 알려주면 해당 파일 경로에 오늘 날짜에 해당 하는 년/월/일 폴더가 있는지 확인하여
