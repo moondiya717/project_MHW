@@ -21,37 +21,35 @@
 			 <label>내용</label>
 			 <textarea type="text" class="form-control" rows="10" name="contents">${board.contents}</textarea>
 		  </div>
-	  	  <c:if test="${file !=null}">
+	  	  <c:if test="${fileList !=null}">
 		   	  <div class="form-group">
 				 <label>첨부파일</label><!-- 다운을할건아니라서 a태그가아니라 div로 -->
 				 <div class="uploadBox">
-				 	<div class="form-control attachedfile">${file.ori_name}<button type="button" class="btn-reset">x</button></div>
+				 <c:forEach var="file" items="${fileList}">
+				 	<div class="form-control attachedfile attach">${file.ori_name}<button type="button" class="btn-reset">x</button>
+				 	<input type="hidden" name="fileNum" value="${file.num}">
+				 	</div>
+				 </c:forEach>
+				 <c:if test="${fileList == null || fileList.size() < 3 }">
+				 	<input type="file" class="form-control addFile" name="file"/>
+				 </c:if>
 				 </div>
 			  </div>
 		  </c:if>
-	   	  <c:if test="${file ==null}">
-		  	<div class="form-group">
-		        <label>첨부파일</label>
-		        <div class="uploadBox">
-		        	<input type="file" class="form-control addFile" name="file"/>
-		        </div>
-	    	</div>
-		  </c:if>
+	   	
 		  <input type="hidden" value="${board.num}" name="num">
 		  <input type="hidden" value="${board.views}" name="views">
-	  	  <a href=<%=request.getContextPath()%>/board/detail?num=${board.num}><button type="button" class="btn btn-outline-danger">취소</button></a>  
+	  	  <a href="<%=request.getContextPath()%>/board/detail?num=${board.num}"><button type="button" class="btn btn-outline-danger">취소</button></a>  
 		  <button type="submit" class="btn btn-outline-success">등록</button>
 		</form>
 	</body>
 	<script type="text/javascript">
 		$(function(){
-			//	$('.btn-reset').click(function(){
-			//	var str = '<input type="file" class="form-control addfile" name="file"/>';
-			//	$('.attachedfile').before(str).remove();
-				
 			$(document).on('click','.btn-reset',function(){
 				var str = '<input type="file" class="form-control addFile" name="file"/>';
-				$('.attachedfile').before(str).remove();
+				if($('.attachedfile').length == 3) //이미부모걸 삭제했다고 생각하고 
+					$('.uploadBox').append(str)
+				$(this).parent().remove();
 			})
 			
 			$(document).on('click','.addFile',function(){
