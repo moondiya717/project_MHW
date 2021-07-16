@@ -3,6 +3,7 @@ package kr.green.test.service;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -119,5 +120,11 @@ public class BoardServiceImp implements BoardService{
 			return null;			
 		}
 		return boardDao.getFileList(num);
+	}
+
+	@Override
+	public ResponseEntity<byte[]> downloadFile(String fileName) {
+		
+		return null;
 	}
 }
