@@ -31,7 +31,7 @@ public class BoardServiceImp implements BoardService {
 		if(delete ==null) {
 			return 0;
 		}
-		delete.setValid("I");
+		delete.setValid("D");
 		return boardDao.updateBoard(delete);
 		
 	}
