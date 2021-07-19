@@ -12,3 +12,6 @@ Public Key Retrieval is not allowed ->
 1. 404에러를 예외처리한 페이지로 보여주기(책159p)
 2. summernote이용
 -구글에 summernote검색 (https://summernote.org/ )
+3. 플러그인을 이용한 유효성검사
+-https://github.com/st8324/Docs/blob/master/%ED%94%8C%EB%9F%AC%EA%B7%B8%EC%9D%B8%EC%9D%84%20%EC%9D%B4%EC%9A%A9%ED%95%9C%20Validation%20%EA%B2%80%EC%82%AC.md
+-webapp>resources>js에다가 js파일두개넣기
