@@ -31,9 +31,9 @@
 					</form> 			    
 					<!-- POST를 이용할거라서 a태그 안하고 form태그 안에있어야 함 => 근데지금 뺀 상태 -->
 					<a href="<%=request.getContextPath()%>/board/delete?num=${detail.num}"><button class="btn btn-outline-danger">삭제</button></a>					
-				    <a href="<%=request.getContextPath()%>/board/edit?num=${detail.num}" class="mr-2"><button class="btn btn-outline-primary">수정</button></a>
+				    <a href="<%=request.getContextPath()%>/board/edit?num=${detail.num}" class="ml-2"><button class="btn btn-outline-primary">수정</button></a>
 				</c:if>			
-				<a href="<%=request.getContextPath()%>/board/list" class="mr-2"><button class="btn btn-outline-dark">목록</button></a>
+				<a href="<%=request.getContextPath()%>/board/list" class="ml-2"><button class="btn btn-outline-dark">목록</button></a>
 				
 			</div>
 		</div>
