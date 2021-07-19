@@ -1,16 +1,10 @@
 package kr.green.test.controller;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -86,21 +80,29 @@ public class BoardController {
 	
 	@RequestMapping(value ="/board/edit", method = RequestMethod.GET)
 	public ModelAndView boardEditGet(ModelAndView mv, Integer num) {
-		log.info("/board/edit :" +num);
 		BoardVO edit = boardService.getBoard(num);
 		mv.addObject("edit",edit);
+		//첨부파일 가져옴
+		
+		//화면에 첨부파일 전송
+		
+		ArrayList<FileVO> fileList = boardService.getFileList(num);
+		mv.addObject("fileList",fileList);
+		
 		mv.setViewName("/template/board/edit");
 		return mv;
 	}
 	@RequestMapping(value ="/board/edit", method = RequestMethod.POST) 
-	public ModelAndView boardEditPost(ModelAndView mv, BoardVO board, HttpServletRequest r) {
-		MemberVO user = memberService.getMember(r);
-		int res = boardService.updateBoard(board,user);
+	public ModelAndView boardEditPost(ModelAndView mv, BoardVO board, HttpServletRequest r,
+			MultipartFile [] files, Integer[] filenums) { //edit.jsp에 name=files랑 일치시켜야함
+		MemberVO user = memberService.getMember(r); //filenums는 기존에있는 파일들 삭제할때 쓴대
+		int res = boardService.updateBoard(board,user, files, filenums);
 
 		String msg="";
 		mv.setViewName("redirect:/board/detail");
+		
 		if(res==1) {
-			msg = board.getNum()+"번 게시글이 수정되었습니다."; 
+			msg = board.getNum()+"번 게시글이 수정되었습니다.";
 		}else if(res == 0) {
 			msg = "없는 게시글입니다.";
 		}else if(res == -1) {
