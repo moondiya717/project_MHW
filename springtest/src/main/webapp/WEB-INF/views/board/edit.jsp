@@ -37,7 +37,7 @@
 			<a href="<%=request.getContextPath()%>/board/detail?num=${edit.num}"><button type="button" class="btn btn-outline-danger">취소</button></a>		  	
 			<button class="btn btn-outline-primary">등록</button>
 	</form>
-	<script>
+	<script type="text/javascript">
 		$(function(){
 			$('.del-btn').click(function(){
 				$(this).parent().remove();
