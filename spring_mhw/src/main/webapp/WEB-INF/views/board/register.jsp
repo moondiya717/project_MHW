@@ -4,6 +4,8 @@
 <!doctype html>    
 <html>
 <head>
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 	<title>게시글 등록</title>
 </head>
 <body><!-- enctype가 있어야돼 그래야 파일이가고, 없으면 파일이름만감 -->
@@ -19,7 +21,8 @@
 	  </div> -->
   	  <div class="form-group">
 		 <label>내용</label>
-		 <textarea type="text" class="form-control" rows="10" name="contents"></textarea>
+		 <!-- <textarea type="text" class="form-control" rows="10" name="contents"></textarea> -->
+		 <textarea id="summernote" name="contents"></textarea> <!-- textarea태그를 이용하면 추가작업없이 사용가능, div태그는 추가 작업이 필요함 -->
 	  </div>
 	   <div class="form-group files">
 		        <label>파일</label>
@@ -52,6 +55,12 @@
 				$(this).attr('data',val);
 			}
 		})
+
+	      $('#summernote').summernote({
+	        placeholder: '내용을 작성하세요.',
+	        tabsize: 2,
+	        height: 400
+	      });
 	})
 	
 </script>

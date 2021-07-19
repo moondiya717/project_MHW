@@ -29,7 +29,7 @@
 	  </div>
   	  <div class="form-group">
 		 <label>내용</label>
-		 <textarea type="text" class="form-control" readonly>${board.contents}</textarea> <!-- textarea쌍태그라서 가운데에 값넣기 -->
+		 <div type="text" class="form-control" style="height:auto;">${board.contents}</div> <!-- textarea쌍태그라서 가운데에 값넣기 -->
 	  </div>
 	  <!-- 첨부파일가져오기 -->
 	  <c:if test="${fileList.size() != 0}">

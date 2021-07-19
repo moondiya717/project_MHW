@@ -4,6 +4,8 @@
 <!doctype html>    
 <html>
 	<head>
+	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 		<title>게시글 수정</title>
 	</head>
 	<body>
@@ -19,7 +21,7 @@
 		  </div>
 	  	  <div class="form-group">
 			 <label>내용</label>
-			 <textarea type="text" class="form-control" rows="10" name="contents">${board.contents}</textarea>
+			 <textarea id="summernote" name="contents">${board.contents}</textarea>
 		  </div>
 	  	  <c:if test="${fileList !=null}">
 		   	  <div class="form-group">
@@ -56,6 +58,12 @@
 				var str = '<input type="file" class="form-control" name="file"/>';
 					$('.uploadBox').children().last().after(str);
 			})
+		     
+			$('#summernote').summernote({
+			        placeholder: '내용을 작성하세요.',
+			        tabsize: 2,
+			        height: 400
+			});
 		})
 	</script>
 </html>
