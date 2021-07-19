@@ -1,0 +1,7 @@
+에러메세지 유형과 이유
+Public Key Retrieval is not allowed -> 
+1. Mysql을 재접속후 새로고침
+2. Mysql의 계정 아이디-비번이 틀린경우
+
+[springtest] 
+1. 게시글 상세보기에서 클릭했을 때 첨부파일다운로드하기 
