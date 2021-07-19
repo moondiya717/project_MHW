@@ -5,3 +5,5 @@ Public Key Retrieval is not allowed ->
 
 [springtest] 
 1. 게시글 상세보기에서 클릭했을 때 첨부파일다운로드하기 
+2. 게시글 삭제시 첨부파일을 삭제하는 코드 작성하기
+3. 첨부파일삭제하는코드 + 글쓰기코드를 메소드로 작성

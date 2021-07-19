@@ -28,8 +28,9 @@
    				<c:if test="${detail!=null && user.id == detail.writer}">
 	   				<form action="<%=request.getContextPath()%>/board/delete" method="post" class="mr-2">
 						<input type="hidden" value="${detail.num}" name="num"><!-- a태그가없어서 정확한 게시물번호를 모르니까 input에다가 넣어주는거임 why? URI로 삭제못하게하려고-->
-						<button class="btn btn-outline-danger">삭제</button><!-- POST를 이용할거라서 a태그 안하고 form태그 안에있어야 함 -->
 					</form> 			    
+					<!-- POST를 이용할거라서 a태그 안하고 form태그 안에있어야 함 => 근데지금 뺀 상태 -->
+					<a href="<%=request.getContextPath()%>/board/delete?num=${detail.num}"><button class="btn btn-outline-danger">삭제</button></a>					
 				    <a href="<%=request.getContextPath()%>/board/edit?num=${detail.num}" class="mr-2"><button class="btn btn-outline-primary">수정</button></a>
 				</c:if>			
 				<a href="<%=request.getContextPath()%>/board/list" class="mr-2"><button class="btn btn-outline-dark">목록</button></a>

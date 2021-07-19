@@ -123,7 +123,10 @@ public class BoardController {
 			mv.addObject("msg", "게시글이 없거나 이미 삭제되었습니다.");
 		}else if(res==-1) {
 			mv.addObject("msg", "잘못된 접근입니다.");	
-		}			
+		}
+		
+		//DB에서 valid를 D로 바꿔주기(실제 폴더에 파일은 안지워지고 보기에서는 안보임)
+		//파일에서 실제파일을 지우기
 		mv.setViewName("redirect:/board/list");
 		return mv;
 	}
