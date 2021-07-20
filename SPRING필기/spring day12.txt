@@ -17,12 +17,38 @@ Jason(Javascript Object Notation)은 속성-값 쌍 또는 "키-값 쌍"으로 �
 1. Ajax를 이용한 회원가입
 2. Ajax를 이용한 로그인
 3. 추천기능
-- 추천을 누르면 추천이 됨, 이미 추천되어있으면 추천을 취소
-- 비추천을 누르면 비추천이 됨, 이미 비추천이 되어있으면 비추를 취소
-- 같은 게시글에 추천과 비추천을 동시에 누를 순 없게 함
+조건
+	- 추천을 누르면 추천이 됨, 이미 추천되어있으면 추천을 취소
+	- 비추천을 누르면 비추천이 됨, 이미 비추천이 되어있으면 비추를 취소
+	- 같은 게시글에 추천과 비추천을 동시에 누를 순 없게 함
 
 recommend(추천)
 - num : 기본키
 - board : 게시글 번호
 - id : 사용자(게시글하나에 한번만 될 수 있도록, 추천여부를 확인하기 위한 정보)
 - state : 추천/비추천/아무것도아닌지
+---------------------
+Executing:
+CREATE TABLE `spring_mhw`.`reply` (
+  `rp_num` INT NOT NULL AUTO_INCREMENT,
+  `rp_bd_num` INT NOT NULL,
+  `rp_me_id` VARCHAR(15) NOT NULL,
+  `rp_content` LONGTEXT NOT NULL,
+  `rp_valid` VARCHAR(1) NOT NULL DEFAULT 'I',
+  PRIMARY KEY (`rp_num`))ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+ALTER TABLE `spring_mhw`.`reply` 
+ADD INDEX `rp_bd_num_idx` (`rp_bd_num` ASC) VISIBLE,
+ADD INDEX `rp_me_id_idx` (`rp_me_id` ASC) VISIBLE;
+;
+ALTER TABLE `spring_mhw`.`reply` 
+ADD CONSTRAINT `rp_me_id`
+  FOREIGN KEY (`rp_me_id`)
+  REFERENCES `spring_mhw`.`member` (`id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION,
+ADD CONSTRAINT `rp_bd_num`
+  FOREIGN KEY (`rp_bd_num`)
+  REFERENCES `spring_mhw`.`board` (`num`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
