@@ -16,7 +16,9 @@ public class BoardVO {
 	private String valid; //게시글을 실제로 삭제는 안하고 DB에 남겨두려고 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date registered;
-	private int views;	
+	private int views;
+	private int up;
+	private int down;
 	public String getRegisteredDate() {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		return format.format(registered);

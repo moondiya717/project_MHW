@@ -28,7 +28,8 @@
 		        <th>제목</th>
 		        <th>작성자</th>
 	   	        <th>조회수</th>
-	   	        <th>등록일</th>	        
+	   	        <th>등록일</th>	     
+  	   	        <th>추천/비추천</th>	   	           
 		      </tr>
 		    </thead>
 		    <tbody>
@@ -40,6 +41,7 @@
 			        <td>${board.writer}</td>
 		   	        <td>${board.views}</td>
 		   	        <td>${board.registeredDate}</td>
+   		   	        <td>${board.up}/${board.down}</td>		   	        
 			      </tr>
 		     	</c:forEach>
 		    </tbody>
