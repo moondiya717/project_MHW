@@ -24,6 +24,7 @@ import kr.green.spring.service.MemberService;
 import kr.green.spring.vo.BoardVO;
 import kr.green.spring.vo.FileVO;
 import kr.green.spring.vo.MemberVO;
+import kr.green.spring.vo.RecommendVO;
 import lombok.extern.log4j.Log4j;
 
 @Log4j
@@ -61,7 +62,7 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="/board/detail")
-	public ModelAndView boardDetail(ModelAndView mv, Integer num) { //Integer는 ?넘버가 없어도 실행, int는 ?넘버가 없으면 null값이라서 실행이안되고 에러가 남.
+	public ModelAndView boardDetail(ModelAndView mv, Integer num, HttpServletRequest r) { //Integer는 ?넘버가 없어도 실행, int는 ?넘버가 없으면 null값이라서 실행이안되고 에러가 남.
 		//게시글을 가져오기 전 조회수를 증가
 		//서비스에게 게시글 번호를 주면서 게시글 조회수를 +1증가시키라고 시킴
 		boardService.updateViews(num);
@@ -74,6 +75,10 @@ public class BoardController {
 		ArrayList<FileVO> fileList = boardService.getFileVOList(num);
 		mv.addObject("fileList",fileList);
 		
+		//추천 청보 가져오기
+		MemberVO user = memberService.getMember(r);
+		RecommendVO recommend = boardService.getRecommend(user, num);
+		mv.addObject("rvo", recommend);
 		mv.setViewName("/template/board/detail");
 		return mv;
 	}

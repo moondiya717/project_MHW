@@ -23,8 +23,8 @@
 			 <input type="text" class="form-control" value="${board.views}" readonly>
 		  </div>
 	   	  <div class="form-group">
-			 <button type="button" class="re-btn up btn btn-outline-success">추천</button>
-			 <button type="button" class="re-btn down btn btn-outline-danger">비추</button>
+			 <button type="button" class="re-btn up btn btn<c:if test = "${rvo.state != 1}">-outline</c:if>-success">추천</button>
+			 <button type="button" class="re-btn down btn btn<c:if test = "${rvo.state != -1}">-outline</c:if>-danger">비추</button>
 		  </div>
 		  <div class="form-group">
 			 <label>작성일</label>
