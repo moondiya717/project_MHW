@@ -21,6 +21,7 @@ import kr.green.spring.utils.UploadFileUtils;
 import kr.green.spring.vo.BoardVO;
 import kr.green.spring.vo.FileVO;
 import kr.green.spring.vo.MemberVO;
+import kr.green.spring.vo.RecommendVO;
 
 @Service
 public class BoardServiceImp implements BoardService{
@@ -211,6 +212,38 @@ public class BoardServiceImp implements BoardService{
 			ftmp.delete();
 		}
 		boardDao.deleteFileVO(file.getNum()); //첨부파일은 실제로 DB에서 삭제되도 상관없음
+	}
+
+	@Override
+	public int updateRecommend(MemberVO user, int board, int state) {
+		if(user == null) {
+			return -1;
+		}
+		//게시글 번호와 유저 id를 이용하여 추천/비추천한 적이 있는지 확인
+		RecommendVO rvo= boardDao.getRecommend(user.getId(), board);
+		//없으면 추가하고 1을 리턴
+		if(rvo == null) {
+			boardDao.insertRecommend(user.getId(), board, state);
+			return 1;
+		}
+		//있으면
+		else {
+			//기존 state 정보(rvo)와 누른 버튼 정보(state)를 비교하여 같으면 state를 0으로 수정하고 0을 리턴
+			//(=추천 누르고 추천, 비추누르고 비추)
+			if(state == rvo.getState()) {
+				rvo.setState(0);
+				boardDao.updateRecommend(rvo);
+				return 0;
+			}
+			else {
+				//다르면 누른 버튼 정보로 수정하고 1을 리턴
+				//(=추천 누르고 비추, 비추 누르고 추천)		
+				rvo.setState(state);
+				boardDao.updateRecommend(rvo);
+				return 1;
+			}
+		}
+		
 	}
 	
 }

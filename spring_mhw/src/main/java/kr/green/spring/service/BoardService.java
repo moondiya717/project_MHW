@@ -29,6 +29,8 @@ public interface BoardService {
 
 	ArrayList<FileVO> getFileVOList(Integer num);
 
-	ResponseEntity<byte[]> downloadFile(String fileName) throws IOException; 
+	ResponseEntity<byte[]> downloadFile(String fileName) throws IOException;
+
+	int updateRecommend(MemberVO user, int board, int state); 
 
 }
