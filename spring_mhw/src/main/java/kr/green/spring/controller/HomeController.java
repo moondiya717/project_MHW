@@ -4,8 +4,11 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.green.spring.service.MemberService;
@@ -72,5 +75,13 @@ public class HomeController {
 		request.getSession().removeAttribute("user");
 		mv.setViewName("redirect:/");
 		return mv;
+		}
+	
+	@ResponseBody
+	@GetMapping(value = "/member/idcheck/{id}")
+	public String memberIdcheckPost(@PathVariable("id") String id) { //PathVariable 경로변수, 경로에있는 것을 가져오고=> String 으로 변환
+		MemberVO user = memberService.getMember(id);
+		String res= user!=null? "IMPOSSIBLE":"POSSIBLE";
+		return res;
 		}
 }

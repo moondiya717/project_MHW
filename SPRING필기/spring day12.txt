@@ -1,0 +1,13 @@
+Ajax란 Asynchronous JavaScript and XML의 약자
+-Ajax는 빠르게 동작하는 동적인 웹 페이지를 만들기 위한 개발 기법의 하나
+-Ajax는 웹 페이지 전체를 다시 로딩하지 않고도, 웹 페이지의 일부분만을 갱신할 수 있음
+-즉, Ajax를 이용하면 백그라운드 영역에서 서버와 통신하여, 그 결과를 웹페이지의 일부분에만 표시 가능
+
+Jason(Javascript Object Notation)은 속성-값 쌍 또는 "키-값 쌍"으로 이루어진 데이터 오브젝트를
+-전달하기 위해 인간이 읽을 수 있는 텍스트를 사용하는 개방형 표준 포맷.
+
+
+@RestController = @Controller + @ResponseBody
+- 모든 메소드들에 사용되어야하면  Controller클래스에 controller가 아니라 RestController를 쓰면 됨
+@ResponseBody : 서버에서 전송하는 데이터가 화면이 아닌 데이터 자체가 된다
+- 메소드 몇개 정도에 쓸때는 메소드 위에 어노테이션사용하면 됨

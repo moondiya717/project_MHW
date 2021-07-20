@@ -19,6 +19,7 @@
 	  <label>아이디:</label>
 	  <input type="text" class="form-control" name="id">
 	</div>
+	  <button type="button" class="col-12 btn btn-outline-success" id="dupCheck">아이디중복확인</button>
 	<div class="form-group">
 	  <label>비밀번호:</label>
 	  <input type="password" class="form-control" name="pw" id="pw">
@@ -46,6 +47,24 @@
 </form>
 <script type="text/javascript">
 	$(function(){
+		$('#dupCheck').click(function(){
+			var id = $('[name=id]').val();
+			$.ajax({
+				type: 'get', //post방식으로 서버에 데이터를 전송 //get방식엔 ?정보들이 들어가는데, ajax는 원하는 정보를 url에 넣어줄 수 있음
+				url : '<%=request.getContextPath()%>/member/idcheck/' + id, 
+				success : function(result, status, xhr){ //result에는 서버에서 보내준 데이터가 들어가있음
+					if(result == 'POSSIBLE'){
+						alert('사용 가능한 아이디입니다.')
+					}else{
+						alert('사용 불가능한 아이디입니다.')
+					}
+				},
+				error : function(xhr, status, e){
+					
+				}				
+			})
+		})
+		
 	    $("#signup").validate({
 	        rules: {
 	            id: { //name값이 id
