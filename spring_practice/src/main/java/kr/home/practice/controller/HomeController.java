@@ -20,7 +20,7 @@ public class HomeController {
     public ModelAndView home(ModelAndView mv) {
         mv.setViewName("/home");
         mv.addObject("home", "home");
-        System.out.println(memberService.getEmail("art"));
         return mv;
     }
+    
 }
