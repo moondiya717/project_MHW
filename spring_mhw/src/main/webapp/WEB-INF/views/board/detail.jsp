@@ -143,10 +143,11 @@ $(function(){
 			type:'post',
 			url: '<%=request.getContextPath()%>/reply/ins',
 			data: JSON.stringify(data),
-			dataType:"json",
 			contentType:"application/json; charset=utf-8",
 			success : function(result, status, xhr){
-
+				if(result=='ok'){
+					alert('댓글 등록이 완료되었습니다.')
+				}
 			},
 			error : function(xhr, status, e){	
 				
@@ -154,6 +155,7 @@ $(function(){
 		})
 	})
 })
+
 	</script>
 </body>
 </html>
