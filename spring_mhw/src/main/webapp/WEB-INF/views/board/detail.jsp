@@ -162,6 +162,23 @@ $(function(){
 		console.log(page);
 		readReply('${board.num}',page);
 	})
+	$(document).on('click','.del-btn', function(){
+		var rp_num = $(this).attr('data');
+		$.ajax({
+			type:'post',
+			url: '<%=request.getContextPath()%>/reply/del',
+			data: JSON.stringify({'rp_num' : rp_num}),
+			contentType:"application/json; charset=utf-8",
+			success : function(result, status, xhr){
+				console.log(result);
+				readReply('${board.num}',1);
+				
+			},
+			error : function(xhr, status, e){	
+
+			}				
+		})
+	})
 })
 
 function readReply(rp_bd_num, page){
@@ -176,8 +193,11 @@ function readReply(rp_bd_num, page){
 				 str += 
 				 '<div class="form-group">'+
 	          		'<label>'+list[i].rp_me_id+'</label>'+
-        	  		'<div class="form-control">'+list[i].rp_content+'</div>'+
+        	  		'<div class="form-control">'+list[i].rp_content+'</div>'+        	  		
        			 '</div>';
+       			 if('${user.id}' == list[i].rp_me_id){
+       			 	str+= '<button class="btn btn-outline-danger del-btn" data="'+list[i].rp_num+'">삭제</button>';
+       			 }
 			}
 			$('.reply .reply-list').html(str);
 			var pm = result['pm'];
