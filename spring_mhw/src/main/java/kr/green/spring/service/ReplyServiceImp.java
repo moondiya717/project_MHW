@@ -27,5 +27,13 @@ public class ReplyServiceImp implements ReplyService{
 		}
 		return replyDao.getReplyList(num, cri);
 	}
+
+	@Override
+	public int getTotalCount(Integer num) {
+		if(num == null) {
+			return 0;
+		}
+		return replyDao.getTotalCount(num);
+	}
 	
 }

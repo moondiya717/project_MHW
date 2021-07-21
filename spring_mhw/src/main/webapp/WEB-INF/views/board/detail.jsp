@@ -53,11 +53,7 @@
 		      
 	     	    </div>
      	        <ul class="pagination">
-				    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-				    <li class="page-item"><a class="page-link" href="#">1</a></li>
-				    <li class="page-item"><a class="page-link" href="#">2</a></li>
-				    <li class="page-item"><a class="page-link" href="#">3</a></li>
-				    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+
  				 </ul>
 		    	      <div class="reply-box form-group"></div>
 			          <textarea class="reply-input form-control mb-2"></textarea>
@@ -178,7 +174,21 @@ function readReply(rp_bd_num, page){
        			 '</div>';
 			}
 			$('.reply .reply-list').html(str);
-			console.log(list);
+			var pm = result['pm'];
+			var pmStr= '';
+			if(pm['prev']){
+		    	pmStr += '<li class="page-item" data="'+ (pm['startPage']-1) + '"><a class="page-link" href="#">이전</a></li>';
+			}
+		    
+			for(i=pm['startPage']; i<=pm['endPage']; i++){
+				pmStr += '<li class="page-item" data="'+i+'"><a class="page-link" href="#">'+i+'</a></li>';
+			}		    
+		    
+		    if(pm['next']){
+		    	pmStr += '<li class="page-item" data="'+ (pm['endPage']+1) + '"><a class="page-link" href="#">다음</a></li>';
+			}
+		    $('.pagination').html(pmStr);
+		    console.log(pm);
 		},
 		error : function(xhr, status, e){	
 			

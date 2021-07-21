@@ -11,4 +11,6 @@ public interface ReplyService{
 
 	ArrayList<ReplyVO> getReplyList(Integer num, Criteria cri);
 
+	int getTotalCount(Integer num);
+
 }

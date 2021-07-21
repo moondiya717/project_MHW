@@ -13,4 +13,6 @@ public interface ReplyDAO {
 
 	ArrayList<ReplyVO> getReplyList(@Param("num")Integer num, @Param("cri")Criteria cri);
 
+	int getTotalCount(@Param("num")Integer num);
+
 }

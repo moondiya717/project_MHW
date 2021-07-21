@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import kr.green.spring.pagination.Criteria;
+import kr.green.spring.pagination.PageMaker;
 import kr.green.spring.service.ReplyService;
 import kr.green.spring.vo.ReplyVO;
 import lombok.AllArgsConstructor;
@@ -35,6 +36,14 @@ public class ReplyController {
 		cri.setPage(page);
 		cri.setPerPageNum(5);
 		ArrayList<ReplyVO> list = replyService.getReplyList(num, cri);
+		PageMaker pm = new PageMaker();
+		pm.setCriteria(cri);
+		pm.setDisplayPageNum(2);
+		int totalCount = replyService.getTotalCount(num);
+		pm.setTotalCount(totalCount);
+		pm.calcData();
+		map.put("pm", pm);
+		System.out.println(pm);
 		map.put("list", list);
 		return map;
 	}
