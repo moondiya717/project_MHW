@@ -49,11 +49,8 @@
 		  </c:if>
 		    <div class="reply form-group">
 			    <label>댓글</label>
-			    <div class="contents">
-		          <div class="form-group">
-			          <label>작성자</label>
-		          	  <div class="form-control">내용</div>
-		          </div>
+			    <div class="reply-list">
+		      
 	     	    </div>
 		    	      <div class="reply-box form-group"></div>
 			          <textarea class="reply-input form-control mb-2"></textarea>
@@ -147,6 +144,7 @@ $(function(){
 			success : function(result, status, xhr){
 				if(result=='ok'){
 					alert('댓글 등록이 완료되었습니다.')
+					readReply();
 				}
 			},
 			error : function(xhr, status, e){	
@@ -154,8 +152,32 @@ $(function(){
 			}				
 		})
 	})
+	readReply();
 })
 
+function readReply(){
+	$.ajax({
+		type:'get',
+		url: '<%=request.getContextPath()%>/reply/list/'+'${board.num}',
+		dataType:"json",
+		success : function(result, status, xhr){
+			var list = result['list'];
+			var str = '';
+			for(i=0; i<list.length; i++){
+				 str += 
+				 '<div class="form-group">'+
+	          		'<label>'+list[i].rp_me_id+'</label>'+
+        	  		'<div class="form-control">'+list[i].rp_content+'</div>'+
+       			 '</div>';
+			}
+			$('.reply .reply-list').html(str);
+			console.log(list);
+		},
+		error : function(xhr, status, e){	
+			
+		}				
+	})
+}
 	</script>
 </body>
 </html>
