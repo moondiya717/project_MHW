@@ -37,6 +37,7 @@ public class ReplyController {
 		cri.setPerPageNum(5);
 		ArrayList<ReplyVO> list = replyService.getReplyList(num, cri);
 		PageMaker pm = new PageMaker();
+
 		pm.setCriteria(cri);
 		pm.setDisplayPageNum(2);
 		int totalCount = replyService.getTotalCount(num);
@@ -44,6 +45,7 @@ public class ReplyController {
 		pm.calcData();
 		map.put("pm", pm);
 		System.out.println(pm);
+
 		map.put("list", list);
 		return map;
 	}
