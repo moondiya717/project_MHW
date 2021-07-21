@@ -156,6 +156,12 @@ $(function(){
 		})
 	})
 	readReply('${board.num}',1);
+	$(document).on('click','.pagination .page-item', function(e){
+		e.preventDefault();
+		var page = $(this).attr('data');
+		console.log(page);
+		readReply('${board.num}',page);
+	})
 })
 
 function readReply(rp_bd_num, page){
@@ -181,7 +187,11 @@ function readReply(rp_bd_num, page){
 			}
 		    
 			for(i=pm['startPage']; i<=pm['endPage']; i++){
-				pmStr += '<li class="page-item" data="'+i+'"><a class="page-link" href="#">'+i+'</a></li>';
+				var active = ' ';
+				if(i == pm['criteria']['page']){
+					active = 'active';
+				}
+				pmStr += '<li class="page-item '+active +'" data="'+i+'"><a class="page-link" href="#">'+i+'</a></li>';
 			}		    
 		    
 		    if(pm['next']){
