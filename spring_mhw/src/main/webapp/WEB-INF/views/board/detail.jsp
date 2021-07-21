@@ -52,6 +52,13 @@
 			    <div class="reply-list">
 		      
 	     	    </div>
+     	        <ul class="pagination">
+				    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+				    <li class="page-item"><a class="page-link" href="#">1</a></li>
+				    <li class="page-item"><a class="page-link" href="#">2</a></li>
+				    <li class="page-item"><a class="page-link" href="#">3</a></li>
+				    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+ 				 </ul>
 		    	      <div class="reply-box form-group"></div>
 			          <textarea class="reply-input form-control mb-2"></textarea>
 			          <button type="button" class="reply-btn btn btn-outline-success">등록</button>
@@ -144,7 +151,7 @@ $(function(){
 			success : function(result, status, xhr){
 				if(result=='ok'){
 					alert('댓글 등록이 완료되었습니다.')
-					readReply();
+					readReply('${board.num}',1);
 				}
 			},
 			error : function(xhr, status, e){	
@@ -152,13 +159,13 @@ $(function(){
 			}				
 		})
 	})
-	readReply();
+	readReply('${board.num}',1);
 })
 
-function readReply(){
+function readReply(rp_bd_num, page){
 	$.ajax({
 		type:'get',
-		url: '<%=request.getContextPath()%>/reply/list/'+'${board.num}',
+		url: '<%=request.getContextPath()%>/reply/list/' + rp_bd_num + '/' + page,
 		dataType:"json",
 		success : function(result, status, xhr){
 			var list = result['list'];

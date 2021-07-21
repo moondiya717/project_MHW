@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import kr.green.spring.pagination.Criteria;
 import kr.green.spring.service.ReplyService;
 import kr.green.spring.vo.ReplyVO;
 import lombok.AllArgsConstructor;
@@ -25,11 +26,15 @@ public class ReplyController {
 		return "ok";
 	}
 	
-	@GetMapping(value="/reply/list/{num}")	
+	@GetMapping(value="/reply/list/{num}/{page}")	
 	public HashMap<String, Object> replyListGet(
-			@PathVariable("num") Integer num) {
+			@PathVariable("num") Integer num,
+			@PathVariable("page") Integer page) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		ArrayList<ReplyVO> list = replyService.getReplyList(num);
+		Criteria cri = new Criteria();
+		cri.setPage(page);
+		cri.setPerPageNum(5);
+		ArrayList<ReplyVO> list = replyService.getReplyList(num, cri);
 		map.put("list", list);
 		return map;
 	}
