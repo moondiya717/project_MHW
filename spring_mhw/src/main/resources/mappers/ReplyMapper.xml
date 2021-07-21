@@ -9,7 +9,8 @@
 	</insert>
 	<select id="getReplyList" resultType="kr.green.spring.vo.ReplyVO">
 		select * from reply 
-			where rp_valid = 'I' order by rp_num desc 
+			where rp_valid = 'I' and rp_bd_num = #{num} 
+			order by rp_num desc 
 			limit #{cri.pageStart}, #{cri.perPageNum};
 	</select>
 	
