@@ -24,4 +24,16 @@ public class MemberServiceImp implements MemberService {
 		memberDao.signup(user);
 		return true;
 	}
+
+	@Override
+	public MemberVO signin(MemberVO user) {
+		if(user == null || user.getId() == null) {
+			return null;
+		}
+		MemberVO dbUser = memberDao.getMember(user.getId());
+		if(dbUser == null || !dbUser.getPw().equals(user.getPw())) {
+			return null;
+		}		
+		return dbUser;
+	}
 }

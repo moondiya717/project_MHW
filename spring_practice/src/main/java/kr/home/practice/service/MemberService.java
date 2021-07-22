@@ -7,4 +7,6 @@ public interface MemberService {
     public String getEmail(String id);
 
 	public boolean signup(MemberVO user);
+
+	public MemberVO signin(MemberVO user);
 }

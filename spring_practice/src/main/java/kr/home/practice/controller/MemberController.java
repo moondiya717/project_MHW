@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.home.practice.service.MemberService;
@@ -11,17 +12,18 @@ import kr.home.practice.vo.MemberVO;
 
 
 @Controller
+@RequestMapping(value="/member/*")
 public class MemberController {
 		
     @Autowired
     MemberService memberService;
     
-    @GetMapping(value="/member/signup")
+    @GetMapping(value="/signup")
     public ModelAndView signupGet(ModelAndView mv) {
         mv.setViewName("/member/signup");
         return mv;
     }
-    @PostMapping(value="/member/signup")
+    @PostMapping(value="/signup")
     public ModelAndView signupPost(ModelAndView mv, MemberVO user) {
         System.out.println(user);
         boolean isSignup = memberService.signup(user);
@@ -31,6 +33,23 @@ public class MemberController {
         	mv.setViewName("redirect:/member/signup");
         }
         return mv;
+    }
+    
+    @GetMapping(value="/signin")
+    public ModelAndView signinGet(ModelAndView mv) {
+    	mv.setViewName("/member/signin");	
+    	return mv;
+    }
+    @PostMapping(value="/signin")
+    public ModelAndView signinPost(ModelAndView mv, MemberVO user) {  	
+    	//System.out.println(user);
+    	MemberVO dbUser = memberService.signin(user); //signin메소드로 user값 넣었을때 나오는 값을 dbUser에 저장
+    	if(dbUser != null) {
+    		mv.setViewName("redirect:/");	    		
+    	}else {
+    		mv.setViewName("redirect:/member/signin");
+    	}    	
+    	return mv;
     }
     
 }
