@@ -5,11 +5,42 @@
 <html>
 <head>
 	<title>게시글 상세보기</title>
+	<style>
+		.rocommend-btn{
+			font-size:30px;}
+		.fa-thumbs-down{
+			transform : rotateY(180deg);}
+	</style>
 </head>
 <body>
 		<div class="container mt-3">
 		  <h2>${detail.title}</h2>
 		  <p>조회수: ${detail.views}</p>
+		  <!-- when은 if로 바꿔쓸수있음 --><!--otherwhise는 else랑 같은기능 -->
+		  
+		  <div>
+			  <a href="#" class="recommend-btn up">
+  			  <c:choose>
+			  	<c:when test="${recommend !=null && recommend.state ==1}">
+			  		<i class="fas fa-thumbs-up"></i>
+			  	</c:when>
+			  	<c:otherwise>
+			  		<i class="far fa-thumbs-up"></i>
+			  	</c:otherwise>
+		  	</c:choose>
+			  </a>
+			  
+			  <a href="#" class="recommend-btn down">
+  			  <c:choose>
+			  	<c:when test="${recommend !=null && recommend.state ==-1}">
+			  		<i class="fas fa-thumbs-down"></i>
+			  	</c:when>
+			  	<c:otherwise>
+			  		<i class="far fa-thumbs-down"></i>
+			  	</c:otherwise>
+		  	</c:choose>
+			  </a>
+		  </div>
 		  <div class="media border p-3">
     		<img src="<%=request.getContextPath()%>/resources/img/sully.png" class="mr-3 mt-3 rounded-circle" style="width:60px;">
 		    <div class="media-body">
@@ -21,6 +52,7 @@
 			    <c:forEach items="${fileList}" var="file">
 		        	<br><a href="<%=request.getContextPath()%>/board/download?fileName=${file.name}">${file.ori_name}</a>
 		        </c:forEach>
+		        
 	        </div>
 		  </div>
 		  	<br>
@@ -42,7 +74,7 @@
 		$(function(){
 			var msg= '${msg}'
 			printMsg(msg);
-			history.replaceState({},null,null); //기록값 초기화, 매개변수 생략하면 replaceState 아니고 state아래처럼 됨.
+			history.replaceState({},null,null); //기록값 초기화, 매개변수 생략하면 replaceState 아니고 state아래처럼 됨.		
 		})
 		function printMsg(msg){
 			if(msg =='' || history.state){ //history.state : 뒤로가기눌렀을때, 새로고침이아니라 이전기록 불러오는거라 메세지창이 또뜨니까 씀
@@ -50,5 +82,37 @@
 			}
 			alert(msg);
 		}
+		$('.recommend-btn').click(function(e){
+			e.preventDefault();
+			var board = '${detail.num}';
+			var state = $(this).hasClass('up')? 1: -1;
+			$.ajax({
+				type: 'get', 
+				url : '<%=request.getContextPath()%>/board/recommend/'+board+'/'+state,
+				success : function(result, status, xhr){
+					$('.recommend-btn i').removeClass('fas').addClass('far');
+					//console.log(result);
+					if(result == 'UP'){
+						alert('해당 게시글을 추천했습니다.');
+						$('.recommend-btn.up i').addClass('fas');
+					}else if(result == 'DOWN'){
+						alert('해당 게시글을 비추천했습니다.')
+						$('.recommend-btn.down i').addClass('fas');
+					}else if(result == 'GUEST'){
+						alert('추천/비추천을 하려면 로그인을 하세요.')
+					}else if(result == 'CANCEL'){
+						if(state == 1){
+							alert('추천을 취소했습니다.')
+						}else{
+							alert('비추천을 취소했습니다.');
+						}
+					}
+					
+				},
+				error : function(xhr, status, e){
+					console.log('에러발생');
+				}				
+			})
+		})
 	</script> <!-- 쌤은 바디태그 안에 있는 것 같았는데 왜? -->
 </html>

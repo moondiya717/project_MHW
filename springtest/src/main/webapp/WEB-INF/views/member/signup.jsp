@@ -7,7 +7,7 @@
 	<title>회원가입</title>
 </head>
 <body>
-<form class="container" method="post" action="<%=request.getContextPath() %>/signup">
+<form class="container" method="post" action="<%=request.getContextPath() %>/member/signup">
 	<h1>회원가입</h1>
 	<div class="form-group">
 	  <label>아이디:</label>

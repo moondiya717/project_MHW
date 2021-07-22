@@ -7,7 +7,7 @@
 	<title>로그인</title>
 </head>
 <body>
-	<form class="container" method="post" action="<%=request.getContextPath()%>/signin">
+	<form class="container" method="post" action="<%=request.getContextPath()%>/member/signin">
 		<h1>로그인</h1>
 		<div class="form-group">
 		  <label>아이디:</label>
