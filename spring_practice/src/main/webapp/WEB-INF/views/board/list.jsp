@@ -44,10 +44,10 @@
       		<c:forEach items="${list}" var ="list">
 	    	  <tr>
 		        <td>${list.num}</td>
-		        <td><a href="#">${list.title}</a></td>
+		        <td><a href="<%=request.getContextPath()%>/board/detail?num=${list.num}">${list.title}</a></td>
 		        <td>${list.writer}</td>
 		        <td>${list.views}</td>
-		        <td>${list.registered}</td>
+		        <td>${list.getDate()}</td>
 	      	  </tr>
         	</c:forEach>
 	    </tbody>
