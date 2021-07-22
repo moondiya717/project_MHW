@@ -52,11 +52,10 @@
 			    <c:forEach items="${fileList}" var="file">
 		        	<br><a href="<%=request.getContextPath()%>/board/download?fileName=${file.name}">${file.ori_name}</a>
 		        </c:forEach>
-		        
 	        </div>
 		  </div>
-		  	<br>
 		  	<div class="input-group">
+				<a href="<%=request.getContextPath()%>/board/list"><button class="btn btn-outline-dark">목록</button></a>
    				<c:if test="${detail!=null && user.id == detail.writer}">
 	   				<form action="<%=request.getContextPath()%>/board/delete" method="post" class="mr-2">
 						<input type="hidden" value="${detail.num}" name="num"><!-- a태그가없어서 정확한 게시물번호를 모르니까 input에다가 넣어주는거임 why? URI로 삭제못하게하려고-->
@@ -65,9 +64,9 @@
 					<a href="<%=request.getContextPath()%>/board/delete?num=${detail.num}"><button class="btn btn-outline-danger">삭제</button></a>					
 				    <a href="<%=request.getContextPath()%>/board/edit?num=${detail.num}" class="ml-2"><button class="btn btn-outline-primary">수정</button></a>
 				</c:if>			
-				<a href="<%=request.getContextPath()%>/board/list" class="ml-2"><button class="btn btn-outline-dark">목록</button></a>
-				
 			</div>
+			 </div>
+		  	
 		</div>
 </body>
 	<script type = "text/javascript">
