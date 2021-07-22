@@ -17,4 +17,6 @@ public interface MemberService {
 	public MemberVO updateMember(MemberVO user);
 
 	public MemberVO updateMember(MemberVO user, MemberVO sUser);
+
+	public boolean idCheck(String id);
 }

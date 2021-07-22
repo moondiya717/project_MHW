@@ -16,10 +16,10 @@
 	    </li>  
 	    <c:if test="${user==null}">
 		    <li class="nav-item">
-		      <a class="nav-link" href="<%=request.getContextPath()%>/signin">로그인</a>
+		      <a class="nav-link" href="<%=request.getContextPath()%>/member/signin">로그인</a>
 		    </li>
 	   	    <li class="nav-item">
-		      <a class="nav-link" href="<%=request.getContextPath()%>/signup">회원가입</a>
+		      <a class="nav-link" href="<%=request.getContextPath()%>/member/signup">회원가입</a>
 		    </li>
 	    </c:if>
    	 	<c:if test="${user!=null}">

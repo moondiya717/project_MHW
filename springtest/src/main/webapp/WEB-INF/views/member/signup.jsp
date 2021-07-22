@@ -13,6 +13,7 @@
 	  <label>아이디:</label>
 	  <input type="text" class="form-control" name="id">
 	</div>
+	<button type="button" class="col-12 btn btn-outline-success" id="dupBtn">아이디 중복 확인</button>
 	<div class="form-group">
 	  <label>비밀번호:</label>
 	  <input type="password" class="form-control" name="pw">
@@ -40,6 +41,28 @@
 </form>
 <script type="text/javascript">
 	$(function(){
+		$('#dupBtn').click(function(){
+			var id = $('[name=id]').val();
+			if(id == ''){
+				alert('아이디를 입력하세요.');
+				return ; //입력안했는데 검사할 필요가없어서
+			}
+			$.ajax({
+					type: 'get', //경로에 아이디정보를 url에 넣어줌
+					url : '<%=request.getContextPath()%>/member/idCheck/' + id,
+					success : function(result, status, xhr){ 
+						if(result == 'Possible'){
+							alert('사용 가능한 아이디입니다.');
+						}else{
+							alert('사용 불가능한 아이디입니다.');
+						}
+					},
+					error : function(xhr, status, e){
+						console.log('에러 발생');
+					}				
+			})
+		})
+
 		$('form').submit(function(){
 			var id = $('[name=id]').val();
 			var pw = $('[name=pw]').val();
