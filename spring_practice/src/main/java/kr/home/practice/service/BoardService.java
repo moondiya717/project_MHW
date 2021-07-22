@@ -7,5 +7,7 @@ import kr.home.practice.vo.BoardVO;
 public interface BoardService {
 
 	ArrayList<BoardVO> getBoardList();
+
+	BoardVO getBoardDetail(Integer num);
 	
 }

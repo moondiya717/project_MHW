@@ -6,4 +6,7 @@
 	<select id="getBoardList" resultType="kr.home.practice.vo.BoardVO">
 		select * from board where valid='I' order by num desc;
 	</select>
+	<select id="getBoardDetail" resultType="kr.home.practice.vo.BoardVO">
+		select * from board where num=#{num} and valid='I';
+	</select>
 </mapper>
