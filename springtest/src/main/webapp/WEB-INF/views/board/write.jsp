@@ -5,6 +5,8 @@
 <html>
 <head>
 	<title>게시글 상세보기</title>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 </head>
 <body>
 	<form class="container mt-3" action="<%=request.getContextPath()%>/board/write" method="POST" enctype="multipart/form-data" >
@@ -12,7 +14,9 @@
     		<img src="<%=request.getContextPath()%>/resources/img/boo.png" class="mr-3 mt-3 rounded-circle" style="width:60px;">
 		    <div class="media-body">
 		      제목:<input type="text" class="form-control form-control-lg" name="title" value="${board.title}" >
-		      내용:<textarea class="form-control form-control" rows="12" name="contents" >${board.contents}</textarea> 
+		      <div>
+		      	내용:<textarea name="contents" id="summernote">${board.contents}</textarea> 
+		      </div>
 		      첨부파일:
 		      <input type="file" class="form-control form-control-lg" name="files">
 		      <input type="file" class="form-control form-control-lg" name="files">
@@ -23,5 +27,14 @@
 			<a href="<%=request.getContextPath()%>/board/list"><button type="button" class="btn btn-outline-danger">취소</button></a>		  	
 			<button class="btn btn-outline-primary">등록</button>
 	</form>
+	<script>
+    $(function(){  
+		$('#summernote').summernote({
+	        placeholder: '내용을 입력하세요.',
+	        tabsize: 2,
+	        height: 400
+	     });
+    })
+    </script>
 </body>
 </html>

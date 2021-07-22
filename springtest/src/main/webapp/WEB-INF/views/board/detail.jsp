@@ -14,7 +14,7 @@
     		<img src="<%=request.getContextPath()%>/resources/img/sully.png" class="mr-3 mt-3 rounded-circle" style="width:60px;">
 		    <div class="media-body">
 		      <h4>${detail.writer} <small><i>${detail.dateTime}</i></small></h4>
-		      <div><p>${detail.contents}</p></div>		          
+		      <div style="height:auto"><p>${detail.contents}</p></div>		          
 		    </div>
 		    <div class="border p-3">
 			    <label>첨부파일</label>

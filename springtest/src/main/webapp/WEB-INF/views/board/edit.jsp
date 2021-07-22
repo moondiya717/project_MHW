@@ -5,6 +5,8 @@
 <html>
 <head>
 	<title>게시글 상세보기</title>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 </head>
 <body>
 	<form enctype="multipart/form-data" class="container mt-3" action="<%=request.getContextPath()%>/board/edit" method="POST" >
@@ -13,7 +15,7 @@
 		    <div class="media-body">
    		      <label>작성자:</label><input type="text" class="form-control form-control-sm mb-2" name="writer" value="${edit.writer}" readonly>  
 		      <label>제목:</label><input type="text" class="form-control form-control-lg mb-2" name="title" value="${edit.title}">
-		      <label>내용:</label><textarea class="form-control form-control mb-2" rows="12" name="contents">${edit.contents}</textarea>
+		      <label>내용:</label><textarea id="summernote" class="form-control form-control mb-2" rows="12" name="contents">${edit.contents}</textarea>
 		      	<input type="hidden" name="num" value="${edit.num}">
 	  			<!-- <input type="hidden" name="views" value="${edit.views}"> 
 	  			수정하는 동안에 조회수 올랐을때, 수정완료하면서 덮어쓰면 조회수가 깎이니까 service에서 처리해야함-->
@@ -43,6 +45,11 @@
 				$(this).parent().remove();
 				$('.file-box').append('<input type="file" class ="form-control mb-2" name="files">');
 			})
+			$('#summernote').summernote({
+		        placeholder: '내용을 입력하세요.',
+		        tabsize: 2,
+		        height: 400
+		     });
 		})
 	</script>
 	
