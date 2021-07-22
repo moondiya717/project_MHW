@@ -16,7 +16,7 @@
 			 <label>제목</label>
 			 <input type="text" class="form-control" value="${board.title}" readonly>
 		  </div>
-		  	  <div class="form-group">
+	  	  <div class="form-group">
 			 <label>작성자</label>
 			 <input type="text" class="form-control" value="${board.writer}" readonly>
 		  </div>
