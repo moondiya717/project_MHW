@@ -47,7 +47,7 @@
 		        <td><a href="<%=request.getContextPath()%>/board/detail?num=${list.num}">${list.title}</a></td>
 		        <td>${list.writer}</td>
 		        <td>${list.views}</td>
-		        <td>${list.getDate()}</td>
+		        <td>${list.getDateTime()}</td>
 	      	  </tr>
         	</c:forEach>
 	    </tbody>
