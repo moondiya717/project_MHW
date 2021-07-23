@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -34,4 +35,15 @@ public class BoardController {
         return mv;
     }
     
+    @GetMapping(value="/register")
+    public ModelAndView registerGet(ModelAndView mv) {
+        mv.setViewName("/board/register");
+        return mv;
+    }
+    @PostMapping(value="/register")
+    public ModelAndView registerPost(ModelAndView mv, BoardVO board) {
+    	boardService.registerBoard(board);    	
+    	mv.setViewName("redirect:/board/list");    		
+        return mv;
+    }
 }

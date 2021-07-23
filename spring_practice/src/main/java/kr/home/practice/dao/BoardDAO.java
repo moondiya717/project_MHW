@@ -11,5 +11,7 @@ public interface BoardDAO {
 	ArrayList<BoardVO> getBoardList();
 
 	BoardVO getBoardDetail(@Param("num")Integer num);
+
+	void registerBoard(@Param("board")BoardVO board);
     
 }

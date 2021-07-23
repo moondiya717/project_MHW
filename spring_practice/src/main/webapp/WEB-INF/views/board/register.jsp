@@ -28,31 +28,22 @@
 	</nav>
 	
 	<div class="container">
-	  <h2>게시판 목록</h2>
-	  <p>자유롭게 글을 써재끼세요 Yayyy</p>
-	  <a href="<%=request.getContextPath()%>/board/register"><button class="btn btn-outline-primary">글쓰기</button></a>            
-	  <table class="table table-hover">
-	    <thead>
-	      <tr>
-	        <th>글번호</th>
-	        <th>제목</th>
-	        <th>작성자</th>
-	        <th>조회수</th>
-	        <th>등록일</th>
-	      </tr>
-	    </thead>
-	    <tbody>
-      		<c:forEach items="${list}" var ="list">
-	    	  <tr>
-		        <td>${list.num}</td>
-		        <td><a href="<%=request.getContextPath()%>/board/detail?num=${list.num}">${list.title}</a></td>
-		        <td>${list.writer}</td>
-		        <td>${list.views}</td>
-		        <td>${list.getDateTime()}</td>
-	      	  </tr>
-        	</c:forEach>
-	    </tbody>
-	  </table>
+	  <form action="<%=request.getContextPath()%>/board/register" method="post">
+		<div class="form-group">
+		  <label>작성자:</label>
+		  <input type="text" class="form-control" name="writer">
+		</div>
+		<div class="form-group">
+		  <label>제목:</label>
+		  <input type="text" class="form-control" name="title" >
+		</div>
+		<div class="form-group">
+		  <label for="comment">내용:</label>
+		  <textarea class="form-control" rows="5" name="contents" ></textarea>
+		</div>
+	    <a href="<%=request.getContextPath()%>/board/list"><button type="button" class="btn btn-secondary">목록</button></a>
+   	    <button type="submit" class="btn btn-primary">등록</button>
+	  </form>	    
 	</div>
 </body>
 </html>

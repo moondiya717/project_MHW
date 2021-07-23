@@ -9,5 +9,8 @@ public interface BoardService {
 	ArrayList<BoardVO> getBoardList();
 
 	BoardVO getBoardDetail(Integer num);
+
+	void registerBoard(BoardVO board);
+
 	
 }

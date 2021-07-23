@@ -9,4 +9,8 @@
 	<select id="getBoardDetail" resultType="kr.home.practice.vo.BoardVO">
 		select * from board where num=#{num} and valid='I';
 	</select>
+	<insert id="registerBoard">
+		insert into board(title, contents, writer)
+			values(#{board.title}, #{board.contents}, #{board.writer});			
+	</insert>
 </mapper>
