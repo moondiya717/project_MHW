@@ -20,7 +20,7 @@ var replyService= (function(){ //즉시실행함수, 만들자마자 바로 실�
 			contentType : "application/json; charset=utf-8",
 			success : function(result){
 				if(result == "SUCCESS"){
-					list(contextPath, data['rp_bd_num'], 1);
+					list(contextPath, data['rp_bd_num'], 1, data['rp_me_id']);
 					$('.reply-input').val('');
 					alert('댓글이 등록되었습니다.');
 				}
@@ -28,7 +28,7 @@ var replyService= (function(){ //즉시실행함수, 만들자마자 바로 실�
 		})
 	}
 	//여기다가 모듈화를 더 추가하고싶으면 더 추가해(이름은 임의로적어둠)
-	function list(contextPath, rp_bd_num, page){
+	function list(contextPath, rp_bd_num, page, id){
 		$.ajax({
 			type: 'get',
 			url : contextPath + '/reply/list/' + rp_bd_num + '/' + page,
@@ -44,6 +44,12 @@ var replyService= (function(){ //즉시실행함수, 만들자마자 바로 실�
 							'<label>'+reply['rp_me_id']+'</label>'+
 							'<div class="form-control">'+reply['rp_content']+'</div>'+
 						'</div>';
+					if(reply['rp_me_id'] == id){
+						str += 
+							'<div>'+
+								'<button type="button" class="btn btn-outline-primary mod-btn">수정</button>'+ //나중에 삭제버튼도추가하고 더 수정해야함
+							'</div>';
+					}
 				}
 				str += '<hr style="background:red;"/>';
 				//console.log(str);

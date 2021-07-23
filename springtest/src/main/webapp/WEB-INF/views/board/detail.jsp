@@ -58,17 +58,18 @@
   		    <div class="reply form-group">
 			    <label>댓글</label>
 			    <div class="contents">
-		          <div class="reply-list form-group"> <!-- 여기로 댓글이 들어가거등여 -->
-		          </div>
-		          <div class="container">
-					  <ul class="pagination justify-content-center" style="margin:20px 0"><!-- 여기에 페이지네이션있어 reply.js로 이동함-->
-					  </ul>
-				   </div>
+			          <div class="reply-list form-group"> <!-- 여기로 댓글이 들어가거등여 -->
+			          </div>
+			          <div class="container">
+						  <ul class="pagination justify-content-center" style="margin:20px 0"><!-- 여기에 페이지네이션있어 reply.js로 이동함-->
+						  </ul>
+					   </div>
 	     	    </div>
-		    	      <div class="reply-box form-group"></div>
-			          <textarea class="reply-input form-control mb-2"></textarea>
-			          <button type="button" class="reply-btn btn btn-outline-success">등록</button>
-		    </div>
+		    	      <div class="reply-box form-group">
+				          <textarea class="reply-input form-control mb-2"></textarea>
+				          <button type="button" class="reply-btn btn btn-outline-success">등록</button>
+			          </div>
+	    	</div>
 		  	<div class="input-group">
 				<a href="<%=request.getContextPath()%>/board/list"><button class="btn btn-outline-dark">목록</button></a>
    				<c:if test="${detail!=null && user.id == detail.writer}">
@@ -83,13 +84,13 @@
 		 </div>
 </body>
 	<script type = "text/javascript">
+	//$function에 화면출력부분이 아닌건 안들어가도 됨 =>전역변수
 	//전역변수 처리
 	//게시글번호
 	var rp_bd_num = '${detail.num}';
 	//프로젝트명
 	var contextPath = '<%=request.getContextPath()%>';
-	//$function에 화면출력부분이 아닌건 안들어가도 됨 =>전역변수
-	
+	var id = '${user.id}';	
 	
 		$(function(){
 			var msg= '${msg}'
@@ -135,7 +136,7 @@
 			})
 		})
 		$(function(){
-			replyService.list(contextPath, rp_bd_num, 1);
+			replyService.list(contextPath, rp_bd_num, 1, id);
 		})
 		
 		
@@ -155,12 +156,24 @@
 				};
 				//js파일에선 안먹히니까 변수로 전환해서 처리
 				replyService.insert(contextPath,data);
-			})
+			});
 			$(document).on('click','.pagination .page-item', function(){ //일반click이벤트는 계속 추가되는거라서 이벤트가 안먹음
 				var page = $(this).attr('data');
 				//console.log(page);
-				replyService.list(contextPath, rp_bd_num, page);
-			})
+				replyService.list(contextPath, rp_bd_num, page, id);
+			});
+			$(document).on('click','.mod-btn', function(){ 
+				//console.log('수정');
+				var contentObj = $(this).parent().prev().children().last();
+				var str =		     	    
+	    	      	'<div class="reply-mod-box form-group">'+
+		          		'<textarea class="reply-input form-control mb-2">'+contentObj.text()+'</textarea>'+
+		          		'<button type="button" class="reply-mod-btn btn btn-outline-success">등록</button>'+
+	    			'</div>';
+				contentObj.after(str).remove();
+				$(this).parent().remove();
+				
+			});
 		})		
 	</script>
 </html>

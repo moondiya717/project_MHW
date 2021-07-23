@@ -20,7 +20,7 @@ available: expected at least 1 bean which qualifies as autowire candidate. Depen
 - 댓글 리스트를 이용하여 화면에 출력
 
 2. 댓글 페이지네이션 구현
-- detail.jsp에 페이지네이션 부트스트랩 달기
+- detail.jsp에 페이지네이션 부트스트랩 달기(주석처리하고  밑에서 이벤트통해서 입력함)
 - 화면에서 댓글들을 가져오기 전에 페이지 정보를 서버에 보냄
 	=> reply.js의 list메소드 수정
 - 서버에서 화면에서 보낸 페이지 정보를 확인
@@ -31,3 +31,7 @@ available: expected at least 1 bean which qualifies as autowire candidate. Depen
 - 화면에 페이지메이커 정보를 전송 후, 확인
 - 페이지메이커 정보를 이용하여 페이지네이션 코드 작성 후, 화면에 출력
 - 페이지네이션에서 번호나 이전/다음을 클릭하면 해당 페이지 댓글 정보를 출력
+
+3. 댓글 수정 삭제 기능
+- reply.js 의 list메소드에 수정버튼을 추가
+- 수정 기능구현 
