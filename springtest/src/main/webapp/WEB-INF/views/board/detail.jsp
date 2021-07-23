@@ -58,9 +58,12 @@
   		    <div class="reply form-group">
 			    <label>댓글</label>
 			    <div class="contents">
-		          <div class="reply-list form-group">
-
+		          <div class="reply-list form-group"> <!-- 여기로 댓글이 들어가거등여 -->
 		          </div>
+		          <div class="container">
+					  <ul class="pagination justify-content-center" style="margin:20px 0"><!-- 여기에 페이지네이션있어 reply.js로 이동함-->
+					  </ul>
+				   </div>
 	     	    </div>
 		    	      <div class="reply-box form-group"></div>
 			          <textarea class="reply-input form-control mb-2"></textarea>
@@ -132,7 +135,7 @@
 			})
 		})
 		$(function(){
-			replyService.list(contextPath, rp_bd_num);
+			replyService.list(contextPath, rp_bd_num, 1);
 		})
 		
 		
@@ -152,6 +155,11 @@
 				};
 				//js파일에선 안먹히니까 변수로 전환해서 처리
 				replyService.insert(contextPath,data);
+			})
+			$(document).on('click','.pagination .page-item', function(){ //일반click이벤트는 계속 추가되는거라서 이벤트가 안먹음
+				var page = $(this).attr('data');
+				//console.log(page);
+				replyService.list(contextPath, rp_bd_num, page);
 			})
 		})		
 	</script>

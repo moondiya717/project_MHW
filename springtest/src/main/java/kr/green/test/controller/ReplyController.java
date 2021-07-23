@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import kr.green.test.pagination.Criteria;
+import kr.green.test.pagination.PageMaker;
 import kr.green.test.service.ReplyService;
 import kr.green.test.vo.ReplyVO;
 import lombok.AllArgsConstructor;
@@ -26,13 +28,21 @@ public class ReplyController {
 		return replyService.insertReply(rvo) == 0? "FAIL" : "SUCCESS";
 	}
 	
-	@GetMapping("/reply/list/{rp_bd_num}")
-	public Map<String, Object> replyListGet(@PathVariable ("rp_bd_num") int rp_bd_num) { //Map, HashMap 상관없음
-		//System.out.println(rp_bd_num);
-		ArrayList<ReplyVO> list = replyService.getReplyList(rp_bd_num); //먼저확인하고
+	@GetMapping("/reply/list/{rp_bd_num}/{page}")
+	public Map<String, Object> replyListGet(
+			@PathVariable ("rp_bd_num") int rp_bd_num, 
+			@PathVariable ("page") int page) { //Map, HashMap 상관없음
+		Criteria cri = new Criteria(page, 5);
+		int totalCount = replyService.getTotalCount(rp_bd_num);
+		PageMaker pm = new PageMaker(totalCount, 3, cri);
+		System.out.println(pm);
+		
+		ArrayList<ReplyVO> list = replyService.getReplyList(rp_bd_num, cri); //먼저확인하고
+		//System.out.println(list);
+		
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		System.out.println(list);
 		map.put("replyList",list); //list라는 key테이블에 "replyList" value테이블에 list를 저장
+		map.put("pm", pm);
 		return map;
 	}	
 }

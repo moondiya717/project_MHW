@@ -38,7 +38,12 @@ public class Criteria {
 		this.search = ""; //String은 초기값이 null이라서 빈문자열을 넣어줘야 함
 	}
 		
-//	public int getPage() {
+public Criteria(int page, int perPageNum) {
+		setPage(page);
+		setPerPageNum(perPageNum);
+	}
+
+	//	public int getPage() {
 //		return page;
 //	}
 	public void setPage(int page) {
