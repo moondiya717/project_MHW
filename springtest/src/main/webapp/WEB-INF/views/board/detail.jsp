@@ -21,25 +21,25 @@
 		  
 		  <div>
 			  <a href="#" class="recommend-btn up">
-  			  <c:choose>
-			  	<c:when test="${recommend !=null && recommend.state ==1}">
-			  		<i class="fas fa-thumbs-up"></i>
-			  	</c:when>
-			  	<c:otherwise>
-			  		<i class="far fa-thumbs-up"></i>
-			  	</c:otherwise>
-		  	</c:choose>
+	  			<c:choose>
+				  	<c:when test="${recommend !=null && recommend.state ==1}">
+				  		<i class="fas fa-thumbs-up"></i>
+				  	</c:when>
+				  	<c:otherwise>
+				  		<i class="far fa-thumbs-up"></i>
+				  	</c:otherwise>
+			  	</c:choose>
 			  </a>
 			  
 			  <a href="#" class="recommend-btn down">
-  			  <c:choose>
-			  	<c:when test="${recommend !=null && recommend.state ==-1}">
-			  		<i class="fas fa-thumbs-down"></i>
-			  	</c:when>
-			  	<c:otherwise>
-			  		<i class="far fa-thumbs-down"></i>
-			  	</c:otherwise>
-		  	</c:choose>
+	  			<c:choose>
+				  	<c:when test="${recommend !=null && recommend.state ==-1}">
+				  		<i class="fas fa-thumbs-down"></i>
+				  	</c:when>
+				  	<c:otherwise>
+				  		<i class="far fa-thumbs-down"></i>
+				  	</c:otherwise>
+			  	</c:choose>
 			  </a>
 		  </div>
 		  <div class="media border p-3">
@@ -78,7 +78,7 @@
 				    <a href="<%=request.getContextPath()%>/board/edit?num=${detail.num}" class="ml-2"><button class="btn btn-outline-primary">수정</button></a>
 				</c:if>			
 			</div>
-			 </div>
+		 </div>
 		  	
 		</div>
 </body>
