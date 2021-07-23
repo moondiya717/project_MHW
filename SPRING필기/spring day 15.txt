@@ -1,0 +1,4 @@
+[Error]
+1. Contoroller에 다른 클래스의 객체를 연결했을때, @을 빼먹으면
+- 인터페이스를 이용해서 객체를 생성할 수 없기때문에 연결된 이슈일 가능성이 큼
+available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}

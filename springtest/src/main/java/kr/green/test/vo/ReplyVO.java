@@ -1,5 +1,7 @@
 package kr.green.test.vo;
 
+import java.util.Date;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,4 +13,6 @@ public class ReplyVO {
 	private String rp_me_id;
 	private String rp_content;
 	private String rp_valid;
+	private Date rp_regDate;
+	private Date rp_upDate;
 }

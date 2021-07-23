@@ -42,18 +42,18 @@
 			  </a>
 		  </div>
 		  <div class="media border p-3">
-    		<img src="<%=request.getContextPath()%>/resources/img/sully.png" class="mr-3 mt-3 rounded-circle" style="width:60px;">
-		    <div class="media-body">
-		      <h4>${detail.writer} <small><i>${detail.dateTime}</i></small></h4>
-		      <div style="height:auto"><p>${detail.contents}</p></div>		          
-		    </div>
-		    <div class="border p-3">
-			    <label>첨부파일</label>
-			    <c:forEach items="${fileList}" var="file">
-		        	<br><a href="<%=request.getContextPath()%>/board/download?fileName=${file.name}">${file.ori_name}</a>
-		        </c:forEach>
-	        </div>
-		  </div>
+	    		<img src="<%=request.getContextPath()%>/resources/img/sully.png" class="mr-3 mt-3 rounded-circle" style="width:60px;">
+			    <div class="media-body">
+			      <h4>${detail.writer} <small><i>${detail.dateTime}</i></small></h4>
+			      <div style="height:auto"><p>${detail.contents}</p></div>		          
+			    </div>
+			    <div class="border p-3">
+				    <label>첨부파일</label>
+				    <c:forEach items="${fileList}" var="file">
+			        	<br><a href="<%=request.getContextPath()%>/board/download?fileName=${file.name}">${file.ori_name}</a>
+			        </c:forEach>
+		        </div>
+			</div>
   		    <div class="reply form-group">
 			    <label>댓글</label>
 			    <div class="contents">
@@ -125,5 +125,35 @@
 				}				
 			})
 		})
-	</script> <!-- 쌤은 바디태그 안에 있는 것 같았는데 왜? -->
+		
+		$(function(){
+			$('.reply-btn').click(function(){
+				var rp_bd_num = '${detail.num}';
+				var rp_content = $('.reply-input').val();
+				var rp_me_id = '${user.id}';
+				if(rp_me_id == ''){
+					alert('로그인 하세요.');
+					return;
+				}
+				var data = {
+						'rp_bd_num' : rp_bd_num, //속성명 : 변수
+						'rp_content' : rp_content,
+						'rp_me_id' : rp_me_id
+				};
+				//js파일에선 안먹히니까 변수로 전환해서 처리
+				var contextPath = '<%=request.getContextPath()%>'; 
+				$.ajax({
+					type:'post',
+					url : contextPath+'/reply/ins',
+					data : JSON.stringify(data),
+					contentType : "application/json; charset=utf-8",
+					success : function(result){
+						if(result == "SUCCESS"){
+							$('.reply-input').val('');
+						}
+					}
+				})
+			})
+		})
+	</script>
 </html>
