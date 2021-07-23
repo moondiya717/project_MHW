@@ -5,6 +5,7 @@
 <html>
 <head>
 	<title>게시글 상세보기</title>
+	<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/reply.js"></script>
 	<style>
 		.rocommend-btn{
 			font-size:30px;}
@@ -142,17 +143,7 @@
 				};
 				//js파일에선 안먹히니까 변수로 전환해서 처리
 				var contextPath = '<%=request.getContextPath()%>'; 
-				$.ajax({
-					type:'post',
-					url : contextPath+'/reply/ins',
-					data : JSON.stringify(data),
-					contentType : "application/json; charset=utf-8",
-					success : function(result){
-						if(result == "SUCCESS"){
-							$('.reply-input').val('');
-						}
-					}
-				})
+				replyService.insert(contextPath,data);
 			})
 		})
 	</script>
