@@ -58,9 +58,8 @@
   		    <div class="reply form-group">
 			    <label>댓글</label>
 			    <div class="contents">
-		          <div class="form-group">
-			          <label>작성자</label>
-		          	  <div class="form-control">내용</div>
+		          <div class="reply-list form-group">
+
 		          </div>
 	     	    </div>
 		    	      <div class="reply-box form-group"></div>
@@ -79,10 +78,16 @@
 				</c:if>			
 			</div>
 		 </div>
-		  	
-		</div>
 </body>
 	<script type = "text/javascript">
+	//전역변수 처리
+	//게시글번호
+	var rp_bd_num = '${detail.num}';
+	//프로젝트명
+	var contextPath = '<%=request.getContextPath()%>';
+	//$function에 화면출력부분이 아닌건 안들어가도 됨 =>전역변수
+	
+	
 		$(function(){
 			var msg= '${msg}'
 			printMsg(msg);
@@ -126,6 +131,10 @@
 				}				
 			})
 		})
+		$(function(){
+			replyService.list(contextPath, rp_bd_num);
+		})
+		
 		
 		$(function(){
 			$('.reply-btn').click(function(){
@@ -142,9 +151,8 @@
 						'rp_me_id' : rp_me_id
 				};
 				//js파일에선 안먹히니까 변수로 전환해서 처리
-				var contextPath = '<%=request.getContextPath()%>'; 
 				replyService.insert(contextPath,data);
 			})
-		})
+		})		
 	</script>
 </html>
