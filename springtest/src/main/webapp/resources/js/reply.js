@@ -51,18 +51,19 @@ var replyService= (function(){ //즉시실행함수, 만들자마자 바로 실�
 				
 				var pmStr='';
 				var pm = result['pm'];
-				if (pm.prev){
-					pmStr += '<li class="page-item" data="'+(pm.startPage-1)+'"><a class="page-link" href="javascript:void(0);">이전</a></li>';
+				if (pm.prev){ //pageMaker클래스보면 prev= startPage ==1? false:true;  => 1일떈 false안보이고 2이상부터는 이전페이지가 보임
+					pmStr += '<li class="page-item" data="'+(pm.startPage-1)+'"><a class="page-link" href="#">이전</a></li>';
 				}
 				for(i = pm.startPage; i<=pm.endPage; i++){
-				    if(pm.criteria.page == i){
+				    if(pm.criteria.page == i){ //현재페이지와 i가 같다면, active클래스이름을 추가해서 버튼이눌린 효과를 표시함
 						pmStr += '<li class="page-item active" data="'+ i +'"><a class="page-link" href="#">'+i+'</a></li>';
 					}
-					else{
+					else{ //현재페이지와 i가 같지않은 눌리지않은 페이지들의 버튼들은 색이칠해지지않은 버튼 처럼 보이게함
 				    	pmStr += '<li class="page-item" data="'+i+'"><a class="page-link" href="#">'+i+'</a></li>';
 					}					
 				}
-			    if(pm.next){
+			    if(pm.next){ //next= endPage * criteria.getPerPageNum() >= totalCount? false:true; 
+							 //마지막페이지번호X한페이지당게시글수가 총게시글보다 크면 다음이라는 버튼이 안보여야 함
 					pmStr += '<li class="page-item" data="'+(pm.endPage+1)+'"><a class="page-link" href="#">다음</a></li>';
 				}
 				$('.pagination').html(pmStr);
