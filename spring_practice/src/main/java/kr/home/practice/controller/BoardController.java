@@ -46,4 +46,20 @@ public class BoardController {
     	mv.setViewName("redirect:/board/list");    		
         return mv;
     }
+    
+    @GetMapping(value="/modify")
+    public ModelAndView modifyGet(ModelAndView mv, Integer num) {
+        BoardVO modify = boardService.getBoardDetail(num);
+    	mv.addObject("modify", modify);
+    	mv.setViewName("/board/modify");
+        return mv;
+    }
+    @PostMapping(value="/modify")
+    public ModelAndView modifyPost(ModelAndView mv, BoardVO board) {
+    	System.out.println(board);
+    	boardService.updateBoard(board);
+    	//mv.addObject("num",board.getNum());
+    	mv.setViewName("redirect:/board/list"); //나중에 detail로 이동시켜주자, 오류날까봐 list로 설정해둠   		
+        return mv;
+    }
 }

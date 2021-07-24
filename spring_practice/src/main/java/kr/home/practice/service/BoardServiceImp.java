@@ -34,6 +34,14 @@ public class BoardServiceImp implements BoardService {
 		}
 		boardDao.registerBoard(board);
 	}
+
+	@Override
+	public int updateBoard(BoardVO board) {
+		if(board == null) {
+			return 0;
+		}
+		return boardDao.updateBoard(board);		
+	}
     
  
 }

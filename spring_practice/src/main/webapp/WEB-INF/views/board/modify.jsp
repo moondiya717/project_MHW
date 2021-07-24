@@ -28,23 +28,22 @@
 	</nav>
 	
 	<div class="container">
-	  <form action="<%=request.getContextPath()%>/board/detail?num=${detail.num}">
+	  <form action="<%=request.getContextPath()%>/board/modify?num=${modify.num}" method="post">
 		<div class="form-group">
-		  <label>제목</label>
-		  <input type="text" class="form-control" value="${detail.title}" readonly>
+			  <label>작성자: </label>
+			  <input type="text" class="form-control" name="writer" value="${modify.writer}" readonly>
 		</div>
 		<div class="form-group">
-		  <label>조회수</label>
-		  <input type="text" class="form-control" value="${detail.views}" readonly>
+			  <label>제목: </label>
+			  <input type="text" class="form-control" name="title" value="${modify.title}">
 		</div>
 		<div class="form-group">
-		  <label for="comment">내용:</label>
-		  <textarea class="form-control" rows="5" id="contents" readonly>${detail.contents}</textarea>
+			  <label for="comment">내용: </label>
+			  <textarea class="form-control" rows="5" id="contents" name="contents">${modify.contents}</textarea>
 		</div>
-	  </form>
-	    <a href="<%=request.getContextPath()%>/board/list"><button type="button" class="btn btn-primary">목록</button></a>
-  	    <a href="<%=request.getContextPath()%>/board/modify?num=${detail.num}"><button type="button" class="btn btn-primary">수정</button></a>
-   	    <a href="#"><button type="button" class="btn btn-primary">삭제</button></a>	    
+		    <a href="<%=request.getContextPath()%>/board/list"><button type="button" class="btn btn-secondary">목록</button></a>
+	   	    <button type="submit" class="btn btn-primary">저장</button>    
+		</form>
 	</div>
 </body>
 </html>
