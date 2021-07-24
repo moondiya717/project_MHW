@@ -39,6 +39,8 @@ public class BoardServiceImp implements BoardService {
 	public int updateBoard(BoardVO board) {
 		if(board == null) {
 			return 0;
+		}else if(board.getValid() == null){ //이거없어도된다?근데, 그냥 안전하게 하려고 넣은듯
+			board.setValid("I");
 		}
 		return boardDao.updateBoard(board);		
 	}
