@@ -1,8 +1,11 @@
 package kr.green.spring.controller;
 
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +23,9 @@ import kr.green.spring.vo.MemberVO;
 public class HomeController {
     @Autowired
     MemberService memberService;
+    @Autowired
+    private JavaMailSender mailSender;
+    
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView home(ModelAndView mv) {		
@@ -96,5 +102,62 @@ public class HomeController {
 		}
 		return dbUser!=null? "success" : "fail";
 	}
+	
+	@GetMapping("/find/pw")
+	public ModelAndView mailTestGet(ModelAndView mv) {
+		mv.setViewName("/template/main/findpw");
+		return mv;
+	}
+	@ResponseBody
+	@GetMapping("/find/pw/{id}")
+	public String mailTestPost(@PathVariable("id") String id) {
+		MemberVO user = memberService.getMember(id);
+		if(user == null) {
+			return "FAIL";
+		}
+		try {
+		        MimeMessage message = mailSender.createMimeMessage();
+		        MimeMessageHelper messageHelper
+		            = new MimeMessageHelper(message, true, "UTF-8");
+		       //임시 비밀번호 발금
+		       String newPw = newPw(); //예시로 1234를 넣어놓은 것뿐
+		       //새 비밀번호를 DB에 저장
+		       user.setPw(newPw);
+		       memberService.updateMember(user);
+		        
+		        
+		       messageHelper.setFrom("randonId@gmail.com");  // 보내는사람 생략하거나 하면 정상작동을 안함, 아무글자나 넣고 웹에서 이메일입력만 똑바로하면 발송됨(빈문자열은안됨)
+		       messageHelper.setTo(user.getEmail());     // 받는사람 이메일
+		       messageHelper.setSubject("새 비밀번호를 발급합니다."); // 메일제목은 생략이 가능하다
+		       //태그사용하려면 "", 앞에 빈문자열과반점넣기 그럼 이메일내용에 적용되어있음 + 사이트에서 내용은 안들어가고 밑에가 그대로 들어가는데?
+		       messageHelper.setText("","발급된 새 비밀번호는 <b>" + newPw + "</b>입니다.");  // 메일 내용
+		        
 
+		       mailSender.send(message);
+		    } catch(Exception e){
+		        System.out.println(e);
+		    }
+		return "";
+	}
+	//8자리의 숫자 or 영문 대/소문자로된 비밀번호
+	private String newPw() {
+		//랜덤숫자 : 0~9 => 문자열 : 0~9
+		//랜덤숫자 : 10~35 => 문자열 : a-z(소문자)
+		//랜덤숫자 : 36~61 => 문자열 : A-Z(대문자)
+		// 12 => c(소문자)
+		String pw="";
+		int max = 61, min = 0; 
+		for(int i=0; i<8; i++) {
+			int r = (int)(Math.random()*(max-min+1)) + min;
+			//int r= (int)(Math.random()*62);
+			if(r<=9) {
+				pw += r;
+			}else if(r <= 35) {
+				pw+= (char)('a'+(r-10));
+			}else {
+				pw+= (char)('A'+(r-36));
+			}
+		}
+		return pw;
+	}
 }
