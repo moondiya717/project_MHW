@@ -32,7 +32,7 @@ public class HomeController {
 		System.out.println(123);
 		mv.setViewName("/template/member/signin");
 		return mv;
-		}
+	}
 	@RequestMapping(value = "/signin", method = RequestMethod.POST)
 	public ModelAndView signinPost(ModelAndView mv, MemberVO user) {		
 		
@@ -51,12 +51,12 @@ public class HomeController {
 		}
 		mv.addObject("user",dbUser);
 		return mv;
-		}
+	}
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
 	public ModelAndView signupGet(ModelAndView mv) {		
 		mv.setViewName("/template/member/signup");
 		return mv;
-		}
+	}
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
 	public ModelAndView signupPost(ModelAndView mv, MemberVO user) {		
 		//서비스에게 회원 정보를 주면서 회원가입하라고 일을 시키고, 
@@ -77,7 +77,7 @@ public class HomeController {
 		request.getSession().removeAttribute("user");
 		mv.setViewName("redirect:/");
 		return mv;
-		}
+	}
 	
 	@ResponseBody
 	@GetMapping(value = "/member/idcheck/{id}")
@@ -85,7 +85,7 @@ public class HomeController {
 		MemberVO user = memberService.getMember(id);
 		String res= user!=null? "IMPOSSIBLE":"POSSIBLE";
 		return res;
-		}
+	}
 	
 	@ResponseBody
 	@PostMapping(value = "/member/signin")
@@ -95,5 +95,6 @@ public class HomeController {
 			r.getSession().setAttribute("user", dbUser);		
 		}
 		return dbUser!=null? "success" : "fail";
-		}
+	}
+
 }
