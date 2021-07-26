@@ -27,7 +27,6 @@ var replyService= (function(){ //즉시실행함수, 만들자마자 바로 실�
 			}
 		})
 	}
-	//여기다가 모듈화를 더 추가하고싶으면 더 추가해(이름은 임의로적어둠)
 	function list(contextPath, rp_bd_num, page, id){
 		$.ajax({
 			type: 'get',
@@ -47,7 +46,8 @@ var replyService= (function(){ //즉시실행함수, 만들자마자 바로 실�
 					if(reply['rp_me_id'] == id){
 						str += 
 							'<div>'+
-								'<button type="button" class="btn btn-outline-primary mod-btn"  data="'+ reply['rp_num'] +'">수정</button>'+ //나중에 삭제버튼도추가하고 더 수정해야함
+								'<button type="button" class="btn btn-outline-primary mod-btn"  data="'+ reply['rp_num'] +'">수정</button>'+
+								'<button type="button" class="btn btn-outline-danger del-btn"  data="'+ reply['rp_num'] +'">삭제</button>'+
 							'</div>';
 					}
 				}
@@ -95,12 +95,29 @@ var replyService= (function(){ //즉시실행함수, 만들자마자 바로 실�
 			}
 		});
 	}
-	
+	function deleteReply(contextPath, data, page){
+		$.ajax({
+			type : 'post',
+			url : contextPath + '/reply/del',
+			data : JSON.stringify(data),
+			contentType : "application/json; charset=utf-8",
+			success : function(res){
+				//console.log(res); //여기까지확인하고 컨트롤러로 이동404 에러를 해결하기5
+				if(res == 'SUCCESS'){
+					alert('댓글이 삭제되었습니다.');
+					replyService.list(contextPath, data['rp_bd_num'], page, data['rp_me_id']);
+				}else{
+					alert('댓글을 삭제할 수 없습니다.');
+				}
+			}
+		});
+	}
 	return { // 멤버변수/메소드명 : 구현부 이기때문에 왼쪽에있는 이름을 사용해서 처리해야 함
 		name: "서비스", 
 		insert : insert,
 		list:list,
-		modify : modify //댓글수정기능 모듈화		
+		modify : modify, //댓글수정기능 모듈화
+		deleteReply : deleteReply 		
 	}
 })();
 

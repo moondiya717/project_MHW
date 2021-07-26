@@ -193,6 +193,20 @@
 				//console.log(page);
 				replyService.modify(contextPath, data, page); // rply.js의 return의 좌측에있는 메소드명이름기준으로 쓰면됨
 			})
-		})		
+			$(document).on('click', '.del-btn', function(){
+				//console.log('삭제누름')
+				var rp_num = $(this).attr('data');
+				var rp_me_id = id; //전역변수로 id에 '${user.id}'를 초기화 및 선언해있음(<=rp_me_id가 아닌이유)
+				var data = { //data라는 이름의 객체를만들어서 정보를 묶어서 관리하고 사용
+							rp_me_id : rp_me_id,
+							rp_num : rp_num,
+							rp_bd_num : rp_bd_num
+				};
+				//console.log(data);
+				
+				var page=$('.pagination .active a').text();
+				replyService.deleteReply(contextPath, data, page);
+			})
+		})
 	</script>
 </html>

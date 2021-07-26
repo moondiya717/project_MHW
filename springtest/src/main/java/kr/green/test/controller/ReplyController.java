@@ -50,4 +50,9 @@ public class ReplyController {
 		//System.out.println(reply);
 		return replyService.updateReply(reply);
 	}
+	@PostMapping("/reply/del")
+	public String replyDelPost(@RequestBody ReplyVO reply) { //처음에 매개변수없이 빈 채로 return ""으로 삭제하면 콘솔에 ""나오는지->replyService.toString();리턴
+		return replyService.deleteReply(reply);
+	}
+
 }
