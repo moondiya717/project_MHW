@@ -21,7 +21,8 @@
 				type : 'get',
 				url : '<%=request.getContextPath()%>/find/pw/'+id,
 				success : function(res){
-					console.log(res);
+					//console.log(res);					
+						alert('새 비밀번호를 등록된 이메일로 전송했습니다.'); //if문으로 안됐을때도 따로 써줘도 상관은없음
 				}
 			})
 		})

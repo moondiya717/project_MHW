@@ -1,5 +1,7 @@
 package kr.green.spring.controller;
 
+import java.util.ArrayList;
+
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 
@@ -104,14 +106,14 @@ public class HomeController {
 	}
 	
 	@GetMapping("/find/pw")
-	public ModelAndView mailTestGet(ModelAndView mv) {
+	public ModelAndView findPwGet(ModelAndView mv) {
 		mv.setViewName("/template/main/findpw");
 		return mv;
 	}
 	@ResponseBody
 	@GetMapping("/find/pw/{id}")
-	public String mailTestPost(@PathVariable("id") String id) {
-		MemberVO user = memberService.getMember(id);
+	public String findPwPost(@PathVariable("id") String id) {
+		MemberVO user = memberService.getMember(id); //getMember는 id를 주면 email을 가져옴
 		if(user == null) {
 			return "FAIL";
 		}
@@ -132,13 +134,53 @@ public class HomeController {
 		       //태그사용하려면 "", 앞에 빈문자열과반점넣기 그럼 이메일내용에 적용되어있음 + 사이트에서 내용은 안들어가고 밑에가 그대로 들어가는데?
 		       messageHelper.setText("","발급된 새 비밀번호는 <b>" + newPw + "</b>입니다.");  // 메일 내용
 		        
-
 		       mailSender.send(message);
+		       return "SUCCESS";
 		    } catch(Exception e){
 		        System.out.println(e);
 		    }
-		return "";
+		return "FAIL"; //실행된다면 위에 messageHelper에서 잘못된거임
 	}
+	
+	@GetMapping("/find/id")
+	public ModelAndView findIdGet(ModelAndView mv) {
+		mv.setViewName("/template/main/findid");
+		return mv;
+	}
+	@ResponseBody
+	@PostMapping("/find/id")
+	public String findIdPost(String email) {
+		System.out.println(email);
+		//현재사이트에 이메일인증이 없어서 이메일이 중복될 수 있는 상황이라(=아이디여러개) ArrayList씀, 있는걸로해야나옴
+		ArrayList<MemberVO> userList = memberService.getMemberByEmail(email); 
+		System.out.println(userList);
+		if(userList == null || userList.size() == 0) {
+			return "FAIL";
+		}
+		try {
+			ArrayList<String> idList = new ArrayList<String>();
+			for(MemberVO user : userList) { //향상된 for문으로 user에 userList값을 하나씩 꺼내서 유저의 이메일을 배열에 저장해
+				idList.add(user.getId());
+			}
+			System.out.println(idList);
+			MimeMessage message = mailSender.createMimeMessage();
+			MimeMessageHelper messageHelper
+	           = new MimeMessageHelper(message, true, "UTF-8");		        
+	        
+			messageHelper.setFrom("randomyay@gmail.com");  // 보내는사람 생략하거나 하면 정상작동을 안함, 아무글자나 넣고 웹에서 이메일입력만 똑바로하면 발송됨(빈문자열은안됨)
+			messageHelper.setTo(email);     // 받는사람 이메일
+			messageHelper.setSubject("가입된 아이디를 알려드립니다."); // 메일제목은 생략이 가능하다
+			//태그사용하려면 "", 앞에 빈문자열과반점넣기 그럼 이메일내용에 적용되어있음 + 사이트에서 내용은 안들어가고 밑에가 그대로 들어가는데?
+			messageHelper.setText("","가입된 아이디는 <b>" + idList.toString() + "</b>입니다.");  // 메일 내용
+	        
+			mailSender.send(message); //실제로 이메일을 발송하는 코드
+			return "SUCCESS";
+	    }catch(Exception e){
+	       System.out.println(e);
+	    }
+		return "FAIL"; //실행된다면 위에 messageHelper에서 잘못된거임
+	}
+	
 	//8자리의 숫자 or 영문 대/소문자로된 비밀번호
 	private String newPw() {
 		//랜덤숫자 : 0~9 => 문자열 : 0~9

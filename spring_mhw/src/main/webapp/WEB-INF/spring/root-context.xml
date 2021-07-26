@@ -30,8 +30,8 @@
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
     <property name="host" value="smtp.gmail.com" />
     <property name="port" value="587" />
-    <property name="username" value="realIDaddresshere@gmail.com" /> <!-- Git에 올릴때 꼭 조심할것 -->
-    <property name="password" value="realPwhere" /> <!-- Git에 올릴때 꼭 조심할것 -->
+    <property name="username" value="Putyourrealemailhere@gmail.com" /> <!-- Git에 올릴때 꼭 조심할것 -->
+    <property name="password" value="hereforyourrealpsfortheID" /> <!-- Git에 올릴때 꼭 조심할것 -->
     <property name="javaMailProperties">
         <props>
             <prop key="mail.transport.protocol">smtp</prop>

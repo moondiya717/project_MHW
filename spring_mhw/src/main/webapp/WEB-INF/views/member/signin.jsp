@@ -20,6 +20,8 @@
 		</div>
 		<!-- 서버로 데이터전송을 안되게하려고 button type을 button으로 했음, ajax이용하려고 -->
 		<button type=button id="loginBtn" class="btn btn-outline-success col-12">로그인</button>
+		<a href="<%=request.getContextPath()%>/find/id">아이디 찾기</a>
+		<b>/</b>		
 		<a href="<%=request.getContextPath()%>/find/pw">비밀번호 찾기</a>
 	</form>
 	<script type=text/javascript>
