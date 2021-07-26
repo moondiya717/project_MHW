@@ -62,4 +62,12 @@ public class BoardController {
     	mv.setViewName("redirect:/board/list"); //나중에 detail로 이동시켜주자, 오류날까봐 list로 설정해둠   		
         return mv;
     }
+    
+    @RequestMapping(value="/delete")
+    public ModelAndView deleteGet(ModelAndView mv, Integer num) {
+    	//System.out.println("버튼누름");
+    	boardService.deleteBoard(num);
+    	mv.setViewName("redirect:/board/list");
+    	return mv;
+    }
 }

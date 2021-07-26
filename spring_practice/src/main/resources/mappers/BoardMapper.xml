@@ -15,7 +15,7 @@
 	</insert>
 	<update id="updateBoard"> 
  		update board set
- 			title = #{board.title}, contents = #{board.contents}, writer = #{board.writer}
+ 			title = #{board.title}, contents = #{board.contents}, writer = #{board.writer}, valid=#{board.valid}
  			where num = #{board.num};
 	</update>
 </mapper>

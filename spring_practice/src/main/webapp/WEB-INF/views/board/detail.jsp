@@ -42,9 +42,9 @@
 		  <textarea class="form-control" rows="5" id="contents" readonly>${detail.contents}</textarea>
 		</div>
 	  </form>
+   	    <a href="<%=request.getContextPath()%>/board/delete?num=${detail.num}"><button type="button" class="btn btn-danger">삭제</button></a>	    
 	    <a href="<%=request.getContextPath()%>/board/list"><button type="button" class="btn btn-primary">목록</button></a>
   	    <a href="<%=request.getContextPath()%>/board/modify?num=${detail.num}"><button type="button" class="btn btn-primary">수정</button></a>
-   	    <a href="#"><button type="button" class="btn btn-primary">삭제</button></a>	    
 	</div>
 </body>
 </html>
