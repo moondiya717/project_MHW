@@ -170,8 +170,9 @@ public class HomeController {
 			messageHelper.setFrom("randomyay@gmail.com");  // 보내는사람 생략하거나 하면 정상작동을 안함, 아무글자나 넣고 웹에서 이메일입력만 똑바로하면 발송됨(빈문자열은안됨)
 			messageHelper.setTo(email);     // 받는사람 이메일
 			messageHelper.setSubject("가입된 아이디를 알려드립니다."); // 메일제목은 생략이 가능하다
-			//태그사용하려면 "", 앞에 빈문자열과반점넣기 그럼 이메일내용에 적용되어있음 + 사이트에서 내용은 안들어가고 밑에가 그대로 들어가는데?
-			messageHelper.setText("","가입된 아이디는 <b>" + idList.toString() + "</b>입니다.");  // 메일 내용
+			//태그사용하려면 "", 앞에 빈문자열과반점넣기 그럼 이메일내용에 적용되어있음 + 사이트에서 내용은 안들어가고 밑에가 그대로 들어감
+			//replaceAll("[\\[\\]]","") 메일내용에서 [아이디]로 나오는걸 []를 제거하고 아이디만 보내려고 처리하는 것
+			messageHelper.setText("","가입된 아이디는 <b>" + idList.toString().replaceAll("[\\[\\]]","") + "</b>입니다.");  // 메일 내용
 	        
 			mailSender.send(message); //실제로 이메일을 발송하는 코드
 			return "SUCCESS";
