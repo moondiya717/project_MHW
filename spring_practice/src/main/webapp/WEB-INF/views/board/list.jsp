@@ -31,28 +31,33 @@
 	  <h2>게시판 목록</h2>
 	  <p>자유롭게 글을 써재끼세요 Yayyy</p>
 	  <a href="<%=request.getContextPath()%>/board/register"><button class="btn btn-outline-primary">글쓰기</button></a>            
-	  <table class="table table-hover">
-	    <thead>
-	      <tr>
-	        <th>글번호</th>
-	        <th>제목</th>
-	        <th>작성자</th>
-	        <th>조회수</th>
-	        <th>등록일</th>
-	      </tr>
-	    </thead>
-	    <tbody>
-      		<c:forEach items="${list}" var ="list">
-	    	  <tr>
-		        <td>${list.num}</td>
-		        <td><a href="<%=request.getContextPath()%>/board/detail?num=${list.num}">${list.title}</a></td>
-		        <td>${list.writer}</td>
-		        <td>${list.views}</td>
-		        <td>${list.getDateTime()}</td>
-	      	  </tr>
-        	</c:forEach>
-	    </tbody>
-	  </table>
+	  <c:if test="${list.size() != 0}">
+		  <table class="table table-hover">
+		    <thead>
+		      <tr>
+		        <th>글번호</th>
+		        <th>제목</th>
+		        <th>작성자</th>
+		        <th>조회수</th>
+		        <th>등록일</th>
+		      </tr>
+		    </thead>
+		    <tbody>
+	      		<c:forEach items="${list}" var ="list">
+		    	  <tr>
+			        <td>${list.num}</td>
+			        <td><a href="<%=request.getContextPath()%>/board/detail?num=${list.num}">${list.title}</a></td>
+			        <td>${list.writer}</td>
+			        <td>${list.views}</td>
+			        <td>${list.getDateTime()}</td>
+		      	  </tr>
+	        	</c:forEach>
+		    </tbody>
+		  </table>
+	  </c:if>
+	  <c:if test="${list.size()==0}">
+	  	<h2>등록된 게시글이 없습니다.</h2>
+	  </c:if>
 	</div>
 </body>
 </html>
