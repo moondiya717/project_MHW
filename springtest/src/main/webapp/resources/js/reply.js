@@ -37,7 +37,7 @@ var replyService= (function(){ //즉시실행함수, 만들자마자 바로 실�
 				//console.log(result['pm']);
 				var str = '<hr style="background:red;"/>';
 				console.log(result['replyList']); //controller의 put()메소드 안의 ""와 이름을 맞추기
-				for(reply of result['replyList']){
+				for(reply of result['replyList']){ //여기보면 replyList값이 필요한데 이걸 reply라는 객체에다가 값을 저장해서 반복문으로 꺼내왔으니 밑에 값 출력해서 테스트할때  reply['~~']라고 쓰는거임
 					console.log(reply);
 					str+= 
 						'<div>'+
@@ -47,7 +47,7 @@ var replyService= (function(){ //즉시실행함수, 만들자마자 바로 실�
 					if(reply['rp_me_id'] == id){
 						str += 
 							'<div>'+
-								'<button type="button" class="btn btn-outline-primary mod-btn">수정</button>'+ //나중에 삭제버튼도추가하고 더 수정해야함
+								'<button type="button" class="btn btn-outline-primary mod-btn"  data="'+ reply['rp_num'] +'">수정</button>'+ //나중에 삭제버튼도추가하고 더 수정해야함
 							'</div>';
 					}
 				}
@@ -76,10 +76,11 @@ var replyService= (function(){ //즉시실행함수, 만들자마자 바로 실�
 			}	
 		})
 	}
-	return {
+	return { // 멤버변수/메소드명 : 구현부 이기때문에 왼쪽에있는 이름을 사용해서 처리해야 함
 		name: "서비스", 
 		insert : insert,
-		list:list		
+		list:list
+		//modify : modify //댓글수정기능 모듈화		
 	}
 })();
 

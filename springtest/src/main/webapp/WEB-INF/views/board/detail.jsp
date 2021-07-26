@@ -165,15 +165,52 @@
 			$(document).on('click','.mod-btn', function(){ 
 				//console.log('수정');
 				var contentObj = $(this).parent().prev().children().last();
+				var rp_num = $(this).attr('data');
 				var str =		     	    
 	    	      	'<div class="reply-mod-box form-group">'+
 		          		'<textarea class="reply-input form-control mb-2">'+contentObj.text()+'</textarea>'+
-		          		'<button type="button" class="reply-mod-btn btn btn-outline-success">등록</button>'+
+		          		'<button type="button" class="reply-mod-btn btn btn-outline-success" data="'+rp_num+'">등록</button>'+
 	    			'</div>';
 				contentObj.after(str).remove();
-				$(this).parent().remove();
-				
+				$(this).parent().remove();				
 			});
+			$(document).on('click','.reply-mod-btn',function(){
+				//console.log('등록버튼 클릭);
+				var rp_content = $(this).siblings('.reply-input').val();
+				var rp_me_id = '${user.id}';
+				var rp_num = $(this).attr('data');
+				//console.log(rp_me_id);
+				var data = {
+							rp_content : rp_content,
+							rp_me_id : id,
+							rp_num : rp_num,
+							rp_bd_num: rp_bd_num							
+					};
+				//console.log(data);
+				
+				//댓글페이지 변경이후에도 수정기능을 구현하기 위한 코드
+				var page=$('.pagination .active a').text();
+				//console.log(page);
+				//replyService.modify(contextPath(), data, page); // rply.js의 return의 좌측에있는 메소드명이름기준으로 쓰면됨
+				
+				$.ajax({
+					type : 'post',
+					url : contextPath + '/reply/mod',
+					data : JSON.stringify(data),
+					contentType : "application/json; charset=utf-8",
+					success : function(res){
+						//console.log('성공');
+						if(res == 'SUCCESS'){
+							alert('댓글이 수정되었습니다.');
+							replyService.list(contextPath, rp_bd_num, page, id); //page를 넣어줘야 다른댓글페이지에서 댓글수정후 완료됐을때 페이지가 유지됨
+							//list(contextPath, data['rp_bd_num'], page, data['rp_me_id']);
+						}else{
+							//로그인안했을때, 수정버튼이 안보이겠지만 혹시모르니까 처리해줌
+							alert('댓글을 수정할 수 없습니다.')
+						}
+					}
+				});
+			})
 		})		
 	</script>
 </html>

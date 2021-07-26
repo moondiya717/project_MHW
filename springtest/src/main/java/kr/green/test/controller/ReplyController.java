@@ -44,5 +44,10 @@ public class ReplyController {
 		map.put("replyList",list); //list라는 key테이블에 "replyList" value테이블에 list를 저장
 		map.put("pm", pm);
 		return map;
-	}	
+	}
+	@PostMapping("/reply/mod")
+	public String replyModPost(@RequestBody ReplyVO reply) { //댓글번호, 내용, 아이디 보냄
+		//System.out.println(reply);
+		return replyService.updateReply(reply);
+	}
 }
