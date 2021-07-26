@@ -36,4 +36,17 @@ public class MemberServiceImp implements MemberService {
 		}		
 		return dbUser;
 	}
+
+	@Override
+	public MemberVO getMember(MemberVO user) {
+		return MemberDao.getMember(id);
+	}
+
+	@Override
+	public MemberVO updateMember(MemberVO user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 }

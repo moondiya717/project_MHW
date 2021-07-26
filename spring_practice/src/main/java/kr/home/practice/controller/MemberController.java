@@ -1,5 +1,7 @@
 package kr.home.practice.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -52,4 +54,21 @@ public class MemberController {
     	return mv;
     }
     
+    @GetMapping(value="/mypage")
+    public ModelAndView mypageGet(ModelAndView mv) {    		
+        mv.setViewName("/member/mypage");
+    	return mv;
+    }
+    @PostMapping(value="/mypage")
+    public ModelAndView mypagePost(ModelAndView mv, MemberVO user, HttpServletRequest request) {    		
+        MemberVO sessionUserInfo = memberService.getMember(user);
+        if(sessionUserInfo != null || sessionUserInfo.getId().equals(user.getId())) {
+        	MemberVO updateUser = memberService.updateMember(user);
+        	if(updateUser !=null) {
+        		request.getSession().setAttribute("user",updateUser);
+        	}
+        }
+    	mv.setViewName("redirect:/member/mypage");
+    	return mv;
+    }
 }

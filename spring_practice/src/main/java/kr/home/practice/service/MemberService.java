@@ -9,4 +9,8 @@ public interface MemberService {
 	public boolean signup(MemberVO user);
 
 	public MemberVO signin(MemberVO user);
+
+	public MemberVO getMember(MemberVO user);
+
+	public MemberVO updateMember(MemberVO user);
 }
