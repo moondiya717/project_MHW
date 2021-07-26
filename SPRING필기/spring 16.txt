@@ -1,4 +1,4 @@
-[spring_mhw]
+[springtest]
 1. 댓글 수정기능
 - 댓글번호, 내용만 있으면 수정가능하지만 + 그냥 아이디까지 넘겨주겠음
 - ReplyMapper <!-- 여기서는 DAO에서 Param에 이름 reply로 지었으니까 따라줘야함 -->
@@ -17,6 +17,11 @@
 	- 서비스에게 해당 정보를 업데이트하라고 요청
 	-해당 댓글의 rp_valid 를 D로 변경
 
+[spring_mhw]
+1. 이메일로 비밀번호 찾기 ***-실제 개인정보(메일아이디&비번)로 진행하기때문에 꼭 Git으로 업로드할때 다시 바꿔놓고 업로드할 것
+
+
+
 ------------------------------------------------------------------
 단축키 : ctrl + f5 => 웹브라우저에서 코드를 다시 받아 새로고침해줌(일반 f5랑다름)
 ------------------------------------------------------------------
@@ -32,3 +37,10 @@ console.log(obj);
 콘솔 : 결과값
 {name: "객체", str: "obj"}name: "객체"[[Prototype]]: Object
 detail?num=80:267 {name: "객체"}
+--------------------------------------------------------------------
+이메일 전송 test중 에러내용
+참고사이트 : https://heestory217.tistory.com/124
+could not convert socket to tls 
+=> 해결방법 :  추가코드를 root-context.xml의 <props></props> 사이의 맨마지막에 넣어주면 됨
+<prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>
+<prop key="mail.smtp.ssl.protocols">TLSv1.2</prop>
