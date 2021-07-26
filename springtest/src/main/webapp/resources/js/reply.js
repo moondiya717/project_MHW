@@ -76,11 +76,31 @@ var replyService= (function(){ //즉시실행함수, 만들자마자 바로 실�
 			}	
 		})
 	}
+	function modify(contextPath, data, page){
+		$.ajax({
+			type : 'post',
+			url : contextPath + '/reply/mod',
+			data : JSON.stringify(data),
+			contentType : "application/json; charset=utf-8",
+			success : function(res){
+				//console.log('성공');
+				if(res == 'SUCCESS'){
+					alert('댓글이 수정되었습니다.');
+				//page를 넣어줘야 다른댓글페이지에서 댓글수정후 완료됐을때 페이지가 유지됨
+					list(contextPath, data['rp_bd_num'], page, data['rp_me_id']);
+				}else{
+					//로그인안했을때, 수정버튼이 안보이겠지만 혹시모르니까 처리해줌
+					alert('댓글을 수정할 수 없습니다.')
+				}
+			}
+		});
+	}
+	
 	return { // 멤버변수/메소드명 : 구현부 이기때문에 왼쪽에있는 이름을 사용해서 처리해야 함
 		name: "서비스", 
 		insert : insert,
-		list:list
-		//modify : modify //댓글수정기능 모듈화		
+		list:list,
+		modify : modify //댓글수정기능 모듈화		
 	}
 })();
 
