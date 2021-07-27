@@ -9,7 +9,7 @@
 </head>
 <body>
 	<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
-	  <a class="navbar-brand" href="#">SPRINGTEST</a>
+	  <a class="navbar-brand" href="<%=request.getContextPath()%>/">SPRINGTEST</a>
 	  <ul class="navbar-nav">
 	    <li class="nav-item">
 	      <a class="nav-link" href="<%=request.getContextPath()%>/board/list">게시판</a>
