@@ -53,7 +53,7 @@
 	        <beans:ref bean="nonMemberInterceptor"/>
 	    </interceptor>
    	    <interceptor>
-	        <mapping path="/**/*"/> 
+	        <mapping path="/**/"/> 
 	        <beans:ref bean="autoLoginInterceptor"/>
 	    </interceptor>
 	</interceptors>
