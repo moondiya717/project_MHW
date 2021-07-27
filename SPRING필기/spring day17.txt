@@ -1,4 +1,19 @@
 [spring_mhw]
-개발자도구 - Application - storage- cookies
-1. 쿠키를 이용한 로그인
+세션확인 => 개발자도구 - Application - storage- cookies
+
+<자동로그인>
+1. 쿠키 유지시간을 길게 만들고(예: 7, 30일 등), 해당 쿠키 정보(ID와 만료일)를 데이터베이스에 저장
 + DB  member테이블에 속성추가 >세션이름, 세션만료시간
+ALTER TABLE `spring_mhw`.`member` 
+ADD COLUMN `session_id` VARCHAR(255) NULL AFTER `authority`,
+ADD COLUMN `session_limit` DATETIME NULL AFTER `session_id`;
+------------------------------------------------------------------------
+2. 로그인이 풀려 회원정보가 없지만 아직 쿠키 유지시간이 있는 경우 => 자동로그인을 해야하는 경우
+쿠키 정보를 검색해서 만료일이 지나지 않은 회원 정보를 가져옴 
+- 가져온 회원 정보를 세션에 저장해서 자동으로 로그인을 시킴
+------------------------------------------------------------------------
+3. 로그아웃
+- 회원정보에 저장된 쿠키 정보를 수정
+-> session_id를 none(어떠한문자던 상관없음)으로 하고, session_limit을 시간은 현재시간으로해서
+검색을 할 수 없도록 한다
+-> 쿠키유지시간을 0으로 만듦 

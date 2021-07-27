@@ -1,9 +1,12 @@
 package kr.green.spring.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.util.WebUtils;
 
 import kr.green.spring.service.MemberService;
 import kr.green.spring.vo.MemberVO;
@@ -81,8 +85,22 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/signout", method = RequestMethod.GET)
-	public ModelAndView signoutGet(ModelAndView mv, HttpServletRequest request) {
-		request.getSession().removeAttribute("user");
+	public ModelAndView signoutGet(ModelAndView mv, 
+			HttpServletRequest request,
+			HttpServletResponse response) {
+		//회원의 ID정보를 가져오기 위함
+		MemberVO user = (MemberVO)request.getSession().getAttribute("user");
+		if(user !=null) {
+			request.getSession().removeAttribute("user");
+			request.getSession().invalidate();
+			Cookie loginCookie = WebUtils.getCookie(request, "loginCookie");
+			if(loginCookie !=null) { //로그인 된 유저의 세션만료시키기
+				loginCookie.setPath("/"); //홈으로이동시키고
+				loginCookie.setMaxAge(0); //세션유지시간0초로 만들기
+				response.addCookie(loginCookie);
+				memberService.keeplogin(user.getId(), "none", new Date()); //세션만료시간을 지금시간으로 끝내주기
+			}
+		}
 		mv.setViewName("redirect:/");
 		return mv;
 	}
