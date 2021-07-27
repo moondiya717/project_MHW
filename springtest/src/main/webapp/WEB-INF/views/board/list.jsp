@@ -8,7 +8,7 @@
 </head>
 <body>
 	<div class="container clearfix">
-	  <h2 class="mb-3">게시글 목록</h2>
+	  <h1 class="mb-3">게시글 목록</h1>
 	  <p>몬스터주식회사 사원들의 게시판입니다.</p>
 	  <form class="input-group float-right mb-3" action="<%=request.getContextPath()%>/board/list"> 
 	  	<select class="form-control mr-2" name="type">
