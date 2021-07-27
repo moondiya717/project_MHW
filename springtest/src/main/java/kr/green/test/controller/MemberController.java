@@ -25,7 +25,7 @@ public class MemberController {
 	public ModelAndView mypageGet(ModelAndView mv, String id){
 		MemberVO mypage = memberService.getMember(id);
 		mv.addObject("mypage", mypage); //정보를 뿌려주기(뿌릴필요없으면 안써도됨)
-		mv.setViewName("member/mypage"); //화면이름붙여주기
+		mv.setViewName("/template/member/mypage"); //화면이름붙여주기
 		return mv;
 	}
 	@PostMapping(value="/member/mypage") //MemberVO는 화면상입력된 user
