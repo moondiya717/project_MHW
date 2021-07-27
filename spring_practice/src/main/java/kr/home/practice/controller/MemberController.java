@@ -61,16 +61,9 @@ public class MemberController {
         mv.setViewName("/member/mypage");
     	return mv;
     }
-    @PostMapping(value="/mypage") //request에서하는건 로그인이유지된 상태라서, getByID뭐이런거 사용해서 해야한대
-    public ModelAndView mypagePost(ModelAndView mv, MemberVO user, HttpServletRequest request) {    		
-        MemberVO sessionUserInfo = memberService.getMember(request);
-        if(sessionUserInfo != null || sessionUserInfo.getId().equals(user.getId())) {
-        	MemberVO updateUser = memberService.updateMember(user);
-        	if(updateUser !=null) {
-        		request.getSession().setAttribute("user",updateUser);
-        	}
-        }
-    	mv.setViewName("redirect:/member/mypage");
+    @PostMapping(value="/mypage")
+    public ModelAndView mypagePost(ModelAndView mv, MemberVO user) {
+    	memberService.updateMember(user);
     	return mv;
     }
 }

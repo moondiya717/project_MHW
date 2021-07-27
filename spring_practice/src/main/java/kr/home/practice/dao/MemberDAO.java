@@ -10,4 +10,6 @@ public interface MemberDAO {
 	public void signup(@Param("user")MemberVO user);
 
 	public MemberVO getMember(@Param("id")String id);
+
+	public int updateMember(@Param("dbUser")MemberVO dbUser);
 }

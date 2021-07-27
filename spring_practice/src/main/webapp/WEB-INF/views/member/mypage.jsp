@@ -18,7 +18,7 @@
 	  <form action="<%=request.getContextPath()%>/member/mypage" method="post">
 	    <div class="form-group">
 	      <label id="id">아이디:</label>
-	      <input type="text" class="form-control" value="${user.id}" name="id">
+	      <input type="text" class="form-control" value="${user.id}" name="id" readonly>
 	    </div>
 	    <div class="form-group">
 	      <label for="pwd">새 비밀번호:</label>
@@ -29,15 +29,15 @@
 	      <input type="password" class="form-control" name="pw2">
 	    </div>
    	    <div class="form-group">
-	      <label name="gender">성별:</label>
-	      <select type="select" class="form-control" value="${user.gender}" name="gender">
-	      	<option name="M" value="M">남</option>
-	      	<option name="F" value="F">여</option>
+	      <label>성별:</label>
+	      <select type="select" class="form-control" name="gender">
+	      	<option value="M" <c:if test="${user.gender == 'M'}">selected</c:if> >남</option>
+	      	<option value="F" <c:if test="${user.gender == 'F'}">selected</c:if> >여</option>
 	      </select>
 	    </div>
    	    <div class="form-group">
 	      <label for="usr">이름:</label>
-	      <input type="text" class="form-control" value="${user.name}" name="name">
+	      <input type="text" class="form-control" value="${user.name}" name="name" readonly>
 	    </div>
    	    <div class="form-group">
 	      <label for="usr">이메일:</label>

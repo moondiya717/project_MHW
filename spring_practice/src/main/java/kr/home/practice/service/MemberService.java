@@ -1,7 +1,5 @@
 package kr.home.practice.service;
 
-import javax.servlet.http.HttpServletRequest;
-
 import kr.home.practice.vo.MemberVO;
 
 public interface MemberService {
@@ -14,8 +12,5 @@ public interface MemberService {
 
 	public MemberVO getMember(String id);
 
-	public MemberVO getMember(HttpServletRequest request);
-
-	public MemberVO updateMember(MemberVO user);
-
+	public int updateMember(MemberVO user);
 }
