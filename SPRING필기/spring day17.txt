@@ -38,5 +38,5 @@ ADD COLUMN `session_limit` DATETIME NULL AFTER `session_id`;
 7. 로그아웃 시, loginCookie 정보가 있으면 쿠키유지 시간을 0으로 하고, DB에 session_id와 만료시간을 수정
 ------------------------------------------------------------------------
 [springtest]
-비밀번호 찾기 
+-비밀번호 찾기 
 
