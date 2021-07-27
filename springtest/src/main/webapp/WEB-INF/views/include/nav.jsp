@@ -8,7 +8,7 @@
 <title>nav</title> 
 </head>
 <body>
-	<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 	  <a class="navbar-brand" href="<%=request.getContextPath()%>/">SPRINGTEST</a>
 	  <ul class="navbar-nav">
 	    <li class="nav-item">
