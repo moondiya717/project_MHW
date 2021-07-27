@@ -27,8 +27,7 @@ public class HomeController {
 		mv.setViewName("/template/home");
 		return mv;
 	}
-	
-	
+		
 	@GetMapping(value = "/logout")
 	public ModelAndView logout(ModelAndView mv,
 			HttpServletRequest rq,
@@ -37,15 +36,14 @@ public class HomeController {
 		rq.getSession().removeAttribute("user");
 		rq.getSession().invalidate();
 		Cookie loginCookie = WebUtils.getCookie(rq, "loginCookie");
-		loginCookie.setPath("/");
-		loginCookie.setMaxAge(0);
-		rp.addCookie(loginCookie);
-		memberService.keepLogin(user.getId(), "none", new Date());
-		
-		
+		if(loginCookie != null) {
+			loginCookie.setPath("/");
+			loginCookie.setMaxAge(0);
+			rp.addCookie(loginCookie);
+	
+			memberService.keepLogin(user.getId(), "none", new Date());		
+		}		
 		mv.setViewName("redirect:/");
 		return mv;
-	}
-
-	
+	}	
 }
