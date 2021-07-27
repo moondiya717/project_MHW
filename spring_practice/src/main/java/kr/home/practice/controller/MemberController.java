@@ -55,20 +55,22 @@ public class MemberController {
     }
     
     @GetMapping(value="/mypage")
-    public ModelAndView mypageGet(ModelAndView mv) {    		
+    public ModelAndView mypageGet(ModelAndView mv, String id) {
+    	MemberVO user = memberService.getMember(id);
+    	mv.addObject("user", user);
         mv.setViewName("/member/mypage");
     	return mv;
     }
-    @PostMapping(value="/mypage")
-    public ModelAndView mypagePost(ModelAndView mv, MemberVO user, HttpServletRequest request) {    		
-        MemberVO sessionUserInfo = memberService.getMember(user);
-        if(sessionUserInfo != null || sessionUserInfo.getId().equals(user.getId())) {
-        	MemberVO updateUser = memberService.updateMember(user);
-        	if(updateUser !=null) {
-        		request.getSession().setAttribute("user",updateUser);
-        	}
-        }
-    	mv.setViewName("redirect:/member/mypage");
-    	return mv;
-    }
+//    @PostMapping(value="/mypage")
+//    public ModelAndView mypagePost(ModelAndView mv, MemberVO user, HttpServletRequest request) {    		
+//        MemberVO sessionUserInfo = memberService.getMember(user);
+//        if(sessionUserInfo != null || sessionUserInfo.getId().equals(user.getId())) {
+//        	MemberVO updateUser = memberService.updateMember(user);
+//        	if(updateUser !=null) {
+//        		request.getSession().setAttribute("user",updateUser);
+//        	}
+//        }
+//    	mv.setViewName("redirect:/member/mypage");
+//    	return mv;
+//    }
 }

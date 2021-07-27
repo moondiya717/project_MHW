@@ -38,8 +38,8 @@ public class MemberServiceImp implements MemberService {
 	}
 
 	@Override
-	public MemberVO getMember(MemberVO user) {
-		return MemberDao.getMember(id);
+	public MemberVO getMember(String id) {
+		return memberDao.getMember(id);
 	}
 
 	@Override

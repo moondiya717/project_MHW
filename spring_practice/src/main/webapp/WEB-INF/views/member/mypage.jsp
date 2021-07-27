@@ -18,30 +18,30 @@
 	  <form action="<%=request.getContextPath()%>/member/mypage" method="post">
 	    <div class="form-group">
 	      <label id="id">아이디:</label>
-	      <input type="text" class="form-control" value="" name="id">
+	      <input type="text" class="form-control" value="${user.id}" name="id">
 	    </div>
 	    <div class="form-group">
 	      <label for="pwd">새 비밀번호:</label>
-	      <input type="password" class="form-control" value="" name="pw">
+	      <input type="password" class="form-control" name="pw">
 	    </div>
    	    <div class="form-group">
 	      <label for="pwd">새 비밀번호 확인:</label>
-	      <input type="password" class="form-control" value="" name="pw2">
+	      <input type="password" class="form-control" name="pw2">
 	    </div>
    	    <div class="form-group">
 	      <label name="gender">성별:</label>
-	      <select type="select" class="form-control" value="" name="gender">
+	      <select type="select" class="form-control" value="${user.gender}" name="gender">
 	      	<option name="M" value="M">남</option>
 	      	<option name="F" value="F">여</option>
 	      </select>
 	    </div>
    	    <div class="form-group">
 	      <label for="usr">이름:</label>
-	      <input type="text" class="form-control" value="" name="name">
+	      <input type="text" class="form-control" value="${user.name}" name="name">
 	    </div>
    	    <div class="form-group">
 	      <label for="usr">이메일:</label>
-	      <input type="text" class="form-control" value="" name="email">
+	      <input type="text" class="form-control" value="${user.email}" name="email">
 	    </div>
 	    <a href="<%=request.getContextPath()%>/"><button type="button" class="btn btn-success">메인으로</button></a>
 	    <button type="submit" class="btn btn-primary">수정하기</button>

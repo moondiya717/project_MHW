@@ -10,7 +10,7 @@ public interface MemberService {
 
 	public MemberVO signin(MemberVO user);
 
-	public MemberVO getMember(MemberVO user);
+	public MemberVO getMember(String id);
 
 	public MemberVO updateMember(MemberVO user);
 }
