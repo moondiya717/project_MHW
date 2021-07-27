@@ -41,6 +41,8 @@
     	<!-- 업로드 최대 크기 10Mb -->
     	<beans:property name="maxUploadSize" value="10485760"></beans:property>
 	</beans:bean>
+	<beans:bean id="autoLoginInterceptor" 
+		class="kr.green.test.interceptor.AutoLoginInterceptor"></beans:bean>
 	<interceptors>
 	    <interceptor>
 	        <mapping path="/member/signin"/>
@@ -57,6 +59,10 @@
 	        <mapping path="/member/signin"/>
    	        <mapping path="/member/signup"/>
 	        <beans:ref bean="nonMemberInterceptor"/>
+	    </interceptor>
+   	    <interceptor>
+	        <mapping path="/**/"/> 
+	        <beans:ref bean="autoLoginInterceptor"/>
 	    </interceptor>
 	</interceptors>
 	

@@ -18,4 +18,6 @@ public interface MemberDAO {
 	public void updateMember(@Param("user")MemberVO sUser);
 
 	public void keepLogin(@Param("id")String id, @Param("session_id")String session_id, @Param("session_limit")Date session_limit);
+
+	public MemberVO getMemberByCookie(@Param("session_id")String value);
 }

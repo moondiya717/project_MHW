@@ -7,16 +7,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import kr.green.test.service.MemberService;
 import kr.green.test.vo.MemberVO;
-import lombok.AllArgsConstructor;
 
-@AllArgsConstructor
 public class LoginInterceptor extends HandlerInterceptorAdapter{
-	
+	@Autowired
 	MemberService memberService;
 	
 	@Override

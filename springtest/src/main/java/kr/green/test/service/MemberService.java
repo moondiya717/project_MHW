@@ -23,4 +23,6 @@ public interface MemberService {
 	public boolean idCheck(String id);
 
 	public void keepLogin(String id, String session_id, Date session_limit);
+
+	public MemberVO getMemberByCookie(String value);
 }
