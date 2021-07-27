@@ -54,13 +54,17 @@ public class MemberController {
 	}
 	@PostMapping(value = "/member/signin")
 	public ModelAndView signinPOST(ModelAndView mv, MemberVO user) {
-		MemberVO loginUser = memberService.signin(user);
+		//VO에 useCookie추가해서 자동로그인체크박스상태에따라 값이 넘어오는 걸 확인함
+		//System.out.println(user);
+		MemberVO loginUser = memberService.signin(user); //여기 signin에 컨트롤누르고 호버하면 2번쨰 구현부열기
+		System.out.println(loginUser);
 		if(loginUser !=null) {
 			mv.setViewName("redirect:/");
 		}else {
 			mv.setViewName("redirect:/member/signin");
 		}
 		mv.addObject("user",loginUser);
+//		System.out.println(loginUser);
 		return mv;
 		}
 

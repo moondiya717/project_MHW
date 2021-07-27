@@ -22,4 +22,9 @@
   		email = #{user.email}, pw = #{user.pw}, gender = #{user.gender}, name = #{user.name}
   		where id = #{user.id}  		
   </update>
+  <update id="keepLogin">
+  	update member set 
+  		session_id = #{session_id}, session_limit=#{session_limit}
+  		where id=#{id}; 
+  </update>
 </mapper>
