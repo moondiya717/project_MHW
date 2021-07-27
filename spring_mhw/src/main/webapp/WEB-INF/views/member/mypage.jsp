@@ -38,8 +38,6 @@
 	  </div>
    	  <a href="<%=request.getContextPath()%>/"><button type="button" class="btn btn-outline-secondary col-5">홈으로</button></a>
   	  <button type="submit" class="btn btn-outline-success col-5">수정</button>
-
-  	  
 	</form>
 <script type="text/javascript">
 	$(function(){

@@ -1,5 +1,7 @@
 package kr.home.practice.service;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,10 +38,17 @@ public class MemberServiceImp implements MemberService {
 		}		
 		return dbUser;
 	}
-
 	@Override
 	public MemberVO getMember(String id) {
 		return memberDao.getMember(id);
+	}
+
+	@Override
+	public MemberVO getMember(HttpServletRequest request) {
+		if(request==null) {
+			return null;
+		}
+		return (MemberVO)request.getSession().getAttribute("user");
 	}
 
 	@Override
@@ -47,6 +56,7 @@ public class MemberServiceImp implements MemberService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 
 
 }

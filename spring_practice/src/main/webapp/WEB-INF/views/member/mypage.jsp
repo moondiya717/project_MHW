@@ -47,5 +47,19 @@
 	    <button type="submit" class="btn btn-primary">수정하기</button>
 	  </form>
 	</div>
+	<script type="text/javascript">
+	$(function(){	
+		$('form').submit(function(){
+			var pw = $('[name=pw]').val();
+			var pw2= $('[name=pw2]').val();
+			if(pw == pw2){
+				return true;
+			}else{
+				alert('비밀번호와 비밀번호 확인이 다릅니다.')
+				return false;
+			}
+		})
+	})
+	</script>
 </body>
 </html>
