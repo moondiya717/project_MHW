@@ -1,0 +1,4 @@
+[spring_mhw]
+개발자도구 - Application - storage- cookies
+1. 쿠키를 이용한 로그인
++ DB  member테이블에 속성추가 >세션이름, 세션만료시간

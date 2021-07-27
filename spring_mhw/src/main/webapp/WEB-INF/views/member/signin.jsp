@@ -18,38 +18,16 @@
 		  <label>비밀번호:</label>
 		  <input type="password" class="form-control" name="pw">
 		</div>
+		<label class="form-group">
+		<!-- ?????에 value를 지정하지 않으면 true false가 나옴 -->
+		  <input type="checkbox" name="useCookie" value="true"> 자동 로그인
+		</label>
 		<!-- 서버로 데이터전송을 안되게하려고 button type을 button으로 했음, ajax이용하려고 -->
-		<button type=button id="loginBtn" class="btn btn-outline-success col-12">로그인</button>
+		<button type=submit id="loginBtn" class="btn btn-outline-success col-12">로그인</button>
 		<a href="<%=request.getContextPath()%>/find/id">아이디 찾기</a>
 		<b>/</b>		
 		<a href="<%=request.getContextPath()%>/find/pw">비밀번호 찾기</a>
 	</form>
-	<script type=text/javascript>
-		$(function(){
-			$('#loginBtn').click(function(){
-				var id = $('[name=id]').val();
-				var pw = $('[name=pw]').val();
-				var data = {'id' : id, 'pw' : pw};
-				$.ajax({
-					type:'post',
-					url: '<%=request.getContextPath()%>/member/signin',
-					data: JSON.stringify(data),
-					//dataType:"json", //서버에서 json형태로 보내주는 경우(클래스의 객체를 보내주는 경우, Map을 이용하여 보내주는 경우)
-					contentType:"application/json; charset=utf-8",
-					success : function(result, status, xhr){
-						console.log(result);
-						if(result != 'success'){
-							alert('아이디 또는 비밀번호가 틀렸습니다.');
-						}else{
-							alert('로그인 성공')
-							location.href="<%=request.getContextPath()%>/"
-						}
-					},
-					error : function(xhr, status, e){						
-					}				
-				})
-			})
-		})
-	</script>
+<!-- 기존의 스크립트에 있던 ajax를 지웠음, ajax보다 ???에서 하는게 더 편하기때문 -->
 </body>
 </html>

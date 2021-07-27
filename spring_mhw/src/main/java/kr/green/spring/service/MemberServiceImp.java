@@ -1,6 +1,7 @@
 package kr.green.spring.service;
  
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -34,6 +35,7 @@ public class MemberServiceImp implements MemberService {
 			return null; //비밀번호를 암호화해서 로그인하도록하면, 기존의 암호화안된 계정들은 로그인이 안되서
 						// => 연결되어있는 board글 작성자 아이디를 암호화된 계정 아이디로 다 바꾸고나서 암호화되지 않은 계정들을 삭제한다.
 		}
+		dbUser.setUseCookie(user.getUseCookie());
 		return dbUser;
 	}
 	
@@ -102,4 +104,16 @@ public class MemberServiceImp implements MemberService {
 		return memberDao.getMemberByEmail(email);
 	}
 
+	@Override
+	public void keeplogin(String id, String session_id, Date session_limit) {
+		memberDao.keeplogin(id, session_id, session_limit);		
+	}
+
+	@Override
+	public MemberVO checkLoginBefore(String session_id) {
+		if(session_id == null) {
+			return null;			
+		}
+		return memberDao.getMemberBysessionId(session_id);
+	}
 }

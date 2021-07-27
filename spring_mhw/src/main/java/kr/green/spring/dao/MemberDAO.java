@@ -1,6 +1,7 @@
 package kr.green.spring.dao;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import org.apache.ibatis.annotations.Param;
 
@@ -19,4 +20,8 @@ public interface MemberDAO {
 	//Param을 쓰고 앞에 객체명 붙여주는게 더 좋음
 
 	ArrayList<MemberVO> getMemberByEmail(@Param("email")String email);
+
+	void keeplogin(@Param("id")String id, @Param("session_id")String session_id, @Param("session_limit")Date session_limit);
+
+	MemberVO getMemberBysessionId(@Param("session_id")String session_id);
 }
