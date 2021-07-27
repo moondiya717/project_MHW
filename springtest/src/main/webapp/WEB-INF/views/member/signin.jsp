@@ -21,6 +21,9 @@
 		  <input type="checkbox" name="useCookie" value="true"> 자동 로그인
 		</label>
 		<button type="submit" class="btn btn-outline-success col-12">로그인</button>
+		<div class="form-group mt-3">
+		  <a href="<%=request.getContextPath()%>/find/pw">비밀번호 찾기</a>
+		</div>
 	</form>
 </body>
 </html>

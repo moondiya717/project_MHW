@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -90,5 +91,14 @@ public class MemberController {
 		MemberVO user = memberService.getMember(id);
 		return memberService.idCheck(id) ? "Possible" : "Impossible";
 	}
-
+	@GetMapping(value = "/find/pw")
+	public ModelAndView findPwGet(ModelAndView mv) {
+		mv.setViewName("/template/member/findpw");
+		return mv;
+	}
+	@ResponseBody
+	@GetMapping("find/pw/{id}")
+	public String findPwIdGet(@PathVariable("id") String id) {
+		return memberService.findPw(id);
+	}
 }
