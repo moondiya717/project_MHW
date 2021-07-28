@@ -43,6 +43,7 @@ public class MemberServiceImp implements MemberService {
 
 	@Override
 	public int updateMember(MemberVO user) {
+		System.out.println(user);
 		if(user == null) {
 			return 0;
 		}
@@ -52,7 +53,7 @@ public class MemberServiceImp implements MemberService {
 		}
 		dbUser.setEmail(user.getEmail());
 		dbUser.setGender(user.getGender());
-		if(user.getPw() !=null && user.getPw().equals("")) {
+		if(user.getPw() !=null && !user.getPw().equals("")) {
 			dbUser.setPw(user.getPw());
 		}
 		return memberDao.updateMember(dbUser);

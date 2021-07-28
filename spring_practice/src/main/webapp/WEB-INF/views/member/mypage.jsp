@@ -31,10 +31,10 @@
    	    <div class="form-group">
 	      <label>성별:</label>
 	      <select type="select" class="form-control" name="gender">
-	      	<option value="M" <c:if test="${user.gender == 'M'}">selected</c:if> >남</option>
+   	      	<option value="M" <c:if test="${user.gender == 'M'}">selected</c:if> >남</option>
 	      	<option value="F" <c:if test="${user.gender == 'F'}">selected</c:if> >여</option>
 	      </select>
-	    </div>
+	    </div>  
    	    <div class="form-group">
 	      <label for="usr">이름:</label>
 	      <input type="text" class="form-control" value="${user.name}" name="name" readonly>
