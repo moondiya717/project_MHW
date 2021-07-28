@@ -23,6 +23,12 @@ Browse...선택> 원하는 폴더 선택(빈폴더)> spring MVC project 선택>n
 6. lombok 연동
 - lombok설치
 - lombok연동
+7. 패키지 세팅
++ VO에서 DB에 카테고리하나 추가해줬음(게시글 카테고리때매)
+ALTER TABLE `spring_mhw`.`board` 
+ADD COLUMN `type` VARCHAR(45) NOT NULL DEFAULT 'NORMAL' AFTER `valid`;
+
+
 
 -------------------------------------------------
 => @Autowired (Home컨트롤러에서 MemberService를 autowired했을때 )사용했을때 볼 수 있는 에러
