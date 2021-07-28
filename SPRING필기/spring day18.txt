@@ -1,7 +1,10 @@
 1.프로젝트 생성
 - 새프로젝트 생성> spring laguacy project 선택>  use default location 해제>
 Browse...선택> 원하는 폴더 선택(빈폴더)> spring MVC project 선택>next클릭 >
-패키지이름 입력xxx.yyy.zzz > finish
+패키지이름 입력xxx.yyy.zzz > finish 
+-패키지명 변경 
+  - 기존에 생성되는 패키지명을 xxx.yyy.zzz => xxx.yyy.zzz.controller
+   -servelt-context.xml에서 component-scan에서 base-package를 xxx.ttt.yyy.*로 변경
 2. 인코딩 설정
 - 이클립스 설정(한번하면 추후에 할 필요가 없음-같은PC에 한해서)
 - 프로젝트 인코딩 설정
@@ -13,5 +16,15 @@ Browse...선택> 원하는 폴더 선택(빈폴더)> spring MVC project 선택>n
 - 템플릿을 사용하기 위한 설정
 - 템플릿 파일을 구성(base.jsp, nav.jsp, footer.jsp ...등)
 - 컨트롤러에서 템플릿을 적용
+5. DB연동
+- DB연동을 하기 위한 설정
+- DB에 필요한 DB와 테이블을 생성
+- Controller, Service, ServiceImp, DAO, Mapper를 생성
+6. lombok 연동
+- lombok설치
+- lombok연동
 
-
+-------------------------------------------------
+=> @Autowired (Home컨트롤러에서 MemberService를 autowired했을때 )사용했을때 볼 수 있는 에러
+.UnsatisfiedDependencyException: Error creating bean with name 
+=>해결방법 MemberServiceImp에 @Service 를 붙여주면됨 (다른파일들에서 연결이 끊겨서 그럼)
