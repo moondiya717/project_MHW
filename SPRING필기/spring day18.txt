@@ -1,0 +1,17 @@
+1.프로젝트 생성
+- 새프로젝트 생성> spring laguacy project 선택>  use default location 해제>
+Browse...선택> 원하는 폴더 선택(빈폴더)> spring MVC project 선택>next클릭 >
+패키지이름 입력xxx.yyy.zzz > finish
+2. 인코딩 설정
+- 이클립스 설정(한번하면 추후에 할 필요가 없음-같은PC에 한해서)
+- 프로젝트 인코딩 설정
+- jsp파일 인코딩 설정
+3. 스프링 프레임워크 버전 수정 (pom.xml)
+- 5.0.7.RELEASE
+- 자바버전 수정 1.8
+4. 템플릿 설정(선택)
+- 템플릿을 사용하기 위한 설정
+- 템플릿 파일을 구성(base.jsp, nav.jsp, footer.jsp ...등)
+- 컨트롤러에서 템플릿을 적용
+
+
