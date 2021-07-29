@@ -51,7 +51,7 @@ public class MemberVO {
 		case "SUPER ADMIN" : 
 			if(user.getAuthority().equals("ADMIN") || 
 					user.getAuthority().equals("USER")) {
-				return -1;
+				return 1;
 			}
 			return -100;
 		}
