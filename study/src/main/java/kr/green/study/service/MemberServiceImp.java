@@ -2,6 +2,8 @@ package kr.green.study.service;
 
 import java.util.regex.Pattern;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -90,6 +92,13 @@ public class MemberServiceImp implements MemberService{
 		MemberVO user = memberDao.selectUser(id);
 		System.out.println(user);
 		return user;
+	}
+
+	@Override
+	public void signout(HttpServletRequest request) {
+		if(request != null) {
+			request.getSession().removeAttribute("user");
+		}
 	}
 	
 }
