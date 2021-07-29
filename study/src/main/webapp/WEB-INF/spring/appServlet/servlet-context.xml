@@ -45,6 +45,16 @@
 	<!-- 자동로그인처리 => 오토로그인인터셉터 (=자동로그인 유지) // 자동로그인기능구현을 끝내면 마지막에 여기서 추가해줘야 함-->	
 	<beans:bean id="autoLoginInterceptor" 
 	class="kr.green.study.interceptor.AutoLoginInterceptor"></beans:bean>
+	<!-- 비회원만 접근할 수 있게하는 인터셉터 -->
+	<beans:bean id="guestInterceptor" 
+	class="kr.green.study.interceptor.GuestInterceptor"></beans:bean>
+	<!-- 회원만 접근할 수 있게하는 인터셉터 -->
+	<beans:bean id="memberInterceptor" 
+	class="kr.green.study.interceptor.MemberInterceptor"></beans:bean>
+	<!-- 관리자만 접근할 수 있게하는 인터셉터 -->
+	<beans:bean id="adminInterceptor" 
+	class="kr.green.study.interceptor.AdminInterceptor"></beans:bean>
+	
 	<interceptors>
 	    <interceptor>
 	        <mapping path="/member/signin"/>
@@ -54,5 +64,18 @@
 	        <mapping path="/**/"/>
 	        <beans:ref bean="autoLoginInterceptor"/>
 	    </interceptor>
+   	    <interceptor>
+	        <mapping path="/member/signup"/>
+   	        <mapping path="/member/signin"/>	        
+	        <beans:ref bean="guestInterceptor"/>
+	    </interceptor>
+   	    <interceptor>
+   	        <mapping path="/abcd/*"/> <!-- 샘플로잠시넣어둔상태 -->	        
+	        <beans:ref bean="memberInterceptor"/>
+	    </interceptor>	  
+   	    <interceptor>
+   	        <mapping path="/admin/*"/> <!-- 아직안했지만 이렇게 할 예정 -->	        
+	        <beans:ref bean="adminInterceptor"/>
+	    </interceptor>  
 	</interceptors>
 </beans:beans>
