@@ -74,7 +74,7 @@
 	        <beans:ref bean="memberInterceptor"/>
 	    </interceptor>	  
    	    <interceptor>
-   	        <mapping path="/admin/*"/> <!-- 아직안했지만 이렇게 할 예정 -->	        
+   	        <mapping path="/admin/**/"/> <!-- 아직안했지만 이렇게 할 예정 -->	        
 	        <beans:ref bean="adminInterceptor"/>
 	    </interceptor>  
 	</interceptors>
