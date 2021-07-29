@@ -25,4 +25,7 @@ public interface MemberService {
 	MemberVO getMemberByRequest(HttpServletRequest request);
 
 	ArrayList<MemberVO> getMemberList(MemberVO user);
+
+	//혹시 실패할 수도 있으니까 결과를 확인하기 위해서 리턴타입을 바꿨음
+	boolean updateAuthority(MemberVO user, MemberVO loginUser);
 }

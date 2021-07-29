@@ -19,6 +19,8 @@ public interface MemberDAO {
 
 	MemberVO selectUserBySession(String session_id);
 
-	ArrayList<MemberVO> selectUserList(@Param("authority")String authority); 
+	ArrayList<MemberVO> selectUserList(@Param("authority")String authority);
+
+	void updateUser(MemberVO dbUser); 
 
 }

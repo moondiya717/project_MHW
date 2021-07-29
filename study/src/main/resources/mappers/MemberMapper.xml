@@ -26,9 +26,14 @@
 				where authority = 'USER'
 			</if>
 			<if test = "authority == 'SUPER ADMIN'">
-				where authority != 'SUPER USER'
+				where authority != 'SUPER ADMIN'
 			</if>
 			order by id asc 
 	</select>
+	<update id="updateUser">
+		update member set
+			pw=#{pw}, email=#{email}, gender=#{gender}, name=#{name}, authority = #{authority}
+			where id= #{id}
+	</update>
 	
 </mapper>

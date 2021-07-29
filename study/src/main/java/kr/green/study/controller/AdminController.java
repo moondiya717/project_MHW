@@ -6,7 +6,10 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.green.study.service.MemberService;
@@ -21,12 +24,20 @@ public class AdminController {
 	MemberService memberService;
 	
 	@GetMapping("/user/list")
-	public ModelAndView testGet(ModelAndView mv, HttpServletRequest request) {
+	public ModelAndView userListGet(ModelAndView mv, HttpServletRequest request) {
 		MemberVO user = memberService.getMemberByRequest(request);
 		//내 등급보다 낮은 admin의 회원정보를 가져와야 함
 		ArrayList<MemberVO> list = memberService.getMemberList(user);
 		mv.addObject("list",list);
 		mv.setViewName("/template/admin/user/list");
 		return mv;
+	}
+	//ajax는 메소드쓸때 responsebody꼭 써줘야함
+	@ResponseBody
+	@PostMapping("/user/mod") //혹시라도 잘못된 접근을 할 수 있을까바 request추가해줬음
+	public String userModePost(@RequestBody MemberVO user, HttpServletRequest request){
+		MemberVO loginUser = memberService.getMemberByRequest(request);
+		
+		return memberService.updateAuthority(user, loginUser)? "OK" : "FAIL";
 	}
 }
