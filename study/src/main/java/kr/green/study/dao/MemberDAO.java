@@ -14,6 +14,8 @@ public interface MemberDAO {
 	MemberVO selectUser(String id);
 
 	void keepLogin(@Param("id")String id, 
-			@Param("session_id")String session_id, @Param("session_limit")Date session_limit); 
+			@Param("session_id")String session_id, @Param("session_limit")Date session_limit);
+
+	MemberVO selectUserBySession(String session_id); 
 
 }

@@ -32,7 +32,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 
 	    if(user != null) {
 	        HttpSession session = request.getSession();
-	        session.setAttribute("user", user);
+	        session.setAttribute("user", user); //여기있는 "" 따옴표안의 이름을 AutoLogin에서 똑같이 사용해야함
 	        if(user.getUseCookie() !=null) {
 	        	Cookie loginCookie = new Cookie("loginCookie", session.getId());
 	        	int timeSecond = 60*60*24*7; //7일을 초로 환산

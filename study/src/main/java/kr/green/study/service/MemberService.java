@@ -18,4 +18,6 @@ public interface MemberService {
 
 	void keepLogin(String id, String id2, Date date);
 
+	MemberVO getMemberByCookie(String value);
+
 }

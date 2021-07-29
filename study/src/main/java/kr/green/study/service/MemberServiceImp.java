@@ -110,5 +110,13 @@ public class MemberServiceImp implements MemberService{
 		memberDao.keepLogin(id, session_id, session_limit);
 		
 	}
+
+	@Override
+	public MemberVO getMemberByCookie(String session_id) {
+		if(session_id == null) {
+			return null;
+		}
+		return memberDao.selectUserBySession(session_id);
+	}
 	
 }
