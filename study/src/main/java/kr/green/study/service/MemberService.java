@@ -1,5 +1,7 @@
 package kr.green.study.service;
 
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 
 import kr.green.study.vo.MemberVO;
@@ -13,5 +15,7 @@ public interface MemberService {
 	Object getMember(String id);
 
 	void signout(HttpServletRequest request);
+
+	void keepLogin(String id, String id2, Date date);
 
 }

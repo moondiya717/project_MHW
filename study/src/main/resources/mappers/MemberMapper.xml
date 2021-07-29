@@ -11,4 +11,9 @@
 		select * from member
 			where id=#{id}
 	</select>
+	<update id="keepLogin">
+		update member set
+			session_id = #{session_id}, session_limit= #{session_limit}
+			where id = #{id}
+	</update>
 </mapper>

@@ -1,5 +1,6 @@
 package kr.green.study.service;
 
+import java.util.Date;
 import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
@@ -99,6 +100,15 @@ public class MemberServiceImp implements MemberService{
 		if(request != null) {
 			request.getSession().removeAttribute("user");
 		}
+	}
+
+	@Override
+	public void keepLogin(String id, String session_id, Date session_limit) {
+		if(id == null) {
+			return ;
+		}
+		memberDao.keepLogin(id, session_id, session_limit);
+		
 	}
 	
 }
