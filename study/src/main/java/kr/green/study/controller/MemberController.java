@@ -1,5 +1,7 @@
 package kr.green.study.controller;
 
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -60,8 +62,9 @@ public class MemberController {
 	}
 	
 	@GetMapping("/member/signout")
-	public ModelAndView memberSignoutGet(ModelAndView mv, HttpServletRequest request) {
-		memberService.signout(request);
+	public ModelAndView memberSignoutGet(ModelAndView mv, 
+			HttpServletRequest request, HttpServletResponse response) {
+		memberService.signout(request, response); //로그아웃위해서 response추가
 		mv.setViewName("redirect:/");
 		return mv;
 	}

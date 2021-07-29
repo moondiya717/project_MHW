@@ -3,10 +3,14 @@ package kr.green.study.service;
 import java.util.Date;
 import java.util.regex.Pattern;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.util.WebUtils;
 
 import kr.green.study.dao.MemberDAO;
 import kr.green.study.vo.MemberVO;
@@ -96,10 +100,26 @@ public class MemberServiceImp implements MemberService{
 	}
 
 	@Override
-	public void signout(HttpServletRequest request) {
-		if(request != null) {
-			request.getSession().removeAttribute("user");
+	public void signout(HttpServletRequest request, HttpServletResponse response) {
+		if(request == null || response == null) {
+			return ;
 		}
+		MemberVO user = getMemberByRequest(request); //post가 아니라 get방식으로 한거라서 잘못들어오게될 수도 있음
+		if(user == null) { //로그인안한상태
+			return;
+		}
+		HttpSession session = request.getSession(); //반복적으로 쓰기 길어서 단어에 담아서 아래에 쓰려고
+		session.removeAttribute("user");
+		session.invalidate(); //무효화
+		Cookie loginCookie = WebUtils.getCookie(request, "loginCookie");
+		if(loginCookie == null) {
+			return ;
+		}
+		loginCookie.setPath("/");
+		loginCookie.setMaxAge(0);
+		response.addCookie(loginCookie);
+		//DB에 세션만료됐을때 기록할 말 "" 두번째 넣으면됨. 임의로 none이라고 알아듣기 쉽게 쓴거임
+		keepLogin(user.getId(), "none", new Date()); 
 	}
 
 	@Override
@@ -117,6 +137,15 @@ public class MemberServiceImp implements MemberService{
 			return null;
 		}
 		return memberDao.selectUserBySession(session_id);
+	}
+
+	
+	@Override
+	public MemberVO getMemberByRequest(HttpServletRequest request) { //메소드 미리만들어서 두루두루 쓴대
+		if(request == null) {
+			return null;
+		}
+		return (MemberVO)request.getSession().getAttribute("user");
 	}
 	
 }
