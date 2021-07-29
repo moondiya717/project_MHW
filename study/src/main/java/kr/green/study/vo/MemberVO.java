@@ -11,6 +11,7 @@ public class MemberVO {
 	private String name;
 	private String authority;
 	private Boolean useCookie;
+	
 	public String getAuthorityStr() {
 		if(authority.equals("USER")) {
 			return "회원";
