@@ -28,7 +28,7 @@
 			<if test = "authority == 'SUPER ADMIN'">
 				where authority != 'SUPER ADMIN'
 			</if>
-			order by id asc 
+			order by id asc limit #{cri.pageStart}, #{cri.perPageNum}
 	</select>
 	<update id="updateUser">
 		update member set

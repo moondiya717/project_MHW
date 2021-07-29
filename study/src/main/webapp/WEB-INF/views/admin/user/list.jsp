@@ -57,11 +57,11 @@
 						success : function(res){
 							//console.log(res);
 							if(res == 'OK'){
-								alert(id+ "님의 등급이 변경되었습니다.");
 								var str = authority=='USER'? '회원' : '관리자';
 								obj.text(str);
+								alert(id+ "님의 등급이"+str+"로 변경되었습니다.");
 							}else{
-								alert(id+"님의 등급 변경을 실패했습니다")''
+								alert(id+"님의 등급 변경을 실패했습니다");
 							}
 						}
 					})

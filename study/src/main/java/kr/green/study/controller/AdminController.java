@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.green.study.pagination.Criteria;
+import kr.green.study.pagination.PageMaker;
 import kr.green.study.service.MemberService;
 import kr.green.study.vo.MemberVO;
 import lombok.AllArgsConstructor;
@@ -24,11 +26,18 @@ public class AdminController {
 	MemberService memberService;
 	
 	@GetMapping("/user/list")
-	public ModelAndView userListGet(ModelAndView mv, HttpServletRequest request) {
+	public ModelAndView userListGet(ModelAndView mv, HttpServletRequest request, Criteria cri) {
 		MemberVO user = memberService.getMemberByRequest(request);
-		//내 등급보다 낮은 admin의 회원정보를 가져와야 함
-		ArrayList<MemberVO> list = memberService.getMemberList(user);
+		cri.setPerPageNum(1);
+		ArrayList<MemberVO> list = memberService.getMemberList(user, cri);
+		
+		int totalCount =3;
+		PageMaker pm = new PageMaker(totalCount, 5, cri); //(?, 5씩한페이지, 페이지정보)
+		
+		//System.out.println(pm);
+		
 		mv.addObject("list",list);
+		mv.addObject("pm",pm);
 		mv.setViewName("/template/admin/user/list");
 		return mv;
 	}
