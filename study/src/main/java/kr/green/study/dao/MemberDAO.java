@@ -22,6 +22,8 @@ public interface MemberDAO {
 
 	ArrayList<MemberVO> selectUserList(@Param("authority")String authority, @Param("cri")Criteria cri);
 
-	void updateUser(MemberVO dbUser); 
+	void updateUser(MemberVO dbUser);
+
+	int getTotalCount(@Param("authority")String authority); 
 
 }

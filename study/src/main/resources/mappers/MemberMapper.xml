@@ -35,5 +35,13 @@
 			pw=#{pw}, email=#{email}, gender=#{gender}, name=#{name}, authority = #{authority}
 			where id= #{id}
 	</update>
-	
+	<select id="getTotalCount" resultType="kr.green.study.vo.MemberVO">
+		select count(*) from member 
+			<if test = "authority == 'ADMIN'"> 
+				where authority = 'USER'
+			</if>
+			<if test = "authority == 'SUPER ADMIN'">
+				where authority != 'SUPER ADMIN'
+			</if>
+	</select>
 </mapper>

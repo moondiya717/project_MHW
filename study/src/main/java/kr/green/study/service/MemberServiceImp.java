@@ -172,5 +172,13 @@ public class MemberServiceImp implements MemberService{
 		memberDao.updateUser(dbUser);
 		return true;
 	}
+
+	@Override
+	public int getTotalCount(MemberVO user) {
+		if(user == null) {
+			return 0;
+		}
+		return memberDao.getTotalCount(user.getAuthority());
+	}
 	
 }
