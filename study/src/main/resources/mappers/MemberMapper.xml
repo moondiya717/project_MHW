@@ -20,5 +20,15 @@
 		select * from member
 			where session_id = #{session_id} and session_limit > now()
 	</select>
+	<select id="selectUserList" resultType="kr.green.study.vo.MemberVO">
+		select * from member 
+			<if test = "authority == 'ADMIN'"> <!-- if쓰려면 param필수 -->
+				where authority = 'USER'
+			</if>
+			<if test = "authority == 'SUPER ADMIN'">
+				where authority != 'SUPER USER'
+			</if>
+			order by id asc 
+	</select>
 	
 </mapper>
