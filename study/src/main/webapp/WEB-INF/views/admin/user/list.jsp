@@ -12,7 +12,7 @@
 		    <thead>
 		      <tr>
 		        <th>
-		        	<a herf="<%=request.getContextPath()%>/admin/user/list?sortType=id&sort=${pm.criteria.notSort}">
+		        	<a href="<%=request.getContextPath()%>/admin/user/list?sortType=id&sort=${pm.criteria.notSort}">
 		        		<span>아이디</span>
 		        		<c:if test="${pm.criteria.sortType=='id' && pm.criteria.sort =='asc'}">
 	        				<i class="fas fa-sort-amount-up-alt"></i>
@@ -23,7 +23,7 @@
 		        	</a>
 		        </th>
 		        <th>
-		        	<a herf="<%=request.getContextPath()%>/admin/user/list?sortType=id&sort=${pm.criteria.notSort}">
+		        	<a href="<%=request.getContextPath()%>/admin/user/list?sortType=authority&sort=${pm.criteria.notSort}">
 		        		<span>등급</span>
 		        		<c:if test="${pm.criteria.sortType=='authority' && pm.criteria.sort =='asc'}">
 	        				<i class="fas fa-sort-amount-up-alt"></i>
@@ -60,7 +60,7 @@
 		    </c:if>
 		    
 		    <c:forEach begin="${pm.startPage}" end="${pm.endPage}" var="index">
-		    	<li class="page-item <c:if test="${pm.criteria.page==index}">active</c:if>"><a class="page-link" href="<%=request.getContextPath()%>/admin/user/list?page=${index}&sortType=${pm.criteria.sortType}&sort=${pm.criteria.sort}"></a></li>
+		    	<li class="page-item <c:if test="${pm.criteria.page==index}">active</c:if>"><a class="page-link" href="<%=request.getContextPath()%>/admin/user/list?page=${index}&sortType=${pm.criteria.sortType}&sort=${pm.criteria.sort}">${index}</a></li>
 		    </c:forEach>
 		    <c:if test="${pm.next}">
 		    	<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/admin/user/list?page=${pm.endPage+1}&sortType=${pm.criteria.sortType}&sort=${pm.criteria.sort}">다음</a></li>
