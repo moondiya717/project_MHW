@@ -7,6 +7,11 @@
 	
 	</head>
 	<body>
-		<div>푸터</div>
+		<div class="jumbotron jumbotron-fluid" style="height:200px; box-sizing:border-box; margin-bottom:0;">
+		  <div class="container">
+		    <h1>footer</h1>      
+		    <p>몬스터주식회사</p>
+		  </div>
+		</div>
 	</body>
 </html>
