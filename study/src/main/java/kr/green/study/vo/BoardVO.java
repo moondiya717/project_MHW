@@ -16,6 +16,7 @@ public class BoardVO {
 	private int views;
 	private String valid;	
 	private String type;
+	private int groupOrd;
 	
 	
 	//등록한 날짜를 년월일까지만 문자열로 보여주는 getter

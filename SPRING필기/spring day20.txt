@@ -4,3 +4,5 @@ DB-border에 테이블 추가
 - oriNo : 답글달때 게시글번호가 올라가지않고 대답하려는 게시글 번호를 따라가기
 =>update board set  oriNo = num;
 - groupOrd : 답글달았을때 답글을 게시글들 중간에 껴넣은 정렬을 위함
+=>select*from board order by oriNo desc, groupOrd asc; 해보면 이런식으로 보여짐
+*관리자가 글답변에 제목만입력할때 groupOrd가 앞부분에 답글임의 표시를 넣어줌
