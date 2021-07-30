@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.home.practice.pagination.Criteria;
+import kr.home.practice.pagination.PageMaker;
 import kr.home.practice.service.BoardService;
 import kr.home.practice.vo.BoardVO;
 
@@ -20,9 +22,18 @@ public class BoardController {
     BoardService boardService;
     
     @RequestMapping(value="/list")
-    public ModelAndView listGet(ModelAndView mv) {
-    	ArrayList <BoardVO> list = boardService.getBoardList();  	
-    	mv.addObject("list", list);    		
+    public ModelAndView listGet(ModelAndView mv, Criteria cri) {
+    	PageMaker pm = new PageMaker();
+    	cri.setPerPageNum(10);
+    	pm. setCriteria(cri);
+    	pm.setDisplayPageNum(4); //페이지갯수를 선택할 수 있음
+    	int totalCount = boardService.getTotalCount(cri);
+    	pm.setTotalCount(totalCount);
+    	pm.calcData();
+    	//System.out.println(pm);    	
+    	ArrayList <BoardVO> list = boardService.getBoardList(cri);  	
+    	mv.addObject("pm", pm);
+    	mv.addObject("list", list);
         mv.setViewName("/board/list");
         return mv;
     }

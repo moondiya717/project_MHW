@@ -61,6 +61,17 @@
 	  <c:if test="${list.size()==0}">
 	  	<h2>등록된 게시글이 없습니다.</h2>
 	  </c:if>
+	    <ul class="pagination justify-content-center">
+	      <c:if test="${pm.prev}">
+	    	<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${pm.startPage-1}">이전</a></li>
+	      </c:if>
+		  <c:forEach begin="${pm.startPage}" end="${pm.endPage}" var="index">
+			<li class="page-item <c:if test="${pm.criteria.page == index }">active</c:if>"><a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${index}">${index}</a></li>
+		  </c:forEach>
+		  <c:if test="${pm.next}">
+		  	<li class="page-item"><a class="page-link" href="<%=request.getContextPath()%>/board/list?page=${pm.endPage+1}">다음</a></li>
+		  </c:if>
+	  	</ul>
 	</div>
 </body>
 </html>
