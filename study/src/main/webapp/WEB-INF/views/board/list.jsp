@@ -24,7 +24,7 @@
 				<tr>
 				  <td>${board.num}</td>
 				  <td>
-				  	<a href="#">
+				  	<a href="<%=request.getContextPath()%>/board/detail?num=${board.num}">
 				  		<c:if test="${board.groupOrd !=0}">┗답변:</c:if>
 				  		${board.title}</a>
 				  </td>

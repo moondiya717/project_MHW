@@ -25,5 +25,13 @@ public class BoardController {
 		mv.setViewName("/template/board/list");
 		return mv;
 	}
+	@GetMapping("/detail")
+	public ModelAndView detailGet(ModelAndView mv, Integer num) {
+		//System.out.println(num);
+		BoardVO board=boardService.getBoard(num);
+		mv.addObject("board",board);
+		mv.setViewName("/template/board/detail");
+		return mv;
+	}
 		
 }
