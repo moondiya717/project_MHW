@@ -9,6 +9,9 @@
 <body>	
 	<div class="container">
 	  <h2>일반게시판</h2>
+	  <a href="<%=request.getContextPath()%>/board/register">
+	  	<button class="btn btn-outline-success">글쓰기</button>
+	  </a>
 	  <table class="table thead-light table-hover">
 	    <thead class="thead-dark">
 	      <tr>

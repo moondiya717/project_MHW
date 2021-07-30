@@ -42,7 +42,7 @@
 	          </div>
 	      </div>
 	      <c:if test="${board.groupOrd == 0 && (user != null && user.authority != 'USER')}">
-			  <a href="#">답변</a>	
+			  <a href="#"><button class="btn btn-outline-primary">답변</button></a>	
 		  </c:if>
 		 </div>
 	</body>
