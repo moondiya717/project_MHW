@@ -40,4 +40,19 @@ public class BoardServiceImp implements BoardService{
 		
 		
 	}
+
+	@Override
+	public void insertReplyBoard(BoardVO board, MemberVO user) {
+		if(board == null || user == null) {
+			return ;			
+		}
+		board.setWriter(user.getId());
+		//문의에답변해줄때 게시글 이름을 그대로 가져오려면, 입력하지 않고 // replyregister에서 제목구간을 삭제해
+//		BoardVO dbBoard = BoardDao.selectBoard(board.getOriNo());
+//		if(dbBoard==null) {
+//			return;
+//		}
+//		board.setTitle(dbBoard.getTitle);
+		boardDao.insertBoard(board);
+	}
 }

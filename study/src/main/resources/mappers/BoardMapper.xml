@@ -15,7 +15,7 @@
 		insert into board(title, contents, writer, oriNo, groupOrd)
 			select #{board.title}, #{board.contents}, #{board.writer}, 
 			<if test = "board.oriNo != 0">
-				#{board.oriNo}, max(oriNo)+1 from board	where oriNo=#{oriNo}
+				#{board.oriNo}, max(oriNo)+1 from board	where oriNo=#{board.oriNo}
 			</if>
 			<if test = "board.oriNo == 0">
 				max(num)+1, 0 from board 

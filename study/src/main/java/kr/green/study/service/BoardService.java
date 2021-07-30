@@ -15,4 +15,6 @@ public interface BoardService {
 
 	void insertBoard(BoardVO board, MultipartFile[] fileList, MemberVO user);
 
+	void insertReplyBoard(BoardVO board, MemberVO user);
+
 }

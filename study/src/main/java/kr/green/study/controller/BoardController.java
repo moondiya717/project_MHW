@@ -59,4 +59,17 @@ public class BoardController {
 		mv.setViewName("redirect:/board/list");
 		return mv;
 	}
+	@GetMapping("/reply/register")
+	public ModelAndView replyRegisterGet(ModelAndView mv, Integer oriNo) {
+		mv.addObject("oriNo", oriNo);
+		mv.setViewName("/template/board/replyregister");
+		return mv;
+	}
+	@PostMapping("/reply/register")
+	public ModelAndView replyRegisterPost(ModelAndView mv, BoardVO board, HttpServletRequest request) {
+		MemberVO user = memberService.getMemberByRequest(request);
+		boardService.insertReplyBoard(board,user);
+		mv.setViewName("redirect:/board/list");
+		return mv;
+	}
 }

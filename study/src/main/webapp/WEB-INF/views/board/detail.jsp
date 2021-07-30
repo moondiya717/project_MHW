@@ -42,7 +42,9 @@
 	          </div>
 	      </div>
 	      <c:if test="${board.groupOrd == 0 && (user != null && user.authority != 'USER')}">
-			  <a href="#"><button class="btn btn-outline-primary">답변</button></a>	
+			  <a href="<%=request.getContextPath()%>/board/reply/register?oriNo=${board.num}">
+			  	<button class="btn btn-outline-primary">답변</button>
+			  </a>	
 		  </c:if>
 		 </div>
 	</body>
