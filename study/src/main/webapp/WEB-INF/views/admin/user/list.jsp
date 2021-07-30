@@ -17,7 +17,7 @@
 		        		<c:if test="${pm.criteria.sortType=='id' && pm.criteria.sort =='asc'}">
 	        				<i class="fas fa-sort-amount-up-alt"></i>
 	        			</c:if>
-		        		<c:if test="${pm.criteria.sortType=='id' && pm.criteria.sort =='dsc'}">
+		        		<c:if test="${pm.criteria.sortType=='id' && pm.criteria.sort =='desc'}">
 		        			<i class="fas fa-sort-amount-down-alt"></i>
 	        			</c:if>
 		        	</a>
@@ -28,7 +28,7 @@
 		        		<c:if test="${pm.criteria.sortType=='authority' && pm.criteria.sort =='asc'}">
 	        				<i class="fas fa-sort-amount-up-alt"></i>
 	        			</c:if>
-		        		<c:if test="${pm.criteria.sortType=='authority' && pm.criteria.sort =='dsc'}">
+		        		<c:if test="${pm.criteria.sortType=='authority' && pm.criteria.sort =='desc'}">
 		        			<i class="fas fa-sort-amount-down-alt"></i>
 	        			</c:if>
 			        </a>

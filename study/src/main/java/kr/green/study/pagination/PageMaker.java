@@ -1,5 +1,8 @@
 package kr.green.study.pagination;
 
+import lombok.Data;
+
+@Data
 public class PageMaker {
 
 		private int totalCount;
