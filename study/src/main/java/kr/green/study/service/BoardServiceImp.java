@@ -75,7 +75,7 @@ public class BoardServiceImp implements BoardService{
 	}
 
 	@Override
-	public void updateBoard(BoardVO board, MemberVO user, MultipartFile[] fileList, Integer[] fileNumList) {
+	public void updateBoard(BoardVO board, MemberVO user, MultipartFile[] fileList, Integer[] fileNumList) throws Exception {
 		if(user == null || board == null) {
 			return ;
 		}
@@ -87,16 +87,34 @@ public class BoardServiceImp implements BoardService{
 		dbBoard.setContents(board.getContents());
 		boardDao.updateBoard(dbBoard);
 		
-		ArrayList<FileVO> fList = boardDao.selectFileList(board.getNum());
+		ArrayList<Integer> dbFileNumList = boardDao.selectFileNumList(board.getNum());
+		int dbSize=0;
+		if(dbFileNumList != null) {
+			dbSize = dbFileNumList.size();
 		//fList에서 첨부파일 번호들만 ArryList로 변환
-		
-		//배열 fileNumList를 ArrayList로 변환
-		
-		//fList에 있는 첨부파일 번호들 중에서 fileNumList에 없는 첨부파일을 삭제
-		
+			ArrayList<Integer> inputFileNumList = new ArrayList<Integer>();
+			if(fileNumList != null) {
+				for(Integer tmp : fileNumList) {
+					inputFileNumList.add(tmp);
+				}
+			}
+			//dbFileNumList에 있는 첨부파일 번호들 중에서 inputFileNumList에 없는 첨부파일을 삭제
+			for(Integer tmp : dbFileNumList) {
+				if(!inputFileNumList.contains(tmp)) { //없을 때 삭제
+					deleteFile(boardDao.selectFile(tmp));
+				}
+			}
+		}
 		//fileList에 있는 첨부파일 추가
-	}
-
+		if(fileList == null) { 
+			return ;
+		}
+		int size = fileList.length > 3 - dbSize ? 3- dbSize : fileList.length;
+		for(int i = 0; i<3-size ; i++) {			
+			insertFile(fileList[i], board.getNum());
+		}
+	}		
+	
 	@Override
 	public void deleteBoard(Integer num, MemberVO user) {
 		//이번에는 좀 다르게 한대, updateBoard하나를 이용하지않고 각각 이용해서 처리한다고 함
