@@ -1,5 +1,6 @@
 package kr.green.study.service;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -107,6 +108,19 @@ public class BoardServiceImp implements BoardService{
 		}
 		boardDao.deleteBoard(num);
 		boardDao.deleteReplyBoard(num); //게시글이삭제되면, 달렸던 답변글도삭제될수있게 처리함
+		
+		//게시글이 삭제될 때, 첨부파일도 삭제해주기
+		ArrayList<FileVO> fList = boardDao.selectFileList(num);
+		if(fList == null || fList.size() == 0) {
+			return ;
+		}
+		for(FileVO tmp : fList) {
+			File file = new File(uploadPath+tmp.getName());
+			if(file.exists()) {
+				file.delete(); //파일을 실제로 삭제
+			}
+			boardDao.deleteFile(tmp.getNum()); //DB에서 파일 삭제 취급
+		}
 	}
 
 	@Override
