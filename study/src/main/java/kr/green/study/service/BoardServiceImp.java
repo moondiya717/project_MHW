@@ -2,19 +2,22 @@ package kr.green.study.service;
 
 import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.green.study.dao.BoardDAO;
+import kr.green.study.utils.UploadFileUtils;
 import kr.green.study.vo.BoardVO;
+import kr.green.study.vo.FileVO;
 import kr.green.study.vo.MemberVO;
-import lombok.AllArgsConstructor;
 
 @Service
 //dao에서 autowired 안하고싶으면 추가하면 됨
-@AllArgsConstructor
 public class BoardServiceImp implements BoardService{
+	@Autowired
 	private BoardDAO boardDao;
+	private String uploadPath = "D:\\JAVA_mhw\\uploadfiles_study";
 
 	@Override
 	public ArrayList<BoardVO> getBoardList() {		
@@ -30,7 +33,7 @@ public class BoardServiceImp implements BoardService{
 	}
 
 	@Override
-	public void insertBoard(BoardVO board, MultipartFile[] fileList, MemberVO user) {
+	public void insertBoard(BoardVO board, MultipartFile[] fileList, MemberVO user) throws Exception {
 		if(board == null || user == null) {
 			return ;			
 		}
@@ -41,7 +44,17 @@ public class BoardServiceImp implements BoardService{
 		if(fileList == null) { //첨부파일기능이용하려면 게시글번호를 알아야함
 			return ;
 		}
-		
+		int size  = fileList.length < 3 ? fileList.length : 3;
+		for(int i = 0; i<size ; i++) {
+			MultipartFile tmp = fileList[i];
+			if(tmp == null || tmp.getOriginalFilename().length() == 0) {
+				continue;
+			}
+			//UUID가 포함된 파일의 이름 계산( 파일이 저장될 경로, 파일이름, 파일용량) + exception 예외처리
+			String name = UploadFileUtils.uploadFile(uploadPath, tmp.getOriginalFilename(), tmp.getBytes());
+			FileVO file = new FileVO(board.getNum(), name, tmp.getOriginalFilename());
+			boardDao.insertFile(file);
+		}
 		
 	}
 

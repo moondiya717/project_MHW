@@ -37,4 +37,8 @@
 			valid = 'D'
 			where oriNo = #{num}
 	</update>
+	<insert id="insertFile">
+		insert into file(board, name, ori_name)
+			values(#{board}, #{name}, #{ori_name})
+	</insert>
 </mapper>
