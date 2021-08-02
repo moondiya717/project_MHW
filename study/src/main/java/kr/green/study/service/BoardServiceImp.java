@@ -69,4 +69,17 @@ public class BoardServiceImp implements BoardService{
 		dbBoard.setContents(board.getContents());
 		boardDao.updateBoard(dbBoard);
 	}
+
+	@Override
+	public void deleteBoard(Integer num, MemberVO user) {
+		//이번에는 좀 다르게 한대, updateBoard하나를 이용하지않고 각각 이용해서 처리한다고 함
+		if(num==null || user==null) {
+			return;
+		}
+		BoardVO board = boardDao.selectBoard(num);
+		if(board == null || !board.getWriter().equals(user.getId())) {
+			return ;
+		}
+		boardDao.deleteBoard(num);
+	}
 }
