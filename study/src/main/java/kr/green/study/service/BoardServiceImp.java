@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.green.study.dao.BoardDAO;
+import kr.green.study.pagination.Criteria;
 import kr.green.study.utils.UploadFileUtils;
 import kr.green.study.vo.BoardVO;
 import kr.green.study.vo.FileVO;
@@ -29,8 +30,8 @@ public class BoardServiceImp implements BoardService{
 	private String uploadPath = "D:\\JAVA_mhw\\uploadfiles_study";
 
 	@Override
-	public ArrayList<BoardVO> getBoardList() {		
-		return boardDao.selectBoardList();
+	public ArrayList<BoardVO> getBoardList(Criteria  cri) {		
+		return boardDao.selectBoardList(cri);
 	}
 
 	@Override
@@ -189,5 +190,10 @@ public class BoardServiceImp implements BoardService{
 			file.delete(); //파일을 실제로 삭제
 		}
 		boardDao.deleteFile(tmp.getNum()); //DB에서 파일 삭제 취급
+	}
+
+	@Override
+	public int getTotalCount() {		
+		return boardDao.getTotalCount();
 	}
 }

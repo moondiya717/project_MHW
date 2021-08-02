@@ -6,7 +6,8 @@
 	<select id="selectBoardList" resultType="kr.green.study.vo.BoardVO">
 		select*from board
 			where valid = 'I'
-			order by oriNo desc, groupOrd asc;
+			order by oriNo desc, groupOrd asc
+			limit #{pageStart}, #{perPageNum};
 	</select>
 	<select id="selectBoard" resultType="kr.green.study.vo.BoardVO">
 		select * from board
@@ -62,5 +63,9 @@
 	<select id="selectFile" resultType="kr.green.study.vo.FileVO">
 		select * from file 
 			where num = #{tmp} and state = 'I';
+	</select>
+	<select id="getTotalCount" resultType="int">
+		select count(*) from board
+			where valid= 'I';		
 	</select>
 </mapper>
