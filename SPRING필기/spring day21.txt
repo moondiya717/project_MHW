@@ -11,7 +11,7 @@
 2. 숫자를 이용하는 경우 => 페이지네이션
  - begin, end, var(선택)를 이용
  - var를 통해서 숫자 정보를 확인가능
-varStatus예시)
+varStatus 예시)
  varStatus = "a"
  -${a.index} : 현재 forEach에서 몇 번 째인지 알려주는데, 0부터 시작.
  -${a.count} : 현재 forEach에서 몇 번 째인지 알려주는데, 1부터 시작.
