@@ -111,9 +111,13 @@ public class BoardServiceImp implements BoardService{
 		if(fileList == null) { 
 			return ;
 		}
-		int size = fileList.length > 3 - dbSize ? 3- dbSize : fileList.length;
-		for(int i = 0; i<size ; i++) {			
-			insertFile(fileList[i], board.getNum());
+		for(MultipartFile tmp : fileList) {			
+			if(insertFile(tmp, board.getNum())) {
+				dbSize++;
+			}
+			if(dbSize == 3) {
+				break;
+			}
 		}
 	}		
 	
@@ -175,14 +179,15 @@ public class BoardServiceImp implements BoardService{
 	    }
 	    return entity;
 	}
-	private void insertFile(MultipartFile tmp, int num) throws Exception {		
+	private boolean insertFile(MultipartFile tmp, int num) throws Exception {		
 		if(tmp == null || tmp.getOriginalFilename().length() == 0) {
-			return ;
+			return false;
 		}
 		//UUID가 포함된 파일의 이름 계산( 파일이 저장될 경로, 파일이름, 파일용량) + exception 예외처리
 		String name = UploadFileUtils.uploadFile(uploadPath, tmp.getOriginalFilename(), tmp.getBytes());
 		FileVO file = new FileVO(num, name, tmp.getOriginalFilename());
 		boardDao.insertFile(file);
+		return true;
 	}
 	private void deleteFile(FileVO tmp) {
 		File file = new File(uploadPath+tmp.getName());
