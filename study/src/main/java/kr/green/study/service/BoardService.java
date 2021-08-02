@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.green.study.vo.BoardVO;
+import kr.green.study.vo.FileVO;
 import kr.green.study.vo.MemberVO;
 
 public interface BoardService {
@@ -20,5 +21,9 @@ public interface BoardService {
 	void updateBoard(BoardVO board, MemberVO user);
 
 	void deleteBoard(Integer num, MemberVO user);
+
+	void updateViews(Integer num);
+
+	ArrayList<FileVO> getFileList(Integer num);
 
 }

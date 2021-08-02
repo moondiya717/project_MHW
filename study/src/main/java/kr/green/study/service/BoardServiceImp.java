@@ -100,4 +100,18 @@ public class BoardServiceImp implements BoardService{
 		boardDao.deleteBoard(num);
 		boardDao.deleteReplyBoard(num); //게시글이삭제되면, 달렸던 답변글도삭제될수있게 처리함
 	}
+
+	@Override
+	public void updateViews(Integer num) {
+		boardDao.updateViews(num);
+		
+	}
+
+	@Override
+	public ArrayList<FileVO> getFileList(Integer num) {
+		if(num == null) {
+			return null;
+		}
+		return boardDao.selectFileList(num);
+	}
 }

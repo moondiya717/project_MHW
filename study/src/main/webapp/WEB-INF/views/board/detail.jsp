@@ -26,6 +26,13 @@
 			      <div style="height:auto"><p>${board.contents}</p></div>		          
 			    </div>
 		  </div>
+		  <div class="form-group">
+		  	<lable>첨부파일</lable>
+		  	<c:forEach items ="${fList}" var ="file">
+		  		<a href="#" class="form-control">${file.ori_name}</a>
+		  	</c:forEach>
+		  </div>
+		  <hr>
   		  <div class="reply form-group">
 			    <label>댓글</label>
 			    <div class="contents">

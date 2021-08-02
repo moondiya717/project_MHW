@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.green.study.service.BoardService;
 import kr.green.study.service.MemberService;
 import kr.green.study.vo.BoardVO;
+import kr.green.study.vo.FileVO;
 import kr.green.study.vo.MemberVO;
 import lombok.AllArgsConstructor;
 
@@ -35,8 +36,14 @@ public class BoardController {
 	@GetMapping("/detail")
 	public ModelAndView detailGet(ModelAndView mv, Integer num) {
 		//System.out.println(num);
+		boardService.updateViews(num); //게시글조회수 증가
 		BoardVO board=boardService.getBoard(num);
+		
+		//첨부파일 가져오고 addObject로 화면에 보내주기
+		ArrayList<FileVO> fList = boardService.getFileList(num);
+
 		mv.addObject("board",board);
+		mv.addObject("fList",fList);
 		mv.setViewName("/template/board/detail");
 		return mv;
 	}
