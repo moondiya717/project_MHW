@@ -96,6 +96,7 @@ public class BoardServiceImp implements BoardService{
 			if(fileNumList != null) {
 				for(Integer tmp : fileNumList) {
 					inputFileNumList.add(tmp);
+					dbSize--;
 				}
 			}
 			//dbFileNumList에 있는 첨부파일 번호들 중에서 inputFileNumList에 없는 첨부파일을 삭제
@@ -110,7 +111,7 @@ public class BoardServiceImp implements BoardService{
 			return ;
 		}
 		int size = fileList.length > 3 - dbSize ? 3- dbSize : fileList.length;
-		for(int i = 0; i<3-size ; i++) {			
+		for(int i = 0; i<size ; i++) {			
 			insertFile(fileList[i], board.getNum());
 		}
 	}		
