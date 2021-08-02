@@ -47,7 +47,7 @@ public class BoardController {
 	}
 	@PostMapping("/register")
 	public ModelAndView registerPost(ModelAndView mv, BoardVO board,
-			MultipartFile []fileList, HttpServletRequest request) {
+			MultipartFile []fileList, HttpServletRequest request) { //첨부파일 매개변수 넣어서 전달까지 해있는상태
 		//System.out.println(board);
 //		for(MultipartFile tmp : fileList) {
 //			if(tmp != null) {

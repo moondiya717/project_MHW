@@ -37,6 +37,10 @@ public class BoardServiceImp implements BoardService{
 		board.setWriter(user.getId());
 		board.setGroupOrd(0); //혹시나 잘못된접근으로 user가 답변하는 것을 막기위해, 없어도 잘 작동되긴하지만 
 		boardDao.insertBoard(board);
+		//System.out.println(board.getNum()); //게시글번호가 찍히는 것 확인했음
+		if(fileList == null) { //첨부파일기능이용하려면 게시글번호를 알아야함
+			return ;
+		}
 		
 		
 	}
