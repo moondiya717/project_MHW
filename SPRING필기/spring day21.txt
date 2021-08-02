@@ -1,2 +1,6 @@
 메인에서 게시글 업데이트 되는 것마다 게시판타입 상관없이 가져올 때, 
  mapper에서 order by registered 하는데 이거 최신순으로 정보가져오면 된대
+
+[study]
+#{board.oriNo}, ifnull(max(groupOrd)+1,1) from board	where oriNo=#{board.oriNo}
+=>게시글이없는데 답변이 달리는 일은 없어야하지만, 혹시모르니 방지용으로 넣어놓음
