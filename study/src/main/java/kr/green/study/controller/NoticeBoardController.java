@@ -24,13 +24,14 @@ import lombok.AllArgsConstructor;
 
 @Controller
 @AllArgsConstructor
-@RequestMapping("/board")
-public class BoardController {
+@RequestMapping("/board/notice")
+public class NoticeBoardController {
 	private BoardService boardService;
 	private MemberService memberService;
 	
 	@GetMapping("/list")
 	public ModelAndView listGet(ModelAndView mv, Criteria  cri) {
+		cri.setType("NOTICE");
 		ArrayList<BoardVO> list = boardService.getBoardList(cri);
 		int totalCount = boardService.getTotalCount(cri);
 		PageMaker pm = new PageMaker(totalCount, 5, cri);
@@ -61,36 +62,16 @@ public class BoardController {
 	@PostMapping("/register")
 	public ModelAndView registerPost(ModelAndView mv, BoardVO board,
 			MultipartFile []fileList, HttpServletRequest request) throws Exception { //첨부파일 매개변수 넣어서 전달까지 해있는상태
-		//System.out.println(board);
-//		for(MultipartFile tmp : fileList) {
-//			if(tmp != null) {
-//				System.out.println(tmp.getOriginalFilename());
-//			}
-//		}
+
 		MemberVO user = memberService.getMemberByRequest(request);
-		board.setType("NORMAL");
+		board.setType("NOTICE");
 		boardService.insertBoard(board,fileList,user);
 		mv.setViewName("redirect:/board/list");
 		return mv;
 	}
-	@GetMapping("/reply/register")
-	public ModelAndView replyRegisterGet(ModelAndView mv, Integer oriNo) {
-		mv.addObject("oriNo", oriNo);
-		mv.setViewName("/template/board/replyregister");
-		return mv;
-	}
-	@PostMapping("/reply/register")
-	public ModelAndView replyRegisterPost(ModelAndView mv, BoardVO board, HttpServletRequest request) {
-		MemberVO user = memberService.getMemberByRequest(request);
-		board.setType("NORMAL");
-		boardService.insertReplyBoard(board,user);
-		mv.setViewName("redirect:/board/list");
-		return mv;
-	}
-	
+
 	@GetMapping("/modify")
 	public ModelAndView modifayGet(ModelAndView mv, Integer num) {
-//		System.out.println(num);
 		BoardVO board = boardService.getBoard(num);
 		ArrayList<FileVO> fList = boardService.getFileList(num);
 		mv.addObject("board",board);

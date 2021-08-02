@@ -8,6 +8,7 @@ public class Criteria {
 		private int page; 
 		//한 페이지 당 컨텐츠 갯수
 		private int perPageNum;
+		private String type; //검색타입이 아니라, 게시글 타입
 		private String sortType; //id, authority 정렬
 		private String sort; //desc, asc
 		
@@ -17,6 +18,7 @@ public class Criteria {
 			this.perPageNum = 10;
 			this.sortType ="id";
 			this.sort = "asc";
+			this.type = "NORMAL";
 		}
 		public String getNotSort() {
 	         if(sort.equals("asc"))
