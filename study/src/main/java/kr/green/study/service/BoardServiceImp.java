@@ -55,4 +55,18 @@ public class BoardServiceImp implements BoardService{
 //		board.setTitle(dbBoard.getTitle);
 		boardDao.insertBoard(board);
 	}
+
+	@Override
+	public void updateBoard(BoardVO board, MemberVO user) {
+		if(user == null || board == null) {
+			return ;
+		}
+		BoardVO dbBoard = boardDao.selectBoard(board.getNum());
+		if(dbBoard== null || !user.getId().equals(dbBoard.getWriter())) { //예외처리를 습관화하는게 좋음
+			return ;
+		}
+		dbBoard.setTitle(board.getTitle());
+		dbBoard.setContents(board.getContents());
+		boardDao.updateBoard(dbBoard);
+	}
 }

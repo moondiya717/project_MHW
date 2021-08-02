@@ -17,4 +17,6 @@ public interface BoardService {
 
 	void insertReplyBoard(BoardVO board, MemberVO user);
 
+	void updateBoard(BoardVO board, MemberVO user);
+
 }

@@ -83,7 +83,10 @@ public class BoardController {
 	}
 	@PostMapping("/modify")
 	public ModelAndView modifayPost(ModelAndView mv, BoardVO board, HttpServletRequest request) {
-		System.out.println(board);
+		//System.out.println(board);
+		MemberVO user = memberService.getMemberByRequest(request);
+		boardService.updateBoard(board,user);
+		mv.addObject("num",board.getNum());
 		mv.setViewName("redirect:/board/detail");
 		return mv;
 	}

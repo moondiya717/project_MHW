@@ -14,4 +14,6 @@ public interface BoardDAO {
 
 	void insertBoard(@Param("board")BoardVO board); //mapper에서 if를 쓰기위해 Param넣어줌
 
+	void updateBoard(BoardVO dbBoard);
+
 }
