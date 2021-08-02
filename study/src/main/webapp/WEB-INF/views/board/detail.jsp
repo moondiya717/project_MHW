@@ -15,15 +15,15 @@
 </head>
 	<body>
 		<div class="container mt-3">
-		  <h2>${detail.title}</h2>
-		  <p>조회수: ${detail.views}</p>
+		  <h2>${board.title}</h2>
+		  <p>조회수: ${board.views}</p>
 		  <!-- when은 if로 바꿔쓸수있음 --><!--otherwhise는 else랑 같은기능 -->
 		 
 		  <div class="media border p-3">
 	    		<img src="<%=request.getContextPath()%>/resources/img/sully.png" class="mr-3 mt-3 rounded-circle" style="width:60px;">
 			    <div class="media-body">
-			      <h4>${detail.writer} <small><i>${detail.dateTime}</i></small></h4>
-			      <div style="height:auto"><p>${detail.contents}</p></div>		          
+			      <h4>${board.writer} <small><i>${board.dateTime}</i></small></h4>
+			      <div style="height:auto"><p>${board.contents}</p></div>		          
 			    </div>
 		  </div>
   		  <div class="reply form-group">
