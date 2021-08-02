@@ -18,4 +18,6 @@ public interface BoardDAO {
 
 	void deleteBoard(Integer num);
 
+	void deleteReplyBoard(Integer num);
+
 }

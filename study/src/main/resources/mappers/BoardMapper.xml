@@ -32,4 +32,9 @@
 			valid = 'D'
 			where num = #{num}
 	</update>
+	<update id="deleteReplyBoard">
+		update board set
+			valid = 'D'
+			where oriNo = #{num}
+	</update>
 </mapper>

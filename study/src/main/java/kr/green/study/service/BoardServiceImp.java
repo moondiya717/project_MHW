@@ -81,5 +81,6 @@ public class BoardServiceImp implements BoardService{
 			return ;
 		}
 		boardDao.deleteBoard(num);
+		boardDao.deleteReplyBoard(num); //게시글이삭제되면, 달렸던 답변글도삭제될수있게 처리함
 	}
 }
