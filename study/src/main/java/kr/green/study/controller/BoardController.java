@@ -4,10 +4,12 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -104,5 +106,10 @@ public class BoardController {
 		boardService.deleteBoard(num,user);
 		mv.setViewName("redirect:/board/list");
 		return mv;
+	}
+	@ResponseBody
+	@GetMapping("/download")
+	public ResponseEntity<byte[]> downloadFile(String fileName)throws Exception{
+	    return boardService.downloadFile(fileName);
 	}
 }

@@ -1,7 +1,9 @@
 package kr.green.study.service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.green.study.vo.BoardVO;
@@ -25,5 +27,7 @@ public interface BoardService {
 	void updateViews(Integer num);
 
 	ArrayList<FileVO> getFileList(Integer num);
+
+	ResponseEntity<byte[]> downloadFile(String fileName) throws IOException;
 
 }
