@@ -84,17 +84,20 @@ public class BoardController {
 	
 	@GetMapping("/modify")
 	public ModelAndView modifayGet(ModelAndView mv, Integer num) {
-		System.out.println(num);
+//		System.out.println(num);
 		BoardVO board = boardService.getBoard(num);
+		ArrayList<FileVO> fList = boardService.getFileList(num);
 		mv.addObject("board",board);
+		mv.addObject("fList",fList);
 		mv.setViewName("/template/board/modify");
 		return mv;
 	}
 	@PostMapping("/modify")
-	public ModelAndView modifayPost(ModelAndView mv, BoardVO board, HttpServletRequest request) {
+	public ModelAndView modifayPost(ModelAndView mv, BoardVO board, HttpServletRequest request,
+			MultipartFile[] fileList, Integer [] fileNumList) {
 		//System.out.println(board);
 		MemberVO user = memberService.getMemberByRequest(request);
-		boardService.updateBoard(board,user);
+		boardService.updateBoard(board,user, fileList, fileNumList);
 		mv.addObject("num",board.getNum());
 		mv.setViewName("redirect:/board/detail");
 		return mv;
