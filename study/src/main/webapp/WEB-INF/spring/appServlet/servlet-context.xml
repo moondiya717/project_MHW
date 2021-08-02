@@ -70,11 +70,16 @@
 	        <beans:ref bean="guestInterceptor"/>
 	    </interceptor>
    	    <interceptor>
-   	        <mapping path="/abcd/*"/> <!-- 샘플로잠시넣어둔상태 -->	        
+   	        <mapping path="/board/register"/>
+   	        <mapping path="/board/modify"/>
+   	        <mapping path="/board/delete"/>	        
 	        <beans:ref bean="memberInterceptor"/>
 	    </interceptor>	  
    	    <interceptor>
-   	        <mapping path="/admin/**/"/> <!-- 아직안했지만 이렇게 할 예정 -->	        
+   	        <mapping path="/admin/**/"/>
+   	        <mapping path="/admin/notice/register"/>
+   	        <mapping path="/admin/notice/modify"/>
+   	        <mapping path="/admin/notice/delete"/>       
 	        <beans:ref bean="adminInterceptor"/>
 	    </interceptor>  
 	</interceptors>
