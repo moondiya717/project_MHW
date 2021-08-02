@@ -95,7 +95,7 @@ public class BoardController {
 	public ModelAndView deleteGet(ModelAndView mv, Integer num, HttpServletRequest request) {
 		MemberVO user = memberService.getMemberByRequest(request);
 		boardService.deleteBoard(num,user);
-		mv.setViewName("redirect:/board/delete");
+		mv.setViewName("redirect:/board/list");
 		return mv;
 	}
 }
