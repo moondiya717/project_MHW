@@ -46,6 +46,14 @@
 			  	<button class="btn btn-outline-primary">답변</button>
 			  </a>	
 		  </c:if>
+		  <c:if test="${user != null && user.id == board.writer }"> <!-- 버튼호버하면 밑줄생기는것때문에 style태그넣어줌, 엔터쳐놔서그렇다고함 -->
+		  	<a href ="<%=request.getContextPath()%>/board/modify?num=${board.num}" style="text-decoration:none">
+		  		<button class="btn btn-outline-secondary">수정</button>
+		  	</a>
+		  	<a href ="<%=request.getContextPath()%>/board/delete?num=${board.num}" style="text-decoration:none">
+		  		<button class="btn btn-outline-danger">삭제</button>
+		  	</a>
+		  </c:if>
 		 </div>
 	</body>
 </html>

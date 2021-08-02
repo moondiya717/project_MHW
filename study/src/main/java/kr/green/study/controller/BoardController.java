@@ -72,4 +72,19 @@ public class BoardController {
 		mv.setViewName("redirect:/board/list");
 		return mv;
 	}
+	
+	@GetMapping("/modify")
+	public ModelAndView modifayGet(ModelAndView mv, Integer num) {
+		System.out.println(num);
+		BoardVO board = boardService.getBoard(num);
+		mv.addObject("board",board);
+		mv.setViewName("/template/board/modify");
+		return mv;
+	}
+	@PostMapping("/modify")
+	public ModelAndView modifayPost(ModelAndView mv, BoardVO board, HttpServletRequest request) {
+		System.out.println(board);
+		mv.setViewName("redirect:/board/detail");
+		return mv;
+	}
 }
