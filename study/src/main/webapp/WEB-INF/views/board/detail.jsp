@@ -48,17 +48,20 @@
 		          <button type="button" class="reply-btn btn btn-outline-success">등록</button>
 	          </div>
 	      </div>
-	      <c:if test="${board.groupOrd == 0 && (user != null && user.authority != 'USER')}">
+	      <c:if test="${board.groupOrd == 0 && board.type !='NOTICE' && (user != null && user.authority != 'USER')}">
 			  <a href="<%=request.getContextPath()%>/board/reply/register?oriNo=${board.num}">
 			  	<button class="btn btn-outline-primary">답변</button>
 			  </a>	
 		  </c:if>
 		  <c:if test="${user != null && user.id == board.writer }"> <!-- 버튼호버하면 밑줄생기는것때문에 style태그넣어줌, 엔터쳐놔서그렇다고함 -->
-		  	<a href ="<%=request.getContextPath()%>/board/modify?num=${board.num}" style="text-decoration:none">
+		  	<a href ="<%=request.getContextPath()%>/board${type}/modify?num=${board.num}" style="text-decoration:none">
 		  		<button class="btn btn-outline-secondary">수정</button>
 		  	</a>
-		  	<a href ="<%=request.getContextPath()%>/board/delete?num=${board.num}" style="text-decoration:none">
+		  	<a href ="<%=request.getContextPath()%>/board${type}/delete?num=${board.num}" style="text-decoration:none">
 		  		<button class="btn btn-outline-danger">삭제</button>
+		  	</a>
+		  	<a href ="<%=request.getContextPath()%>/board${type}/list" style="text-decoration:none">
+		  		<button class="btn btn-outline-primary">목록</button>
 		  	</a>
 		  </c:if>
 		 </div>

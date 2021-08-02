@@ -8,7 +8,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 </head>
 <body>
-	<form class="container" method="post" enctype="multipart/form-data" action="<%=request.getContextPath()%>/board/register">
+	<form class="container" method="post" enctype="multipart/form-data">
 	  <h2>게시글 등록</h2>
 	  <div class="form-group">
 		 <label>제목</label>
@@ -23,7 +23,7 @@
 	  	<input type="file" name="fileList" class="form-control">
 	  	<input type="file" name="fileList" class="form-control">
 	  </div>
-	  <a href="<%=request.getContextPath()%>/board/list"><button type="button" class="btn btn-outline-danger">취소</button></a>
+	  <a href="<%=request.getContextPath()%>/board${type}/list"><button type="button" class="btn btn-outline-danger">취소</button></a>
 	  <button type="submit" class="btn btn-outline-success">등록</button>
 	</form>
     <script>
