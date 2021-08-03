@@ -7,7 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -116,5 +118,12 @@ public class ImageBoardController {
 		boardService.deleteBoard(num, user);
 		mv.setViewName("redirect:/board/image/list");
 		return mv;
+	}
+	//ajax할때 responsebody붙여야대
+	@ResponseBody
+	@PostMapping("/check")
+	public String checkPost(@RequestBody BoardVO board) {
+		System.out.println(board);
+		return ""+boardService.checkBoardPw(board);
 	}
 }

@@ -74,12 +74,12 @@
 	    
 	  </ul>
 	</div>
-	<form class="pw-box" action="<%=request.getContextPath()%>/board/image/detail" method="post">
+	<form id="pwBox" class="pw-box" action="<%=request.getContextPath()%>/board/image/detail" method="post">
 		<div class="pw-input-box form-control pl-2 pr-2">
 			<label>비밀번호를 입력하세요.</label>
 			<input type="password" name="pw" class="form-control">
 			<input type="hidden" name="num"> <!-- type text로해서 게시글선택했을때 선택한 게시글 번호를 확인하는 작업도 해보셈 그리고 다시 hidden처리 -->
-			<button class="btn btn-outline-success col-12">확인</button>
+			<button type="button" class="btn btn-outline-success col-12">확인</button>
 		</div>
 		<div class="pw-bg-box"></div>
 	</form>
@@ -90,6 +90,26 @@
 				$('.pw-box').show();
 				var num = $(this).parent().attr('data');
 				$('.pw-box [name=num]').val(num);
+			})
+			$('.pw-box button').click(function(){
+				var num = $('.pw-box [name=num]').val();
+				var pw= $('.pw-box [name=pw]').val();
+				//alert(num+","+pw); //게시글번호와 입력한 비밀번호 값이 알림창에 들어왔음
+				var data = {num:num, pw:pw};
+				$.ajax({
+					type:'post',
+					url : '<%=request.getContextPath()%>/board/image/check',
+					data : JSON.stringify(data),
+					contentType : "application/json; charset:utf-8",
+					success : function(res){
+						//console.log(res);
+						if(res == 'true'){
+							$('#pwBox').submit();
+						}else{
+							alert('잘못된 비밀번호입니다.')
+						}
+					}
+				})
 			})
 		})
 	</script>
