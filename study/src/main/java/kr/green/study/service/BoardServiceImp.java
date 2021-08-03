@@ -12,6 +12,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.encoding.PasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -27,6 +29,9 @@ import kr.green.study.vo.MemberVO;
 public class BoardServiceImp implements BoardService{
 	@Autowired
 	private BoardDAO boardDao;
+	@Autowired
+	BCryptPasswordEncoder passwordEncoder;
+	
 	private String uploadPath = "D:\\JAVA_mhw\\uploadfiles_study";
 	private String uploadThumnailPath = "D:\\JAVA_mhw\\project_MHW\\study\\src\\main\\webapp\\resources\\img";
 
@@ -50,6 +55,12 @@ public class BoardServiceImp implements BoardService{
 		}
 		board.setWriter(user.getId());
 		board.setGroupOrd(0); //혹시나 잘못된접근으로 user가 답변하는 것을 막기위해, 없어도 잘 작동되긴하지만 
+		//비밀번호 암호화. 단, 비밀번호가 있는 경우
+		//System.out.println(board.getPw()); //비번친거 콘솔에 나옴
+		if(board.getPw() != null && board.getPw().length() !=0) { //게시글 비밀번호입력되어있으면! (유저비번아냐)
+			String encodePw = passwordEncoder.encode(board.getPw());
+			board.setPw(encodePw);
+		}
 		boardDao.insertBoard(board);
 		//System.out.println(board.getNum()); //게시글번호가 찍히는 것 확인했음
 		if(fileList == null) { //첨부파일기능이용하려면 게시글번호를 알아야함

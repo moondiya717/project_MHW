@@ -14,8 +14,8 @@
 			where num = #{num} and valid = 'I'
 	</select>
 	<insert id="insertBoard" useGeneratedKeys="true" keyProperty="board.num" parameterType="kr.green.study.vo.BoardVO">
-		insert into board(title, contents, writer, type, oriNo, groupOrd)
-			select #{board.title}, #{board.contents}, #{board.writer}, #{board.type},  
+		insert into board(title, contents, writer, pw, type, oriNo, groupOrd)
+			select #{board.title}, #{board.contents}, #{board.writer}, #{board.pw}, #{board.type},  
 			<if test = "board.oriNo != 0">
 				#{board.oriNo}, ifnull(max(groupOrd)+1,1) from board	where oriNo=#{board.oriNo}
 			</if>
