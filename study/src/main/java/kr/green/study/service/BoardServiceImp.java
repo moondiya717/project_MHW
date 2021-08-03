@@ -93,13 +93,17 @@ public class BoardServiceImp implements BoardService{
 		int dbSize=0;
 		if(dbFileNumList != null) {
 			dbSize = dbFileNumList.size();
-		//fList에서 첨부파일 번호들만 ArryList로 변환
+			//배열 fileNumList를 ArrayList로 변환
 			ArrayList<Integer> inputFileNumList = new ArrayList<Integer>();
 			if(fileNumList != null) {
 				for(Integer tmp : fileNumList) {
 					inputFileNumList.add(tmp);
 					dbSize--;
 				}
+			}
+			//메인이미지를 삭제처리하지 않기 위해서 아래 코드를 추가, 메인이미지0번지
+			if(dbBoard.getType().equals("IMAGE")) {
+				dbFileNumList.remove(0);
 			}
 			//dbFileNumList에 있는 첨부파일 번호들 중에서 inputFileNumList에 없는 첨부파일을 삭제
 			for(Integer tmp : dbFileNumList) {
@@ -232,5 +236,17 @@ public class BoardServiceImp implements BoardService{
 		}
 		
 		
+	}
+
+	@Override
+	public void updateBoard(BoardVO board, MemberVO user, MultipartFile[] fileList, Integer[] fileNumList,
+			MultipartFile mainImage, Integer thumbnailNo) throws Exception {
+		updateBoard(board, user, fileList, fileNumList);
+		if(thumbnailNo != null) { //이전의 이미지를 사용하겠다
+			return ;
+		}
+		ArrayList<Integer> dbFileNumList = boardDao.selectFileNumList(board.getNum());
+		deleteFile(boardDao.selectFile(dbFileNumList.get(0)));
+		insertFile(mainImage, board.getNum(),"Y");
 	}
 }

@@ -23,16 +23,26 @@
 			 <label>내용</label>
 			 <textarea id="summernote" name="contents" rows="10" class="form-control">${board.contents}</textarea>
 		  </div>
+		  <div class="form-group thumbnail-box">
+		  	<label>대표 이미지</label>
+		  	<div class="form-control">
+			 	<span>${fList.get(0).ori_name}</span>
+			 	<i class="fas fa-trash-alt"></i>
+			 	<input type="hidden" name="thumbnailNo" value="${fList.get(0).num}">
+			 </div>
+		  </div>
 	   	  <div class="form-group file-box">
 			 <label>첨부파일</label>
 			 <c:forEach items="${fList}" var ="file">
-				 <div class="form-control">
-				 	<span>${file.ori_name}</span>
-				 	<i class="fas fa-trash-alt"></i>
-				 	<input type="hidden" name="fileNumList" value="${file.num}">
-				 </div>
+			 	<c:if test="${file.thumbnail == 'N'}">
+					 <div class="form-control">
+					 	<span>${file.ori_name}</span>
+					 	<i class="fas fa-trash-alt"></i>
+					 	<input type="hidden" name="fileNumList" value="${file.num}">
+					 </div>
+				 </c:if>
 			 </c:forEach>
-			 <c:forEach begin="1" end="${3 - fList.size()}">
+			 <c:forEach begin="1" end="${3 - fList.size() + 1}"> <!-- 최대 4개까지 가능하게 할 수 있도록(첨부파일3+썸네일) -->
 			 	<input type="file" class="form-control" name="fileList">
 			 </c:forEach>
 		  </div>	   	
@@ -48,13 +58,23 @@
 					$(this).parent().remove();
 					$('.file-box').append('<input type="file" class="form-control" name="fileList">');
 				})
+				$('.thumbnail-box .fa-trash-alt').click(function(){					
+					$(this).parent().remove();
+					$('.thumbnail-box').append('<input type="file" class="form-control" name="mainImage">');
+				})
+				$('form').submit(function(){
+					if(typeof $('[name=thumbnailNo]').val() == 'undefined' && $('[name=mainImage]').val() == ''){
+						alert('대표 이미지를 선택하세요.')
+						return false;
+					}
+					return true;
+				})	
+		    	$('#summernote').summernote({
+			        placeholder: 'Hello Bootstrap 4',
+			        tabsize: 2,
+			        height: 100
+		     	});
 			})
-			
-	      $('#summernote').summernote({
-	        placeholder: 'Hello Bootstrap 4',
-	        tabsize: 2,
-	        height: 100
-	      });
 		</script>
 	</body>
 </html>

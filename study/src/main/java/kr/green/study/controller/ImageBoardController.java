@@ -93,9 +93,9 @@ public class ImageBoardController {
 	}
 	@PostMapping("/modify")
 	public ModelAndView modifyPost(ModelAndView mv,BoardVO board, HttpServletRequest request,
-			MultipartFile[] fileList, Integer [] fileNumList) throws Exception {
+			MultipartFile[] fileList, Integer [] fileNumList, MultipartFile mainImage, Integer thumbnailNo) throws Exception {
 		MemberVO user = memberService.getMemberByRequest(request);
-		boardService.updateBoard(board,user,fileList, fileNumList);
+		boardService.updateBoard(board,user,fileList, fileNumList, mainImage, thumbnailNo);
 		mv.addObject("num", board.getNum());
 		mv.setViewName("redirect:/board/image/detail");
 		return mv;
