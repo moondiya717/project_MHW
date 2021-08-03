@@ -47,7 +47,8 @@ public class ImageBoardController {
 		BoardVO board = boardService.getBoard(num);
 
 		ArrayList<FileVO> fList = boardService.getFileList(num);
-
+		
+		mv.addObject("type","/image");
 		mv.addObject("board", board);
 		mv.addObject("fList", fList);
 		mv.setViewName("/template/board/image/detail");
