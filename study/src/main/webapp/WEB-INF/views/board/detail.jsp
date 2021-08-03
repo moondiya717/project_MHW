@@ -90,7 +90,20 @@
 					alert('댓글 등록에 실패했습니다.');
 				}
 			}
-			
+			$.ajax({
+				type : 'get',
+				url : contextPath + '/reply/list/1/' + rp_bd_num,
+				dataType : "json",
+				success : function(res){
+					//console.log(res); //잘나와썽콘솔창에
+					var list = res.list;
+					var str = '';
+					for(i=0; i<list.length; i++){
+						str += list[i].rp_me_id + ' : ' + list[i].rp_content + '<br>';
+					}
+					$('.reply-list').html(str);
+				}
+			})
 			var replyService = (function(){
 				function add(contextPath, data, callback){
 					$.ajax({

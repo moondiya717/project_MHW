@@ -1,9 +1,12 @@
 package kr.green.study.service;
 
+import java.util.ArrayList;
+
 import org.springframework.stereotype.Service;
 
 import kr.green.study.dao.BoardDAO;
 import kr.green.study.dao.ReplyDAO;
+import kr.green.study.pagination.Criteria;
 import kr.green.study.vo.BoardVO;
 import kr.green.study.vo.MemberVO;
 import kr.green.study.vo.ReplyVO;
@@ -27,5 +30,15 @@ public class ReplyServiceImp implements ReplyService {
 		reply.setRp_me_id(user.getId()); //앞에서 게시글번호, 내용 받는거 봤으니까, DB에 필수인 유저만 입력해주면 됨
 		replyDao.insertReply(reply);
 		return "OK"; 
+	}
+
+	@Override
+	public ArrayList<ReplyVO> getReplyList(int rp_bd_num, Criteria cri) {		
+		return replyDao.selectReplyList(rp_bd_num, cri);
+	}
+
+	@Override
+	public int getTotalCount(int rp_bd_num) {		
+		return replyDao.selectTotalCount(rp_bd_num);
 	}
 }

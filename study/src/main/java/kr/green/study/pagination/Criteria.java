@@ -20,6 +20,13 @@ public class Criteria {
 			this.sort = "asc";
 			this.type = "NORMAL";
 		}
+		
+		public Criteria(int page, int perPageNum) {
+			this();
+			this.page = page;
+			this.perPageNum = perPageNum;
+		}
+		
 		public String getNotSort() {
 	         if(sort.equals("asc"))
 	            return "desc";
