@@ -65,5 +65,39 @@
 		  	</a>
 		  </c:if>
 		 </div>
+		 <script type="text/javascript">
+			var rp_bd_num = '${board.num}';
+			var rp_me_id= '${user.id}';
+			var contextPath = '<%=request.getContextPath()%>';
+			$(function(){
+				$('.reply-btn').click(function(){
+					//console.log(123); //버튼이 작동하는 것을 확인했음
+					if(rp_me_id == ''){
+						alert('로그인을 하세요.');
+						return ;
+					}
+					var rp_content =$('.reply-input').val();
+					var data = {
+							rp_bd_num : rp_bd_num, rp_content:rp_content							
+					}
+					//console.log(data); //입력값이 찍히는 것을 확인했음
+					$.ajax({
+						type : 'post',
+						url : contextPath + '/reply/add',
+						data :JSON.stringify(data),
+						contentType : "application/json; charset=utf-8",
+						success : function(res){
+							//console.log(res);
+							if(res == 'OK'){
+								alert('댓글이 등록되었습니다.');
+							}else{
+								alert('댓글 등록에 실패했습니다.')
+							}
+						}
+					
+					})
+				})
+			})		 
+		 </script>
 	</body>
 </html>
