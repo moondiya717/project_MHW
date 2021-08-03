@@ -28,6 +28,7 @@ public class BoardServiceImp implements BoardService{
 	@Autowired
 	private BoardDAO boardDao;
 	private String uploadPath = "D:\\JAVA_mhw\\uploadfiles_study";
+	private String uploadThumnailPath = "D:\\JAVA_mhw\\project_MHW\\study\\src\\main\\webapp\\resources\\img";
 
 	@Override
 	public ArrayList<BoardVO> getBoardList(Criteria  cri) {		
@@ -179,16 +180,41 @@ public class BoardServiceImp implements BoardService{
 	    }
 	    return entity;
 	}
-	private boolean insertFile(MultipartFile tmp, int num) throws Exception {		
+	
+	@Override
+	public int getTotalCount(Criteria cri) {		
+		return boardDao.getTotalCount(cri);
+	}
+
+	@Override
+	public void insertBoard(BoardVO board, MultipartFile[] fileList, MemberVO user, MultipartFile mainImage) throws Exception {
+		insertBoard(board, fileList, user); //앞부분은 똑같이 처리하고
+		//대표이미지만 따로 처리해주면 됨
+		insertFile(mainImage, board.getNum(),"Y"); //이미지 추가하면 썸네일 값을 Y로 바꿔줘야 함
+		
+	}
+
+	private boolean insertFile(MultipartFile tmp, int num, String thumbnail) throws Exception {
 		if(tmp == null || tmp.getOriginalFilename().length() == 0) {
 			return false;
 		}
-		//UUID가 포함된 파일의 이름 계산( 파일이 저장될 경로, 파일이름, 파일용량) + exception 예외처리
-		String name = UploadFileUtils.uploadFile(uploadPath, tmp.getOriginalFilename(), tmp.getBytes());
+		String path;
+		if(thumbnail.equals("Y")) {
+			path=uploadThumnailPath;
+		}else {
+			path=uploadPath;
+		}
+		String name = UploadFileUtils.uploadFile(path, tmp.getOriginalFilename(), tmp.getBytes());
 		FileVO file = new FileVO(num, name, tmp.getOriginalFilename());
+		file.setThumbnail(thumbnail);
 		boardDao.insertFile(file);
 		return true;
 	}
+	
+	private boolean insertFile(MultipartFile tmp, int num) throws Exception {
+		return insertFile(tmp, num, "N");
+	}
+	
 	private void deleteFile(FileVO tmp) {
 		File file = new File(uploadPath+tmp.getName());
 		if(file.exists()) {
@@ -196,9 +222,15 @@ public class BoardServiceImp implements BoardService{
 		}
 		boardDao.deleteFile(tmp.getNum()); //DB에서 파일 삭제 취급
 	}
-
 	@Override
-	public int getTotalCount(Criteria cri) {		
-		return boardDao.getTotalCount(cri);
+	public void getThumbnail(ArrayList<BoardVO> list) {
+		if(list == null || list.size() == 0) {
+			return ;
+		}
+		for(BoardVO tmp : list) {
+			tmp.setThumbnail(boardDao.selectThumbnail(tmp.getNum()));
+		}
+		
+		
 	}
 }

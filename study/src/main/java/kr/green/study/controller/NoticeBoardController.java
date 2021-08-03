@@ -101,9 +101,4 @@ public class NoticeBoardController {
 		mv.setViewName("redirect:/board/notice/list");
 		return mv;
 	}
-	@ResponseBody
-	@GetMapping("/download")
-	public ResponseEntity<byte[]> downloadFile(String fileName)throws Exception{
-	    return boardService.downloadFile(fileName);
-	}
 }

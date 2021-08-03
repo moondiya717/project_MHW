@@ -33,4 +33,9 @@ public interface BoardService {
 
 	int getTotalCount(Criteria cri);
 
+	//메소드 오버로드로 용도를 다르게 쓰기위해서
+	void insertBoard(BoardVO board, MultipartFile[] fileList, MemberVO user, MultipartFile mainImage) throws Exception;
+
+	void getThumbnail(ArrayList<BoardVO> list);
+
 }
