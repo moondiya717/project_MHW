@@ -84,9 +84,9 @@
 	</form>
 	<script type="text/javascript">
 		$(function(){
-			$('.item-list .item a').click(function(){
+			$('.item-list .item a').click(function(e){
 				e.preventDefault();
-				var pw=prompt('비밀번호를 입력하세요.');
+				$('.pw-box').show();
 			})
 		})
 	</script>
