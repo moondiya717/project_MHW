@@ -80,24 +80,36 @@
 					var data = {
 							rp_bd_num : rp_bd_num, rp_content:rp_content							
 					}
-					//console.log(data); //입력값이 찍히는 것을 확인했음
+					replyService.add(contextPath, data, )
+				})
+			})
+			function addOk(res){
+				if(res == 'OK'){
+					alert('댓글이 등록되었습니다.');
+				}else{
+					alert('댓글 등록에 실패했습니다.');
+				}
+			}
+			
+			var replyService = (function(){
+				function add(contextPath, data, callback){
 					$.ajax({
 						type : 'post',
 						url : contextPath + '/reply/add',
 						data :JSON.stringify(data),
 						contentType : "application/json; charset=utf-8",
 						success : function(res){
-							//console.log(res);
-							if(res == 'OK'){
-								alert('댓글이 등록되었습니다.');
-							}else{
-								alert('댓글 등록에 실패했습니다.')
+							if(callback){
+								callback(res);
 							}
-						}
-					
+						}						
 					})
-				})
-			})		 
+				}
+				return {
+					name : '댓글 서비스',
+					add : add					
+				};
+			})();
 		 </script>
 	</body>
 </html>
