@@ -220,7 +220,13 @@ public class BoardServiceImp implements BoardService{
 	}
 	
 	private void deleteFile(FileVO tmp) {
-		File file = new File(uploadPath+tmp.getName());
+		String path;	//실제프로젝트에서도 삭제하기
+		if(tmp.getThumbnail().equals("Y")) {
+			path=uploadThumnailPath;
+		}else {
+			path=uploadPath;
+		}
+		File file = new File(path+tmp.getName());
 		if(file.exists()) {
 			file.delete(); //파일을 실제로 삭제
 		}
