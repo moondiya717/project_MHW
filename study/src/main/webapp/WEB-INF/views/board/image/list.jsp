@@ -46,7 +46,7 @@
 	  </c:if>
 	  <ul class="item-list">
 	  	<c:forEach items="${list}" var="board">
-		  	<li class="item">
+		  	<li class="item" data="${board.num}">
 		  		<a href="<%=request.getContextPath()%>/board/image/detail?num=${board.num}">
 		  			<img alt="" src="<%=request.getContextPath()%>/resources/img${board.thumbnail.name}" width="100%" height="300">
 		  			<span class="title">${board.title}</span>
@@ -74,10 +74,11 @@
 	    
 	  </ul>
 	</div>
-	<form class="pw-box">
+	<form class="pw-box" action="<%=request.getContextPath()%>/board/image/detail" method="post">
 		<div class="pw-input-box form-control pl-2 pr-2">
 			<label>비밀번호를 입력하세요.</label>
 			<input type="password" name="pw" class="form-control">
+			<input type="hidden" name="num"> <!-- type text로해서 게시글선택했을때 선택한 게시글 번호를 확인하는 작업도 해보셈 그리고 다시 hidden처리 -->
 			<button class="btn btn-outline-success col-12">확인</button>
 		</div>
 		<div class="pw-bg-box"></div>
@@ -87,6 +88,8 @@
 			$('.item-list .item a').click(function(e){
 				e.preventDefault();
 				$('.pw-box').show();
+				var num = $(this).parent().attr('data');
+				$('.pw-box [name=num]').val(num);
 			})
 		})
 	</script>

@@ -41,19 +41,29 @@ public class ImageBoardController {
 		mv.setViewName("/template/board/image/list");
 		return mv;
 	}
+
 	@GetMapping("/detail")
 	public ModelAndView detailGet(ModelAndView mv, Integer num) {
-		boardService.updateViews(num);
-		BoardVO board = boardService.getBoard(num);
-
-		ArrayList<FileVO> fList = boardService.getFileList(num);
-		
-		mv.addObject("type","/image");
-		mv.addObject("board", board);
-		mv.addObject("fList", fList);
-		mv.setViewName("/template/board/image/detail");
+		mv.setViewName("redirect:/board/image/list");
 		return mv;
 	}
+	@PostMapping("/detail")
+	public ModelAndView detailPost(ModelAndView mv,BoardVO tmpBoard) {
+		if(boardService.checkBoardPw(tmpBoard)) {
+			boardService.updateViews(tmpBoard.getNum());
+			BoardVO board = boardService.getBoard(tmpBoard.getNum());
+	
+			ArrayList<FileVO> fList = boardService.getFileList(tmpBoard.getNum());		
+			mv.addObject("type","/image");
+			mv.addObject("board", board);
+			mv.addObject("fList", fList);
+			mv.setViewName("/template/board/image/detail");
+		}else {
+			mv.setViewName("redirect:/board/image/list");
+		}
+		return mv;
+	}
+	
 	@GetMapping("/register")
 	public ModelAndView registerGet(ModelAndView mv) {
 		mv.setViewName("/template/board/image/register");
