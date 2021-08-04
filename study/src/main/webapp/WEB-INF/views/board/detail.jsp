@@ -84,6 +84,10 @@
 					}
 					replyService.add(contextPath, data, addOk, listOk);
 				})
+				$(document).on('click','.reply .pagination li', function(){
+					page = $(this).attr('data-page');
+					replyService.list(contextPath, {page:page, rp_bd_num:rp_bd_num}, listOk);
+				})
 				replyService.list(contextPath, {page:1, rp_bd_num:rp_bd_num}, listOk); //잠시 주석처리하고 샘플코드를 만들어서 모양을 잡은 뒤 다시 주석해제처리
 			})
 			
