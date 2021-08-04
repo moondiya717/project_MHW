@@ -48,11 +48,15 @@ public class ReplyController {
 		return map;
 	}
 	
-	@PostMapping("/mod")
+	@PostMapping("/mod") //@RequestBody를쓰면 화면에서 json형식으로 보내야함
 	public String modPost(@RequestBody ReplyVO reply, HttpServletRequest request) {
-//		System.out.println(reply);
 		MemberVO user = memberService.getMemberByRequest(request);
-//		return reply.toString();
 		return replyService.modifyReply(reply,user);
+	}
+	
+	@PostMapping("/del") //@RequestBody를쓰면 화면에서 json형식이 아니니까 넣으면 에러남
+	public String delPost(Integer rp_num, HttpServletRequest request) {
+		MemberVO user = memberService.getMemberByRequest(request);
+		return replyService.deleteReply(rp_num,user);
 	}
 }

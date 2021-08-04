@@ -129,6 +129,12 @@
 					var data = {page:page, rp_bd_num:rp_bd_num, rp_num:rp_num, rp_content:rp_content};
 					replyService.mod(contextPath, data, responseOk, listOk);
 				});
+				//삭제 버튼을 클릭
+				$(document).on('click','.reply-del-btn', function(){	
+					var rp_num = $(this).siblings('.rp_num').val();
+					var data ={rp_num : rp_num, rp_bd_num:rp_bd_num}
+					replyService.del(contextPath, data, responseOk, listOk)					
+				});
 				
 				//시작시 댓글 1페이지 내용 가져오기
 				replyService.list(contextPath, {page:1, rp_bd_num:rp_bd_num}, listOk); //잠시 주석처리하고 샘플코드를 만들어서 모양을 잡은 뒤 다시 주석해제처리

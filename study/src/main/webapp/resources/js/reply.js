@@ -43,10 +43,24 @@ var replyService = (function(){
 			}
 		})					
 	}
+	function del(contextPath, data, callback, listCallback){
+		$.ajax({
+			type:'post',
+			url : contextPath + '/reply/del',
+			data : data, //포스트방식은 data를 써서 전송해야해
+			success : function(res){
+				if(callback){
+				responseOk(res, '삭제');
+				list(contextPath, {page:1, rp_bd_num:data.rp_bd_num}, listCallback);
+				}
+			}
+		})
+	}
 	return {
 		name : '댓글 서비스',
 		add : add,
 		list : list,
-		mod : mod
+		mod : mod,
+		del : del
 	};
 })();

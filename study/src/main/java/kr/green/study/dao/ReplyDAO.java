@@ -19,4 +19,6 @@ public interface ReplyDAO {
 
 	void updateReply(ReplyVO reply);
 
+	void deleteReply(Integer rp_num);
+
 }
