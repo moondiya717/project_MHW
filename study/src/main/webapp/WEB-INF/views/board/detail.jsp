@@ -37,7 +37,8 @@
   		  <div class="reply form-group">
 			    <label>댓글</label>
 			    <div class="contents">
-			          <div class="reply-list form-group"> <!-- 여기로 댓글이 들어가거등여 -->
+			          <div class="reply-list form-group"> 
+			          	 <!-- 여기서 화면에 댓글 어떻게 보일지 처리한다음에 잘라내기해서 list쪽에 str통해서 넣어줌 -->
 			          </div>
 			          <div class="container">
 						  <ul class="pagination justify-content-center" style="margin:20px 0"><!-- 여기에 페이지네이션있어 reply.js로 이동함-->
@@ -83,7 +84,7 @@
 					}
 					replyService.add(contextPath, data, addOk, listOk);
 				})
-				replyService.list(contextPath, {page:1, rp_bd_num:rp_bd_num}, listOk);
+				replyService.list(contextPath, {page:1, rp_bd_num:rp_bd_num}, listOk); //잠시 주석처리하고 샘플코드를 만들어서 모양을 잡은 뒤 다시 주석해제처리
 			})
 			
 			function addOk(res){
@@ -98,9 +99,43 @@
 				var list = res.list;
 				var str = '';
 				for(i=0; i<list.length; i++){
-					str += list[i].rp_me_id + ' : ' + list[i].rp_content + '<br>';
+					str +=
+						'<div class="input-group">'+
+			          	 	'<div class="input-group-prepend">'+
+			          			'<div class="input-group-text">'+list[i].rp_me_id+'</div>'+
+			          		'</div>'+
+			          		'<div class="form-control reply-content">'+list[i].rp_content+'</div>'+
+			          		'<div class="input-group-append">';
+			          			if(list[i].rp_me_id == rp_me_id){			          				
+				     str +=
+					          			'<button class="btn btn-outline-primary reply-mod-btn">수정</button>'+
+					          			'<button class="btn btn-outline-danger reply-del-btn">삭제</button>'
+				          		}
+			         str +=
+			          		'</div>'+
+		          	 	'</div>'
 				}
 				$('.reply-list').html(str);
+				str = '';
+				var pm = res.pm;
+				console.log(pm);
+				if(pm.prev){ //javascript:void(0); 하면 #기능(이동하면서 페이지가 맨위로 가버리는걸) 막아줌
+					str += '<li class="page-item" data-page="'+(pm.startPage-1)+'"><a class="page-link" href="javascript:void(0);">이전</a></li>'; 
+				}
+				for(i=pm.startPage; i<=pm.endPage; i++){
+					if(pm.criteria.page != i){
+				    	str += '<li class="page-item" data-page="'+i+'"><a class="page-link" href="javascript:void(0);">'+i+'</a></li>';
+					}else{
+				    	str += '<li class="page-item active" data-page="'+i+'"><a class="page-link" href="javascript:void(0);">'+i+'</a></li>'
+					}
+				}
+				if(pm.next){
+					str += '<li class="page-item" data-page="'+(pm.endPage+1)+'"><a class="page-link" href="javascript:void(0);">다음</a></li>'; 
+				}    
+				$('.pagination').html(str);
+				    
+				
+				
 			}
 		 </script>
 	</body>
