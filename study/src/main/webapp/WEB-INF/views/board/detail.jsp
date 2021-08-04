@@ -83,7 +83,8 @@
 					var data = {
 							rp_bd_num : rp_bd_num, rp_content:rp_content							
 					}
-					replyService.add(contextPath, data, addOk, listOk);
+					replyService.add(contextPath, data, responseOk, listOk);
+					$('.reply-input').val('');
 				})
 				//페이지네이션에서 페이지 클릭했을 때 해당 댓글 페이지로 이동
 				$(document).on('click','.reply .pagination li', function(){
@@ -94,7 +95,7 @@
 				$(document).on('click','.reply-mod-btn', function(){
 					//console.log(123); //버튼작동확인함
 					//클릭한 수정 버튼이 있는 댓글의 내용
-					var rp_content = $(this).parent().siblings('.reply-content').text(); //this => tnwjdqjxms
+					var rp_content = $(this).parent().siblings('.reply-content').text(); //this => 수정버튼
 					
 					//댓글을 수정중에 다른 댓글을 수정하려고 했을 때, 이전 수정하던 내용은 취소하고 새롭게 누른 댓글만 수정할 수 있도록 처리
 					$('.reply .reply-content').each(function(){ //each = 해당 요소들 각각
@@ -125,32 +126,19 @@
 					//수정된 댓글이 있는 페이지(수정된 이후에, 수정하던 페이지를 유지하기 위함/1페이지로 이동을 막기위해서)
 					var page = $('.reply .pagination .active a').html(); 
 					//console.log(rp_num, rp_content, page); //콘솔에 내용이 나오는걸 확인함, 등록눌렀을땐 수정내용까지 나와야함
-					var data = {page:page, rp_bd_num:rp_bd_num};
-					$.ajax({
-						type : 'post',
-						url : contextPath + '/reply/mod',
-						data : JSON.stringify({rp_num:rp_num, rp_content:rp_content}),
-						contentType : "application/json; charset=utf-8",
-						success : function(res){
-							if(res=='OK'){
-								alert('댓글을 수정했습니다.')
-							}else{
-								alert('댓글 수정에 실패했습니다.')
-							}
-							replyService.list(contextPath, data, listOk); 
-						}
-					})					
+					var data = {page:page, rp_bd_num:rp_bd_num, rp_num:rp_num, rp_content:rp_content};
+					replyService.mod(contextPath, data, responseOk, listOk);
 				});
 				
 				//시작시 댓글 1페이지 내용 가져오기
 				replyService.list(contextPath, {page:1, rp_bd_num:rp_bd_num}, listOk); //잠시 주석처리하고 샘플코드를 만들어서 모양을 잡은 뒤 다시 주석해제처리
 			})
 			
-			function addOk(res){
+			function responseOk(res, str){
 				if(res == 'OK'){
-					alert('댓글이 등록되었습니다.');
+					alert('댓글이 '+ str + '되었습니다.');
 				}else{
-					alert('댓글 등록에 실패했습니다.');
+					alert('댓글 '+ str+'에 실패했습니다.');
 				}
 			}
 			
