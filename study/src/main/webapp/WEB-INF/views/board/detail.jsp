@@ -72,6 +72,7 @@
 			var rp_me_id= '${user.id}';
 			var contextPath = '<%=request.getContextPath()%>';
 			$(function(){
+				//댓글 등록 버튼 클릭
 				$('.reply-btn').click(function(){
 					//console.log(123); //버튼이 작동하는 것을 확인했음
 					if(rp_me_id == ''){
@@ -84,10 +85,64 @@
 					}
 					replyService.add(contextPath, data, addOk, listOk);
 				})
+				//페이지네이션에서 페이지 클릭했을 때 해당 댓글 페이지로 이동
 				$(document).on('click','.reply .pagination li', function(){
 					page = $(this).attr('data-page');
 					replyService.list(contextPath, {page:page, rp_bd_num:rp_bd_num}, listOk);
 				})
+				//댓글 수정 버튼 클릭
+				$(document).on('click','.reply-mod-btn', function(){
+					//console.log(123); //버튼작동확인함
+					//클릭한 수정 버튼이 있는 댓글의 내용
+					var rp_content = $(this).parent().siblings('.reply-content').text(); //this => tnwjdqjxms
+					
+					//댓글을 수정중에 다른 댓글을 수정하려고 했을 때, 이전 수정하던 내용은 취소하고 새롭게 누른 댓글만 수정할 수 있도록 처리
+					$('.reply .reply-content').each(function(){ //each = 해당 요소들 각각
+						var rp_content = $(this).text(); //this => 수정하려고하는 댓글 칸(reply-content 요소 하나하나)
+						var str = '<div class="form-control reply-content">'+rp_content+'</div>';
+						$(this).before(str); 
+						$(this).remove();
+						//수정 버튼 보여주고 등록 버튼 감춤
+						$('.reply .reply-ok-btn').remove();
+						$('.reply .reply-mod-btn').show();
+					})
+					//$(this).parent() : 버튼 그룹(수정, 삭제 버튼을 가진 그룹)
+					$(this).parent().siblings('.reply-content').remove();
+					var str = '<textarea class="form-control reply-content">'+rp_content+'</textarea>';
+					$(this).parent().before(str);
+							
+					//수정버튼을 등록버튼으로 바꾸기
+					//수정버튼 감추기 
+					$(this).hide();
+					//등록버튼 추가
+					str = '<button class="btn btn-outline-success reply-ok-btn">등록</button>';
+					$(this).before(str);
+				})
+				//수정 버튼 눌렀을 때 나타나는 등록 버튼 클릭
+				$(document).on('click','.reply-ok-btn', function(){					
+					var rp_num = $(this).siblings('.rp_num').val(); //댓글번호					
+					var rp_content = $(this).parent().siblings('.reply-content').val(); //수정된 댓글 내용
+					//수정된 댓글이 있는 페이지(수정된 이후에, 수정하던 페이지를 유지하기 위함/1페이지로 이동을 막기위해서)
+					var page = $('.reply .pagination .active a').html(); 
+					//console.log(rp_num, rp_content, page); //콘솔에 내용이 나오는걸 확인함, 등록눌렀을땐 수정내용까지 나와야함
+					var data = {page:page, rp_bd_num:rp_bd_num};
+					$.ajax({
+						type : 'post',
+						url : contextPath + '/reply/mod',
+						data : JSON.stringify({rp_num:rp_num, rp_content:rp_content}),
+						contentType : "application/json; charset=utf-8",
+						success : function(res){
+							if(res=='OK'){
+								alert('댓글을 수정했습니다.')
+							}else{
+								alert('댓글 수정에 실패했습니다.')
+							}
+							replyService.list(contextPath, data, listOk); 
+						}
+					})					
+				});
+				
+				//시작시 댓글 1페이지 내용 가져오기
 				replyService.list(contextPath, {page:1, rp_bd_num:rp_bd_num}, listOk); //잠시 주석처리하고 샘플코드를 만들어서 모양을 잡은 뒤 다시 주석해제처리
 			})
 			
@@ -104,7 +159,7 @@
 				var str = '';
 				for(i=0; i<list.length; i++){
 					str +=
-						'<div class="input-group">'+
+						'<div class="input-group">'+						
 			          	 	'<div class="input-group-prepend">'+
 			          			'<div class="input-group-text">'+list[i].rp_me_id+'</div>'+
 			          		'</div>'+
@@ -113,7 +168,8 @@
 			          			if(list[i].rp_me_id == rp_me_id){			          				
 				     str +=
 					          			'<button class="btn btn-outline-primary reply-mod-btn">수정</button>'+
-					          			'<button class="btn btn-outline-danger reply-del-btn">삭제</button>'
+					          			'<button class="btn btn-outline-danger reply-del-btn">삭제</button>'+
+					          			'<input type="hidden" class="rp_num" value="'+list[i].rp_num+'">'
 				          		}
 			         str +=
 			          		'</div>'+
@@ -122,7 +178,7 @@
 				$('.reply-list').html(str);
 				str = '';
 				var pm = res.pm;
-				console.log(pm);
+				//console.log(pm);
 				if(pm.prev){ //javascript:void(0); 하면 #기능(이동하면서 페이지가 맨위로 가버리는걸) 막아줌
 					str += '<li class="page-item" data-page="'+(pm.startPage-1)+'"><a class="page-link" href="javascript:void(0);">이전</a></li>'; 
 				}

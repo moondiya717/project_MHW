@@ -41,4 +41,18 @@ public class ReplyServiceImp implements ReplyService {
 	public int getTotalCount(int rp_bd_num) {		
 		return replyDao.selectTotalCount(rp_bd_num);
 	}
+
+	@Override
+	public String modifyReply(ReplyVO reply, MemberVO user) {
+		if(reply == null || user == null) {
+			return "FAIL";
+		}
+		//내가 쓴 댓글이 아니라 다른 사람이 쓴 댓글을 수정하려고 하는 경우를 막아주려는 것
+		ReplyVO dbReply = replyDao.selectReply(reply.getRp_num());
+		if(dbReply == null || !dbReply.getRp_me_id().equals(user.getId())) {
+			return "FAIL";
+		}
+		replyDao.updateReply(reply);
+		return "OK";
+	}
 }
