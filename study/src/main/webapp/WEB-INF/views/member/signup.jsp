@@ -4,8 +4,6 @@
 <!doctype html>    
 <html>
 <head>
-	<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery.validate.min.js"></script>
-	<script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/additional-methods.min.js"></script>
 	<style>
 		.error{ color:red;}
 	</style>
