@@ -181,8 +181,10 @@ public class BoardServiceImp implements BoardService{
 	    try{
 	        HttpHeaders headers = new HttpHeaders();
 	        in = new FileInputStream(uploadPath+fileName);
+System.out.println("서비스임프 in값 : "+in);
 
 	        fileName = fileName.substring(fileName.indexOf("_")+1);
+System.out.println("서비스임프 원래사진이름값 : "+fileName);
 	        headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
 	        headers.add("Content-Disposition",  "attachment; filename=\"" 
 				+ new String(fileName.getBytes("UTF-8"), "ISO-8859-1")+"\"");
