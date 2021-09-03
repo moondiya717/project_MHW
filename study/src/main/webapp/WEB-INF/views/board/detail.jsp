@@ -28,7 +28,7 @@
 			    </div>
 		  </div>
 		  <div class="form-group">
-		  	<lable>첨부파일</lable>
+		  	<label>첨부파일</label>
 		  	<c:forEach items ="${fList}" var ="file">
 		  		<a href="<%=request.getContextPath()%>/board/download?fileName=${file.name}" class="form-control">${file.ori_name}</a>
 		  	</c:forEach>
